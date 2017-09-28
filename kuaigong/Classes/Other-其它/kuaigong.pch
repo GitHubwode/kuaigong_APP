@@ -1,0 +1,132 @@
+//
+//  kuaigong.pch
+//  kuaigong
+//
+//  Created by Ding on 2017/8/15.
+//  Copyright © 2017年 Ding. All rights reserved.
+//
+
+#ifndef kuaigong_pch
+#define kuaigong_pch
+
+/*** 如果希望某些内容能拷贝到任何源代码文件(OC\C\C++等), 那么就不要写在#ifdef __OBJC__和#endif之间 ***/
+
+
+/***** 在#ifdef __OBJC__和#endif之间的内容, 只会拷贝到OC源代码文件中, 不会拷贝到其他语言的源代码文件中 *****/
+#ifdef __OBJC__
+
+#import "KGGConst.h"
+#import "KGGNavigationController.h"
+#import "MJExtension.h"
+#import "MJRefresh.h"
+#import "Masonry.h"
+#import "KGGRefreshHeader.h"
+#import "KGGRefreshFooter.h"
+#import "KGGInfoTextFiel.h"
+
+#import "UIColor+KGGExtension.h"
+#import "NSString+KGGExtension.h"
+#import "NSBundle+KGGExtension.h"
+#import "UIBarButtonItem+KGGExtension.h"
+#import "NSUserDefaults+KGGExtension.h"
+#import "MBProgressHUD+KGGExtension.h"
+#import "UIView+XCExtension.h"
+#import "UIButton+Countdown.h"
+#import "UIView+HUD.h"
+#import "UIViewController+DismissKeyboard.h"
+#import "UIColor+KGGExtension.h"
+#import "NSUserDefaults+KGGExtension.h"
+#import <YYLabel.h>
+
+#import <UMMobClick/MobClick.h>
+
+
+#define     KGGNotificationCenter   [NSNotificationCenter defaultCenter]
+
+#define     kAppDelegate [[UIApplication sharedApplication] delegate]
+
+
+#define     KGGFont(s)               [UIFont systemFontOfSize:s]
+#define     KGGLightFont(s)          [UIFont systemFontOfSize:s weight:UIFontWeightLight]
+#define     KGGMediumFont(s)         [UIFont systemFontOfSize:s weight:UIFontWeightMedium]
+#define     KGGRegularFont(s)        [UIFont systemFontOfSize:s weight:UIFontWeightRegular]
+
+
+
+#define weakSelf(type)  __weak typeof(type) weak##type = type
+
+/*** 屏幕尺寸 ***/
+#define kMainScreenSize [UIScreen mainScreen].bounds.size
+#define kMainScreenWidth kMainScreenSize.width
+#define kMainScreenHeight kMainScreenSize.height
+
+/*** 适配，相对6手机 ***/
+#define KGGScreenWidthRatio  (kMainScreenWidth / 375.0) // 屏幕宽度的比例
+#define KGGScreenHeightRatio (kMainScreenHeight / 667.0) // 屏幕高度的比例
+
+#define KGGAdaptedWidth(width)  (ceilf((width) * KGGScreenWidthRatio)) // 适配后得到的宽度
+#define KGGAdaptedHeight(height) (ceilf((height) * KGGScreenHeightRatio)) // 适配后得到的高度
+
+#define KGGAdaptedFontSize(s) KGGFont((KGGAdaptedWidth(s))) // 适配后的字号
+/** 1像素高度 */
+#define KGGOnePixelHeight (1.0f / [UIScreen mainScreen].scale)
+
+/*** 日志 ***/
+#ifdef DEBUG
+#define KGGString [NSString stringWithFormat:@"%s", __FILE__].lastPathComponent
+#define KGGLog(...) printf("%s 第%d行: %s\n\n", [KGGString UTF8String] ,__LINE__, [[NSString stringWithFormat:__VA_ARGS__] UTF8String]);
+#else
+#define KGGLog(...)
+#endif
+
+#define KGGLogFunc KGGLog(@"%s", __func__);
+
+/*** 颜色 ***/
+#define KGGColorA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+#define KGGColor(r, g, b) KGGColorA((r), (g), (b), 255)
+#define KGGRandomColor KGGColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+
+
+/** 红色的主题颜色 */
+#define KGGGoldenThemeColor UIColorHex(9e2124)
+/** 红色高亮的主题颜色 */
+#define KGGHighlightedGoldenThemeColor UIColorHex(ba9671)
+/** 页面背景颜色 */
+#define KGGViewBackgroundColor UIColorHex(f1f1f1)
+/** item选中颜色 */
+#define KGGItemSeletedColor UIColorHex(b2b2b2)
+/** 分割线颜色 */
+#define KGGSeparatorColor UIColorHex(e5e5e5)
+/** 标题文字颜色 */
+#define KGGTitleTextColor UIColorHex(ffffff)
+/** 内容文字颜色 */
+#define KGGContentTextColor UIColorHex(333333)
+/** 时间、地点文字颜色 */
+#define KGGTimeTextColor UIColorHex(999999)
+/** 提示文字颜色 */
+#define KGGAlertTextColor UIColorHex(bbbbbb)
+
+#define ThreeScreenLater (kMainScreenHeight >= 667.f)
+#define TwoScreenLater (kMainScreenHeight >= 568.f)
+/**
+ *  1 判断是否为3.5inch      320*480
+ */
+#define OneScreen (kMainScreenHeight == 480.f)
+/**
+ *  2 判断是否为4inch        640*1136
+ */
+#define TwoScreen (kMainScreenHeight == 568.f)
+/**
+ *  3 判断是否为4.7inch   375*667
+ */
+#define ThreeScreen (kMainScreenHeight == 667.f)
+/**
+ *  4 判断是否为5.5inch   414*736
+ */
+#define FourScreen (kMainScreenHeight == 736.f)
+
+#endif
+/***** 在#ifdef __OBJC__和#endif之间的内容, 只会拷贝到OC源代码文件中, 不会拷贝到其他语言的源代码文件中 *****/
+
+
+#endif /* kuaigong_pch */

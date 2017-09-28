@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>订单记录</string>
+		<key>icon</key>
+		<string>icon_dingdan</string>
+		<key>linkVC</key>
+		<string>KGGOrderRecordController</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>客服中心</string>
+		<key>icon</key>
+		<string>icon_kefu</string>
+		<key>linkVC</key>
+		<string>KGGCustomerCenterController</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>更多设置</string>
+		<key>icon</key>
+		<string>icon_shezhi</string>
+		<key>linkVC</key>
+		<string>KGGMoreSettingController</string>
+	</dict>
+</array>
+</plist>

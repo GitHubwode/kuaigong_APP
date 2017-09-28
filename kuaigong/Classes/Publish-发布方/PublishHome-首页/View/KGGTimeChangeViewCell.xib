@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="86" id="KGk-i7-Jjw" customClass="KGGTimeChangeViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="348" height="86"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="348" height="85.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间选择" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bo7-dG-pK6">
+                        <rect key="frame" x="15" y="34.5" width="57.5" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="57.5" id="52k-IP-X7U"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择时间" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CfL-1X-Bpf">
+                        <rect key="frame" x="82.5" y="27" width="150" height="30"/>
+                        <color key="tintColor" red="0.61960784313725492" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="Qri-Zd-b0J"/>
+                            <constraint firstAttribute="height" constant="30" id="bsg-Hx-VHn"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgI-bu-00Z">
+                        <rect key="frame" x="15" y="72.5" width="318" height="13"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="lOD-vf-N4E"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L6h-r0-LHX">
+                        <rect key="frame" x="313" y="32.5" width="20" height="20"/>
+                        <color key="backgroundColor" red="0.11595933041479048" green="0.93333333333333335" blue="0.38363315699413647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="4K7-BP-0S8"/>
+                            <constraint firstAttribute="width" constant="20" id="cWZ-IX-Jni"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="qgI-bu-00Z" secondAttribute="bottom" id="4bc-Sv-h2K"/>
+                    <constraint firstAttribute="trailing" secondItem="qgI-bu-00Z" secondAttribute="trailing" constant="15" id="Als-d0-I9U"/>
+                    <constraint firstAttribute="trailing" secondItem="L6h-r0-LHX" secondAttribute="trailing" constant="15" id="IN0-3C-eFz"/>
+                    <constraint firstItem="CfL-1X-Bpf" firstAttribute="leading" secondItem="bo7-dG-pK6" secondAttribute="trailing" constant="10" id="Mwq-zc-BZE"/>
+                    <constraint firstItem="L6h-r0-LHX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="NNz-QC-ZVU"/>
+                    <constraint firstItem="qgI-bu-00Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="XFb-wY-YRJ"/>
+                    <constraint firstItem="bo7-dG-pK6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="dLr-QU-8SH"/>
+                    <constraint firstItem="bo7-dG-pK6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ehO-zI-j8q"/>
+                    <constraint firstItem="CfL-1X-Bpf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="r2Q-fa-ug7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lineViewHeight" destination="lOD-vf-N4E" id="2lb-XD-wjq"/>
+                <outlet property="textField" destination="CfL-1X-Bpf" id="rq9-3y-zA2"/>
+                <outlet property="titleLabel" destination="bo7-dG-pK6" id="YPk-is-4dD"/>
+            </connections>
+            <point key="canvasLocation" x="18" y="19"/>
+        </tableViewCell>
+    </objects>
+</document>

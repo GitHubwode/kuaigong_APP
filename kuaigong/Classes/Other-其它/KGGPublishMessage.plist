@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>用工人数</string>
+		<key>subtitle</key>
+		<string></string>
+		<key>placeholder</key>
+		<string>请填写人数</string>
+		<key>required</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>用工天数</string>
+		<key>subtitle</key>
+		<string></string>
+		<key>placeholder</key>
+		<string>请填写天数</string>
+		<key>required</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>车辆/每人</string>
+		<key>subtitle</key>
+		<string></string>
+		<key>placeholder</key>
+		<string>写车辆费用</string>
+		<key>required</key>
+		<false/>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>价格/每小时</string>
+		<key>subtitle</key>
+		<string></string>
+		<key>placeholder</key>
+		<string>请填写单价</string>
+		<key>required</key>
+		<true/>
+	</dict>
+</array>
+</plist>
