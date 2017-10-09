@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) KGGLoginView *loginView1;
 @property (nonatomic, strong) KGGLoginView *loginView2;
+@property (nonatomic, strong) UIButton *loginButton;
 
 @end
 
@@ -53,7 +54,6 @@
     
     self.loginView1 = [[KGGLoginView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220), kMainScreenWidth, 44) WithTitle:nil imageString:@"icon_zhanghao" PlaceText:@" 请输入手机号"];
     self.loginView1.isPhoneNum = YES;
-//    self.loginView1.codeDelegate = self;
     self.loginView1.maxTextLength = KGGCellphoneMaxLength;
     
     self.loginView2 = [[KGGLoginView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220+44+32), kMainScreenWidth, 44) WithTitle:nil imageString:@"icon_yanzheng" PlaceText:@" 请输入验证码"];
@@ -64,12 +64,14 @@
     
 
     UIButton *loginButton = [[UIButton alloc]init];
+    loginButton.enabled = NO;
     [loginButton addTarget:self action:@selector(loginButton:) forControlEvents:UIControlEventTouchUpInside];
     [loginButton setBackgroundImage:[UIImage imageNamed:@"but_kean"] forState:UIControlStateNormal];
     [loginButton setTitle:@"下一步" forState:UIControlStateNormal];
     [loginButton setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
     loginButton.titleLabel.font = KGGLightFont(18);
     [self.view addSubview:loginButton];
+    self.loginButton = loginButton;
     [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakself.view.mas_centerX);
         make.top.equalTo(weakself.loginView2.mas_bottom).offset(15);
@@ -81,12 +83,17 @@
 
 
 #pragma mark - KGGLoginViewDelegate
-- (NSString *)textFieldCanSendCode:(NSString *)textField
+- (NSString *)textFieldCanSendCode:(KGGLoginView *)textField
 {
     return self.loginView1.loginTextField.text;
 }
 
-- (BOOL)textFieldShouldSendCode:(NSString *)textField
+- (NSString *)codeType
+{
+    return @"REGISTER";
+}
+
+- (BOOL)textFieldShouldSendCode:(KGGLoginView *)textField
 {
     NSString *cellPhone = self.loginView1.loginTextField.text;
     if (!cellPhone.length){
@@ -101,7 +108,7 @@
         [MBProgressHUD showMessag:@"请输入正确格式的手机号码"];
         return NO;
     }
-    
+    self.loginButton.enabled = YES;
     return YES;
 }
 
@@ -140,7 +147,15 @@
 {
     KGGLog(@"下一步");
     
-    [self presentViewController:[[KGGConfirmPasswordViewController alloc]init] animated:YES completion:nil];
+    if (self.loginView2.loginTextField.text.length==0) {
+        [self.view showHint:@"请输入验证码"];
+        return;
+    }
+    
+    KGGConfirmPasswordViewController *confirmVC = [[KGGConfirmPasswordViewController alloc]init];
+    confirmVC.cellPhone = self.loginView1.loginTextField.text;
+    confirmVC.smsCode = self.loginView2.loginTextField.text;
+    [self presentViewController:confirmVC animated:YES completion:nil];
 }
 
 #pragma mark - 按钮的点击事件

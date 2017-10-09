@@ -10,4 +10,7 @@
 
 @interface KGGConfirmPasswordViewController : UIViewController
 
+@property (nonatomic, copy) NSString * cellPhone;
+@property (nonatomic, copy) NSString *smsCode;
+
 @end

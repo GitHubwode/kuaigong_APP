@@ -23,6 +23,7 @@
 #import "KGGRefreshHeader.h"
 #import "KGGRefreshFooter.h"
 #import "KGGInfoTextFiel.h"
+#import "KGGUserManager.h"
 
 #import "UIColor+KGGExtension.h"
 #import "NSString+KGGExtension.h"

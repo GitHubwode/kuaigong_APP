@@ -8,6 +8,8 @@
 
 #import "KGGConfirmPasswordViewController.h"
 #import "KGGLoginView.h"
+#import "KGGLoginRequestManager.h"
+#import "KGGLoginParam.h"
 
 @interface KGGConfirmPasswordViewController ()
 @property (nonatomic, strong) KGGLoginView *loginView1;
@@ -143,7 +145,8 @@
 #pragma mark - 按钮的点击事件
 - (void)kgg_dissmissViewController
 {
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -174,8 +177,19 @@
         return;
     }
     
+    weakSelf(self);
     
-//     [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:@"BOSS" Code:self.smsCode];
+    [KGGLoginRequestManager registerWithParam:param completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            [MBProgressHUD showSuYaError:KGGHttpNerworkErrorTip toView:weakself.view];
+        }else if (responseObj.code != KGGSuccessCode){
+            [MBProgressHUD showError:responseObj.message toView:weakself.view];
+        }else{
+            [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+        
+    } aboveView:self.view inCaller:self];
 
 }
 

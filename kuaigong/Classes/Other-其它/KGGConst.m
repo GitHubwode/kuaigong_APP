@@ -11,13 +11,10 @@
 @implementation KGGConst
 
 #ifdef DEBUG
-NSString * const KGGBasicURL = @"https://service.sunvhui.net";
-//NSString * const KGGBasicURL = @"https://servicetest.sunvhui.net";
-
-//NSString * const KGGH5BasicURL = @"http://192.168.2.67:8099/h5";
+NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
 
 #else
-//NSString * const KGGBasicURL = @"https://service.sunvhui.net";
+//NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
 
 #endif
 
@@ -26,7 +23,7 @@ NSString * const KGGAppItnuesURL = @"https://itunes.apple.com/app/id1176374492";
 /** 储存后台分配的deviceId的key */
 NSString * const KGGDeviceIdKey = @"KGGDeviceIdKey";
 /** 储存后台分配的aesKey的key */
-NSString * const KGGAesKey = @"KGGAesKey";
+NSString * const KGGAesKey = @"USGzksAv^4yjMOsiiH#hN^KTS@ir%cg7MpOrA#xBAhHzSKUQXdtF^vRx&AkdRIdj";
 /** 推送的appkey */
 NSString * const KGGJPushAPPKey = @"dad3761a709164767b06958e";
 /** 高德地图的key */

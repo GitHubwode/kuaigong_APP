@@ -12,9 +12,10 @@
 
 @protocol KGGLoginViewDelegate <NSObject>
 
-- (BOOL)textFieldShouldSendCode:(NSString *)textField;
-- (NSString *)textFieldCanSendCode:(NSString *)textField;
+- (BOOL)textFieldShouldSendCode:(KGGLoginView *)textField;
+- (NSString *)textFieldCanSendCode:(KGGLoginView *)textField;
 - (UIView *)hudView;
+- (NSString *)codeType;
 
 @end
 

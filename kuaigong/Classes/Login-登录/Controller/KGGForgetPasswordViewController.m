@@ -158,12 +158,17 @@
 }
 
 #pragma mark - KGGLoginViewDelegate
-- (NSString *)textFieldCanSendCode:(NSString *)textField
+- (NSString *)textFieldCanSendCode:(KGGLoginView *)textField
 {
     return self.loginView1.loginTextField.text;
 }
 
-- (BOOL)textFieldShouldSendCode:(NSString *)textField
+- (NSString *)codeType
+{
+    return @"EDIT_LOGIN_PWD";
+}
+
+- (BOOL)textFieldShouldSendCode:(KGGLoginView *)textField
 {
     NSString *cellPhone = self.loginView1.loginTextField.text;
     if (!cellPhone.length){

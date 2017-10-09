@@ -146,6 +146,10 @@
 		3545BB7F1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3545BB7D1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.xib */; };
 		3545BB821F6FCF4A008122B8 /* KGGUMSocialHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3545BB811F6FCF4A008122B8 /* KGGUMSocialHelper.m */; };
 		3545BB851F6FD65B008122B8 /* AppDelegate+KGGUMSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 3545BB841F6FD65B008122B8 /* AppDelegate+KGGUMSocial.m */; };
+		358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381801F8B12E2002A17C5 /* KGGUserObj.m */; };
+		358381841F8B1622002A17C5 /* KGGUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381831F8B1622002A17C5 /* KGGUserManager.m */; };
+		358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */; };
+		3583818C1F8B4B67002A17C5 /* KGGLoginParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 3583818B1F8B4B67002A17C5 /* KGGLoginParam.m */; };
 		359CD0851F56B14C00DDFA62 /* KGGPersonalMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359CD0841F56B14C00DDFA62 /* KGGPersonalMessageController.m */; };
 		359CD0891F57DCB400DDFA62 /* KGGPersonMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 359CD0871F57DCB400DDFA62 /* KGGPersonMessageCell.m */; };
 		359CD08A1F57DCB400DDFA62 /* KGGPersonMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359CD0881F57DCB400DDFA62 /* KGGPersonMessageCell.xib */; };
@@ -456,6 +460,14 @@
 		3545BB811F6FCF4A008122B8 /* KGGUMSocialHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGUMSocialHelper.m; sourceTree = "<group>"; };
 		3545BB831F6FD65B008122B8 /* AppDelegate+KGGUMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+KGGUMSocial.h"; sourceTree = "<group>"; };
 		3545BB841F6FD65B008122B8 /* AppDelegate+KGGUMSocial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+KGGUMSocial.m"; sourceTree = "<group>"; };
+		3583817F1F8B12E2002A17C5 /* KGGUserObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserObj.h; sourceTree = "<group>"; };
+		358381801F8B12E2002A17C5 /* KGGUserObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGUserObj.m; sourceTree = "<group>"; };
+		358381821F8B1622002A17C5 /* KGGUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserManager.h; sourceTree = "<group>"; };
+		358381831F8B1622002A17C5 /* KGGUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGUserManager.m; sourceTree = "<group>"; };
+		358381861F8B4AF7002A17C5 /* KGGLoginRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLoginRequestManager.h; sourceTree = "<group>"; };
+		358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLoginRequestManager.m; sourceTree = "<group>"; };
+		3583818A1F8B4B67002A17C5 /* KGGLoginParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLoginParam.h; sourceTree = "<group>"; };
+		3583818B1F8B4B67002A17C5 /* KGGLoginParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLoginParam.m; sourceTree = "<group>"; };
 		359CD0831F56B14C00DDFA62 /* KGGPersonalMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGPersonalMessageController.h; sourceTree = "<group>"; };
 		359CD0841F56B14C00DDFA62 /* KGGPersonalMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGPersonalMessageController.m; sourceTree = "<group>"; };
 		359CD0861F57DCB400DDFA62 /* KGGPersonMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGPersonMessageCell.h; sourceTree = "<group>"; };
@@ -871,6 +883,7 @@
 			children = (
 				185C86731F4534E800356ECD /* KGGHTTPSessionManager.h */,
 				185C86741F4534E800356ECD /* KGGHTTPSessionManager.m */,
+				358381851F8B4AB4002A17C5 /* login-网络请求 */,
 				35F73A8F1F78A8B3000CD1D6 /* PublishNetwork */,
 				35F73A8E1F78A8B3000CD1D6 /* SearchNetwork */,
 			);
@@ -1040,6 +1053,8 @@
 				35F8308B1F66897800204989 /* KGGInfoTextFiel.m */,
 				3545BB801F6FCF4A008122B8 /* KGGUMSocialHelper.h */,
 				3545BB811F6FCF4A008122B8 /* KGGUMSocialHelper.m */,
+				358381821F8B1622002A17C5 /* KGGUserManager.h */,
+				358381831F8B1622002A17C5 /* KGGUserManager.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1228,6 +1243,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		358381851F8B4AB4002A17C5 /* login-网络请求 */ = {
+			isa = PBXGroup;
+			children = (
+				358381861F8B4AF7002A17C5 /* KGGLoginRequestManager.h */,
+				358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */,
+				358381891F8B4B46002A17C5 /* Model */,
+			);
+			path = "login-网络请求";
+			sourceTree = "<group>";
+		};
+		358381891F8B4B46002A17C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3583818A1F8B4B67002A17C5 /* KGGLoginParam.h */,
+				3583818B1F8B4B67002A17C5 /* KGGLoginParam.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		35F73A7F1F789512000CD1D6 /* PublishMessage-消息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1264,6 +1298,8 @@
 		35F73A851F789ED4000CD1D6 /* Mdoel */ = {
 			isa = PBXGroup;
 			children = (
+				3583817F1F8B12E2002A17C5 /* KGGUserObj.h */,
+				358381801F8B12E2002A17C5 /* KGGUserObj.m */,
 			);
 			path = Mdoel;
 			sourceTree = "<group>";
@@ -1848,6 +1884,7 @@
 				35BEB1611F725BBA0060298A /* KGGMyWorkViewController.m in Sources */,
 				18F5BA631F4ED24F00E6ADC4 /* KGGUseWorkerViewController.m in Sources */,
 				35F830651F6276B000204989 /* KGGAddBankCarController.m in Sources */,
+				3583818C1F8B4B67002A17C5 /* KGGLoginParam.m in Sources */,
 				3543DB7E1F5E902900BE8B93 /* NSObject+swizzle.m in Sources */,
 				189D21251F42FE170004F1EB /* SDWebImageDecoder.m in Sources */,
 				189D21281F42FE170004F1EB /* SDWebImageManager.m in Sources */,
@@ -1877,8 +1914,10 @@
 				35F830881F62AA5B00204989 /* KGGWithdrawViewController.m in Sources */,
 				189D212F1F42FE170004F1EB /* UIView+WebCacheOperation.m in Sources */,
 				188F2D551F500FA40023F4BE /* KGGMeWorkViewCell.m in Sources */,
+				358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */,
 				35F830711F62887800204989 /* KGGFillBankInfoViewController.m in Sources */,
 				35F73AB71F78E3A0000CD1D6 /* KGGLocationTextFieldSubClass.m in Sources */,
+				358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */,
 				18F5BA5E1F4ED24F00E6ADC4 /* KGGHomeViewController.m in Sources */,
 				35FF5CB11F6A933200E1A50B /* KGGPaychooseHeaderView.m in Sources */,
 				35F73AAE1F78AEB0000CD1D6 /* KGGSearchOrderHeaderView.m in Sources */,
@@ -1903,6 +1942,7 @@
 				18F5BA7A1F4ED24F00E6ADC4 /* KGGOrderRecordController.m in Sources */,
 				350360561F59503900FB0EDD /* KGGSexChangeViewCell.m in Sources */,
 				18F5BA691F4ED24F00E6ADC4 /* KGGOrderDetailsViewCell.m in Sources */,
+				358381841F8B1622002A17C5 /* KGGUserManager.m in Sources */,
 				35F830541F61177E00204989 /* UIView+Extension.m in Sources */,
 				35F73AA61F78AD1F000CD1D6 /* KGGSearchOrderController.m in Sources */,
 				189D20A91F42EAAD0004F1EB /* main.m in Sources */,

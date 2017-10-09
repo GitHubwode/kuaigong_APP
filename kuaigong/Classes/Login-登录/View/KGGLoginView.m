@@ -7,6 +7,8 @@
 //
 
 #import "KGGLoginView.h"
+#import "KGGLoginRequestManager.h"
+#import "KGGLoginParam.h"
 
 @interface KGGLoginView ()<UITextFieldDelegate>
 
@@ -124,33 +126,41 @@
 
 #pragma mark - private
 - (void)sendCodeButtonAction:(UIButton *)sender{
-   
     
-    if ([self.codeDelegate respondsToSelector:@selector(textFieldShouldSendCode:)] && ![self.codeDelegate textFieldShouldSendCode:self.loginTextField.text]) return;
+    if ([self.codeDelegate respondsToSelector:@selector(textFieldShouldSendCode:)] && ![self.codeDelegate textFieldShouldSendCode:self]) return;
+    
+    NSString *cellphone = [self.codeDelegate textFieldCanSendCode:self];
+    NSString *codeType = [self.codeDelegate codeType];
+    
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+    NSString *timeString = [NSString stringWithFormat:@"%f", a];//转为字符型
+    
+    long time1 = [timeString longLongValue];
+    
+    NSString *sig = [NSString stringWithFormat:@"%@%@%ld%@",cellphone,codeType,time1,KGGAesKey];
+    NSString *sig1 = [sig md5String];
+    
+    KGGSMSCodeParam *param = [[KGGSMSCodeParam alloc]initWithPhone:cellphone Type:codeType Timestamp:time1 Signature:sig1];
+    
+    UIView *view = [self.codeDelegate hudView];
+    weakSelf(view);
+    [view showHUD];
+    
+    [KGGLoginRequestManager sendVerificationCodeToCellParam:param completion:^(KGGResponseObj *responseObj) {
+        [weakview hideHUD];
 
-    
-//    NSString *cellphone = [self.codeDelegate textFieldCanSendCode:self];
-//    NSUInteger type = [self.codeDelegate codeType];
-    
-//    UIView *view = [self.codeDelegate hudView];
-//    weakSelf(self);
-//    [self showHUD];
-    
-//    [SNHLoginRequestManager sendVerificationCodeToCellphone:cellphone type:type completion:^(SNHResponseObj *responseObj) {
-//    
-//        [weakview hideHUD];
-//    
-//        if (!responseObj) {
-//            [MBProgressHUD showSuYaError:SNHHttpNerworkErrorTip toView:weakview];
-//        }else if (responseObj.code != SNHSuccessCode){
-//            [MBProgressHUD showSuYaError:responseObj.message toView:weakview];
-//        }else{
+        if (!responseObj) {
+            [MBProgressHUD showSuYaError:KGGHttpNerworkErrorTip toView:weakview];
+        }else if (responseObj.code != KGGSuccessCode){
+            [MBProgressHUD showError:responseObj.message toView:weakview];
+        }else{
+            
             [sender startWithTime:60 title:@"获取验证码" subTitle:@"秒后重发" normalBackgroundColor:KGGGoldenThemeColor coundownBackgroundColor:UIColorHex(c3c3c3) completion:nil];
-//        }
-//        
-//        
-//    }inCaller:self];
-    
+        }
+
+    } inCaller:self];
+
 }
 
 
