@@ -205,7 +205,14 @@ static CGFloat const itemHeight = 168.f;
 - (void)kgg_homeUserMessage
 {
     KGGLog(@"导航栏右边的按钮");
-    [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+    
+   BOOL login = [KGGUserManager shareUserManager].logined;
+    
+    if (login) {
+        KGGLog(@"已登录");
+    }else{
+       [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+    }
 }
 
 - (void)kgg_homeMessage

@@ -11,7 +11,9 @@
 #import "KGGRegisterViewController.h"
 #import "KGGForgetPasswordViewController.h"
 #import "KGGUMSocialHelper.h"
-#import "KGGNewFeatureViewController.h"
+//#import "KGGNewFeatureViewController.h"
+#import "KGGLoginParam.h"
+#import "KGGLoginRequestManager.h"
 
 @interface KGGLoginViewController ()<UITextFieldDelegate>
 
@@ -201,9 +203,11 @@
 #pragma mark - 按钮的点击事件
 - (void)kgg_dissmissViewController
 {
-//     [self dismissViewControllerAnimated:YES completion:nil];
-    KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] initWithNibName:NSStringFromClass([KGGNewFeatureViewController class]) bundle:[NSBundle mainBundle]];
-     self.view.window.rootViewController = newFeatureVc;
+//    KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] initWithNibName:NSStringFromClass([KGGNewFeatureViewController class]) bundle:[NSBundle mainBundle]];
+//     self.view.window.rootViewController = newFeatureVc;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)loginButton:(UIButton *)sender
@@ -234,11 +238,15 @@
         [MBProgressHUD showMessag:@"请输入正确格式的手机号码"];
         return;
     }
-//        SNHLoginParam *param = [[SNHLoginParam alloc]initWithUserName:cellphone password:[pwd base64_encode]];
-//        
-//        [SNHLoginRequestManager loginWithParam:param completion:^(SNHUserObj *user) {
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//        } aboveView:self.scrollView inCaller:self];
+    
+    KGGLoginParam *param = [[KGGLoginParam alloc]initWithPhone:cellphone password:pwd SmsCode:nil Mode:@"PWD"];
+    
+    [KGGLoginRequestManager loginWithParam:param completion:^(KGGUserInfo *user) {
+        KGGLog(@"%@",user);
+        [KGGNotificationCenter postNotificationName:KGGUserLoginNotifacation object:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } aboveView:self.view inCaller:self];
+
 }
 
 - (void)kgg_userAgreenMessage
@@ -257,7 +265,6 @@
     KGGLog(@"忘记密码");
     KGGForgetPasswordViewController *forgrtVC = [[KGGForgetPasswordViewController alloc]init];
     forgrtVC.itemTitle = @"忘记密码";
-//    [self.navigationController pushViewController:forgrtVC animated:YES];
     [self presentViewController:[[KGGNavigationController alloc] initWithRootViewController:forgrtVC] animated:YES completion:nil];
 }
 

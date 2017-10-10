@@ -103,7 +103,7 @@
 - (void)updateCurrentUserMobile:(NSString *)mobile
 {
     if (!_currentUser) return;
-    _currentUser.mobile = mobile;
+    _currentUser.phone = mobile;
     [self saveAccount:_currentUser];
 }
 
@@ -111,6 +111,13 @@
 {
     if (!_currentUser) return;
     _currentUser.token = token;
+    [self saveAccount:_currentUser];
+}
+
+- (void)updateCurrentUserNewType:(NSString *)userType
+{
+    if (!_currentUser) return;
+    _currentUser.type = userType;
     [self saveAccount:_currentUser];
 }
 
@@ -128,6 +135,11 @@
 {
     BOOL flag = [NSKeyedArchiver archiveRootObject:user toFile:KGGAccountSavePath];
     KGGLog(@"flag = %zd",flag);
+    if (flag) {
+        KGGLog(@"成功");
+    }else{
+        KGGLog(@"失败");
+    }
 }
 
 - (BOOL)removeAccount{
@@ -137,6 +149,9 @@
 
 - (KGGUserObj *)user
 {
+    KGGUserObj *user =[NSKeyedUnarchiver unarchiveObjectWithFile:KGGAccountSavePath];
+    KGGLog(@"=========%@",user.token);
+    KGGLog(@"!!!!!!!!!!%@",user.nickname);
     return [NSKeyedUnarchiver unarchiveObjectWithFile:KGGAccountSavePath];
 }
 

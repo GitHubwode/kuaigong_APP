@@ -34,10 +34,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [[KGGUserManager shareUserManager] autoLogin];
+
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
     //停留多长时间
-    [NSThread sleepForTimeInterval:1];
+//    [NSThread sleepForTimeInterval:1];
+    
     
     //设置窗口的根控制器
     [self setUpRootViewControllver];

@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, KGGErrorCode) {
 @interface KGGResponseObj : NSObject
 @property (nonatomic, assign) KGGErrorCode code;
 @property (nonatomic, copy) NSString *message;
-@property (nonatomic, strong) id result;
+@property (nonatomic, strong) id data;
 @end
 
 @interface KGGResultListObj : NSObject

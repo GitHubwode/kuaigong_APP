@@ -179,7 +179,7 @@
     
     weakSelf(self);
     
-    KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:@"BOSS" Code:self.smsCode];
+    KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:[NSUserDefaults objectForKey:KGGUserType] Code:self.smsCode];
     [KGGLoginRequestManager registerWithParam:param completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) {
             [MBProgressHUD showSuYaError:KGGHttpNerworkErrorTip toView:weakself.view];

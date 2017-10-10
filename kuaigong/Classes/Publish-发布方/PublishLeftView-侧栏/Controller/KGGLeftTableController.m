@@ -31,6 +31,8 @@
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self kgg_addsubViewBottom];
+    [KGGNotificationCenter addObserver:self selector:@selector(login) name:KGGUserLoginNotifacation object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(loginOut) name:KGGUserLogoutNotifacation object:nil];
 }
 
 #pragma mark -  添加底部图标
@@ -46,6 +48,17 @@
         make.height.equalTo(@25);
         make.width.equalTo(@97);
     }];
+}
+
+- (void)login
+{
+    KGGLog(@"登录成功");
+    [self.headerView leftTableHeaderView];
+    [self.tableView reloadData];
+}
+- (void)loginOut
+{
+    [self.headerView leftTableHeaderView];
 }
 
 #pragma mark - UITableViewDeelgate  UITableViewDatasource
@@ -64,7 +77,6 @@
     KGGLeftDrawerModel *model = self.dataArray[indexPath.row];
     
     KGGLeftDrawerCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGLeftDrawerCell leftIdentifierClass] forIndexPath:indexPath];
-    
     cell.iconImageView.image = [UIImage imageNamed:model.icon];
     cell.iconLabel.text = model.title;
     
@@ -82,10 +94,12 @@
 - (void)kgg_avatarImageButtonClick
 {
     KGGLog(@"点击头像跳转到个人信息");
-//    [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
-    
-    KGGPersonalMessageController *personalVC = [[KGGPersonalMessageController alloc]init];
-    [self.navigationController pushViewController:personalVC animated:YES];
+    if ([KGGUserManager shareUserManager].logined) {
+        KGGPersonalMessageController *personalVC = [[KGGPersonalMessageController alloc]init];
+        [self.navigationController pushViewController:personalVC animated:YES];
+    }else{
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+    }
 }
 
 
@@ -123,6 +137,7 @@
 
 -(void)dealloc
 {
+    [KGGNotificationCenter removeObserver:self];
     KGGLogFunc;
 }
 

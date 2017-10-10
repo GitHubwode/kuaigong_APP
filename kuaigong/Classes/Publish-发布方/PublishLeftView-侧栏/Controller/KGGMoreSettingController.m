@@ -11,12 +11,15 @@
 #include "KGGMoreSettingViewCell.h"
 #import "KGGNewFeatureViewController.h"
 #import "KGGForgetPasswordViewController.h"
+#import "KGGLoginRequestManager.h"
 
 @interface KGGMoreSettingController ()<UITableViewDelegate,UITableViewDataSource>
 /**  */
 @property (nonatomic,strong)UITableView *setTableView;
 /**  */
 @property (nonatomic,strong)NSMutableArray *datasource;
+
+@property (nonatomic, strong) UIButton *useButton;
 
 
 
@@ -29,7 +32,10 @@
     self.view.backgroundColor = KGGViewBackgroundColor;
     self.navigationItem.title = @"设置";
     [self.view addSubview:self.setTableView];
-    [self kgg_addButton];
+    
+    if ([KGGUserManager shareUserManager].logined) {
+        [self kgg_addButton];
+    }
 }
 
 #pragma mark - UITabelViewDelegate and UITableViewDatasource
@@ -67,7 +73,25 @@
 #pragma mark - 退出登录
 -(void)snh_loginOutButtonClick:(UIButton *)sender
 {
-    KGGLog(@"退出登录安妮");
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"确认退出登录?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        KGGLog(@"退出登录安妮");
+        [KGGLoginRequestManager loginOutWithcompletion:^(KGGResponseObj *responseObj) {
+            
+            [[KGGUserManager shareUserManager] logout];
+            [self.useButton removeFromSuperview];
+            [KGGNotificationCenter postNotificationName:KGGUserLogoutNotifacation object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } aboveView:self.view inCaller:self];
+        
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark-  懒加载
@@ -99,6 +123,7 @@
     weakSelf(self);
     UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"退出登录"];
     [self.view addSubview:useButton];
+    self.useButton = useButton;
     [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakself.view.mas_centerX);
         make.bottom.equalTo(weakself.view.mas_bottom);

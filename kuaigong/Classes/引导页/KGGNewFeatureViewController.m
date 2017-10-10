@@ -32,14 +32,31 @@
 }
 - (IBAction)kgg_useTheWorkerClick:(UIButton *)sender {
     KGGLog(@"用工");
-    KGGTabBarController *rootVc = [[KGGTabBarController alloc] init];
-    self.view.window.rootViewController = rootVc;
+    [self jumpLoginViewIdentity:@"BOSS"];
 }
 - (IBAction)kgg_lookTheWorkClick:(UIButton *)sender {
      KGGLog(@"找活");
-    KGGTabBarWorkController *rootVc = [[KGGTabBarWorkController alloc] init];
-    self.view.window.rootViewController = rootVc;
+    [self jumpLoginViewIdentity:@"WORKER"];
 }
+
+
+- (void)jumpLoginViewIdentity:(NSString *)IdString
+{
+    [NSUserDefaults removeObjectForKey:KGGUserType];
+    //首次存取角色
+    [NSUserDefaults setObject:IdString forKey:KGGUserType];
+    KGGLog(@"角色:%@",[NSUserDefaults objectForKey:KGGUserType]);
+
+    if ([IdString isEqualToString:@"BOSS"]) {
+        KGGTabBarController *rootVc = [[KGGTabBarController alloc] init];
+        self.view.window.rootViewController = rootVc;
+    }else{
+        KGGTabBarWorkController *rootVc = [[KGGTabBarWorkController alloc] init];
+        self.view.window.rootViewController = rootVc;
+    }
+}
+
+
 
 - (void)dealloc
 {

@@ -7,6 +7,7 @@
 //
 
 #import "KGGLoginRequestManager.h"
+#import "KGGUserManager.h"
 
 @implementation KGGLoginRequestManager
 
@@ -42,13 +43,73 @@
     //拼接url
     NSString *url = KGGURL(@"/api/user/register");
     //发送请求
-    [self requestWithURL:url httpMethod:POSTHttpMethod params:[param mj_keyValues] progress:nil completion:^(KGGResponseObj *responseObj) {
+    
+    [self postFormDataWithUrl:url form:[param mj_keyValues] completion:^(KGGResponseObj *responseObj) {
+        
         if (caller && responseObj) {
             completionHandler(responseObj);
         }
         
-    } aboveView:view inCaller:caller];    
+    } aboveView:view inCaller:caller];
     
+}
+
+/**
+ 登录请求
+ 
+ @param param 请求对象，请求参数封装为对象的属性
+ @param completionHandler 请求完成的回调 responseObj 为SNHUserObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ */
++ (void)loginWithParam:(KGGLoginParam *)param completion:(void(^)(KGGUserInfo *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    //拼接url
+    NSString *url = KGGURL(@"/api/login/doLogin");
+    
+    [self postFormDataWithUrl:url form:[param mj_keyValues] completion:^(KGGResponseObj *responseObj) {
+        
+        KGGLog(@"%@",responseObj);
+
+        if (!responseObj) return;
+        
+        if (KGGSuccessCode != responseObj.code) {
+            [view showHint:responseObj.message];
+            return;
+        }
+        
+        if (completionHandler) {
+            KGGUserInfo *userInfo = [KGGUserInfo mj_objectWithKeyValues:responseObj.data];
+            userInfo.userInfo.token = userInfo.token;
+            [[KGGUserManager shareUserManager]loginWithCurrentUser:userInfo.userInfo];
+            completionHandler(userInfo);
+        }
+        
+    } aboveView:view inCaller:caller];
+}
+
+/**
+ 退出登录请求
+ 
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ */
++ (void)loginOutWithcompletion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    //拼接url
+    NSString *url = KGGURL(@"/api/login/logOut");
+    //发送请求
+    [self requestWithURL:url httpMethod:POSTHttpMethod params:nil progress:nil completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj)  return ;
+        if (KGGSuccessCode != responseObj.code) {
+            [view showHint:responseObj.message];
+        }
+        if (KGGSuccessCode == responseObj.code) {
+            completionHandler(responseObj);
+        }
+        
+    } aboveView:view inCaller:caller];
 }
 
 @end

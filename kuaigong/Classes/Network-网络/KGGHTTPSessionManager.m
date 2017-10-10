@@ -32,7 +32,7 @@
     static AFHTTPSessionManager *instance;
     dispatch_once(&onceToken, ^{
         instance = [AFHTTPSessionManager manager];
-        instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/plain", @"text/json", @"text/javascript", nil];
+        instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/plain",@"text/html",@"text/json", @"text/javascript", nil];
         
     });
     
@@ -47,11 +47,11 @@
  + (NSDictionary *)getHeaderFieldValueDictionary
 {
     NSMutableDictionary *headerFieldValueDictionary = [NSMutableDictionary dictionary];
-    KGGUserManager *mgr = [KGGUserManager shareUserManager];
+//    KGGUserManager *mgr = [KGGUserManager shareUserManager].currentUser;
     //版本号
 //    headerFieldValueDictionary[@"appVersion"] = [NSBundle currentVersion];
     //token
-    NSString *token = mgr.token;
+    NSString *token = [KGGUserManager shareUserManager].currentUser.token;
     if (token.length) {
         headerFieldValueDictionary[@"x-token"] = token;
     }
@@ -151,9 +151,9 @@
         if (completionHandler && weakcaller) {
             KGGResponseObj *obj = [KGGResponseObj mj_objectWithKeyValues:responseObject];
             
-            if (KGGExpiredTokenCode == obj.code) {
-//                [KGGNotificationCenter postNotificationName:KGGConnectionStatusOffLine object:nil];
-            }
+//            if (KGGExpiredTokenCode == obj.code) {
+////                [KGGNotificationCenter postNotificationName:KGGConnectionStatusOffLine object:nil];
+//            }
             
             completionHandler(obj);
             
@@ -221,9 +221,9 @@
             
             KGGResponseObj *obj = [KGGResponseObj mj_objectWithKeyValues:responseObject];
             
-            if (KGGExpiredTokenCode == obj.code) {
-//                [KGGNotificationCenter postNotificationName:KGGConnectionStatusOffLine object:nil];
-            }
+//            if (KGGExpiredTokenCode == obj.code) {
+////                [KGGNotificationCenter postNotificationName:KGGConnectionStatusOffLine object:nil];
+//            }
             
             completionHandler(obj);
         }
@@ -312,9 +312,9 @@
         // 如果调用者已经不存在，就不用继续往下执行
         KGGResponseObj *obj = [KGGResponseObj mj_objectWithKeyValues:responseObject];
         
-        if (KGGExpiredTokenCode == obj.code) {
-            [KGGNotificationCenter postNotificationName:KGGConnectionStatusOffLine object:nil];
-        }
+//        if (KGGExpiredTokenCode == obj.code) {
+////            [KGGNotificationCenter postNotificationName:KGGConnectionStatusOffLine object:nil];
+//        }
         
         completionHandler(obj);
         

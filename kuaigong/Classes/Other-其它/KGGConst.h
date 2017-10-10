@@ -13,6 +13,9 @@
 
 extern NSString * const KGGBasicURL;
 
+/** 保存用户的类型 */
+extern NSString * const KGGUserType;
+
 /** Itnues上的地址 */
 extern NSString * const KGGAppItnuesURL;
 /** 储存后台分配的deviceId的key */

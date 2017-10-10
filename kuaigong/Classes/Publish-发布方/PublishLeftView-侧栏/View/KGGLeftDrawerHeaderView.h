@@ -18,5 +18,6 @@
 
 @property (nonatomic, weak) id<KGGLeftDrawerHeaderViewDelegate> delegate;
 
+- (void)leftTableHeaderView;
 
 @end

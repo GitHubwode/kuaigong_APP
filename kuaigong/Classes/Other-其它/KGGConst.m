@@ -18,6 +18,9 @@ NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
 
 #endif
 
+/** 保存用户的类型 */
+NSString * const KGGUserType = @"KGGUserType";
+
 /** Itnues上的地址 */
 NSString * const KGGAppItnuesURL = @"https://itunes.apple.com/app/id1176374492";
 /** 储存后台分配的deviceId的key */

@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger,KGGUserType) {
-    KGGUserTypeWorker = 0, /** 职工 */
-    KGGUserTypeBoss /** 老板 */
-};
+//typedef NS_ENUM(NSUInteger,KGGUserType) {
+//    KGGUserTypeWorker = 0, /** 职工 */
+//    KGGUserTypeBoss /** 老板 */
+//};
 
 /** 性别 */
 typedef NS_ENUM(NSUInteger, UserGender) {
@@ -23,12 +23,10 @@ typedef NS_ENUM(NSUInteger, UserGender) {
 @interface KGGUserObj : NSObject <NSCoding>
 /** 用户id */
 @property (nonatomic,copy) NSString *userId;
-/** token */
-@property (nonatomic,copy) NSString *token;
 /** 头像 */
 @property (nonatomic,copy) NSString *avatarUrl;
 /** 电话 */
-@property (nonatomic,copy) NSString *mobile;
+@property (nonatomic,copy) NSString *phone;
 /** 是否删除 */
 @property (nonatomic,copy) NSString *isDelete;
 /** 是否锁定 */
@@ -43,5 +41,23 @@ typedef NS_ENUM(NSUInteger, UserGender) {
 @property (nonatomic,copy) NSString *createDate;
 /** 更新时间 */
 @property (nonatomic,copy) NSString *updateDate;
+/** 增加的属性 */
+@property (nonatomic,copy) NSString *token;
+@property (nonatomic, copy) NSString *sexName;
+@property (nonatomic, assign) BOOL isLocked;
+@property (nonatomic, assign) BOOL isDeleted;
+
 
 @end
+
+
+@interface KGGUserInfo : NSObject
+
+/** token */
+@property (nonatomic,copy) NSString *token;
+
+@property (nonatomic, strong) KGGUserObj *userInfo;
+
+@end
+
+

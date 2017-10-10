@@ -13,8 +13,6 @@
 
 @property (nonatomic, assign, readonly) BOOL logined;
 
-@property (nonatomic, strong, readonly) NSString *token;
-
 @property (nonatomic, strong, readonly) KGGUserObj *currentUser;
 
 @property (nonatomic, assign) BOOL canPay;
@@ -52,6 +50,7 @@
 - (void)updateCurrentUserName:(NSString *)name;
 - (void)updateCurrentUserMobile:(NSString *)mobile;
 - (void)updateCurrentUserNewToken:(NSString *)token;
+- (void)updateCurrentUserNewType:(NSString *)userType;
 
 @end
 
