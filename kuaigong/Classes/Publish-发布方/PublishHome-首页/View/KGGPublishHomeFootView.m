@@ -41,6 +41,7 @@
 //    }];
     
     [self addSubview:self.cycleTitleView];
+//    self.cycleTitleView.backgroundColor = [UIColor redColor];
     [self.cycleTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.mas_left);
         make.top.equalTo(weakself.mas_top);
@@ -52,12 +53,13 @@
     [self addSubview:line1];
     [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.mas_left);
-        make.top.equalTo(weakself.cycleTitleView.mas_bottom).offset(17);
+        make.top.equalTo(weakself.cycleTitleView.mas_bottom).offset(1);
         make.width.equalTo(@(kMainScreenWidth));
         make.height.equalTo(@(KGGOnePixelHeight));
     }];
     
     [self addSubview:self.locationButton];
+//    self.locationButton.backgroundColor = [UIColor blueColor];
     [self.locationButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.mas_left);
         make.top.equalTo(line1.mas_bottom);
@@ -69,7 +71,7 @@
     [self addSubview:line2];
     [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.mas_left);
-        make.top.equalTo(weakself.locationButton.mas_bottom).offset(1);
+        make.top.equalTo(weakself.locationButton.mas_bottom).offset(2);
         make.width.equalTo(@(kMainScreenWidth));
         make.height.equalTo(@(KGGOnePixelHeight));
     }];

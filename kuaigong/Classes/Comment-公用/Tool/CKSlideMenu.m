@@ -53,15 +53,22 @@ static NSString *textMaxX_Key;
 /** 下标视图 */
 @property (nonatomic,strong)UIView *indicatorView;
 
-/** 选中索引 */
-@property (nonatomic,assign)NSInteger currentIndex;
-
 /** item文字边距 */
 @property (nonatomic,assign)CGFloat itemPadding;
+
+@property (nonatomic, strong) NSMutableDictionary *dict;
 
 @end
 
 @implementation CKSlideMenu
+
+- (NSMutableDictionary *)dict
+{
+    if (!_dict) {
+        _dict = [NSMutableDictionary new];
+    }
+    return _dict;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles controllers:(NSArray *)controllers;
 {
@@ -100,6 +107,11 @@ static NSString *textMaxX_Key;
     _isFixed = NO;
     _itemArr = [NSMutableArray array];
     _font = [UIFont systemFontOfSize:14];
+    
+    [NSUserDefaults removeObjectForKey:KGGPublishTapWorkerType];
+    //首次存取角色
+    [NSUserDefaults setObject:[NSString stringWithFormat:@"0"] forKey:KGGPublishTapWorkerType];
+    
 }
 
 //布局
@@ -329,6 +341,9 @@ static NSString *textMaxX_Key;
     
     if (_itemArr.count <= toIndex) {
         _currentIndex = toIndex;
+        [NSUserDefaults removeObjectForKey:KGGPublishTapWorkerType];
+        //首次存取角色
+        [NSUserDefaults setObject:[NSString stringWithFormat:@"%ld",(long)_currentIndex] forKey:KGGPublishTapWorkerType];
         return;
     }
     
@@ -336,6 +351,11 @@ static NSString *textMaxX_Key;
     UIButton *toItem = _itemArr[toIndex];
     
     _currentIndex = toIndex;
+    KGGLog(@"点击到%ld",(long)_currentIndex);
+    
+    [NSUserDefaults removeObjectForKey:KGGPublishTapWorkerType];
+    //首次存取角色
+    [NSUserDefaults setObject:[NSString stringWithFormat:@"%ld",(long)_currentIndex] forKey:KGGPublishTapWorkerType];
     
     //title样式
     if (_titleStyle == SlideMenuTitleStyleTransfrom || _titleStyle == SlideMenuTitleStyleAll) {
@@ -429,6 +449,8 @@ static NSString *textMaxX_Key;
             //常规模式 只需更新中心点即可
             CGFloat max = rightItem.center.x - leftItem.center.x;
             self.indicatorView.center = CGPointMake(leftItem.center.x + max*relativeLocation, self.indicatorView.center.y);
+            
+            
         }
             break;
         case SlideMenuIndicatorStyleFollowText:
@@ -589,6 +611,10 @@ static NSString *textMaxX_Key;
 {
     if (scrollView == self.bodyScrollView) {
         _currentIndex = scrollView.contentOffset.x / scrollView.frame.size.width;
+        KGGLog(@"滑动到%ld",(long)_currentIndex);
+        [self.dict removeAllObjects];
+        [self.dict setObject:@(_currentIndex) forKey:@"currentIndex"];
+        [KGGNotificationCenter postNotificationName:KGGPublishTapWorkerType object:nil userInfo:self.dict];
         [self resetTabScrollViewFrame];
     }
 }
@@ -661,6 +687,11 @@ static NSString *textMaxX_Key;
     CGFloat nowBlue = fromBlue + (toBlue - fromBlue)*percent;
     CGFloat nowAlpha = fromeAlpha + (toAlpha - fromeAlpha)*percent;
     return [UIColor colorWithRed:nowRed green:nowGreen blue:nowBlue alpha:nowAlpha];
+}
+
+- (void)dealloc
+{
+    KGGLogFunc
 }
 
 

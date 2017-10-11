@@ -10,4 +10,6 @@
 
 @interface KGGUseWorkerViewController : UIViewController
 
+@property (nonatomic, strong) NSMutableArray *publishDatasource;
+
 @end

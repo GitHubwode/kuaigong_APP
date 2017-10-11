@@ -15,7 +15,6 @@ extern NSString * const KGGBasicURL;
 
 /** 保存用户的类型 */
 extern NSString * const KGGUserType;
-
 /** Itnues上的地址 */
 extern NSString * const KGGAppItnuesURL;
 /** 储存后台分配的deviceId的key */
@@ -38,6 +37,10 @@ extern NSString * const KGGUserLoginNotifacation;
 extern NSString * const KGGUserLogoutNotifacation;
 //设备在别处登录
 extern NSString *const KGGConnectionStatusOffLine;
+//点击发布方,定位位置的通知
+extern NSString *const KGGPublishLocationNotification;
+//发布方滚动到哪一个下标发通知
+extern NSString *const KGGPublishTapWorkerType;
 
 /** 显示红点的通知 */
 extern NSString * const KGGShowAlertNotifacation;

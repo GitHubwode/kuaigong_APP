@@ -34,6 +34,7 @@ static NSString *const homeListViewCell = @"homeListViewCell";
     int num =  [self.homeTextField.text intValue];
     num++;
     self.homeTextField.text = [NSString stringWithFormat:@"%d",num];
+    [self homePublishText:self.homeTextField.text];
 }
 - (IBAction)homeMinusButtonClick:(UIButton *)sender {
     KGGLog(@"减人数");
@@ -41,6 +42,12 @@ static NSString *const homeListViewCell = @"homeListViewCell";
     if (num == 0) return;
     num--;
     self.homeTextField.text = [NSString stringWithFormat:@"%d",num];
+    [self homePublishText:self.homeTextField.text];
+}
+
+- (void)homePublishText:(NSString *)text
+{
+    self.publishModel.subtitle = text;
 }
 
 - (void)awakeFromNib {
@@ -60,7 +67,7 @@ static NSString *const homeListViewCell = @"homeListViewCell";
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.publishModel.subtitle = textField.text;
-
+    [self homePublishText:textField.text];
 }
 
 - (void)textViewEditChanged:(NSNotification *)noti

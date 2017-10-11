@@ -15,6 +15,7 @@
 #import "KGGUseWorkerViewController.h"
 #import "KGGOrderRecordController.h"
 #import "CKSlideMenu.h"
+#import "KGGHomePublishModel.h"
 
 //测试登录
 #import "KGGLoginViewController.h"
@@ -29,6 +30,7 @@ static CGFloat const itemHeight = 168.f;
 @end
 
 @implementation KGGHomeViewController
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -49,12 +51,10 @@ static CGFloat const itemHeight = 168.f;
     [self setupChildViewControllers];
     [self kgg_addSDCycleImage];
     
-    [self kgg_addButton];
     
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-    [KGGNotificationCenter addObserver:self selector:@selector(buttonClickLocation) name:@"aaaaaaaaa" object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(buttonClickLocation) name:KGGPublishLocationNotification object:nil];
 
 }
 
@@ -88,51 +88,8 @@ static CGFloat const itemHeight = 168.f;
     //恢复到默认y为0的状态，有时候要考虑导航栏要+64
     CGRect frame = self.view.frame;
     frame.origin.y = 0+64;
-    self.view.frame = frame;}
-
-
-- (void)kgg_addButton
-{
-    UIView *bgView = [[UIView alloc]init];
-    bgView.frame = CGRectMake(0, kMainScreenHeight-KGGLoginButtonHeight-64, kMainScreenWidth, KGGLoginButtonHeight);
-    bgView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:bgView];
-    UIButton *useButton = [self snh_creatButtonImage:@"btn_left" Title:nil];
-    useButton.tag = 1000;
-    UIButton *orderButton = [self snh_creatButtonImage:@"btn_right" Title:nil];
-    orderButton.tag = 1001;
-    [bgView addSubview:useButton];
-    [bgView addSubview:orderButton];
+    self.view.frame = frame;
     
-    [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(bgView.mas_centerY);
-        make.leading.equalTo(bgView.mas_leading);
-        make.height.equalTo(bgView.mas_height);
-        make.width.equalTo(@(kMainScreenWidth/2-0.5));
-    }];
-    
-    [orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(bgView.mas_trailing);
-        make.centerY.equalTo(bgView.mas_centerY);
-        make.height.equalTo(bgView.mas_height);
-        make.width.equalTo(@(kMainScreenWidth/2-0.5));
-    }];
-}
-
-
-#pragma mark - 底部按钮
-- (void)snh_beginButtonClick:(UIButton *)sender
-{
-    if (sender.tag == 1000) {
-        KGGLog(@"我要用工");
-        KGGUseWorkerViewController *useVC = [[KGGUseWorkerViewController alloc]init];
-        [self.navigationController pushViewController:useVC animated:YES];
-       
-    }else{
-        KGGLog(@"支付订单");
-        KGGOrderRecordController *payVC = [[KGGOrderRecordController alloc]init];
-        [self.navigationController pushViewController:payVC animated:YES];
-    }
 }
 
 - (void)kgg_addSDCycleImage
@@ -162,6 +119,8 @@ static CGFloat const itemHeight = 168.f;
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     KGGLog(@"---点击了第%ld张图片", (long)index);
+    KGGAMapBaseViewController *amapVC = [[KGGAMapBaseViewController alloc]init];
+    [self.navigationController pushViewController:amapVC animated:YES];
     
 }
 
@@ -179,10 +138,11 @@ static CGFloat const itemHeight = 168.f;
     
     NSMutableArray *arr = [NSMutableArray array];
     for (int i = 0; i <titles.count ; i++) {
-        [arr addObject:[KGGHomeListViewController new]];
+        KGGHomeListViewController *homeVC = [KGGHomeListViewController new];
+        [arr addObject:homeVC];
     }
     CKSlideMenu *slideMenu = [[CKSlideMenu alloc]initWithFrame:CGRectMake(0, itemHeight, kMainScreenWidth, 37) titles:titles controllers:arr];
-    slideMenu.bodyFrame = CGRectMake(0,  itemHeight + 37, kMainScreenWidth, kMainScreenHeight- itemHeight-KGGLoginButtonHeight-101);
+    slideMenu.bodyFrame = CGRectMake(0,  itemHeight + 37, kMainScreenWidth, kMainScreenHeight- itemHeight-101);
     slideMenu.bodySuperView = self.view;
     slideMenu.indicatorOffsety = 2;
     slideMenu.indicatorWidth = 40;
@@ -221,17 +181,9 @@ static CGFloat const itemHeight = 168.f;
     [KGGSliderMenuTool showWithRootViewController:self contentViewController:[[KGGLeftTableController alloc] init]];
 }
 
-#pragma mark - lazyButton
-- (UIButton *)snh_creatButtonImage:(NSString *)image Title:(NSString *)title
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(snh_beginButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    return button;
-}
-
 - (void)dealloc
 {
+    [KGGNotificationCenter removeObserver:self];
     KGGLogFunc;
 }
 

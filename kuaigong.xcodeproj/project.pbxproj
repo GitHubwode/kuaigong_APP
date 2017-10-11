@@ -160,6 +160,9 @@
 		35BEB1661F725D7C0060298A /* KGGMyWorkViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35BEB1641F725D7C0060298A /* KGGMyWorkViewCell.xib */; };
 		35BEB16F1F73C1F30060298A /* KGGWorkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BEB16D1F73C1F30060298A /* KGGWorkDetailsViewController.m */; };
 		35BEB1701F73C1F30060298A /* KGGWorkDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35BEB16E1F73C1F30060298A /* KGGWorkDetailsViewController.xib */; };
+		35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */; };
+		35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C61F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m */; };
+		35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C91F8DC39600DCA0EB /* KGGPublishOrderParam.m */; };
 		35F73A8C1F78A80E000CD1D6 /* CKSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F73A8A1F78A80B000CD1D6 /* CKSlideMenu.m */; };
 		35F73AA61F78AD1F000CD1D6 /* KGGSearchOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F73AA51F78AD1F000CD1D6 /* KGGSearchOrderController.m */; };
 		35F73AAA1F78AE9F000CD1D6 /* KGGSearchOrderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F73AA81F78AE9F000CD1D6 /* KGGSearchOrderViewCell.m */; };
@@ -485,6 +488,12 @@
 		35BEB16D1F73C1F30060298A /* KGGWorkDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGWorkDetailsViewController.m; sourceTree = "<group>"; };
 		35BEB16E1F73C1F30060298A /* KGGWorkDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGWorkDetailsViewController.xib; sourceTree = "<group>"; };
 		35C5D9911F5D5A6400CF6BE8 /* kuaigong.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = kuaigong.entitlements; sourceTree = "<group>"; };
+		35E8B6C11F8DBE5C00DCA0EB /* KGGOrderDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderDetailsModel.h; sourceTree = "<group>"; };
+		35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderDetailsModel.m; sourceTree = "<group>"; };
+		35E8B6C51F8DC36100DCA0EB /* KGGPublishOrderRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishOrderRequestManager.h; sourceTree = "<group>"; };
+		35E8B6C61F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPublishOrderRequestManager.m; sourceTree = "<group>"; };
+		35E8B6C81F8DC39600DCA0EB /* KGGPublishOrderParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishOrderParam.h; sourceTree = "<group>"; };
+		35E8B6C91F8DC39600DCA0EB /* KGGPublishOrderParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPublishOrderParam.m; sourceTree = "<group>"; };
 		35F73A831F7898C4000CD1D6 /* KGGConversionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGConversionListViewController.m; sourceTree = "<group>"; };
 		35F73A841F7898C7000CD1D6 /* KGGConversionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGConversionListViewController.h; sourceTree = "<group>"; };
 		35F73A8A1F78A80B000CD1D6 /* CKSlideMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CKSlideMenu.m; sourceTree = "<group>"; };
@@ -1262,6 +1271,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		35E8B6C41F8DC32A00DCA0EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35E8B6C81F8DC39600DCA0EB /* KGGPublishOrderParam.h */,
+				35E8B6C91F8DC39600DCA0EB /* KGGPublishOrderParam.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		35F73A7F1F789512000CD1D6 /* PublishMessage-消息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1328,6 +1346,9 @@
 		35F73A8F1F78A8B3000CD1D6 /* PublishNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				35E8B6C41F8DC32A00DCA0EB /* Model */,
+				35E8B6C51F8DC36100DCA0EB /* KGGPublishOrderRequestManager.h */,
+				35E8B6C61F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m */,
 			);
 			path = PublishNetwork;
 			sourceTree = "<group>";
@@ -1335,6 +1356,8 @@
 		35F73A901F78A8DF000CD1D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				35E8B6C11F8DBE5C00DCA0EB /* KGGOrderDetailsModel.h */,
+				35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1855,6 +1878,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */,
 				188F2D5C1F540B8C0023F4BE /* KGGRefreshFooter.m in Sources */,
 				18F5BA781F4ED24F00E6ADC4 /* KGGLeftDrawerHeaderView.m in Sources */,
 				189D212E1F42FE170004F1EB /* UIImageView+WebCache.m in Sources */,
@@ -1893,6 +1917,7 @@
 				185C86811F4596F400356ECD /* KGGRegisterViewController.m in Sources */,
 				185C86721F452F2500356ECD /* KGGConst.m in Sources */,
 				189D21561F43E44C0004F1EB /* NSBundle+KGGExtension.m in Sources */,
+				35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */,
 				189D21221F42FE170004F1EB /* NSData+ImageContentType.m in Sources */,
 				189D213F1F43DE910004F1EB /* UIColor+KGGExtension.m in Sources */,
 				35FD03811F5E7EFF00558900 /* KGGMoreSetModel.m in Sources */,
@@ -1928,6 +1953,7 @@
 				189D21291F42FE170004F1EB /* SDWebImagePrefetcher.m in Sources */,
 				35F830511F61177E00204989 /* CYPasswordInputView.m in Sources */,
 				35F73ABA1F78EC40000CD1D6 /* KGGAMapBaseViewController.m in Sources */,
+				35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */,
 				189D21271F42FE170004F1EB /* SDWebImageDownloaderOperation.m in Sources */,
 				188F2D611F5426200023F4BE /* KGGHomePublishModel.m in Sources */,
 				185C86EE1F4BE93D00356ECD /* UITextField+KGGExtension.m in Sources */,

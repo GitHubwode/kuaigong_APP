@@ -12,6 +12,9 @@
 #import "KGGHomePublishModel.h"
 #import "KGGAMapBaseViewController.h"
 
+#import "KGGUseWorkerViewController.h"
+#import "KGGOrderRecordController.h"
+
 @interface KGGHomeListViewController ()<UITableViewDelegate,UITableViewDataSource,KGGPublishHomeFootViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -29,12 +32,79 @@
     [self setupForDismissKeyboard];
     self.tableView.tableFooterView = self.footView;
     [self.view addSubview:self.tableView];
+    [self kgg_addButton];
 }
+
+- (void)kgg_addButton
+{
+    UIView *bgView = [[UIView alloc]init];
+    bgView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:bgView];
+    
+    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.width.equalTo(@(kMainScreenWidth));
+        make.height.equalTo(@(KGGLoginButtonHeight));
+    }];
+    
+    UIButton *useButton = [self snh_creatButtonImage:@"btn_left" Title:nil];
+    useButton.tag = 1000;
+    UIButton *orderButton = [self snh_creatButtonImage:@"btn_right" Title:nil];
+    orderButton.tag = 1001;
+    [bgView addSubview:useButton];
+    [bgView addSubview:orderButton];
+    
+    [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(bgView.mas_centerY);
+        make.leading.equalTo(bgView.mas_leading);
+        make.height.equalTo(bgView.mas_height);
+        make.width.equalTo(@(kMainScreenWidth/2-0.5));
+    }];
+    
+    [orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(bgView.mas_trailing);
+        make.centerY.equalTo(bgView.mas_centerY);
+        make.height.equalTo(bgView.mas_height);
+        make.width.equalTo(@(kMainScreenWidth/2-0.5));
+    }];
+}
+
+#pragma mark - lazyButton
+- (UIButton *)snh_creatButtonImage:(NSString *)image Title:(NSString *)title
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(snh_beginButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
+#pragma mark - 底部按钮
+- (void)snh_beginButtonClick:(UIButton *)sender
+{
+    if (sender.tag == 1000) {
+        KGGLog(@"我要用工");
+        KGGUseWorkerViewController *useVC = [[KGGUseWorkerViewController alloc]init];
+        useVC.publishDatasource = self.datasource;
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:useVC] animated:YES completion:^{
+            self.tableView.frame = CGRectMake(0, 168+37+64, kMainScreenWidth, kMainScreenHeight-64-168-37);
+        }];
+        
+    }else{
+        KGGLog(@"支付订单");
+        KGGOrderRecordController *payVC = [[KGGOrderRecordController alloc]init];
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:payVC] animated:YES completion:^{
+            self.tableView.frame = CGRectMake(0, 168+37+64, kMainScreenWidth, kMainScreenHeight-64-168-37);
+        }];
+        
+    }
+}
+
 
 #pragma mark -KGGPublishHomeFootViewDelegate
 - (void)kgg_publishHomeFootViewLocationButtonClick
 {
-    [KGGNotificationCenter postNotificationName:@"aaaaaaaaa" object:nil];
+    [KGGNotificationCenter postNotificationName:KGGPublishLocationNotification object:nil];
 }
 
 #pragma mark - 键盘显示隐藏
@@ -105,7 +175,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-KGGLoginButtonHeight-168-37-64) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-168-37) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor whiteColor];
          [_tableView registerNib:[UINib nibWithNibName:@"KGGHomeListViewCell" bundle:nil] forCellReuseIdentifier:[KGGHomeListViewCell homeListIdentifier]];
         _tableView.rowHeight = 45.f;

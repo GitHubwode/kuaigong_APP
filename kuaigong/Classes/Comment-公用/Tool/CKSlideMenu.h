@@ -24,6 +24,9 @@ typedef NS_ENUM(NSInteger,SlideMenuIndicatorStyle){
 
 @interface CKSlideMenu : UIView
 
+/** 选中索引 */
+@property (nonatomic,assign)NSInteger currentIndex;
+
 /** title风格 */
 @property (nonatomic,assign)SlideMenuTitleStyle titleStyle;
 

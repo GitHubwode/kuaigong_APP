@@ -9,6 +9,7 @@
 #import "KGGTabBarWorkController.h"
 #import "KGGNavigationController.h"
 #import "KGGHomeWorkViewController.h"
+#import "KGGHomeViewController.h"
 
 @interface KGGTabBarWorkController ()
 

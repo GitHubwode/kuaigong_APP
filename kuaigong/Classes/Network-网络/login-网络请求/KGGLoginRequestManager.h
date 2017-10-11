@@ -61,4 +61,8 @@
  */
 + (void)loginOutWithcompletion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
+
+
+
+
 @end

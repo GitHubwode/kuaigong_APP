@@ -12,6 +12,7 @@
 #import "KGGPayTimeChooseViewCell.h"
 #import "KGGUseWorkerHeaderView.h"
 #import "KGGActionSheetController.h"
+#import "KGGHomePublishModel.h"
 
 @interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -35,7 +36,22 @@
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self kgg_addButton];
+    //创建tarBarItem
+    [self setupNavi];
+    KGGLog(@"%@",[NSUserDefaults objectForKey:KGGPublishTapWorkerType]);
 }
+
+#pragma mark - 创建item
+- (void)setupNavi
+{
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"nav_back" highImage:@"nav_back" target:self action:@selector(kgg_back)];
+}
+
+- (void)kgg_back
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - 键盘显示隐藏
 - (void)keyboardWillShow:(NSNotification *)notification{
@@ -203,6 +219,12 @@
     [button setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(snh_sureMessageButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     return button;
+}
+
+- (void)dealloc
+{
+    [KGGNotificationCenter removeObserver:self];
+    KGGLogFunc
 }
 
 - (void)didReceiveMemoryWarning {
