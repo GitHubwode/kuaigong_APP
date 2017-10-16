@@ -60,5 +60,12 @@
 @property (nonatomic,assign) double  totalAmount;
 /** 接单用户的id */
 @property (nonatomic,assign) NSUInteger  acceptUser;
+/** 订单号 */
+@property (nonatomic,copy) NSString * orderNo;
+
+//增加的参数
+@property (nonatomic, copy) NSString *orderDetails;
+@property (nonatomic, copy) NSString *workerType;
+@property (nonatomic, assign) CGFloat differentPrice;
 
 @end

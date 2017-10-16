@@ -87,7 +87,13 @@
 {
     KGGLeftDrawerModel *model = self.dataArray[indexPath.row];
     Class class = NSClassFromString(model.linkVC);
-    [self.navigationController pushViewController:[class new] animated:YES];
+    
+    if (indexPath.row == 0) {
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[class new]] animated:YES completion:nil];
+    }else{
+        [self.navigationController pushViewController:[class new] animated:YES];
+
+    }
 }
 
 #pragma mark - KGGLeftDrawerHeaderViewDelegate

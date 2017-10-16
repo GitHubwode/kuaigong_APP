@@ -31,8 +31,12 @@ NSString * const KGGDeviceIdKey = @"KGGDeviceIdKey";
 NSString * const KGGAesKey = @"USGzksAv^4yjMOsiiH#hN^KTS@ir%cg7MpOrA#xBAhHzSKUQXdtF^vRx&AkdRIdj";
 /** 推送的appkey */
 NSString * const KGGJPushAPPKey = @"dad3761a709164767b06958e";
-/** 高德地图的key */
+/** 百度地图的key */
 NSString *const KGGAMApKey = @"0f36c68b1fd0ac66da53bf33d7b12797";
+
+/** 用户定位完成通知 */
+NSString * const KGGUpdateUserLocationNotifacation = @"KGGUpdateUserLocationNotifacation";
+
 /** 测试 融云的appkey */
 NSString *const KGGRongCloudAppKey = @"pvxdm17jpicmr";
 //设备在别处登录

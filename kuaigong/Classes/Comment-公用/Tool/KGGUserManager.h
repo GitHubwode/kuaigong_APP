@@ -51,6 +51,7 @@
 - (void)updateCurrentUserMobile:(NSString *)mobile;
 - (void)updateCurrentUserNewToken:(NSString *)token;
 - (void)updateCurrentUserNewType:(NSString *)userType;
+- (void)updateCurrentUserBossVIP:(BOOL)isVIP;
 
 @end
 

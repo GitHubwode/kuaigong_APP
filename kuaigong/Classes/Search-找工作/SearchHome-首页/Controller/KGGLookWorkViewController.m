@@ -8,7 +8,7 @@
 
 #import "KGGLookWorkViewController.h"
 #import "KGGLookWorkViewCell.h"
-
+#import "KGGOrderDetailsModel.h"
 
 @interface KGGLookWorkViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -41,14 +41,40 @@
 
 - (void)kgg_hostLiveLocation:(BOOL)refresh
 {
-    
+    [KGGPublishOrderRequestManager publishOrderListType:self.requestType Page:self.pageNum UserId:[[KGGUserManager shareUserManager].currentUser.userId integerValue] completion:^(NSArray<KGGOrderDetailsModel *> *response) {
+        if (!response) {
+            if (refresh) {
+                [self.tableView.mj_header endRefreshing];
+            }else{
+                [self.tableView.mj_footer endRefreshing];
+            }
+        }else{ //有数据
+            self.pageNum ++;
+            if (refresh) {
+                [self.tableView.mj_header endRefreshing];
+                [self.datasource removeAllObjects];
+            }else{
+                [self.tableView.mj_footer endRefreshing];
+            }
+            [self.datasource addObjectsFromArray:response];
+        }
+        [self.tableView reloadData];
+        if (self.datasource.count < 10) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+        if (self.datasource.count == 0) {
+            [self.tableView showBusinessErrorViewWithError:@"这里还没有内容" yOffset:100.f];
+        }
+        
+    } aboveView:self.view inCaller:self];
 }
 
 
 #pragma mark - UITableViewDelegate  UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.datasource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,13 +84,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    KGGOrderDetailsModel *model = self.datasource[indexPath.row];
     KGGLookWorkViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGLookWorkViewCell lookWorkIdentifier] forIndexPath:indexPath];
+    cell.detailsModel = model;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    KGGLog(@"订单详情");
 }
 
 

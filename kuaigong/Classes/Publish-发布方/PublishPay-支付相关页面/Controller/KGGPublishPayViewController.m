@@ -8,6 +8,7 @@
 
 #import "KGGPublishPayViewController.h"
 #import "KGGActionSheetController.h"
+#import "KGGOrderDetailsModel.h"
 
 @interface KGGPublishPayViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *orderDetailsLabel;
@@ -15,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *orderNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *orderTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *sureButton;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 
 @end
 
@@ -22,7 +25,91 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.view.backgroundColor = KGGViewBackgroundColor;
+    if (self.requestType == KGGOrderRequestDetailsType) {
+        KGGLog(@"订单详情");
+    }else if (self.requestType ==KGGOrderRequestMyDoingType){
+        KGGLog(@"正在进行时");
+        self.title = @"进行中的订单";
+        [self addButton];
+    }else if (self.requestType ==KGGOrderRequestCompleteType){
+        KGGLog(@"我已完成的订单");
+        self.title = @"完成订单";
+        [self.sureButton removeFromSuperview];
+        [self.messageLabel removeFromSuperview];
+    }else if (self.requestType ==KGGOrderRequestNotCompleteType){
+        KGGLog(@"未接单");
+        self.title = @"未接订单";
+        [self.sureButton setTitle:@"取消订单" forState:UIControlStateNormal];
+    }
+    [self setupModel];
+}
+
+#pragma mark - 赋值
+- (void)setupModel
+{
+    self.orderDetailsLabel.text = self.detailsModel.orderDetails;
+    self.moneyLabel.text = [NSString stringWithFormat:@"%.f元",self.detailsModel.totalAmount];
+    self.remarkLabel.text = self.detailsModel.remark;
+    self.orderNumLabel.text = self.detailsModel.orderNo;
+    self.orderTimeLabel.text = [NSString TimeStamp:self.detailsModel.createTime];
+}
+
+- (void)addButton
+{
+    UIView *bgView = [[UIView alloc]init];
+    bgView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:bgView];
+    
+    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.width.equalTo(@(kMainScreenWidth));
+        make.height.equalTo(@(KGGLoginButtonHeight));
+    }];
+    
+    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"修改订单"];
+    useButton.tag = 1000;
+    UIButton *orderButton = [self snh_creatButtonImage:@"bg_button" Title:@"支付订单"];
+    orderButton.tag = 1001;
+    [bgView addSubview:useButton];
+    [bgView addSubview:orderButton];
+    
+    [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(bgView.mas_centerY);
+        make.leading.equalTo(bgView.mas_leading);
+        make.height.equalTo(bgView.mas_height);
+        make.width.equalTo(@(kMainScreenWidth/2-0.5));
+    }];
+    
+    [orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(bgView.mas_trailing);
+        make.centerY.equalTo(bgView.mas_centerY);
+        make.height.equalTo(bgView.mas_height);
+        make.width.equalTo(@(kMainScreenWidth/2-0.5));
+    }];
+}
+
+#pragma mark - lazyButton
+- (UIButton *)snh_creatButtonImage:(NSString *)image Title:(NSString *)title
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.titleLabel.font = KGGFont(18);
+    [button setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(snh_beginButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
+#pragma mark - 底部按钮
+- (void)snh_beginButtonClick:(UIButton *)sender
+{
+    if (sender.tag == 1000){
+        KGGLog(@"");
+    }else{
+        KGGLog(@"登录就可以进入");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,14 +118,29 @@
 }
 - (IBAction)publishSurePayButtonClick:(UIButton *)sender {
     
+    [self kgg_cancelOrder];
+}
+
+- (void)kgg_cancelOrder
+{
+    [KGGPublishOrderRequestManager publishCancelOrderId:self.detailsModel.orderId completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } aboveView:self.view inCaller:self];
+}
+
+
+- (void)kgg_orderDetailsMessage
+{
     KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
-//    sheetVC.moneyString = [NSString stringWithFormat:@"%.2f",_headerView.model.fee];
+    //    sheetVC.moneyString = [NSString stringWithFormat:@"%.2f",_headerView.model.fee];
     sheetVC.receiverId = @"";
     sheetVC.tradeType = 1;
     sheetVC.payFrom = 22;
     sheetVC.isPublish = NO;
     sheetVC.itemId = 11;
-//    __weak typeof(self) weakSelf = self;
+    //    __weak typeof(self) weakSelf = self;
     sheetVC.callPaySuccessBlock = ^(NSString *code){
         if ([code isEqualToString:@"200"]) {
             KGGLog(@"付费成功");

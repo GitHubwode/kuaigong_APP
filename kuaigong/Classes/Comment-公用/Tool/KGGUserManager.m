@@ -121,6 +121,13 @@
     [self saveAccount:_currentUser];
 }
 
+- (void)updateCurrentUserBossVIP:(BOOL)isVIP
+{
+    if (!_currentUser) return;
+    _currentUser.hasVIP = isVIP;
+    [self saveAccount:_currentUser];
+}
+
 /**
  同步用户信息到本地
  */

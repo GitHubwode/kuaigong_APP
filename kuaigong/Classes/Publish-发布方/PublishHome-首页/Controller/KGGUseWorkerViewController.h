@@ -11,5 +11,8 @@
 @interface KGGUseWorkerViewController : UIViewController
 
 @property (nonatomic, strong) NSMutableArray *publishDatasource;
+@property (nonatomic, copy) NSString *address;
+@property (nonatomic, assign) CGFloat longitudeMap;
+@property (nonatomic, assign) CGFloat latitudeMap;
 
 @end

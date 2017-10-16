@@ -12,9 +12,10 @@
 #import "KGGMoreSettingController.h"
 #import "KGGMyWalletViewController.h"
 #import "KGGMyWorkViewController.h"
+#import "KGGLoginViewController.h"
 
 
-@interface KGGMeWorkViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface KGGMeWorkViewController ()<UITableViewDelegate,UITableViewDataSource,KGGMeWorkHeaderViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *datasource;
@@ -29,8 +30,25 @@
     [super viewDidLoad];
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
+    [self.headerView updataUserMessageLogin:[KGGUserManager shareUserManager].logined];
     [self addCollectButton];
+    [KGGNotificationCenter addObserver:self selector:@selector(loginSuccess) name:KGGUserLoginNotifacation object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(loginOutSuccess) name:KGGUserLogoutNotifacation object:nil];
 }
+
+- (void)loginSuccess
+{
+    KGGLog(@"登录成功");
+    [self.headerView updataUserMessageLogin:[KGGUserManager shareUserManager].logined];
+}
+
+- (void)loginOutSuccess
+{
+    KGGLog(@"登出成功");
+    [self.headerView updataUserMessageLogin:[KGGUserManager shareUserManager].logined];
+}
+
+
 
 #pragma mark - UITableViewDelegate  UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -77,6 +95,16 @@
 //    return 10.f;
 //}
 
+#pragma mark -KGGMeWorkHeaderViewDelegate
+- (void)kggMeWorkHeaderViewButtonClick
+{
+    BOOL login = [KGGUserManager shareUserManager].logined;
+    if (login) {
+        KGGLog(@"已登录");
+    }else{
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+    }
+}
 
 #pragma mark - 确认收款按钮
 - (void)snh_sureCollectButtonClick:(UIButton *)sender
@@ -128,7 +156,8 @@
 - (KGGMeWorkHeaderView *)headerView
 {
     if (!_headerView) {
-        _headerView = [[KGGMeWorkHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 190)];
+        _headerView = [[KGGMeWorkHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 200)];
+        _headerView.delegate = self;
     }
     return _headerView;
 }

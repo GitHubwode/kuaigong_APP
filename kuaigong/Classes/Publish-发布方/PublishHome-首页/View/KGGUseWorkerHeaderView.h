@@ -10,7 +10,7 @@
 
 @interface KGGUseWorkerHeaderView : UIView
 
-@property (nonatomic, strong) UITextView *textView;
-
+@property (nonatomic, strong) UITextView *headerTextView;
+@property (nonatomic, strong) UILabel *orderDetailLabel;
 
 @end

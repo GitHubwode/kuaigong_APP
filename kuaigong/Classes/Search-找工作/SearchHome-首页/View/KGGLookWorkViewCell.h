@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class KGGOrderDetailsModel;
+
 @interface KGGLookWorkViewCell : UITableViewCell
+@property (nonatomic, strong) KGGOrderDetailsModel *detailsModel;
 
 + (NSString *)lookWorkIdentifier;
 

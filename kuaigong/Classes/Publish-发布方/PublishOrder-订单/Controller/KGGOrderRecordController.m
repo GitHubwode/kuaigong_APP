@@ -16,7 +16,6 @@
 @property (nonatomic, strong) SUNSlideSwitchView *slideSwitchView;
 @property (nonatomic, strong) NSArray<NSString *> *titles;
 
-
 @end
 
 @implementation KGGOrderRecordController
@@ -44,18 +43,18 @@
 - (void)setupChildViewControllers
 {
     KGGUndoneOrderController *undoingVC = [[KGGUndoneOrderController alloc]init];
-//    hostVC.requestType = SNHNewListRequestAudienceType;
+    undoingVC.requestType = KGGOrderRequestMyDoingType;
     [self addChildViewController:undoingVC];
     
     KGGUndoneOrderController *undoneVC = [[KGGUndoneOrderController alloc]init];
-    //    hostVC.requestType = SNHNewListRequestAudienceType;
+    undoneVC.requestType = KGGOrderRequestNotCompleteType;
     [self addChildViewController:undoneVC];
     
     KGGDoneOrderController *doneOrderVC = [[KGGDoneOrderController alloc]init];
-//    appointVC.requestType = SNHNewListRequestHostType;
+    doneOrderVC.requestType = KGGOrderRequestCompleteType;
     [self addChildViewController:doneOrderVC];
     
-    _titles = @[@"进行中",@"未完成",@"已完成"];
+    _titles = @[@"进行中",@"未接单",@"已完成"];
 }
 
 - (void)setUpSlideSwitchView

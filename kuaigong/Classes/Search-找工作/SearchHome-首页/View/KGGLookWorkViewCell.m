@@ -7,6 +7,7 @@
 //
 
 #import "KGGLookWorkViewCell.h"
+#import "KGGOrderDetailsModel.h"
 
 static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
 
@@ -28,6 +29,17 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
     [super awakeFromNib];
     // Initialization code
     self.lineViewHeight.constant = KGGOnePixelHeight;
+}
+
+- (void)setDetailsModel:(KGGOrderDetailsModel *)detailsModel
+{
+    _detailsModel = detailsModel;
+    self.classNameLabel.text = detailsModel.workerType;
+    self.peopleNumLabel.text = [NSString stringWithFormat:@"%lu人",(unsigned long)detailsModel.number];
+    self.timeLabel.text = detailsModel.whenLong;
+    self.moneyLabel.text = [NSString stringWithFormat:@"%.f",detailsModel.differentPrice];
+    self.nickNameLabel.text = detailsModel.contacts;
+    
 }
 
 + (NSString *)lookWorkIdentifier

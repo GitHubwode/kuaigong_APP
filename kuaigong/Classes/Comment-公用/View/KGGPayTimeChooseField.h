@@ -11,8 +11,8 @@
 @protocol KGGPayTimeChooseFieldDelegate <NSObject>
 
 @optional
-- (void)payTimeChooseFieldEnsureButtonClick;
 
+- (void)payTimeChooseFieldEnsureButtonClick;
 
 @end
 

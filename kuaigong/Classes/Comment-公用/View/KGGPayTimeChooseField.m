@@ -43,6 +43,8 @@
     [super awakeFromNib];
     [self setup];
 }
+
+
 //初始化
 - (void)setup
 {

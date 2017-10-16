@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KGGPayTimeChooseField.h"
 
-@class KGGPayTimeChooseField;
 @class KGGCustomInfoItem;
-
 @interface KGGPayTimeChooseViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet KGGPayTimeChooseField *timeTextField;
-
-+ (NSString *)payTimeIdentifier;
-
 @property (nonatomic, strong) KGGCustomInfoItem *infoItem;
++ (NSString *)payTimeIdentifier;
 
 
 @end

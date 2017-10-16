@@ -17,6 +17,6 @@
 @interface KGGPublishHomeFootView : UIView
 
 @property (nonatomic, weak) id<KGGPublishHomeFootViewDelegate> delegate;
-
+@property (nonatomic, strong) UIButton *locationButton;
 
 @end

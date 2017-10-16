@@ -34,7 +34,6 @@ static NSString *KGGUseWorkerInfoCellIdfy = @"KGGUseWorkerInfoCellIdfy";
     self.titleLabel.text = infoItem.title;
     self.textField.placeholder = infoItem.placeholder;
     self.textField.text = infoItem.subtitle;
-//    self.iconImageView.hidden = infoItem.hidenIndicator;
     self.textField.keyboardType = infoItem.keyboardType;
 }
 

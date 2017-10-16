@@ -32,10 +32,25 @@
     return self;
 }
 
+- (void)updataUserMessageLogin:(BOOL)login
+{
+    if (login) {
+        [self.loginButton removeFromSuperview];
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[KGGUserManager shareUserManager].currentUser.avatarUrl] placeholderImage:[UIImage imageNamed:@"icon_touxiang"]];
+        self.nickLabel.text = [KGGUserManager shareUserManager].currentUser.nickname;
+        self.phoneLabel.text = [KGGUserManager shareUserManager].currentUser.phone;
+        
+    }else{
+        
+    }
+    
+}
 
 #pragma mark - event
 - (void)loginButtonAction{
-//    [self.window.rootViewController isLogined];
+    if ([self.delegate respondsToSelector:@selector(kggMeWorkHeaderViewButtonClick)]) {
+        [self.delegate kggMeWorkHeaderViewButtonClick];
+    }
     KGGLog(@"登录按钮...");
 }
 
@@ -61,11 +76,10 @@
 - (void)creatHeaderUI
 {
     weakSelf(self);
-    UIImageView *imageView = [[UIImageView alloc]init];
-    imageView.image = [UIImage imageNamed:@""];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.frame];
+    imageView.image = [UIImage imageNamed:@"icon_default_bg"];
     imageView.userInteractionEnabled = YES;
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.frame = self.frame;
+    imageView.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:imageView];
     
     [imageView addSubview:self.avatarImageView];
@@ -79,21 +93,25 @@
     [imageView addSubview:self.nickLabel];
     [self.nickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(imageView.mas_centerX);
-        make.top.equalTo(imageView.mas_bottom).offset(19);
+        make.top.equalTo(weakself.avatarImageView.mas_bottom).offset(15);
     }];
     
     self.phoneLabel = [self creatLabel];
     [imageView addSubview:self.phoneLabel];
     [self.phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(imageView.mas_centerX);
-        make.top.equalTo(weakself.nickLabel.mas_bottom).offset(25);
+        make.top.equalTo(weakself.nickLabel.mas_bottom).offset(15);
     }];
     
-    [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
-        make.top.equalTo(_avatarImageView.mas_bottom).with.offset(30.f);
-    }];
-    
+    if ([KGGUserManager shareUserManager].logined) {
+        
+    }else{
+        [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.top.equalTo(_avatarImageView.mas_bottom).with.offset(30.f);
+        }];
+    }
+
 }
 
 #pragma mark - lazy

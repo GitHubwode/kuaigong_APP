@@ -12,7 +12,6 @@
 @interface KGGPublishHomeFootView ()<SDCycleScrollViewDelegate>
 
 //@property (nonatomic, strong) UILabel *noteLabel;
-@property (nonatomic, strong) UIButton *locationButton;
 @property (nonatomic, strong) SDCycleScrollView *cycleTitleView;
 
 @end

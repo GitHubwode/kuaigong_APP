@@ -10,4 +10,7 @@
 
 @interface KGGHomeViewController : UIViewController
 
+//定位的具体地址
+@property (nonatomic, strong) NSString *addressString;
+
 @end

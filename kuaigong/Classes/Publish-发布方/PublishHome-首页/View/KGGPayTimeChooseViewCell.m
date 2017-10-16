@@ -7,12 +7,11 @@
 //
 
 #import "KGGPayTimeChooseViewCell.h"
-#import "KGGPayTimeChooseField.h"
 #import "KGGCustomInfoItem.h"
 
 static NSString *payTimeChooseViewCell = @"PayTimeChooseViewCell";
 
-@interface KGGPayTimeChooseViewCell ()
+@interface KGGPayTimeChooseViewCell ()<KGGPayTimeChooseFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineHeight;
@@ -24,7 +23,7 @@ static NSString *payTimeChooseViewCell = @"PayTimeChooseViewCell";
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.timeTextField.timeDelegate = self;
     self.lineHeight.constant = KGGOnePixelHeight;
 }
 
@@ -41,6 +40,14 @@ static NSString *payTimeChooseViewCell = @"PayTimeChooseViewCell";
 + (NSString *)payTimeIdentifier
 {
     return payTimeChooseViewCell;
+}
+
+#pragma mark - KGGPayTimeChooseFieldDelegate
+- (void)payTimeChooseFieldEnsureButtonClick
+{
+    if (self.infoItem.editabled) {
+        self.infoItem.subtitle = self.timeTextField.text;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

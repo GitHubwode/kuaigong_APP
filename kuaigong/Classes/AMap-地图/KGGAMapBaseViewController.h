@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MAMapKit/MAMapKit.h>
-#import <AMapSearchKit/AMapSearchKit.h>
+
+typedef void(^backAddressDetailsBlock)(NSString *addressDetails, CGFloat longitude,CGFloat latitude);
 
 @interface KGGAMapBaseViewController : UIViewController
 
-@property (nonatomic, strong) MAMapView *mapView;
-@property (nonatomic, strong) MAUserLocation *currentLocation;
-@property (nonatomic, strong) AMapPOI *currentPOI;
-@property (nonatomic, strong) MAPointAnnotation *destinationPoint;
-
+@property (nonatomic,copy) backAddressDetailsBlock backBlock;
 @end

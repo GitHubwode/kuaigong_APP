@@ -8,6 +8,7 @@
 
 #import "KGGLoginRequestManager.h"
 #import "KGGUserManager.h"
+#import "KGGLoginVIPRequestManager.h"
 
 @implementation KGGLoginRequestManager
 
@@ -82,7 +83,13 @@
             KGGUserInfo *userInfo = [KGGUserInfo mj_objectWithKeyValues:responseObj.data];
             userInfo.userInfo.token = userInfo.token;
             [[KGGUserManager shareUserManager]loginWithCurrentUser:userInfo.userInfo];
-            completionHandler(userInfo);
+            
+            [KGGLoginVIPRequestManager loginWithRefeVIPcompletion:^(KGGResponseObj *responseObj) {
+                
+                completionHandler(userInfo);
+                
+            } aboveView:view inCaller:self];
+            
         }
         
     } aboveView:view inCaller:caller];
@@ -111,5 +118,6 @@
         
     } aboveView:view inCaller:caller];
 }
+
 
 @end

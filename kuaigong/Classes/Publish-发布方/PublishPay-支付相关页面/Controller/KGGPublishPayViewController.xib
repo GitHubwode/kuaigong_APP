@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="PingFang.ttc">
+            <string>PingFangSC-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KGGPublishPayViewController">
             <connections>
+                <outlet property="messageLabel" destination="iRf-au-S2T" id="Mao-fM-hVB"/>
                 <outlet property="moneyLabel" destination="jXy-3I-D80" id="9wp-GC-tq0"/>
                 <outlet property="orderDetailsLabel" destination="0Am-bU-UOU" id="JFZ-Wj-eVj"/>
                 <outlet property="orderNumLabel" destination="Ucn-iT-KcF" id="UeK-pA-T1k"/>
                 <outlet property="orderTimeLabel" destination="qes-yo-Ire" id="Pkc-c3-onS"/>
                 <outlet property="remarkLabel" destination="FvP-SW-BT7" id="hYa-Gb-his"/>
+                <outlet property="sureButton" destination="ZDC-rC-T5W" id="FNC-PH-Inh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -64,7 +71,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.33807302916357651" green="1" blue="0.52287303700674737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="jXy-3I-D80" secondAttribute="bottom" constant="6" id="2ls-SH-WC9"/>
                         <constraint firstAttribute="trailing" secondItem="jXy-3I-D80" secondAttribute="trailing" constant="14" id="GpM-Bv-YwK"/>
@@ -92,7 +99,7 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7B-lE-O09">
                     <rect key="frame" x="0.0" y="133" width="375" height="65"/>
-                    <color key="backgroundColor" red="0.33807302919999999" green="1" blue="0.52287303699999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="Aof-wN-yLn"/>
                     </constraints>
@@ -136,7 +143,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.33807302919999999" green="1" blue="0.52287303699999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="43E-aQ-Lnr"/>
                         <constraint firstAttribute="trailing" secondItem="qes-yo-Ire" secondAttribute="trailing" constant="14" id="Puq-Bc-fdD"/>

@@ -17,14 +17,21 @@
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)publishCreatOrderParam:(KGGPublishOrderParam *)param completion:(void(^)(KGGUserObj *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)publishCreatOrderParam:(KGGPublishCreatParam *)param completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
     NSString *url = KGGURL(@"/api/order/create");
     //发送请求
-    [self requestWithURL:url httpMethod:POSTHttpMethod params:[param mj_keyValues] progress:nil completion:^(KGGResponseObj *responseObj) {
-        
+    [self postFormDataWithUrl:url form:[param mj_keyValues] completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
+     
     } aboveView:view inCaller:caller];
-    
 }
 
 /**
@@ -35,16 +42,37 @@
  @param caller 方法调用者
  */
 
-+ (void)publishCancelOrderId:(NSUInteger )orderId completion:(void(^)(KGGUserObj *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)publishCancelOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
     NSString *url = KGGURL(@"/api/order/cancel");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     dic[@"id"] = @(orderId);
     
     //发送请求
-    [self requestWithURL:url httpMethod:POSTHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
+//    [self requestWithURL:url httpMethod:POSTHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
+//        if (!responseObj) {
+//
+//        }else if (responseObj.code != KGGSuccessCode){
+//            [view showHint:responseObj.message];
+//        }
+//        if (completionHandler) {
+//            completionHandler(responseObj);
+//        }
+//
+//    } aboveView:view inCaller:caller];
+    
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
         
     } aboveView:view inCaller:caller];
+    
 }
 
 /**
@@ -55,7 +83,7 @@
  @param caller 方法调用者
  */
 
-+ (void)publishUpdateOrderId:(NSUInteger )orderId Number:(NSUInteger )number Days:(NSUInteger )days completion:(void(^)(KGGUserObj *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)publishUpdateOrderId:(NSUInteger )orderId Number:(NSUInteger )number Days:(NSUInteger )days completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
     NSString *url = KGGURL(@"/api/order/update");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
@@ -81,28 +109,43 @@
 {
     NSString *url;
     switch (type) {
-        case KGGOrderRequestUndoType:
+        case KGGOrderRequestAllUndoType: // 全部未完成的订单
             url = KGGURL(@"/api/order/getAllOrder");
             break;
-        case KGGOrderRequestDetailsType:
+        case KGGOrderRequestDetailsType: //订单详情
             url = KGGURL(@"/api/order/get");
             break;
-        case KGGOrderRequestCompleteType:
+        case KGGOrderRequestCompleteType: // 我已完成的订单
             url = KGGURL(@"/api/order/getComplete");
             break;
-        case KGGOrderRequestNotCompleteType:
+        case KGGOrderRequestNotCompleteType: // 我未完成的订单
             url = KGGURL(@"/api/order/getUnComplete");
+            break;
+        case KGGOrderRequestMyDoingType: //接单方获取我的已接订单 BOSS方会是正在进行的订单
+            url = KGGURL(@"/api/order/getAcceptOrder");
             break;
         default:
             break;
     }
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-    dic[@"userId"] = @(userId);
     dic[@"page"] = @(page);
-    
     [self requestWithURL:url httpMethod:GETHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
+        NSArray *responseDatasource;
+        if (!responseObj) {
+            
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }else{
+            NSArray *recordList = [responseObj.data objectForKey:@"recordList"];
+            responseDatasource = [KGGOrderDetailsModel mj_objectArrayWithKeyValuesArray:recordList];
+            if (completionHandler) {
+                completionHandler(responseDatasource);
+            }
+        }
         
-    } aboveView:view inCaller:caller];
+        KGGLog(@"responseDatasource:%@",responseDatasource);
+        
+    } aboveView:nil inCaller:caller];
     
 }
 

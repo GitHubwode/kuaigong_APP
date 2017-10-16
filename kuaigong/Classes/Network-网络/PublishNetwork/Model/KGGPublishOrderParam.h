@@ -15,7 +15,7 @@
 @interface KGGPublishCreatParam : NSObject
 
 /** 订单id */
-@property (nonatomic,assign) NSUInteger  orderId;
+//@property (nonatomic,assign) NSUInteger  orderId;
 /** 用户id */
 @property (nonatomic,assign) NSUInteger  userId;
 /** 订单名称 */
@@ -31,71 +31,67 @@
 /** 车费 */
 @property (nonatomic,assign) double  fare;
 /** 经度 */
-@property (nonatomic,copy) NSString *longitude;
+@property (nonatomic,assign) CGFloat  longitude;
 /** 维度 */
-@property (nonatomic,copy) NSString *latitude;
+@property (nonatomic,assign) CGFloat  latitude;
 /** 状态 */
-@property (nonatomic,assign) NSUInteger  status;
+//@property (nonatomic,assign) NSUInteger  status;
 /** 项目地址 */
 @property (nonatomic,copy) NSString *address;
 /** 项目时长 */
 @property (nonatomic,copy) NSString *whenLong;
 /** 手续费 */
-@property (nonatomic,assign) double  fee;
+//@property (nonatomic,assign) double  fee;
 /** 联系人名称 */
 @property (nonatomic,copy) NSString *contacts;
 /** 联系人电话 */
 @property (nonatomic,copy) NSString *contactsPhone;
 /** 绑卡订单信息 */
-@property (nonatomic,copy) NSString *orderMessage;
+//@property (nonatomic,copy) NSString *orderMessage;
 /** 订单详情 */
-@property (nonatomic,copy) NSString *orderContent;
+//@property (nonatomic,copy) NSString *orderContent;
 /** 是否优先派单 0为否 1为是 */
-@property (nonatomic,assign) NSUInteger  firstDispatch;
+//@property (nonatomic,assign) NSUInteger  firstDispatch;
 /** 备注 */
 @property (nonatomic,copy) NSString *remark;
 /** 创建时间 */
-@property (nonatomic,copy) NSString *createTime;
+//@property (nonatomic,copy) NSString *createTime;
 /** 更新时间 */
-@property (nonatomic,copy) NSString *updateTime;
+//@property (nonatomic,copy) NSString *updateTime;
 /** 删除 */
-@property (nonatomic,assign) NSUInteger  deleted;
+//@property (nonatomic,assign) NSUInteger  deleted;
 /** 订单总金额 */
-@property (nonatomic,assign) double  totalAmount;
+//@property (nonatomic,assign) double  totalAmount;
 /** 接单用户的id */
-@property (nonatomic,assign) NSUInteger  acceptUser;
+//@property (nonatomic,assign) NSUInteger  acceptUser;
 
-- (instancetype)initWithOrder:(NSUInteger )order
-                       UserId:(NSUInteger )userid
+- (instancetype)initWithUserId:(NSUInteger )userid
                          Name:(NSString *)name
                          Type:(NSUInteger )type
                        Number:(NSUInteger )number
                          Days:(NSUInteger )days
                     UnitPrice:(double )unitPrice
-                         Fare:(double )fare
-                    Longitude:(NSString *)longitude
-                     Latitude:(NSString *)latitude
-                       Status:(NSUInteger )status
+                          Fare:(double )fare
+                        Remark:(NSString *)remark
+                    Longitude:(CGFloat )longitude
+                     Latitude:(CGFloat )latitude
                       Address:(NSString *)address
                      WhenLong:(NSString *)whenLong
-                          Fee:(double)fee
                      Contacts:(NSString *)contacts
                 ContactsPhone:(NSString *)contactsPhone;
 
-+ (instancetype)paramWithOrder:(NSUInteger )order
-                        UserId:(NSUInteger )userid
++ (instancetype)paramWithUserId:(NSUInteger )userid
                           Name:(NSString *)name
                           Type:(NSUInteger )type
                         Number:(NSUInteger )number
                           Days:(NSUInteger )days
                      UnitPrice:(double )unitPrice
                           Fare:(double )fare
-                     Longitude:(NSString *)longitude
-                      Latitude:(NSString *)latitude
-                        Status:(NSUInteger )status
+                         Remark:(NSString *)remark
+                     Longitude:(CGFloat )longitude
+                      Latitude:(CGFloat )latitude
                        Address:(NSString *)address
                       WhenLong:(NSString *)whenLong
-                           Fee:(double)fee
                       Contacts:(NSString *)contacts
                  ContactsPhone:(NSString *)contactsPhone;
 

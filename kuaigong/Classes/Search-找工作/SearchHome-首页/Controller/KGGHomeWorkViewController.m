@@ -95,13 +95,11 @@
 - (void)setupChildViewControllers
 {
     KGGLookWorkViewController *woodVC = [[KGGLookWorkViewController alloc]init];
-    //    hostVC.requestType = SNHNewListRequestAudienceType;
+    woodVC.requestType = KGGOrderRequestAllUndoType;
     [self addChildViewController:woodVC];
     
     KGGMeWorkViewController *steelVC = [[KGGMeWorkViewController alloc]init];
-    //    appointVC.requestType = SNHNewListRequestHostType;
     [self addChildViewController:steelVC];
-    
     
     _titles = @[@"发现工作",@"我"];
 }

@@ -62,6 +62,18 @@ static CGFloat const itemHeight = 168.f;
 {
     KGGLog(@"点击点击");
     KGGAMapBaseViewController *amapVC = [[KGGAMapBaseViewController alloc]init];
+    
+    amapVC.backBlock = ^(NSString *addressDetails, CGFloat longitude, CGFloat latitude) {
+        KGGLog(@"详细的位置:%@",addressDetails);
+        self.addressString = addressDetails;
+        if (addressDetails.length ==0) {
+            [self.view showHint:@"获取位置失败"];
+        }else{
+            NSDictionary *dic = @{@"locationText":addressDetails,@"longitude":@(longitude),@"latitude":@(latitude)};
+            [KGGNotificationCenter postNotificationName:KGGUpdateUserLocationNotifacation object:nil userInfo:dic];
+        }
+    };
+    
     [self.navigationController pushViewController:amapVC animated:YES];
 }
 
@@ -159,7 +171,6 @@ static CGFloat const itemHeight = 168.f;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_xiaoxi" highImage:@"icon_xiaoxi2" target:self action:@selector(kgg_homeUserMessage)];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_wode" highImage:@"icon_wode2" target:self action:@selector(kgg_homeMessage)];
 }
-
 
 #pragma mark - 导航栏按钮的点击事件
 - (void)kgg_homeUserMessage

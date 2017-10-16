@@ -11,9 +11,9 @@
 #import "KGGPublishHomeFootView.h"
 #import "KGGHomePublishModel.h"
 #import "KGGAMapBaseViewController.h"
-
 #import "KGGUseWorkerViewController.h"
 #import "KGGOrderRecordController.h"
+#import "KGGLoginViewController.h"
 
 @interface KGGHomeListViewController ()<UITableViewDelegate,UITableViewDataSource,KGGPublishHomeFootViewDelegate>
 
@@ -21,6 +21,9 @@
 @property (nonatomic, strong) KGGHomeListViewCell *homeCell;
 @property (nonatomic, strong) KGGPublishHomeFootView *footView;
 @property (nonatomic, strong) NSMutableArray *datasource;
+@property (nonatomic, assign) CGFloat longitudeMap;
+@property (nonatomic, assign) CGFloat latitudeMap;
+@property (nonatomic, copy) NSString *workAddress;
 
 @end
 
@@ -33,6 +36,15 @@
     self.tableView.tableFooterView = self.footView;
     [self.view addSubview:self.tableView];
     [self kgg_addButton];
+    [KGGNotificationCenter addObserver:self selector:@selector(UpdateUserLocationNotifacation:) name:KGGUpdateUserLocationNotifacation object:nil];
+}
+
+- (void)UpdateUserLocationNotifacation:(NSNotification *)noti
+{
+    self.workAddress = [noti.userInfo objectForKey:@"locationText"];
+    [self.footView.locationButton setTitle:self.workAddress forState:UIControlStateNormal];
+    self.longitudeMap = [[noti.userInfo objectForKey:@"longitude"] floatValue];
+    self.latitudeMap = [[noti.userInfo objectForKey:@"latitude"] floatValue];
 }
 
 - (void)kgg_addButton
@@ -82,21 +94,52 @@
 #pragma mark - 底部按钮
 - (void)snh_beginButtonClick:(UIButton *)sender
 {
-    if (sender.tag == 1000) {
-        KGGLog(@"我要用工");
-        KGGUseWorkerViewController *useVC = [[KGGUseWorkerViewController alloc]init];
-        useVC.publishDatasource = self.datasource;
-        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:useVC] animated:YES completion:^{
+    if (![KGGUserManager shareUserManager].logined){
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:^{
             self.tableView.frame = CGRectMake(0, 168+37+64, kMainScreenWidth, kMainScreenHeight-64-168-37);
         }];
-        
     }else{
-        KGGLog(@"支付订单");
+        KGGLog(@"登录就可以进入");
+        [self jumpIWantToUse:sender];
+    }
+}
+
+- (void)jumpIWantToUse:(UIButton *)sender
+{
+
+    if (sender.tag == 1000) {
+        int i=0;
+        BOOL isJump = NO;
+        for ( KGGHomePublishModel *publishModel in self.datasource) {
+            i++;
+            if (![publishModel.title isEqualToString:@"车辆/每人"]) {
+                if (publishModel.subtitle.length==0 || publishModel.subtitle == nil || [publishModel.subtitle isEqualToString:@"0"]){
+                    [self.view showHint:@"用工信息不能为空"];
+                    isJump = NO;
+                    return;
+                }else {
+                    isJump = YES;
+                }
+            }
+        }
+        
+        if (isJump == YES) {
+            KGGLog(@"我要用工");
+            KGGUseWorkerViewController *useVC = [[KGGUseWorkerViewController alloc]init];
+            useVC.publishDatasource = self.datasource;
+            useVC.address = self.workAddress;
+            useVC.longitudeMap = self.longitudeMap;
+            useVC.latitudeMap = self.latitudeMap;
+            [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:useVC] animated:YES completion:^{
+                self.tableView.frame = CGRectMake(0, 168+37+64, kMainScreenWidth, kMainScreenHeight-64-168-37);
+            }];
+        } 
+    }else{
+        KGGLog(@"我的订单");
         KGGOrderRecordController *payVC = [[KGGOrderRecordController alloc]init];
         [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:payVC] animated:YES completion:^{
             self.tableView.frame = CGRectMake(0, 168+37+64, kMainScreenWidth, kMainScreenHeight-64-168-37);
         }];
-        
     }
 }
 
@@ -194,7 +237,11 @@
     return _datasource;
 }
 
-
+- (void)dealloc
+{
+    [KGGNotificationCenter removeObserver:self];
+    KGGLogFunc
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

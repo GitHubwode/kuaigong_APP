@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MAMapKit/MAMapKit.h>
-#import <AMapSearchKit/AMapSearchKit.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Search/BMKPoiSearch.h>
 
 
-typedef void(^moveBlock)(AMapPOI *poi);
+typedef void(^ClickBackLock)(BMKPoiInfo *poi);
+
 @interface KGGAMapSearchViewController : UIViewController
 
-@property (nonatomic, strong) MAUserLocation *currentLocation;//当前位置
-@property (nonatomic, strong) NSString *currentCity;//当前参数
-@property (nonatomic, strong) NSString *searchStr;//搜索的内容
-@property (nonatomic, copy) moveBlock moveBlock;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *searchAddress;
+@property (nonatomic, copy) ClickBackLock backLock;
+
 
 @end

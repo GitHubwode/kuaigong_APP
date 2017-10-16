@@ -13,12 +13,31 @@
 #import "KGGUseWorkerHeaderView.h"
 #import "KGGActionSheetController.h"
 #import "KGGHomePublishModel.h"
+#import "KGGApplyVIPView.h"
+#import "KGGPublishOrderRequestManager.h"
+#import "KGGPublishOrderParam.h"
 
 @interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) KGGUseWorkerHeaderView *headerView;
+@property (nonatomic, strong) KGGApplyVIPView *vipView;
+/** 用工人数 */
+@property (nonatomic, copy) NSString *peopleNum;
+/** 天数 */
+@property (nonatomic, copy) NSString *daysNum;
+/** 车费每人 */
+@property (nonatomic, copy) NSString *carMoney;
+/** 每小时单价 */
+@property (nonatomic, copy) NSString *priceNum;
+/** 手续费 */
+@property (nonatomic,assign) double  fee;
+/** 用工类型 */
+@property (nonatomic,assign) NSUInteger workerType;
+
+/** 备注成为第一响应者 */
+@property (nonatomic,assign) BOOL  Isfirst;
 
 @end
 
@@ -38,7 +57,64 @@
     [self kgg_addButton];
     //创建tarBarItem
     [self setupNavi];
-    KGGLog(@"%@",[NSUserDefaults objectForKey:KGGPublishTapWorkerType]);
+    KGGLog(@"%@",self.publishDatasource);
+    
+    [self useWorkerMessage];
+}
+
+#pragma mark - 用工信息赋值
+- (void)useWorkerMessage
+{
+    for ( KGGHomePublishModel *publishModel in self.publishDatasource) {
+        if ([publishModel.title isEqualToString:@"用工人数"]) {
+            self.peopleNum = publishModel.subtitle;
+        }else if ([publishModel.title isEqualToString:@"用工天数"]){
+            self.daysNum = publishModel.subtitle;
+        }else if ([publishModel.title isEqualToString:@"车辆/每人"]){
+            self.carMoney = publishModel.subtitle;
+        }else{
+            self.priceNum = publishModel.subtitle;
+        }
+    }
+    
+    self.workerType = [[NSUserDefaults objectForKey:KGGPublishTapWorkerType] integerValue]+1;
+    NSString *worker;
+    switch (self.workerType) {
+        case 0:
+            worker = @"木工";
+            break;
+        case 1:
+            worker = @"钢筋工";
+            break;
+        case 2:
+            worker = @"内架子工";
+            break;
+        case 3:
+            worker = @"外架子工";
+            break;
+        case 4:
+            worker = @"泥工";
+            break;
+        case 5:
+            worker = @"水电工";
+            break;
+        case 6:
+            worker = @"电焊工";
+            break;
+        case 7:
+            worker = @"小工";
+            break;
+        default:
+            break;
+    }
+    int allFee ;//总计费用
+   allFee = [self.priceNum intValue]*[self.daysNum intValue]*9*[self.peopleNum intValue]+[self.peopleNum intValue]*[self.carMoney intValue]*[self.daysNum intValue];
+    
+    if ([self.carMoney isEqualToString:@"0"] || self.carMoney.length == 0) {
+        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每小时%@元。",worker,self.peopleNum,self.daysNum,self.priceNum];
+    }else{
+        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每小时%@元,车费每人%@元。",worker,self.peopleNum,self.daysNum,self.priceNum,self.carMoney];
+    }
 }
 
 #pragma mark - 创建item
@@ -52,14 +128,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 #pragma mark - 键盘显示隐藏
 - (void)keyboardWillShow:(NSNotification *)notification{
     
-    
     CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    if ([self.headerView.textView resignFirstResponder]) {
-        
+    if (self.Isfirst == NO) {
+
     }else{
         CGFloat offset = self.headerView.xc_height+33 + 63.f * (self.datasource.count) - keyboardBounds.size.height;
         
@@ -89,13 +163,13 @@
     }else{
         KGGUseWorkerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGUseWorkerViewCell cellIdentifier]];
         cell.infoItem = item;
-        
-        if ([item.title isEqualToString:@"姓名"]) {
-            //        cell.infoModel = self.model;
-            //        [cell snh_UserName:self.model.name];
+        if ([item.title isEqualToString:@"电话:"]){
+            [cell kgg_UserTel:[KGGUserManager shareUserManager].currentUser.phone];
             return cell;
-        }else if ([item.title isEqualToString:@"电话"]){
-            //        [cell snh_UserTel:self.model.mobile];
+        }
+        
+        if ([item.title isEqualToString:@"姓名:"]) {
+            [cell kgg_UserName:[KGGUserManager shareUserManager].currentUser.nickname];
             return cell;
         }
         
@@ -138,15 +212,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    self.Isfirst = YES;
     KGGCustomInfoItem *item = self.datasource[indexPath.row];
     KGGLog(@"%@",item);
     
     if (!item.enabled) return;
     
     id cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    [[cell textField] becomeFirstResponder];
+    if (indexPath.row == 3) {
+        [[cell timeTextField] becomeFirstResponder];
+    }else{
+     [[cell textField] becomeFirstResponder];
+    }
 }
 
 
@@ -161,7 +238,7 @@
 - (void)kgg_addButton
 {
     weakSelf(self);
-    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"确认支付"];
+    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"发布订单"];
     [self.view addSubview:useButton];
     [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakself.view.mas_centerX);
@@ -174,23 +251,54 @@
 #pragma mark - buttonClick
 - (void)snh_sureMessageButtonClick:(UIButton *)sender
 {
-    KGGLog(@"确认支付");
+    KGGLog(@"确认发布");
     
-    KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
-    //    sheetVC.moneyString = [NSString stringWithFormat:@"%.2f",_headerView.model.fee];
-    sheetVC.receiverId = @"";
-    sheetVC.tradeType = 1;
-    sheetVC.payFrom = 22;
-    sheetVC.isPublish = YES;
-    sheetVC.itemId = 11;
-    __weak typeof(self) weakSelf = self;
-    sheetVC.callPaySuccessBlock = ^(NSString *code){
-        if ([code isEqualToString:@"200"]) {
-            KGGLog(@"付费成功");
+//    self.vipView = [KGGApplyVIPView kgg_alertPromptApplyForViewKGGApplyButtonClick:^(NSString *money) {
+//        KGGLog(@"支付会员费:%@",money);
+//    } KGGUnderstandButtonClick:^{
+//
+//    }];
+    
+    NSString *name;
+    NSString *time;
+    NSString *payTime;
+    
+    for (KGGCustomInfoItem *item in self.datasource) {
+        KGGLog(@"%@",item.subtitle);
+        
+        if ([item.title isEqualToString:@"姓名:"] && item.subtitle.length != 0) {
+            name = item.subtitle;
+        }else if ([item.title isEqualToString:@"工作时间:"] && item.subtitle.length != 0){
+            time = item.subtitle;
+        }else if ([item.title isEqualToString:@"支付时间:"] && item.subtitle.length != 0){
+            payTime = item.subtitle;
         }
-    };
-    sheetVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    [self presentViewController:sheetVC animated:YES completion:nil];
+    }
+    
+    if (name.length == 0 || time.length == 0 || payTime.length == 0) {
+        [self.view showHint:@"用工数据不能为空"];
+        return;
+    }
+    
+    NSUInteger userId = [[KGGUserManager shareUserManager].currentUser.userId integerValue];
+    NSString *contactsPhone = [KGGUserManager shareUserManager].currentUser.phone;
+    //车费
+    double carFare = [self.carMoney intValue]*[self.peopleNum intValue] *[self.daysNum intValue];
+    //时间
+    NSString *dayTime = [NSString stringWithFormat:@"%@",self.daysNum];
+    
+        
+    
+    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workerType Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.priceNum integerValue] Fare:carFare Remark:self.headerView.headerTextView.text Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address WhenLong:dayTime Contacts:name ContactsPhone:contactsPhone];
+    
+    
+    [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            KGGLog(@"创建订单成功");
+        }
+
+    } aboveView:self.view inCaller:self];
+    
 }
 
 

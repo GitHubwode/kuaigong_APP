@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KGGPublishOrderRequestManager.h"
 
+@class KGGOrderDetailsModel;
 @interface KGGPublishPayViewController : UIViewController
+
+@property (nonatomic, assign) KGGOrderRequestType requestType;
+@property (nonatomic, strong) KGGOrderDetailsModel *detailsModel;
+
 
 @end

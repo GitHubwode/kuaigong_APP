@@ -13,9 +13,7 @@ pod 'YYText'
 pod 'JPush'
 pod 'RongCloudIM/IMLib'
 pod 'RongCloudIM/IMKit'
-pod 'AMapSearch-NO-IDFA'
-pod 'AMapLocation-NO-IDFA' 
-pod 'AMap3DMap-NO-IDFA'
+pod 'BaiduMapKit' #百度地图SDK
 pod 'UMengAnalytics-NO-IDFA'
 pod ‘UMengUShare/UI’
 pod ‘UMengUShare/Social/WeChat'

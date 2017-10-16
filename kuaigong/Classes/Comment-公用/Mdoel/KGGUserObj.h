@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-//typedef NS_ENUM(NSUInteger,KGGUserType) {
-//    KGGUserTypeWorker = 0, /** 职工 */
-//    KGGUserTypeBoss /** 老板 */
-//};
-
 /** 性别 */
 typedef NS_ENUM(NSUInteger, UserGender) {
     UserGenderUnknown = 0,  /** 未知 */
@@ -41,6 +36,8 @@ typedef NS_ENUM(NSUInteger, UserGender) {
 @property (nonatomic,copy) NSString *createDate;
 /** 更新时间 */
 @property (nonatomic,copy) NSString *updateDate;
+/** 是否为会员 */
+@property (nonatomic,assign) BOOL  hasVIP;
 /** 增加的属性 */
 @property (nonatomic,copy) NSString *token;
 @property (nonatomic, copy) NSString *sexName;

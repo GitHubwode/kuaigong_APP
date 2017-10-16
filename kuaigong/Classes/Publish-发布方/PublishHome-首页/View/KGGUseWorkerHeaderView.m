@@ -10,7 +10,6 @@
 
 @interface KGGUseWorkerHeaderView ()<UITextViewDelegate>
 
-@property (nonatomic, strong) UILabel *orderDetailLabel;
 @property (nonatomic, strong) UIView *sectionView;
 @property (nonatomic, strong) UILabel *placeLabel;
 @property (nonatomic, assign) NSInteger maxLenght;
@@ -37,9 +36,7 @@
     UIView *headerView = [UIView new];
     headerView.backgroundColor = UIColorHex(0xffffff);
     [self addSubview:headerView];
-    UILabel *headLabel = [self creatLabelTitle:@"订单详情:"];
-    [headerView addSubview:headLabel];
-    self.orderDetailLabel = [self creatLabelTitle:@"架子工15人,工作5天,每天30元架子工15人,工作5天,每天30元"];
+    self.orderDetailLabel = [self creatLabelTitle:@""];
     [headerView addSubview:self.orderDetailLabel];
     
     [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -49,15 +46,8 @@
         make.width.equalTo(@(kMainScreenWidth));
     }];
     
-    [headLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(headerView.mas_left).offset(15);
-        make.top.equalTo(headerView.mas_top).offset(10);
-        make.width.equalTo(@65);
-        make.height.equalTo(@28);
-    }];
-    
     [self.orderDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(headLabel.mas_right).offset(5);
+        make.left.equalTo(headerView.mas_left).offset(15);
         make.top.equalTo(headerView.mas_top).offset(3);
         make.right.equalTo(headerView.mas_right).offset(-15);
         make.height.equalTo(@55);
@@ -66,18 +56,20 @@
     UIView *orderRemark = [self sectionViewWithTitle:@"订单备注"];
     [self addSubview:orderRemark];
     
-    [self addSubview:self.textView];
-    [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self addSubview:self.headerTextView];
+    [self.headerTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(orderRemark.mas_bottom);
         make.left.equalTo(weakself.mas_left).offset(15);
         make.width.equalTo(@(kMainScreenWidth-30));
         make.height.equalTo(@96);
     }];
     
-    [self.textView addSubview:self.placeLabel];
+    [self.headerTextView addSubview:self.placeLabel];
     [self.placeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakself.textView.mas_left).offset(0);
-        make.top.equalTo(weakself.textView.mas_top).offset(10);
+        make.left.equalTo(weakself.headerTextView.mas_left).offset(0);
+        make.top.equalTo(weakself.headerTextView.mas_top).offset(10);
+        make.width.equalTo(@(kMainScreenWidth-30));
+        make.height.equalTo(@40);
     }];
 
 }
@@ -87,13 +79,13 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     [self.placeLabel removeFromSuperview];
-//    self.infoItem.subtitle = textView.text;
     [KGGNotificationCenter addObserver:self selector:@selector(textViewEditChanged:) name:UITextViewTextDidChangeNotification object:textView];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-//    self.infoItem.subtitle = textView.text;
+    KGGLog(@"textView.text:%@",textView.text);
+    self.headerTextView.text = textView.text;
     [KGGNotificationCenter removeObserver:self];
 }
 
@@ -127,7 +119,7 @@
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
         //在这里做你响应return键的代码
-        [self.textView resignFirstResponder];
+        [self.headerTextView resignFirstResponder];
         return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
     }
     
@@ -152,7 +144,6 @@
     
     return YES;
 }
-
 
 #pragma mark - lazyView
 
@@ -186,18 +177,18 @@
     return view;
 }
 
-- (UITextView *)textView
+- (UITextView *)headerTextView
 {
-    if (!_textView) {
-        _textView = [[UITextView alloc]init];
-        _textView.font = KGGFont(14);
-        _textView.textColor = UIColorHex(0x333333);
-        _textView.textAlignment = NSTextAlignmentLeft;
-        _textView.returnKeyType = UIReturnKeyDone;
-        _textView.scrollEnabled = YES;
-        _textView.delegate = self;
+    if (!_headerTextView) {
+        _headerTextView = [[UITextView alloc]init];
+        _headerTextView.font = KGGFont(14);
+        _headerTextView.textColor = UIColorHex(0x333333);
+        _headerTextView.textAlignment = NSTextAlignmentLeft;
+        _headerTextView.returnKeyType = UIReturnKeyDone;
+        _headerTextView.scrollEnabled = YES;
+        _headerTextView.delegate = self;
     }
-    return _textView;
+    return _headerTextView;
 }
 
 - (UILabel *)placeLabel
@@ -206,6 +197,7 @@
         _placeLabel = [UILabel new];
         _placeLabel.text = @"简单介绍一些需求:如需要带什么工具,需要技术熟练,要不要女工......";
         _placeLabel.font = KGGFont(14);
+        _placeLabel.numberOfLines = 0;
         _placeLabel.textAlignment = NSTextAlignmentLeft;
         _placeLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0.0980392 alpha:0.22];
     }

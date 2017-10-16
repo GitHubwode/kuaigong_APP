@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "UIImageView+WebCache.h"
 
+@protocol KGGMeWorkHeaderViewDelegate <NSObject> ;
+
+- (void)kggMeWorkHeaderViewButtonClick;
+
+@end
+
 @interface KGGMeWorkHeaderView : UIView
+
+@property (nonatomic, weak) id <KGGMeWorkHeaderViewDelegate>delegate;
+
+- (void)updataUserMessageLogin:(BOOL)login;
 
 @end

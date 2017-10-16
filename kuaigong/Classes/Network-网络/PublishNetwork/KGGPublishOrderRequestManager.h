@@ -12,9 +12,10 @@
 
 typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
     KGGOrderRequestDetailsType, // 订单详情
-    KGGOrderRequestUndoType, // 全部未完成的订单
-    KGGOrderRequestCompleteType, // 已完成的订单
-    KGGOrderRequestNotCompleteType, // 未完成的订单
+    KGGOrderRequestAllUndoType, // 全部未完成的订单
+    KGGOrderRequestCompleteType, // 我已完成的订单
+    KGGOrderRequestNotCompleteType, // 我未完成的订单
+    KGGOrderRequestMyDoingType,//获取我的已接订单
 };
 
 
@@ -26,7 +27,7 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)publishCreatOrderParam:(KGGPublishOrderParam *)param completion:(void(^)(KGGUserObj *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)publishCreatOrderParam:(KGGPublishCreatParam *)param completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 /**
  取消订单
@@ -36,7 +37,7 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
  @param caller 方法调用者
  */
 
-+ (void)publishCancelOrderId:(NSUInteger )orderId completion:(void(^)(KGGUserObj *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)publishCancelOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 /**
  
  修改订单
@@ -45,7 +46,7 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
  @param caller 方法调用者
  */
 
-+ (void)publishUpdateOrderId:(NSUInteger )orderId Number:(NSUInteger )number Days:(NSUInteger )days completion:(void(^)(KGGUserObj *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)publishUpdateOrderId:(NSUInteger )orderId Number:(NSUInteger )number Days:(NSUInteger )days completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 /**
  获取订单信息 详情或者完成 未完成

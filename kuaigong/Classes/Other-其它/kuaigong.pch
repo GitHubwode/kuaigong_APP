@@ -24,6 +24,7 @@
 #import "KGGRefreshFooter.h"
 #import "KGGInfoTextFiel.h"
 #import "KGGUserManager.h"
+#import "UIView+ErrorView.h"
 
 #import "UIColor+KGGExtension.h"
 #import "NSString+KGGExtension.h"

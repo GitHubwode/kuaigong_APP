@@ -42,6 +42,9 @@ extern NSString *const KGGPublishLocationNotification;
 //发布方滚动到哪一个下标发通知
 extern NSString *const KGGPublishTapWorkerType;
 
+/** 用户定位完成通知 */
+extern NSString * const KGGUpdateUserLocationNotifacation;
+
 /** 显示红点的通知 */
 extern NSString * const KGGShowAlertNotifacation;
 /** 隐藏红点的通知 */

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KGGPublishOrderRequestManager.h"
 
 @interface KGGDoneOrderController : UIViewController
+@property (nonatomic, assign) KGGOrderRequestType requestType;
 
 @end
