@@ -49,18 +49,6 @@
     dic[@"id"] = @(orderId);
     
     //发送请求
-//    [self requestWithURL:url httpMethod:POSTHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
-//        if (!responseObj) {
-//
-//        }else if (responseObj.code != KGGSuccessCode){
-//            [view showHint:responseObj.message];
-//        }
-//        if (completionHandler) {
-//            completionHandler(responseObj);
-//        }
-//
-//    } aboveView:view inCaller:caller];
-    
     [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) {
             
@@ -92,7 +80,7 @@
     dic[@"days"] = @(days);
     
     //发送请求
-    [self requestWithURL:url httpMethod:POSTHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) {
             
         }else if (responseObj.code != KGGSuccessCode){
@@ -101,7 +89,6 @@
         if (completionHandler) {
             completionHandler(responseObj);
         }
-        
     } aboveView:view inCaller:caller];
 }
 
@@ -113,30 +100,31 @@
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)publishOrderListType:(KGGOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)publishOrderListType:(KGGOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
     NSString *url;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     switch (type) {
         case KGGOrderRequestAllUndoType: // 全部未完成的订单
             url = KGGURL(@"/api/order/getAllOrder");
-            break;
-        case KGGOrderRequestDetailsType: //订单详情
-            url = KGGURL(@"/api/order/get");
+            dic[@"page"] = @(page);
             break;
         case KGGOrderRequestCompleteType: // 我已完成的订单
             url = KGGURL(@"/api/order/getComplete");
+            dic[@"page"] = @(page);
             break;
         case KGGOrderRequestNotCompleteType: // 我未完成的订单
             url = KGGURL(@"/api/order/getUnComplete");
+            dic[@"page"] = @(page);
             break;
         case KGGOrderRequestMyDoingType: //接单方获取我的已接订单 BOSS方会是正在进行的订单
             url = KGGURL(@"/api/order/getAcceptOrder");
+            dic[@"page"] = @(page);
             break;
         default:
             break;
     }
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-    dic[@"page"] = @(page);
+    
     [self requestWithURL:url httpMethod:GETHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
         NSArray *responseDatasource;
         if (!responseObj) {
@@ -157,27 +145,32 @@
 }
 
 /**
- 接单
- 
- @param orderId 请求对象，请求参数封装为对象的属性
+ 获取订单详情
+ @param orderId 参数
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)searchReciveOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)publishOrderDetailsMessageOrder:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
-    NSString *url = KGGURL(@"/api/order/accept");
+    NSString *url = KGGURL(@"/api/order/get");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     dic[@"id"] = @(orderId);
-    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+
+    [self requestWithURL:url httpMethod:GETHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
+
         if (!responseObj) {
             
         }else if (responseObj.code != KGGSuccessCode){
             [view showHint:responseObj.message];
+        }else{
+            if (completionHandler) {
+                completionHandler(responseObj);
+            }
         }
-        if (completionHandler) {
-            completionHandler(responseObj);
-        }
-    } aboveView:view inCaller:caller];
+    } aboveView:nil inCaller:caller];
+
+    
 }
+
 
 @end

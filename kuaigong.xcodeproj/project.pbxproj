@@ -106,8 +106,11 @@
 		350360521F594B6F00FB0EDD /* KGGSexField.m in Sources */ = {isa = PBXBuildFile; fileRef = 350360511F594B6F00FB0EDD /* KGGSexField.m */; };
 		350360561F59503900FB0EDD /* KGGSexChangeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 350360541F59503900FB0EDD /* KGGSexChangeViewCell.m */; };
 		350360571F59503900FB0EDD /* KGGSexChangeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350360551F59503900FB0EDD /* KGGSexChangeViewCell.xib */; };
-		3505C7E61F95EA260085D688 /* KGGCorrectOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7E41F95EA260085D688 /* KGGCorrectOrderViewController.m */; };
-		3505C7E71F95EA260085D688 /* KGGCorrectOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3505C7E51F95EA260085D688 /* KGGCorrectOrderViewController.xib */; };
+		3505C7F21F962DC90085D688 /* KGGOrderCorrectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7F11F962DC90085D688 /* KGGOrderCorrectViewController.m */; };
+		3505C7F61F9637E80085D688 /* KGGOrderCorrectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7F41F9637E80085D688 /* KGGOrderCorrectViewCell.m */; };
+		3505C7F71F9637E80085D688 /* KGGOrderCorrectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3505C7F51F9637E80085D688 /* KGGOrderCorrectViewCell.xib */; };
+		3505C7FA1F963D9B0085D688 /* KGGSearchOrderRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7F91F963D9B0085D688 /* KGGSearchOrderRequestManager.m */; };
+		3505C7FD1F9652E60085D688 /* KGGOrderCorrectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7FC1F9652E60085D688 /* KGGOrderCorrectModel.m */; };
 		35252EF81F5E3B5C001D09F4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */; };
 		35252EFA1F5E3B64001D09F4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */; };
 		35252EFC1F5E3B73001D09F4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */; };
@@ -423,9 +426,15 @@
 		350360531F59503900FB0EDD /* KGGSexChangeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGSexChangeViewCell.h; sourceTree = "<group>"; };
 		350360541F59503900FB0EDD /* KGGSexChangeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGSexChangeViewCell.m; sourceTree = "<group>"; };
 		350360551F59503900FB0EDD /* KGGSexChangeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGSexChangeViewCell.xib; sourceTree = "<group>"; };
-		3505C7E31F95EA260085D688 /* KGGCorrectOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCorrectOrderViewController.h; sourceTree = "<group>"; };
-		3505C7E41F95EA260085D688 /* KGGCorrectOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCorrectOrderViewController.m; sourceTree = "<group>"; };
-		3505C7E51F95EA260085D688 /* KGGCorrectOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGCorrectOrderViewController.xib; sourceTree = "<group>"; };
+		3505C7F01F962DC90085D688 /* KGGOrderCorrectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderCorrectViewController.h; sourceTree = "<group>"; };
+		3505C7F11F962DC90085D688 /* KGGOrderCorrectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderCorrectViewController.m; sourceTree = "<group>"; };
+		3505C7F31F9637E80085D688 /* KGGOrderCorrectViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderCorrectViewCell.h; sourceTree = "<group>"; };
+		3505C7F41F9637E80085D688 /* KGGOrderCorrectViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderCorrectViewCell.m; sourceTree = "<group>"; };
+		3505C7F51F9637E80085D688 /* KGGOrderCorrectViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGOrderCorrectViewCell.xib; sourceTree = "<group>"; };
+		3505C7F81F963D9B0085D688 /* KGGSearchOrderRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGSearchOrderRequestManager.h; sourceTree = "<group>"; };
+		3505C7F91F963D9B0085D688 /* KGGSearchOrderRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGSearchOrderRequestManager.m; sourceTree = "<group>"; };
+		3505C7FB1F9652E60085D688 /* KGGOrderCorrectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderCorrectModel.h; sourceTree = "<group>"; };
+		3505C7FC1F9652E60085D688 /* KGGOrderCorrectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderCorrectModel.m; sourceTree = "<group>"; };
 		35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1110,6 +1119,9 @@
 				3545BB791F6FA23F008122B8 /* KGGPayTimeChooseField.m */,
 				35AE111A1F8EFFAE00BCD2BD /* KGGApplyVIPView.h */,
 				35AE111B1F8EFFAE00BCD2BD /* KGGApplyVIPView.m */,
+				3505C7F31F9637E80085D688 /* KGGOrderCorrectViewCell.h */,
+				3505C7F41F9637E80085D688 /* KGGOrderCorrectViewCell.m */,
+				3505C7F51F9637E80085D688 /* KGGOrderCorrectViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1346,6 +1358,8 @@
 			children = (
 				3583817F1F8B12E2002A17C5 /* KGGUserObj.h */,
 				358381801F8B12E2002A17C5 /* KGGUserObj.m */,
+				3505C7FB1F9652E60085D688 /* KGGOrderCorrectModel.h */,
+				3505C7FC1F9652E60085D688 /* KGGOrderCorrectModel.m */,
 			);
 			path = Mdoel;
 			sourceTree = "<group>";
@@ -1353,9 +1367,8 @@
 		35F73A861F789ED4000CD1D6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3505C7E31F95EA260085D688 /* KGGCorrectOrderViewController.h */,
-				3505C7E41F95EA260085D688 /* KGGCorrectOrderViewController.m */,
-				3505C7E51F95EA260085D688 /* KGGCorrectOrderViewController.xib */,
+				3505C7F01F962DC90085D688 /* KGGOrderCorrectViewController.h */,
+				3505C7F11F962DC90085D688 /* KGGOrderCorrectViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1370,6 +1383,8 @@
 		35F73A8E1F78A8B3000CD1D6 /* SearchNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				3505C7F81F963D9B0085D688 /* KGGSearchOrderRequestManager.h */,
+				3505C7F91F963D9B0085D688 /* KGGSearchOrderRequestManager.m */,
 			);
 			path = SearchNetwork;
 			sourceTree = "<group>";
@@ -1806,6 +1821,7 @@
 				35F830661F6276B000204989 /* KGGAddBankCarController.xib in Resources */,
 				35FF5CA31F6A233500E1A50B /* KGGBillingDetailsViewCell.xib in Resources */,
 				188F2D441F4ED50E0023F4BE /* KGGLookWorkViewCell.xib in Resources */,
+				3505C7F71F9637E80085D688 /* KGGOrderCorrectViewCell.xib in Resources */,
 				18F5BA6F1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib in Resources */,
 				35F73AAB1F78AE9F000CD1D6 /* KGGSearchOrderViewCell.xib in Resources */,
 				35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */,
@@ -1813,7 +1829,6 @@
 				189D20B41F42EAAD0004F1EB /* Assets.xcassets in Resources */,
 				350360571F59503900FB0EDD /* KGGSexChangeViewCell.xib in Resources */,
 				18F5B97C1F4EBC7800E6ADC4 /* 启动页_1.png in Resources */,
-				3505C7E71F95EA260085D688 /* KGGCorrectOrderViewController.xib in Resources */,
 				185C86A91F46EADF00356ECD /* KGGLeftDrawer.plist in Resources */,
 				185C86D21F4ABB6500356ECD /* KGGNewFeatureViewController.xib in Resources */,
 				188F2D4B1F4ED8440023F4BE /* KGGPublishOrderViewCell.xib in Resources */,
@@ -1913,6 +1928,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3505C7F61F9637E80085D688 /* KGGOrderCorrectViewCell.m in Sources */,
 				35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */,
 				188F2D5C1F540B8C0023F4BE /* KGGRefreshFooter.m in Sources */,
 				18F5BA781F4ED24F00E6ADC4 /* KGGLeftDrawerHeaderView.m in Sources */,
@@ -1979,11 +1995,12 @@
 				358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */,
 				18F5BA5E1F4ED24F00E6ADC4 /* KGGHomeViewController.m in Sources */,
 				35FF5CB11F6A933200E1A50B /* KGGPaychooseHeaderView.m in Sources */,
+				3505C7F21F962DC90085D688 /* KGGOrderCorrectViewController.m in Sources */,
 				35F73AAE1F78AEB0000CD1D6 /* KGGSearchOrderHeaderView.m in Sources */,
 				189D211F1F42FE170004F1EB /* SDCollectionViewCell.m in Sources */,
-				3505C7E61F95EA260085D688 /* KGGCorrectOrderViewController.m in Sources */,
 				3545BB7E1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.m in Sources */,
 				185C86FC1F4C418800356ECD /* UIButton+KGGExtension.m in Sources */,
+				3505C7FA1F963D9B0085D688 /* KGGSearchOrderRequestManager.m in Sources */,
 				189D212A1F42FE170004F1EB /* UIButton+WebCache.m in Sources */,
 				189D21291F42FE170004F1EB /* SDWebImagePrefetcher.m in Sources */,
 				35F830511F61177E00204989 /* CYPasswordInputView.m in Sources */,
@@ -2016,6 +2033,7 @@
 				35F830601F6270B500204989 /* KGGMyWalletViewController.m in Sources */,
 				35FF5CA21F6A233500E1A50B /* KGGBillingDetailsViewCell.m in Sources */,
 				185C86D51F4AC39000356ECD /* KGGTabBarWorkController.m in Sources */,
+				3505C7FD1F9652E60085D688 /* KGGOrderCorrectModel.m in Sources */,
 				35FF5CAE1F6A894D00E1A50B /* KGGPayChooseModel.m in Sources */,
 				359CD0891F57DCB400DDFA62 /* KGGPersonMessageCell.m in Sources */,
 				188F2D4A1F4ED8440023F4BE /* KGGPublishOrderViewCell.m in Sources */,

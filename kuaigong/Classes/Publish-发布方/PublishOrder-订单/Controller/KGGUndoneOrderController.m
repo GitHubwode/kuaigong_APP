@@ -20,6 +20,13 @@
 
 @implementation KGGUndoneOrderController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    KGGLog(@"我的我我弟弟爱打打");
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
@@ -44,7 +51,7 @@
 
 - (void)kgg_loadData:(BOOL)refresh{
     
-    [KGGPublishOrderRequestManager publishOrderListType:self.requestType Page:self.pageNum UserId:[[KGGUserManager shareUserManager].currentUser.userId integerValue] completion:^(NSArray<KGGOrderDetailsModel *> *response) {
+    [KGGPublishOrderRequestManager publishOrderListType:self.requestType Page:self.pageNum UserId:[[KGGUserManager shareUserManager].currentUser.userId integerValue] Order:0 completion:^(NSArray<KGGOrderDetailsModel *> *response) {
         if (!response) {
             if (refresh) {
                 [self.orderTableView.mj_header endRefreshing];

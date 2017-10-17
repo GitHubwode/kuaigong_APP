@@ -9,7 +9,8 @@
 #import "KGGPublishPayViewController.h"
 #import "KGGActionSheetController.h"
 #import "KGGOrderDetailsModel.h"
-#import "KGGCorrectOrderViewController.h"
+#import "KGGOrderCorrectViewController.h"
+#import "KGGPublishOrderRequestManager.h"
 
 
 @interface KGGPublishPayViewController ()
@@ -25,12 +26,12 @@
 
 @implementation KGGPublishPayViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
-    if (self.requestType == KGGOrderRequestDetailsType) {
-        KGGLog(@"订单详情");
-    }else if (self.requestType ==KGGOrderRequestMyDoingType){
+
+    if (self.requestType ==KGGOrderRequestMyDoingType){
         KGGLog(@"正在进行时");
         self.title = @"进行中的订单";
         [self addButton];
@@ -107,20 +108,36 @@
 #pragma mark - 底部按钮
 - (void)snh_beginButtonClick:(UIButton *)sender
 {
+    weakSelf(self);
     if (sender.tag == 1000){
         KGGLog(@"修改订单");
-#import "KGGCorrectOrderViewController.h"
-        KGGCorrectOrderViewController *correntVC = [[KGGCorrectOrderViewController alloc]initWithNibName:NSStringFromClass([KGGCorrectOrderViewController class]) bundle:[NSBundle mainBundle]];
-//        correntVC.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [self presentViewController:correntVC animated:YES completion:^{
-
-        }];
-//        [self.navigationController pushViewController:correntVC animated:YES];
         
+        KGGOrderCorrectViewController *orderVC = [[KGGOrderCorrectViewController alloc]init];
+        orderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        orderVC.detailsModel = self.detailsModel;
+        orderVC.backBlock = ^(NSUInteger code) {
+            KGGLog(@"%lu刷新页面",(unsigned long)code);
+            [weakself refreshView];
+        };
+        
+        [self presentViewController:orderVC animated:YES completion:nil];
     }else{
         KGGLog(@"登录就可以进入");
         [self kgg_orderDetailsMessage];
     }
+}
+
+#pragma mark - 刷新当前页面
+- (void)refreshView
+{
+    [KGGPublishOrderRequestManager publishOrderDetailsMessageOrder:self.detailsModel.orderId completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            self.detailsModel = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
+        }
+        [self setupModel];
+        
+    } aboveView:self.view inCaller:self];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -159,6 +176,11 @@
     };
     sheetVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:sheetVC animated:YES completion:nil];
+}
+
+-(void)dealloc
+{
+    KGGLogFunc;
 }
 
 /*

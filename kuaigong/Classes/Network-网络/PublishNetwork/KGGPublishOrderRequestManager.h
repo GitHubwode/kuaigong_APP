@@ -11,7 +11,6 @@
 #import "KGGOrderDetailsModel.h"
 
 typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
-    KGGOrderRequestDetailsType, // 订单详情
     KGGOrderRequestAllUndoType, // 全部未完成的订单
     KGGOrderRequestCompleteType, // 我已完成的订单
     KGGOrderRequestNotCompleteType, // 我未完成的订单
@@ -49,35 +48,23 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
 + (void)publishUpdateOrderId:(NSUInteger )orderId Number:(NSUInteger )number Days:(NSUInteger )days completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 /**
- 获取订单信息 详情或者完成 未完成
+ 获取订单信息列表或者完成 未完成
  @param type 接口类型
  @param page 页数  userId 用户id
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  
  */
-+ (void)publishOrderListType:(KGGOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)publishOrderListType:(KGGOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 /**
- 接单
- 
- @param orderId 请求对象，请求参数封装为对象的属性
+ 获取订单详情
+ @param orderId 参数
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)searchReciveOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)publishOrderDetailsMessageOrder:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
 

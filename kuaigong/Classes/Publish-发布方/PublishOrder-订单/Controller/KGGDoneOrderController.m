@@ -47,7 +47,7 @@
 
 - (void)kgg_loadData:(BOOL)refresh{
     
-    [KGGPublishOrderRequestManager publishOrderListType:self.requestType Page:self.pageNum UserId:[[KGGUserManager shareUserManager].currentUser.userId integerValue] completion:^(NSArray<KGGOrderDetailsModel *> *response) {
+    [KGGPublishOrderRequestManager publishOrderListType:self.requestType Page:self.pageNum UserId:[[KGGUserManager shareUserManager].currentUser.userId integerValue] Order:0 completion:^(NSArray<KGGOrderDetailsModel *> *response) {
         if (!response) {
             if (refresh) {
                 [self.orderTableView.mj_header endRefreshing];
