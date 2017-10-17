@@ -7,6 +7,7 @@
 //
 
 #import "KGGSearchOrderHeaderView.h"
+#import "UIImageView+WebCache.h"
 
 @interface KGGSearchOrderHeaderView ()
 @property (nonatomic, strong) UIImageView *orderIamgeView;
@@ -25,6 +26,14 @@
     return self;
 }
 
+#pragma mark - 给headerView赋值
+- (void)orderMessageAvatar:(NSString *)avatar Content:(NSString *)content ContentPhone:(NSString *)contentPhone
+{
+    [self.orderIamgeView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:[UIImage imageNamed:@"icon_touxiang"]];
+    self.nickLabel.text = content;
+    self.phoneLabel.text = contentPhone;
+}
+
 - (void)setup{
     
     weakSelf(self);
@@ -36,7 +45,7 @@
     }];
     
     self.nickLabel = [self kgg_creatLabel];
-    self.nickLabel.text = @"联系人:李老板";
+    self.nickLabel.text = @"";
     [self addSubview:self.nickLabel];
     [self.nickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.orderIamgeView.mas_right).offset(20);
@@ -44,7 +53,7 @@
     }];
     
     self.phoneLabel = [self kgg_creatLabel];
-    self.phoneLabel.text = @"联系电话:12345678900";
+    self.phoneLabel.text = @"";
     [self addSubview:self.phoneLabel];
     [self.phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.orderIamgeView.mas_right).offset(20);

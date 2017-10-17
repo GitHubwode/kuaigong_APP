@@ -37,7 +37,7 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
     self.classNameLabel.text = detailsModel.workerType;
     self.peopleNumLabel.text = [NSString stringWithFormat:@"%lu人",(unsigned long)detailsModel.number];
     self.timeLabel.text = detailsModel.whenLong;
-    self.moneyLabel.text = [NSString stringWithFormat:@"%.f",detailsModel.differentPrice];
+    self.moneyLabel.text = [NSString stringWithFormat:@"总价:%.f元",detailsModel.differentPrice];
     self.nickNameLabel.text = detailsModel.contacts;
     
 }

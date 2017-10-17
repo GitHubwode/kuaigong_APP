@@ -144,9 +144,7 @@
 - (void)kgg_homeUserMessage
 {
     KGGLog(@"导航栏右边的按钮");
-    KGGSearchOrderController *orderVC = [[KGGSearchOrderController alloc]init];
-    [self.navigationController pushViewController:orderVC animated:YES];
-//    [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+   
 }
 
 - (void)kgg_homelocation

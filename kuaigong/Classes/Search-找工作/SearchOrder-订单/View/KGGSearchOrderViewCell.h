@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KGGSearchOrderViewCell : UITableViewCell
+@class KGGOrderDetailsModel;
 
+@interface KGGSearchOrderViewCell : UITableViewCell
+@property (nonatomic, strong)KGGOrderDetailsModel *orderDetails;
 +(NSString *)searchOrderIdentifier;
 
 @end

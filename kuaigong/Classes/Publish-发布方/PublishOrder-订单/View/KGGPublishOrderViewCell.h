@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (weak, nonatomic) IBOutlet UILabel *orderDetailsLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *statusImageView;
 
 + (NSString *)publishOrderIdentifier;
 

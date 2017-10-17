@@ -9,6 +9,8 @@
 #import "KGGPublishPayViewController.h"
 #import "KGGActionSheetController.h"
 #import "KGGOrderDetailsModel.h"
+#import "KGGCorrectOrderViewController.h"
+
 
 @interface KGGPublishPayViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *orderDetailsLabel;
@@ -106,9 +108,18 @@
 - (void)snh_beginButtonClick:(UIButton *)sender
 {
     if (sender.tag == 1000){
-        KGGLog(@"");
+        KGGLog(@"修改订单");
+#import "KGGCorrectOrderViewController.h"
+        KGGCorrectOrderViewController *correntVC = [[KGGCorrectOrderViewController alloc]initWithNibName:NSStringFromClass([KGGCorrectOrderViewController class]) bundle:[NSBundle mainBundle]];
+//        correntVC.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:correntVC animated:YES completion:^{
+
+        }];
+//        [self.navigationController pushViewController:correntVC animated:YES];
+        
     }else{
         KGGLog(@"登录就可以进入");
+        [self kgg_orderDetailsMessage];
     }
 }
 

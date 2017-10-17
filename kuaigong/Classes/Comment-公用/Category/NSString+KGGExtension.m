@@ -141,7 +141,12 @@
     return decodedString;
 }
 
-
+/** 隐藏电话号码中间的位数 */
++ (NSString *)numberSuitScanf:(NSString *)number
+{
+    NSString *numberString = [number stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+    return numberString;
+}
 
 
 @end

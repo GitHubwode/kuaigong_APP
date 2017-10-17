@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KGGOrderDetailsModel.h"
 
 @interface KGGSearchOrderController : UIViewController
-
+@property (nonatomic, strong)KGGOrderDetailsModel *orderDetails;
 @end

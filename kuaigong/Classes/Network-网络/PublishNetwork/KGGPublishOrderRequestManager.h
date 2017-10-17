@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
 @interface KGGPublishOrderRequestManager : KGGHTTPSessionManager
 /**
  创建订单
- 
+
  @param param 请求对象，请求参数封装为对象的属性
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
@@ -57,6 +57,15 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
  
  */
 + (void)publishOrderListType:(KGGOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
+/**
+ 接单
+ 
+ @param orderId 请求对象，请求参数封装为对象的属性
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)searchReciveOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 @end
 

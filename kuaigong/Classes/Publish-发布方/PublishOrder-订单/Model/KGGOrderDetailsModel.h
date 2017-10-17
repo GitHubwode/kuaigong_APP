@@ -67,5 +67,6 @@
 @property (nonatomic, copy) NSString *orderDetails;
 @property (nonatomic, copy) NSString *workerType;
 @property (nonatomic, assign) CGFloat differentPrice;
+@property (nonatomic, copy) NSString *hidePhone;
 
 @end

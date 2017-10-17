@@ -59,8 +59,15 @@
     _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作9小时 每小时%.f元,车费每人%.f元,总计%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_unitPrice,_fare,_totalAmount];
     
     _differentPrice = _totalAmount - _fare;
-    
+    //隐藏电话点好
+    _hidePhone = [NSString numberSuitScanf:_contactsPhone];
 }
 
+/**
+ *  这个数组中的属性名将会被忽略：不进行字典和模型的转换
+ */
++ (NSArray *)mj_ignoredPropertyNames{
+    return @[@"orderDetails", @"workerType",@"differentPrice",@"hidePhone"];
+}
 
 @end

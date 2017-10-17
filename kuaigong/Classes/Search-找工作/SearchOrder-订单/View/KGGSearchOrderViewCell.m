@@ -7,11 +7,18 @@
 //
 
 #import "KGGSearchOrderViewCell.h"
+#import "KGGOrderDetailsModel.h"
+
 static NSString *KGGSearchOrderView = @"KGGSearchOrderViewCell";
 
 @interface KGGSearchOrderViewCell ()
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *timeTitleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *detailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ramarkLabel;
 
 @end
 
@@ -21,6 +28,16 @@ static NSString *KGGSearchOrderView = @"KGGSearchOrderViewCell";
     [super awakeFromNib];
     // Initialization code
 }
+
+- (void)setOrderDetails:(KGGOrderDetailsModel *)orderDetails
+{
+    _orderDetails = orderDetails;
+    self.timeTitleLabel.text = @"用工时间还没有参数";
+    self.addressLabel.text = orderDetails.address;
+    self.detailsLabel.text = orderDetails.orderDetails;
+    self.ramarkLabel.text = orderDetails.remark;
+}
+
 
 + (NSString *)searchOrderIdentifier
 {

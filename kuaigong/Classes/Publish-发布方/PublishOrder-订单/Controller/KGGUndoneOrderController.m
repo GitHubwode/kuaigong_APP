@@ -90,6 +90,11 @@
     KGGOrderDetailsModel *model = self.datasource[indexPath.row];
     KGGPublishOrderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGPublishOrderViewCell publishOrderIdentifier] forIndexPath:indexPath];
     cell.orderDetailsLabel.text = model.orderDetails;
+    if (self.requestType == KGGOrderRequestMyDoingType) {
+        cell.statusImageView.image = [UIImage imageNamed:@"icon_load"];
+    }else{
+        cell.statusImageView.image = [UIImage imageNamed:@"icon_nof"];
+    }
     return cell;
 }
 

@@ -106,6 +106,8 @@
 		350360521F594B6F00FB0EDD /* KGGSexField.m in Sources */ = {isa = PBXBuildFile; fileRef = 350360511F594B6F00FB0EDD /* KGGSexField.m */; };
 		350360561F59503900FB0EDD /* KGGSexChangeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 350360541F59503900FB0EDD /* KGGSexChangeViewCell.m */; };
 		350360571F59503900FB0EDD /* KGGSexChangeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350360551F59503900FB0EDD /* KGGSexChangeViewCell.xib */; };
+		3505C7E61F95EA260085D688 /* KGGCorrectOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7E41F95EA260085D688 /* KGGCorrectOrderViewController.m */; };
+		3505C7E71F95EA260085D688 /* KGGCorrectOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3505C7E51F95EA260085D688 /* KGGCorrectOrderViewController.xib */; };
 		35252EF81F5E3B5C001D09F4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */; };
 		35252EFA1F5E3B64001D09F4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */; };
 		35252EFC1F5E3B73001D09F4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */; };
@@ -421,6 +423,9 @@
 		350360531F59503900FB0EDD /* KGGSexChangeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGSexChangeViewCell.h; sourceTree = "<group>"; };
 		350360541F59503900FB0EDD /* KGGSexChangeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGSexChangeViewCell.m; sourceTree = "<group>"; };
 		350360551F59503900FB0EDD /* KGGSexChangeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGSexChangeViewCell.xib; sourceTree = "<group>"; };
+		3505C7E31F95EA260085D688 /* KGGCorrectOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCorrectOrderViewController.h; sourceTree = "<group>"; };
+		3505C7E41F95EA260085D688 /* KGGCorrectOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCorrectOrderViewController.m; sourceTree = "<group>"; };
+		3505C7E51F95EA260085D688 /* KGGCorrectOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGCorrectOrderViewController.xib; sourceTree = "<group>"; };
 		35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1348,6 +1353,9 @@
 		35F73A861F789ED4000CD1D6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3505C7E31F95EA260085D688 /* KGGCorrectOrderViewController.h */,
+				3505C7E41F95EA260085D688 /* KGGCorrectOrderViewController.m */,
+				3505C7E51F95EA260085D688 /* KGGCorrectOrderViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1805,6 +1813,7 @@
 				189D20B41F42EAAD0004F1EB /* Assets.xcassets in Resources */,
 				350360571F59503900FB0EDD /* KGGSexChangeViewCell.xib in Resources */,
 				18F5B97C1F4EBC7800E6ADC4 /* 启动页_1.png in Resources */,
+				3505C7E71F95EA260085D688 /* KGGCorrectOrderViewController.xib in Resources */,
 				185C86A91F46EADF00356ECD /* KGGLeftDrawer.plist in Resources */,
 				185C86D21F4ABB6500356ECD /* KGGNewFeatureViewController.xib in Resources */,
 				188F2D4B1F4ED8440023F4BE /* KGGPublishOrderViewCell.xib in Resources */,
@@ -1972,6 +1981,7 @@
 				35FF5CB11F6A933200E1A50B /* KGGPaychooseHeaderView.m in Sources */,
 				35F73AAE1F78AEB0000CD1D6 /* KGGSearchOrderHeaderView.m in Sources */,
 				189D211F1F42FE170004F1EB /* SDCollectionViewCell.m in Sources */,
+				3505C7E61F95EA260085D688 /* KGGCorrectOrderViewController.m in Sources */,
 				3545BB7E1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.m in Sources */,
 				185C86FC1F4C418800356ECD /* UIButton+KGGExtension.m in Sources */,
 				189D212A1F42FE170004F1EB /* UIButton+WebCache.m in Sources */,

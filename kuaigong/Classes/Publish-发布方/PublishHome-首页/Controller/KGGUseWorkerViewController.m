@@ -287,20 +287,15 @@
     //时间
     NSString *dayTime = [NSString stringWithFormat:@"%@",self.daysNum];
     
-        
-    
     KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workerType Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.priceNum integerValue] Fare:carFare Remark:self.headerView.headerTextView.text Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address WhenLong:dayTime Contacts:name ContactsPhone:contactsPhone];
-    
     
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             KGGLog(@"创建订单成功");
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
-
     } aboveView:self.view inCaller:self];
-    
 }
-
 
 - (UITableView *)tableView
 {

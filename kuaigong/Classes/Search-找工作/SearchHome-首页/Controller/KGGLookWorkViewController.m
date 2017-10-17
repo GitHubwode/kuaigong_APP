@@ -9,6 +9,7 @@
 #import "KGGLookWorkViewController.h"
 #import "KGGLookWorkViewCell.h"
 #import "KGGOrderDetailsModel.h"
+#import "KGGSearchOrderController.h"
 
 @interface KGGLookWorkViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -93,6 +94,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KGGLog(@"订单详情");
+    KGGOrderDetailsModel *model = self.datasource[indexPath.row];
+    KGGSearchOrderController *orderVC = [[KGGSearchOrderController alloc]init];
+    orderVC.orderDetails = model;
+    [self.navigationController pushViewController:orderVC animated:YES];
 }
 
 

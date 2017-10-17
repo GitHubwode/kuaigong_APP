@@ -33,6 +33,9 @@
 - (NSString*)base64_encode;
 - (NSString *)base64_decode;
 
+/** 隐藏电话号码中间的位数 */
++ (NSString *)numberSuitScanf:(NSString *)number;
+
 /** 判断是不是手机号码 */
 - (BOOL)isPhoneNumer;
 

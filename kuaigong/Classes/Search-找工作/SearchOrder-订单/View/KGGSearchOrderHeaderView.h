@@ -10,4 +10,6 @@
 
 @interface KGGSearchOrderHeaderView : UIView
 
+- (void)orderMessageAvatar:(NSString *)avatar Content:(NSString *)content ContentPhone:(NSString *)contentPhone;
+
 @end
