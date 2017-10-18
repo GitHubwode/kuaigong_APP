@@ -119,5 +119,37 @@
     } aboveView:view inCaller:caller];
 }
 
+/**
+ 更改用户头像
+ 
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ */
+
++ (void)updataUserAvatarString:(NSString *)avatarString completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/user/updateAvatar");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"base64"] = avatarString;
+    
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            [view showHint:KGGHttpNerworkErrorTip];
+            
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            
+            KGGUserObj *userObj = [KGGUserObj mj_objectWithKeyValues:responseObj.data];
+            [[KGGUserManager shareUserManager] updateCurrentUserAvatar:userObj.avatarUrl];
+            [[KGGUserManager shareUserManager] synchronize];
+            completionHandler(responseObj);
+        }
+    } aboveView:view inCaller:caller];
+    
+}
+
 
 @end

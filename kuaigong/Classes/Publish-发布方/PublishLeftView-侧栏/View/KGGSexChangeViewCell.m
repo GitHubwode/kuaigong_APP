@@ -25,9 +25,6 @@ static NSString *sexChangeViewCell = @"SexChangeViewCell";
     [super awakeFromNib];
     self.lineViewHeight.constant = KGGOnePixelHeight;
     self.personTextField.borderStyle = UITextBorderStyleNone;
-//    self.personTextField.placeholderColor = KGGTimeTextColor;
-//    self.personTextField.textColor = KGGContentTextColor;
-//    self.personTextField.font = KGGLightFont(15);
     self.personTextField.sexDelegate = self;
 }
 

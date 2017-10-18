@@ -52,7 +52,7 @@ static CGFloat itemHeight = 61.f;
     }];
 
     KGGPaychooseHeaderView *header = [[KGGPaychooseHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 48)];
-    header.titleStateLabel.text = @"工资¥2200";
+    header.titleStateLabel.text = [NSString stringWithFormat:@"工资: ¥%@",self.moneyString];
 
     self.payTableView.tableHeaderView = header;
     self.payTableView.backgroundColor = [UIColor whiteColor];
@@ -148,13 +148,13 @@ static CGFloat itemHeight = 61.f;
     [self.datasource addObject:model2];
     
     if (_isPublish == YES) return;
-    KGGPayChooseModel *model3 = [[KGGPayChooseModel alloc]init];
-    model3.iconImage = @"icon_xianjin";
-    model3.iconPressImage = @"icon_xianjin_p";
-    model3.title = @"现金支付";
-    model3.chooseImage = @"icon_c_h";
-    model3.choosePressImage = @"icon_c";
-    [self.datasource addObject:model3];
+//    KGGPayChooseModel *model3 = [[KGGPayChooseModel alloc]init];
+//    model3.iconImage = @"icon_xianjin";
+//    model3.iconPressImage = @"icon_xianjin_p";
+//    model3.title = @"现金支付";
+//    model3.chooseImage = @"icon_c_h";
+//    model3.choosePressImage = @"icon_c";
+//    [self.datasource addObject:model3];
 }
 
 - (UITableView *)payTableView

@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet KGGSexField *personTextField;
 
 
+
+
 + (NSString *)cellIdentifier;
 
 @end

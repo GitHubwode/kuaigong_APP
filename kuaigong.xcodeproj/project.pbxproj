@@ -116,6 +116,35 @@
 		3505C80D1F9725980085D688 /* HcdDateTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8041F971BE10085D688 /* HcdDateTimePickerView.m */; };
 		3505C80E1F9726D10085D688 /* MXSCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8021F971BE10085D688 /* MXSCycleScrollView.m */; };
 		3505C80F1F9726D60085D688 /* UIColor+HcdCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8031F971BE10085D688 /* UIColor+HcdCustom.m */; };
+		3505C82B1F97695F0085D688 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C81B1F97690B0085D688 /* NSBundle+TZImagePicker.m */; };
+		3505C82C1F9769620085D688 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8191F97690A0085D688 /* TZAssetCell.m */; };
+		3505C82D1F9769640085D688 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8281F97690E0085D688 /* TZAssetModel.m */; };
+		3505C82E1F9769670085D688 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8211F97690D0085D688 /* TZImageManager.m */; };
+		3505C82F1F97696B0085D688 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8231F97690D0085D688 /* TZImagePickerController.m */; };
+		3505C8301F97696F0085D688 /* TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8161F9769090085D688 /* TZPhotoPickerController.m */; };
+		3505C8311F9769710085D688 /* TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8291F97690E0085D688 /* TZPhotoPreviewCell.m */; };
+		3505C8321F9769740085D688 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C81C1F97690B0085D688 /* TZPhotoPreviewController.m */; };
+		3505C8331F9769760085D688 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8261F97690D0085D688 /* TZVideoPlayerController.m */; };
+		3505C8341F9769790085D688 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8271F97690D0085D688 /* UIView+Layout.m */; };
+		3505C85F1F976A5E0085D688 /* UIImage+PKShortVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8381F976A5E0085D688 /* UIImage+PKShortVideoPlayer.m */; };
+		3505C8601F976A5E0085D688 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C83B1F976A5E0085D688 /* GLProgram.m */; };
+		3505C8611F976A5E0085D688 /* GPUImageContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C83D1F976A5E0085D688 /* GPUImageContext.m */; };
+		3505C8621F976A5E0085D688 /* GPUImageFramebuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C83F1F976A5E0085D688 /* GPUImageFramebuffer.m */; };
+		3505C8631F976A5E0085D688 /* GPUImageFramebufferCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8411F976A5E0085D688 /* GPUImageFramebufferCache.m */; };
+		3505C8641F976A5E0085D688 /* PK_Camera_Turn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3505C8431F976A5E0085D688 /* PK_Camera_Turn@2x.png */; };
+		3505C8651F976A5E0085D688 /* PK_Delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3505C8441F976A5E0085D688 /* PK_Delete@2x.png */; };
+		3505C8661F976A5E0085D688 /* PK_Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3505C8451F976A5E0085D688 /* PK_Play@2x.png */; };
+		3505C8671F976A5E0085D688 /* PKChatMessagePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8491F976A5E0085D688 /* PKChatMessagePlayerView.m */; };
+		3505C8681F976A5E0085D688 /* PKColorConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C84B1F976A5E0085D688 /* PKColorConversion.m */; };
+		3505C8691F976A5E0085D688 /* PKFullScreenPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C84D1F976A5E0085D688 /* PKFullScreenPlayerView.m */; };
+		3505C86A1F976A5E0085D688 /* PKFullScreenPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C84F1F976A5E0085D688 /* PKFullScreenPlayerViewController.m */; };
+		3505C86B1F976A5E0085D688 /* PKPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8511F976A5E0085D688 /* PKPlayerManager.m */; };
+		3505C86C1F976A5E0085D688 /* PKPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8531F976A5E0085D688 /* PKPlayerView.m */; };
+		3505C86D1F976A5E0085D688 /* PKVideoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8551F976A5E0085D688 /* PKVideoDecoder.m */; };
+		3505C86E1F976A5E0085D688 /* PKRecordShortVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8581F976A5E0085D688 /* PKRecordShortVideoViewController.m */; };
+		3505C86F1F976A5E0085D688 /* PKShortVideoProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C85A1F976A5E0085D688 /* PKShortVideoProgressBar.m */; };
+		3505C8701F976A5E0085D688 /* PKShortVideoRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C85C1F976A5E0085D688 /* PKShortVideoRecorder.m */; };
+		3505C8711F976A5E0085D688 /* PKShortVideoSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C85E1F976A5E0085D688 /* PKShortVideoSession.m */; };
 		35252EF81F5E3B5C001D09F4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */; };
 		35252EFA1F5E3B64001D09F4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */; };
 		35252EFC1F5E3B73001D09F4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */; };
@@ -449,6 +478,63 @@
 		3505C8081F971FD10085D688 /* KGGStartWorkTimeViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGStartWorkTimeViewCell.h; sourceTree = "<group>"; };
 		3505C8091F971FD10085D688 /* KGGStartWorkTimeViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGStartWorkTimeViewCell.m; sourceTree = "<group>"; };
 		3505C80A1F971FD10085D688 /* KGGStartWorkTimeViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGStartWorkTimeViewCell.xib; sourceTree = "<group>"; };
+		3505C8161F9769090085D688 /* TZPhotoPickerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPickerController.m; sourceTree = "<group>"; };
+		3505C8171F9769090085D688 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
+		3505C8181F97690A0085D688 /* TZVideoPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZVideoPlayerController.h; sourceTree = "<group>"; };
+		3505C8191F97690A0085D688 /* TZAssetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
+		3505C81A1F97690A0085D688 /* UIView+Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		3505C81B1F97690B0085D688 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
+		3505C81C1F97690B0085D688 /* TZPhotoPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewController.m; sourceTree = "<group>"; };
+		3505C81D1F97690B0085D688 /* TZAssetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
+		3505C81E1F97690C0085D688 /* TZImagePickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
+		3505C81F1F97690C0085D688 /* TZImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZImageManager.h; sourceTree = "<group>"; };
+		3505C8201F97690C0085D688 /* TZAssetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
+		3505C8211F97690D0085D688 /* TZImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZImageManager.m; sourceTree = "<group>"; };
+		3505C8221F97690D0085D688 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
+		3505C8231F97690D0085D688 /* TZImagePickerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
+		3505C8241F97690D0085D688 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
+		3505C8251F97690D0085D688 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
+		3505C8261F97690D0085D688 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZVideoPlayerController.m; sourceTree = "<group>"; };
+		3505C8271F97690D0085D688 /* UIView+Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		3505C8281F97690E0085D688 /* TZAssetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZAssetModel.m; sourceTree = "<group>"; };
+		3505C8291F97690E0085D688 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewCell.m; sourceTree = "<group>"; };
+		3505C82A1F97690F0085D688 /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewController.h; sourceTree = "<group>"; };
+		3505C8371F976A5E0085D688 /* UIImage+PKShortVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PKShortVideoPlayer.h"; sourceTree = "<group>"; };
+		3505C8381F976A5E0085D688 /* UIImage+PKShortVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PKShortVideoPlayer.m"; sourceTree = "<group>"; };
+		3505C83A1F976A5E0085D688 /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
+		3505C83B1F976A5E0085D688 /* GLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLProgram.m; sourceTree = "<group>"; };
+		3505C83C1F976A5E0085D688 /* GPUImageContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageContext.h; sourceTree = "<group>"; };
+		3505C83D1F976A5E0085D688 /* GPUImageContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageContext.m; sourceTree = "<group>"; };
+		3505C83E1F976A5E0085D688 /* GPUImageFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFramebuffer.h; sourceTree = "<group>"; };
+		3505C83F1F976A5E0085D688 /* GPUImageFramebuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageFramebuffer.m; sourceTree = "<group>"; };
+		3505C8401F976A5E0085D688 /* GPUImageFramebufferCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageFramebufferCache.h; sourceTree = "<group>"; };
+		3505C8411F976A5E0085D688 /* GPUImageFramebufferCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageFramebufferCache.m; sourceTree = "<group>"; };
+		3505C8431F976A5E0085D688 /* PK_Camera_Turn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PK_Camera_Turn@2x.png"; sourceTree = "<group>"; };
+		3505C8441F976A5E0085D688 /* PK_Delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PK_Delete@2x.png"; sourceTree = "<group>"; };
+		3505C8451F976A5E0085D688 /* PK_Play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PK_Play@2x.png"; sourceTree = "<group>"; };
+		3505C8461F976A5E0085D688 /* PKShortVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKShortVideo.h; sourceTree = "<group>"; };
+		3505C8481F976A5E0085D688 /* PKChatMessagePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKChatMessagePlayerView.h; sourceTree = "<group>"; };
+		3505C8491F976A5E0085D688 /* PKChatMessagePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKChatMessagePlayerView.m; sourceTree = "<group>"; };
+		3505C84A1F976A5E0085D688 /* PKColorConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKColorConversion.h; sourceTree = "<group>"; };
+		3505C84B1F976A5E0085D688 /* PKColorConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKColorConversion.m; sourceTree = "<group>"; };
+		3505C84C1F976A5E0085D688 /* PKFullScreenPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKFullScreenPlayerView.h; sourceTree = "<group>"; };
+		3505C84D1F976A5E0085D688 /* PKFullScreenPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKFullScreenPlayerView.m; sourceTree = "<group>"; };
+		3505C84E1F976A5E0085D688 /* PKFullScreenPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKFullScreenPlayerViewController.h; sourceTree = "<group>"; };
+		3505C84F1F976A5E0085D688 /* PKFullScreenPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKFullScreenPlayerViewController.m; sourceTree = "<group>"; };
+		3505C8501F976A5E0085D688 /* PKPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPlayerManager.h; sourceTree = "<group>"; };
+		3505C8511F976A5E0085D688 /* PKPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPlayerManager.m; sourceTree = "<group>"; };
+		3505C8521F976A5E0085D688 /* PKPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPlayerView.h; sourceTree = "<group>"; };
+		3505C8531F976A5E0085D688 /* PKPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPlayerView.m; sourceTree = "<group>"; };
+		3505C8541F976A5E0085D688 /* PKVideoDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKVideoDecoder.h; sourceTree = "<group>"; };
+		3505C8551F976A5E0085D688 /* PKVideoDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKVideoDecoder.m; sourceTree = "<group>"; };
+		3505C8571F976A5E0085D688 /* PKRecordShortVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKRecordShortVideoViewController.h; sourceTree = "<group>"; };
+		3505C8581F976A5E0085D688 /* PKRecordShortVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKRecordShortVideoViewController.m; sourceTree = "<group>"; };
+		3505C8591F976A5E0085D688 /* PKShortVideoProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKShortVideoProgressBar.h; sourceTree = "<group>"; };
+		3505C85A1F976A5E0085D688 /* PKShortVideoProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKShortVideoProgressBar.m; sourceTree = "<group>"; };
+		3505C85B1F976A5E0085D688 /* PKShortVideoRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKShortVideoRecorder.h; sourceTree = "<group>"; };
+		3505C85C1F976A5E0085D688 /* PKShortVideoRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKShortVideoRecorder.m; sourceTree = "<group>"; };
+		3505C85D1F976A5E0085D688 /* PKShortVideoSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKShortVideoSession.h; sourceTree = "<group>"; };
+		3505C85E1F976A5E0085D688 /* PKShortVideoSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKShortVideoSession.m; sourceTree = "<group>"; };
 		35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -980,6 +1066,8 @@
 		189D20EC1F42FE170004F1EB /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				3505C8351F976A5E0085D688 /* PKShortVideo */,
+				3505C8151F9768FD0085D688 /* TZImagePickerController */,
 				3505C8011F971BBC0085D688 /* KGGTimeChoose */,
 				35F830461F61176800204989 /* CYPasswordView */,
 				185C86B81F4A9A5800356ECD /* SUNSlideSwitch */,
@@ -1319,6 +1407,117 @@
 				3505C8031F971BE10085D688 /* UIColor+HcdCustom.m */,
 			);
 			path = KGGTimeChoose;
+			sourceTree = "<group>";
+		};
+		3505C8151F9768FD0085D688 /* TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				3505C8221F97690D0085D688 /* NSBundle+TZImagePicker.h */,
+				3505C81B1F97690B0085D688 /* NSBundle+TZImagePicker.m */,
+				3505C81D1F97690B0085D688 /* TZAssetCell.h */,
+				3505C8191F97690A0085D688 /* TZAssetCell.m */,
+				3505C8201F97690C0085D688 /* TZAssetModel.h */,
+				3505C8281F97690E0085D688 /* TZAssetModel.m */,
+				3505C81F1F97690C0085D688 /* TZImageManager.h */,
+				3505C8211F97690D0085D688 /* TZImageManager.m */,
+				3505C8171F9769090085D688 /* TZImagePickerController.bundle */,
+				3505C81E1F97690C0085D688 /* TZImagePickerController.h */,
+				3505C8231F97690D0085D688 /* TZImagePickerController.m */,
+				3505C8241F97690D0085D688 /* TZPhotoPickerController.h */,
+				3505C8161F9769090085D688 /* TZPhotoPickerController.m */,
+				3505C8251F97690D0085D688 /* TZPhotoPreviewCell.h */,
+				3505C8291F97690E0085D688 /* TZPhotoPreviewCell.m */,
+				3505C82A1F97690F0085D688 /* TZPhotoPreviewController.h */,
+				3505C81C1F97690B0085D688 /* TZPhotoPreviewController.m */,
+				3505C8181F97690A0085D688 /* TZVideoPlayerController.h */,
+				3505C8261F97690D0085D688 /* TZVideoPlayerController.m */,
+				3505C81A1F97690A0085D688 /* UIView+Layout.h */,
+				3505C8271F97690D0085D688 /* UIView+Layout.m */,
+			);
+			path = TZImagePickerController;
+			sourceTree = "<group>";
+		};
+		3505C8351F976A5E0085D688 /* PKShortVideo */ = {
+			isa = PBXGroup;
+			children = (
+				3505C8361F976A5E0085D688 /* Category */,
+				3505C8391F976A5E0085D688 /* GPUImage */,
+				3505C8421F976A5E0085D688 /* PKAsset */,
+				3505C8461F976A5E0085D688 /* PKShortVideo.h */,
+				3505C8471F976A5E0085D688 /* PKShortVideoPlayer */,
+				3505C8561F976A5E0085D688 /* PKShortVideoWriter */,
+			);
+			path = PKShortVideo;
+			sourceTree = "<group>";
+		};
+		3505C8361F976A5E0085D688 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				3505C8371F976A5E0085D688 /* UIImage+PKShortVideoPlayer.h */,
+				3505C8381F976A5E0085D688 /* UIImage+PKShortVideoPlayer.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		3505C8391F976A5E0085D688 /* GPUImage */ = {
+			isa = PBXGroup;
+			children = (
+				3505C83A1F976A5E0085D688 /* GLProgram.h */,
+				3505C83B1F976A5E0085D688 /* GLProgram.m */,
+				3505C83C1F976A5E0085D688 /* GPUImageContext.h */,
+				3505C83D1F976A5E0085D688 /* GPUImageContext.m */,
+				3505C83E1F976A5E0085D688 /* GPUImageFramebuffer.h */,
+				3505C83F1F976A5E0085D688 /* GPUImageFramebuffer.m */,
+				3505C8401F976A5E0085D688 /* GPUImageFramebufferCache.h */,
+				3505C8411F976A5E0085D688 /* GPUImageFramebufferCache.m */,
+			);
+			path = GPUImage;
+			sourceTree = "<group>";
+		};
+		3505C8421F976A5E0085D688 /* PKAsset */ = {
+			isa = PBXGroup;
+			children = (
+				3505C8431F976A5E0085D688 /* PK_Camera_Turn@2x.png */,
+				3505C8441F976A5E0085D688 /* PK_Delete@2x.png */,
+				3505C8451F976A5E0085D688 /* PK_Play@2x.png */,
+			);
+			path = PKAsset;
+			sourceTree = "<group>";
+		};
+		3505C8471F976A5E0085D688 /* PKShortVideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				3505C8481F976A5E0085D688 /* PKChatMessagePlayerView.h */,
+				3505C8491F976A5E0085D688 /* PKChatMessagePlayerView.m */,
+				3505C84A1F976A5E0085D688 /* PKColorConversion.h */,
+				3505C84B1F976A5E0085D688 /* PKColorConversion.m */,
+				3505C84C1F976A5E0085D688 /* PKFullScreenPlayerView.h */,
+				3505C84D1F976A5E0085D688 /* PKFullScreenPlayerView.m */,
+				3505C84E1F976A5E0085D688 /* PKFullScreenPlayerViewController.h */,
+				3505C84F1F976A5E0085D688 /* PKFullScreenPlayerViewController.m */,
+				3505C8501F976A5E0085D688 /* PKPlayerManager.h */,
+				3505C8511F976A5E0085D688 /* PKPlayerManager.m */,
+				3505C8521F976A5E0085D688 /* PKPlayerView.h */,
+				3505C8531F976A5E0085D688 /* PKPlayerView.m */,
+				3505C8541F976A5E0085D688 /* PKVideoDecoder.h */,
+				3505C8551F976A5E0085D688 /* PKVideoDecoder.m */,
+			);
+			path = PKShortVideoPlayer;
+			sourceTree = "<group>";
+		};
+		3505C8561F976A5E0085D688 /* PKShortVideoWriter */ = {
+			isa = PBXGroup;
+			children = (
+				3505C8571F976A5E0085D688 /* PKRecordShortVideoViewController.h */,
+				3505C8581F976A5E0085D688 /* PKRecordShortVideoViewController.m */,
+				3505C8591F976A5E0085D688 /* PKShortVideoProgressBar.h */,
+				3505C85A1F976A5E0085D688 /* PKShortVideoProgressBar.m */,
+				3505C85B1F976A5E0085D688 /* PKShortVideoRecorder.h */,
+				3505C85C1F976A5E0085D688 /* PKShortVideoRecorder.m */,
+				3505C85D1F976A5E0085D688 /* PKShortVideoSession.h */,
+				3505C85E1F976A5E0085D688 /* PKShortVideoSession.m */,
+			);
+			path = PKShortVideoWriter;
 			sourceTree = "<group>";
 		};
 		358381851F8B4AB4002A17C5 /* login-网络请求 */ = {
@@ -1848,6 +2047,7 @@
 				18F5BA681F4ED24F00E6ADC4 /* KGGHomeListViewCell.xib in Resources */,
 				35AE11741F8FBBDD00BCD2BD /* KGGAMapSearchViewCell.xib in Resources */,
 				18F5BA711F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib in Resources */,
+				3505C8651F976A5E0085D688 /* PK_Delete@2x.png in Resources */,
 				35BEB1701F73C1F30060298A /* KGGWorkDetailsViewController.xib in Resources */,
 				35FD037E1F5E7C8100558900 /* KGGMoreSettingViewCell.xib in Resources */,
 				35F830661F6276B000204989 /* KGGAddBankCarController.xib in Resources */,
@@ -1859,12 +2059,14 @@
 				35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */,
 				185C87191F4D782800356ECD /* KGCreatAddress.plist in Resources */,
 				189D20B41F42EAAD0004F1EB /* Assets.xcassets in Resources */,
+				3505C8641F976A5E0085D688 /* PK_Camera_Turn@2x.png in Resources */,
 				350360571F59503900FB0EDD /* KGGSexChangeViewCell.xib in Resources */,
 				18F5B97C1F4EBC7800E6ADC4 /* 启动页_1.png in Resources */,
 				185C86A91F46EADF00356ECD /* KGGLeftDrawer.plist in Resources */,
 				185C86D21F4ABB6500356ECD /* KGGNewFeatureViewController.xib in Resources */,
 				188F2D4B1F4ED8440023F4BE /* KGGPublishOrderViewCell.xib in Resources */,
 				35F8307E1F628BCF00204989 /* SNHSecurityCodeViewController.xib in Resources */,
+				3505C8661F976A5E0085D688 /* PK_Play@2x.png in Resources */,
 				188F2D561F500FA40023F4BE /* KGGMeWorkViewCell.xib in Resources */,
 				35BEB1661F725D7C0060298A /* KGGMyWorkViewCell.xib in Resources */,
 				359CD08A1F57DCB400DDFA62 /* KGGPersonMessageCell.xib in Resources */,
@@ -1963,15 +2165,19 @@
 				3505C7F61F9637E80085D688 /* KGGOrderCorrectViewCell.m in Sources */,
 				35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */,
 				188F2D5C1F540B8C0023F4BE /* KGGRefreshFooter.m in Sources */,
+				3505C86D1F976A5E0085D688 /* PKVideoDecoder.m in Sources */,
+				3505C86B1F976A5E0085D688 /* PKPlayerManager.m in Sources */,
 				18F5BA781F4ED24F00E6ADC4 /* KGGLeftDrawerHeaderView.m in Sources */,
 				189D212E1F42FE170004F1EB /* UIImageView+WebCache.m in Sources */,
 				35F73ABD1F790119000CD1D6 /* KGGAMapSearchViewController.m in Sources */,
+				3505C8701F976A5E0085D688 /* PKShortVideoRecorder.m in Sources */,
 				3545BB7A1F6FA23F008122B8 /* KGGPayTimeChooseField.m in Sources */,
 				189D21421F43DF8A0004F1EB /* NSString+KGGExtension.m in Sources */,
 				189D21531F43E36D0004F1EB /* AppDelegate+KGGGuide.m in Sources */,
 				185C86661F452B8E00356ECD /* UIViewController+DismissKeyboard.m in Sources */,
 				185C86751F4534E800356ECD /* KGGHTTPSessionManager.m in Sources */,
 				35F830811F629B2300204989 /* KGGWithdrawalPasswordViewController.m in Sources */,
+				3505C8311F9769710085D688 /* TZPhotoPreviewCell.m in Sources */,
 				189D21591F43E49B0004F1EB /* NSUserDefaults+KGGExtension.m in Sources */,
 				185C86631F443B6C00356ECD /* KGGLoginViewController.m in Sources */,
 				189D21331F4300100004F1EB /* KGGNavigationController.m in Sources */,
@@ -1979,7 +2185,9 @@
 				18F5BA6D1F4ED24F00E6ADC4 /* KGGUseWorkerHeaderView.m in Sources */,
 				188F2D401F4ED50E0023F4BE /* KGGHomeWorkViewController.m in Sources */,
 				185C866C1F452D9100356ECD /* UIView+HUD.m in Sources */,
+				3505C8681F976A5E0085D688 /* PKColorConversion.m in Sources */,
 				185C86BC1F4A9A5800356ECD /* SUNSlideSwitchView.m in Sources */,
+				3505C82C1F9769620085D688 /* TZAssetCell.m in Sources */,
 				188F2D591F540A470023F4BE /* KGGRefreshHeader.m in Sources */,
 				35F830441F60E4B000204989 /* KGGPublishPayViewController.m in Sources */,
 				35FF5CA71F6A7DEE00E1A50B /* KGGPaySheetViewCell.m in Sources */,
@@ -1993,12 +2201,14 @@
 				3583818C1F8B4B67002A17C5 /* KGGLoginParam.m in Sources */,
 				3505C80D1F9725980085D688 /* HcdDateTimePickerView.m in Sources */,
 				3543DB7E1F5E902900BE8B93 /* NSObject+swizzle.m in Sources */,
+				3505C8331F9769760085D688 /* TZVideoPlayerController.m in Sources */,
 				189D21251F42FE170004F1EB /* SDWebImageDecoder.m in Sources */,
 				189D21281F42FE170004F1EB /* SDWebImageManager.m in Sources */,
 				185C86971F46DB6E00356ECD /* KGGSliderMenuTool.m in Sources */,
 				185C86811F4596F400356ECD /* KGGRegisterViewController.m in Sources */,
 				185C86721F452F2500356ECD /* KGGConst.m in Sources */,
 				189D21561F43E44C0004F1EB /* NSBundle+KGGExtension.m in Sources */,
+				3505C86C1F976A5E0085D688 /* PKPlayerView.m in Sources */,
 				35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */,
 				189D21221F42FE170004F1EB /* NSData+ImageContentType.m in Sources */,
 				189D213F1F43DE910004F1EB /* UIColor+KGGExtension.m in Sources */,
@@ -2009,27 +2219,36 @@
 				185C867E1F4569D800356ECD /* UIBarButtonItem+KGGExtension.m in Sources */,
 				18F5BA7B1F4ED24F00E6ADC4 /* KGGUndoneOrderController.m in Sources */,
 				185C86691F452D4300356ECD /* MBProgressHUD+KGGExtension.m in Sources */,
+				3505C8321F9769740085D688 /* TZPhotoPreviewController.m in Sources */,
+				3505C8611F976A5E0085D688 /* GPUImageContext.m in Sources */,
 				189D211C1F42FE170004F1EB /* TAAnimatedDotView.m in Sources */,
 				189D20E91F42EFD70004F1EB /* AppDelegate.mm in Sources */,
 				188F2D411F4ED50E0023F4BE /* KGGLookWorkViewController.m in Sources */,
 				35AE11771F90A59900BCD2BD /* KGGLoginVIPRequestManager.m in Sources */,
+				3505C8691F976A5E0085D688 /* PKFullScreenPlayerView.m in Sources */,
 				185C866F1F452E5700356ECD /* UIButton+Countdown.m in Sources */,
 				35F830531F61177E00204989 /* CYPasswordView.m in Sources */,
+				3505C8711F976A5E0085D688 /* PKShortVideoSession.m in Sources */,
+				3505C8671F976A5E0085D688 /* PKChatMessagePlayerView.m in Sources */,
 				185C868A1F46861A00356ECD /* KGGConfirmPasswordViewController.m in Sources */,
 				189D21451F43E11E0004F1EB /* KGGTabBarController.m in Sources */,
 				18F5BA741F4ED24F00E6ADC4 /* KGGMoreSettingController.m in Sources */,
 				35F73AAA1F78AE9F000CD1D6 /* KGGSearchOrderViewCell.m in Sources */,
+				3505C8301F97696F0085D688 /* TZPhotoPickerController.m in Sources */,
 				35F830881F62AA5B00204989 /* KGGWithdrawViewController.m in Sources */,
 				189D212F1F42FE170004F1EB /* UIView+WebCacheOperation.m in Sources */,
 				188F2D551F500FA40023F4BE /* KGGMeWorkViewCell.m in Sources */,
+				3505C82E1F9769670085D688 /* TZImageManager.m in Sources */,
 				358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */,
 				35F830711F62887800204989 /* KGGFillBankInfoViewController.m in Sources */,
 				35F73AB71F78E3A0000CD1D6 /* KGGLocationTextFieldSubClass.m in Sources */,
 				358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */,
 				18F5BA5E1F4ED24F00E6ADC4 /* KGGHomeViewController.m in Sources */,
 				35FF5CB11F6A933200E1A50B /* KGGPaychooseHeaderView.m in Sources */,
+				3505C8341F9769790085D688 /* UIView+Layout.m in Sources */,
 				3505C7F21F962DC90085D688 /* KGGOrderCorrectViewController.m in Sources */,
 				35F73AAE1F78AEB0000CD1D6 /* KGGSearchOrderHeaderView.m in Sources */,
+				3505C86E1F976A5E0085D688 /* PKRecordShortVideoViewController.m in Sources */,
 				189D211F1F42FE170004F1EB /* SDCollectionViewCell.m in Sources */,
 				3545BB7E1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.m in Sources */,
 				185C86FC1F4C418800356ECD /* UIButton+KGGExtension.m in Sources */,
@@ -2057,6 +2276,7 @@
 				358381841F8B1622002A17C5 /* KGGUserManager.m in Sources */,
 				35F830541F61177E00204989 /* UIView+Extension.m in Sources */,
 				35F73AA61F78AD1F000CD1D6 /* KGGSearchOrderController.m in Sources */,
+				3505C86F1F976A5E0085D688 /* PKShortVideoProgressBar.m in Sources */,
 				189D20A91F42EAAD0004F1EB /* main.m in Sources */,
 				359CD08D1F57EAFC00DDFA62 /* KGGPublishPersonModel.m in Sources */,
 				189D21231F42FE170004F1EB /* SDImageCache.m in Sources */,
@@ -2066,7 +2286,9 @@
 				35F73A8C1F78A80E000CD1D6 /* CKSlideMenu.m in Sources */,
 				35F830601F6270B500204989 /* KGGMyWalletViewController.m in Sources */,
 				35FF5CA21F6A233500E1A50B /* KGGBillingDetailsViewCell.m in Sources */,
+				3505C8601F976A5E0085D688 /* GLProgram.m in Sources */,
 				185C86D51F4AC39000356ECD /* KGGTabBarWorkController.m in Sources */,
+				3505C86A1F976A5E0085D688 /* PKFullScreenPlayerViewController.m in Sources */,
 				3505C7FD1F9652E60085D688 /* KGGOrderCorrectModel.m in Sources */,
 				35FF5CAE1F6A894D00E1A50B /* KGGPayChooseModel.m in Sources */,
 				3505C80B1F971FD10085D688 /* KGGStartWorkTimeViewCell.m in Sources */,
@@ -2079,28 +2301,34 @@
 				35F830991F68D71200204989 /* AppDelegate+KGGJPush.m in Sources */,
 				189D212B1F42FE170004F1EB /* UIImage+GIF.m in Sources */,
 				35BEB16F1F73C1F30060298A /* KGGWorkDetailsViewController.m in Sources */,
+				3505C82B1F97695F0085D688 /* NSBundle+TZImagePicker.m in Sources */,
 				35F8308C1F66897800204989 /* KGGInfoTextFiel.m in Sources */,
 				185C86FF1F4D51A100356ECD /* KGGTextView.m in Sources */,
 				35AE11731F8FB66600BCD2BD /* KGGAMapSearchViewCell.m in Sources */,
+				3505C82F1F97696B0085D688 /* TZImagePickerController.m in Sources */,
 				3505C80F1F9726D60085D688 /* UIColor+HcdCustom.m in Sources */,
 				189D21261F42FE170004F1EB /* SDWebImageDownloader.m in Sources */,
 				359CD0851F56B14C00DDFA62 /* KGGPersonalMessageController.m in Sources */,
 				188F2D511F500A370023F4BE /* KGGMeWorkHeaderView.m in Sources */,
 				188F2D4E1F4FC6730023F4BE /* KGGPublishHomeFootView.m in Sources */,
+				3505C82D1F9769640085D688 /* TZAssetModel.m in Sources */,
 				35AE111C1F8EFFAE00BCD2BD /* KGGApplyVIPView.m in Sources */,
 				188F2D431F4ED50E0023F4BE /* KGGLookWorkViewCell.m in Sources */,
 				35F830691F627B2900204989 /* KGGAddBankCardFirstController.m in Sources */,
 				18F5BA731F4ED24F00E6ADC4 /* KGGLeftTableController.m in Sources */,
+				3505C85F1F976A5E0085D688 /* UIImage+PKShortVideoPlayer.m in Sources */,
 				35F830901F67C91300204989 /* KGGRongCloudModel.m in Sources */,
 				18F5BA5D1F4ED24F00E6ADC4 /* KGGHomeListViewController.m in Sources */,
 				18F5BA671F4ED24F00E6ADC4 /* KGGHomeListViewCell.m in Sources */,
 				358644691F91FD52007D3A79 /* UIView+ErrorView.m in Sources */,
 				18F5BA791F4ED24F00E6ADC4 /* KGGDoneOrderController.m in Sources */,
+				3505C8631F976A5E0085D688 /* GPUImageFramebufferCache.m in Sources */,
 				185C86D11F4ABB6500356ECD /* KGGNewFeatureViewController.m in Sources */,
 				18F5BA751F4ED24F00E6ADC4 /* KGGLeftDrawerModel.m in Sources */,
 				185C86871F46836700356ECD /* UIView+XCExtension.m in Sources */,
 				35FF5C9E1F6A230B00E1A50B /* KGGBillingDetailsViewController.m in Sources */,
 				3545BB821F6FCF4A008122B8 /* KGGUMSocialHelper.m in Sources */,
+				3505C8621F976A5E0085D688 /* GPUImageFramebuffer.m in Sources */,
 				189D21201F42FE170004F1EB /* SDCycleScrollView.m in Sources */,
 				35F8306D1F627BCE00204989 /* KGGCustomInfoCell.m in Sources */,
 				185C86841F45977E00356ECD /* KGGForgetPasswordViewController.m in Sources */,

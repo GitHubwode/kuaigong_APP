@@ -18,4 +18,7 @@
 
 + (NSString *)personIdentifier;
 
+- (void)kggUserNickName:(NSString *)nickName;
+- (void)kggUserAvatar:(NSString *)avatarUrl;
+
 @end

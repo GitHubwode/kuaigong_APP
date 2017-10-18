@@ -233,7 +233,9 @@
 //返回按钮
 - (void)baseLeftAction
 {
-    self.backBlock(self.addressDetails,self.longitudeAMap,self.latitudeAMap);
+    if (self.backBlock) {
+        self.backBlock(self.addressDetails,self.longitudeAMap,self.latitudeAMap);
+    }
     [self.navigationController popViewControllerAnimated:YES ];
 }
 

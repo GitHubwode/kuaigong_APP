@@ -31,6 +31,7 @@
     [navigationBar setTitleTextAttributes:@{NSFontAttributeName: KGGFont(18), NSForegroundColorAttributeName: KGGTitleTextColor}];
     [navigationBar setBackgroundImage:[UIImage imageNamed:@"navi_icon"] forBarMetrics:UIBarMetricsDefault];
     navigationBar.shadowImage = [UIImage new];
+
 }
 
 /**

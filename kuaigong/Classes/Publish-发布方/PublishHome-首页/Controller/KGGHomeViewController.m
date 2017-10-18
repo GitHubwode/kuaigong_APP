@@ -38,6 +38,7 @@ static CGFloat const itemHeight = 168.f;
     self.tabBarController.tabBar.hidden = YES;
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -131,8 +132,6 @@ static CGFloat const itemHeight = 168.f;
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     KGGLog(@"---点击了第%ld张图片", (long)index);
-    KGGAMapBaseViewController *amapVC = [[KGGAMapBaseViewController alloc]init];
-    [self.navigationController pushViewController:amapVC animated:YES];
     
 }
 

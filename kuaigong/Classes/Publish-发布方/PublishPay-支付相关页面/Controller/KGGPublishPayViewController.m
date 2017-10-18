@@ -162,7 +162,7 @@
 - (void)kgg_orderDetailsMessage
 {
     KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
-    //    sheetVC.moneyString = [NSString stringWithFormat:@"%.2f",_headerView.model.fee];
+        sheetVC.moneyString = [NSString stringWithFormat:@"%.2f",self.detailsModel.totalAmount];
     sheetVC.receiverId = @"";
     sheetVC.tradeType = 1;
     sheetVC.payFrom = 22;

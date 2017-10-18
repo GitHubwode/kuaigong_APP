@@ -34,17 +34,6 @@ static NSTimeInterval animationTime = 0.4;
 }
 
 //// 控制状态栏
-//- (BOOL)prefersStatusBarHidden {
-//    return self.hideStatusBar;
-//}
-//
-//- (UIStatusBarStyle)preferredStatusBarStyle {
-//    return UIStatusBarStyleLightContent;
-//}
-//
-//- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-//    return UIStatusBarAnimationSlide;
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

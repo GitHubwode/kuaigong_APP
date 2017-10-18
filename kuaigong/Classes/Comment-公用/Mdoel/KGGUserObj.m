@@ -25,9 +25,17 @@ MJCodingImplementation
  */
 - (void)mj_keyValuesDidFinishConvertingToObject{
 
-    _sexName = [_sex isEqualToString:@"MAN"] ? @"男" :@"女";
+    if ([_sex isEqualToString:@"MAN"] || [_sex isEqualToString:@"WOMAN"]) {
+        _sexName = [_sex isEqualToString:@"MAN"] ? @"男" :@"女";
+    }else{
+        _sexName = _sex;
+    }
+    
     _isLocked = [_isLock isEqualToString:@"N"] ? NO : YES;
     _isDeleted = [_isDelete isEqualToString:@"N"] ? NO : YES;
+    
+    //隐藏电话点好
+    _hidePhone = [NSString numberSuitScanf:_phone];
     
 }
 

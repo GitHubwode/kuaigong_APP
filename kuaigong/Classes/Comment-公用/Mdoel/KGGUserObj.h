@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, UserGender) {
 @property (nonatomic, copy) NSString *sexName;
 @property (nonatomic, assign) BOOL isLocked;
 @property (nonatomic, assign) BOOL isDeleted;
+@property (nonatomic, copy) NSString *hidePhone;
 
 
 @end
