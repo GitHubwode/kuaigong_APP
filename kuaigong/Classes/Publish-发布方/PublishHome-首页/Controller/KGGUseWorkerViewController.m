@@ -10,6 +10,7 @@
 #import "KGGCustomInfoItem.h"
 #import "KGGUseWorkerViewCell.h"
 #import "KGGPayTimeChooseViewCell.h"
+#import "KGGStartWorkTimeViewCell.h"
 #import "KGGUseWorkerHeaderView.h"
 #import "KGGActionSheetController.h"
 #import "KGGHomePublishModel.h"
@@ -160,6 +161,10 @@
         KGGPayTimeChooseViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGPayTimeChooseViewCell payTimeIdentifier]];
         cell.infoItem = item;
         return cell;
+    }else if (indexPath.row == 2){
+        KGGStartWorkTimeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGStartWorkTimeViewCell workStartIdentifier]];
+        cell.infoItem = item;
+        return cell;
     }else{
         KGGUseWorkerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGUseWorkerViewCell cellIdentifier]];
         cell.infoItem = item;
@@ -172,7 +177,6 @@
             [cell kgg_UserName:[KGGUserManager shareUserManager].currentUser.nickname];
             return cell;
         }
-        
         return cell;
     }
 }
@@ -221,6 +225,8 @@
     id cell = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.row == 3) {
         [[cell timeTextField] becomeFirstResponder];
+    }else if (indexPath.row == 2){
+        
     }else{
      [[cell textField] becomeFirstResponder];
     }
@@ -284,10 +290,8 @@
     NSString *contactsPhone = [KGGUserManager shareUserManager].currentUser.phone;
     //车费
     double carFare = [self.carMoney intValue]*[self.peopleNum intValue] *[self.daysNum intValue];
-    //时间
-    NSString *dayTime = [NSString stringWithFormat:@"%@",self.daysNum];
     
-    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workerType Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.priceNum integerValue] Fare:carFare Remark:self.headerView.headerTextView.text Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address WhenLong:dayTime Contacts:name ContactsPhone:contactsPhone];
+    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workerType Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.priceNum integerValue] Fare:carFare Remark:self.headerView.headerTextView.text WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address WhenLong:nil Contacts:name ContactsPhone:contactsPhone];
     
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
@@ -304,6 +308,7 @@
         _tableView.backgroundColor = KGGViewBackgroundColor;
         _tableView.separatorStyle = UITableViewCellStyleDefault;
         [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGUseWorkerViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGUseWorkerViewCell cellIdentifier]];
+        [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGStartWorkTimeViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGStartWorkTimeViewCell workStartIdentifier]];
         [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGPayTimeChooseViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGPayTimeChooseViewCell payTimeIdentifier]];
         _tableView.delegate = self;
         _tableView.dataSource = self;

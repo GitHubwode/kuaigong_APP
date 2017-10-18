@@ -111,6 +111,11 @@
 		3505C7F71F9637E80085D688 /* KGGOrderCorrectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3505C7F51F9637E80085D688 /* KGGOrderCorrectViewCell.xib */; };
 		3505C7FA1F963D9B0085D688 /* KGGSearchOrderRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7F91F963D9B0085D688 /* KGGSearchOrderRequestManager.m */; };
 		3505C7FD1F9652E60085D688 /* KGGOrderCorrectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7FC1F9652E60085D688 /* KGGOrderCorrectModel.m */; };
+		3505C80B1F971FD10085D688 /* KGGStartWorkTimeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8091F971FD10085D688 /* KGGStartWorkTimeViewCell.m */; };
+		3505C80C1F971FD10085D688 /* KGGStartWorkTimeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3505C80A1F971FD10085D688 /* KGGStartWorkTimeViewCell.xib */; };
+		3505C80D1F9725980085D688 /* HcdDateTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8041F971BE10085D688 /* HcdDateTimePickerView.m */; };
+		3505C80E1F9726D10085D688 /* MXSCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8021F971BE10085D688 /* MXSCycleScrollView.m */; };
+		3505C80F1F9726D60085D688 /* UIColor+HcdCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C8031F971BE10085D688 /* UIColor+HcdCustom.m */; };
 		35252EF81F5E3B5C001D09F4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */; };
 		35252EFA1F5E3B64001D09F4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */; };
 		35252EFC1F5E3B73001D09F4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */; };
@@ -435,6 +440,15 @@
 		3505C7F91F963D9B0085D688 /* KGGSearchOrderRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGSearchOrderRequestManager.m; sourceTree = "<group>"; };
 		3505C7FB1F9652E60085D688 /* KGGOrderCorrectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderCorrectModel.h; sourceTree = "<group>"; };
 		3505C7FC1F9652E60085D688 /* KGGOrderCorrectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderCorrectModel.m; sourceTree = "<group>"; };
+		3505C8021F971BE10085D688 /* MXSCycleScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXSCycleScrollView.m; sourceTree = "<group>"; };
+		3505C8031F971BE10085D688 /* UIColor+HcdCustom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HcdCustom.m"; sourceTree = "<group>"; };
+		3505C8041F971BE10085D688 /* HcdDateTimePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HcdDateTimePickerView.m; sourceTree = "<group>"; };
+		3505C8051F971BE10085D688 /* HcdDateTimePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HcdDateTimePickerView.h; sourceTree = "<group>"; };
+		3505C8061F971BE10085D688 /* MXSCycleScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXSCycleScrollView.h; sourceTree = "<group>"; };
+		3505C8071F971BE10085D688 /* UIColor+HcdCustom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HcdCustom.h"; sourceTree = "<group>"; };
+		3505C8081F971FD10085D688 /* KGGStartWorkTimeViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGStartWorkTimeViewCell.h; sourceTree = "<group>"; };
+		3505C8091F971FD10085D688 /* KGGStartWorkTimeViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGStartWorkTimeViewCell.m; sourceTree = "<group>"; };
+		3505C80A1F971FD10085D688 /* KGGStartWorkTimeViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGStartWorkTimeViewCell.xib; sourceTree = "<group>"; };
 		35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -966,6 +980,7 @@
 		189D20EC1F42FE170004F1EB /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				3505C8011F971BBC0085D688 /* KGGTimeChoose */,
 				35F830461F61176800204989 /* CYPasswordView */,
 				185C86B81F4A9A5800356ECD /* SUNSlideSwitch */,
 				189D20ED1F42FE170004F1EB /* SDCycleScrollView */,
@@ -1191,6 +1206,9 @@
 				3545BB7B1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.h */,
 				3545BB7C1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.m */,
 				3545BB7D1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.xib */,
+				3505C8081F971FD10085D688 /* KGGStartWorkTimeViewCell.h */,
+				3505C8091F971FD10085D688 /* KGGStartWorkTimeViewCell.m */,
+				3505C80A1F971FD10085D688 /* KGGStartWorkTimeViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1288,6 +1306,19 @@
 				188F2D491F4ED8440023F4BE /* KGGPublishOrderViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3505C8011F971BBC0085D688 /* KGGTimeChoose */ = {
+			isa = PBXGroup;
+			children = (
+				3505C8051F971BE10085D688 /* HcdDateTimePickerView.h */,
+				3505C8041F971BE10085D688 /* HcdDateTimePickerView.m */,
+				3505C8061F971BE10085D688 /* MXSCycleScrollView.h */,
+				3505C8021F971BE10085D688 /* MXSCycleScrollView.m */,
+				3505C8071F971BE10085D688 /* UIColor+HcdCustom.h */,
+				3505C8031F971BE10085D688 /* UIColor+HcdCustom.m */,
+			);
+			path = KGGTimeChoose;
 			sourceTree = "<group>";
 		};
 		358381851F8B4AB4002A17C5 /* login-网络请求 */ = {
@@ -1812,6 +1843,7 @@
 				359CD08F1F57F10A00DDFA62 /* KGGPublishPrivate.plist in Resources */,
 				18F5BA6A1F4ED24F00E6ADC4 /* KGGOrderDetailsViewCell.xib in Resources */,
 				18F5BA771F4ED24F00E6ADC4 /* KGGLeftDrawerCell.xib in Resources */,
+				3505C80C1F971FD10085D688 /* KGGStartWorkTimeViewCell.xib in Resources */,
 				35FD03791F5E7AD400558900 /* KGGPublishSetting.plist in Resources */,
 				18F5BA681F4ED24F00E6ADC4 /* KGGHomeListViewCell.xib in Resources */,
 				35AE11741F8FBBDD00BCD2BD /* KGGAMapSearchViewCell.xib in Resources */,
@@ -1959,6 +1991,7 @@
 				18F5BA631F4ED24F00E6ADC4 /* KGGUseWorkerViewController.m in Sources */,
 				35F830651F6276B000204989 /* KGGAddBankCarController.m in Sources */,
 				3583818C1F8B4B67002A17C5 /* KGGLoginParam.m in Sources */,
+				3505C80D1F9725980085D688 /* HcdDateTimePickerView.m in Sources */,
 				3543DB7E1F5E902900BE8B93 /* NSObject+swizzle.m in Sources */,
 				189D21251F42FE170004F1EB /* SDWebImageDecoder.m in Sources */,
 				189D21281F42FE170004F1EB /* SDWebImageManager.m in Sources */,
@@ -2008,6 +2041,7 @@
 				35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */,
 				189D21271F42FE170004F1EB /* SDWebImageDownloaderOperation.m in Sources */,
 				188F2D611F5426200023F4BE /* KGGHomePublishModel.m in Sources */,
+				3505C80E1F9726D10085D688 /* MXSCycleScrollView.m in Sources */,
 				185C86EE1F4BE93D00356ECD /* UITextField+KGGExtension.m in Sources */,
 				35F8307D1F628BCF00204989 /* SNHSecurityCodeViewController.m in Sources */,
 				35F830501F61177E00204989 /* CYConst.m in Sources */,
@@ -2035,6 +2069,7 @@
 				185C86D51F4AC39000356ECD /* KGGTabBarWorkController.m in Sources */,
 				3505C7FD1F9652E60085D688 /* KGGOrderCorrectModel.m in Sources */,
 				35FF5CAE1F6A894D00E1A50B /* KGGPayChooseModel.m in Sources */,
+				3505C80B1F971FD10085D688 /* KGGStartWorkTimeViewCell.m in Sources */,
 				359CD0891F57DCB400DDFA62 /* KGGPersonMessageCell.m in Sources */,
 				188F2D4A1F4ED8440023F4BE /* KGGPublishOrderViewCell.m in Sources */,
 				188F2D421F4ED50E0023F4BE /* KGGMeWorkViewController.m in Sources */,
@@ -2047,6 +2082,7 @@
 				35F8308C1F66897800204989 /* KGGInfoTextFiel.m in Sources */,
 				185C86FF1F4D51A100356ECD /* KGGTextView.m in Sources */,
 				35AE11731F8FB66600BCD2BD /* KGGAMapSearchViewCell.m in Sources */,
+				3505C80F1F9726D60085D688 /* UIColor+HcdCustom.m in Sources */,
 				189D21261F42FE170004F1EB /* SDWebImageDownloader.m in Sources */,
 				359CD0851F56B14C00DDFA62 /* KGGPersonalMessageController.m in Sources */,
 				188F2D511F500A370023F4BE /* KGGMeWorkHeaderView.m in Sources */,

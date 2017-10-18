@@ -179,7 +179,7 @@
     
     KGGLog(@"%@ %@",model.subTitle,model1.subTitle);
     
-    [KGGPublishOrderRequestManager publishUpdateOrderId:self.detailsModel.orderId Number:[model.subTitle integerValue] Days:[model.subTitle integerValue] completion:^(KGGResponseObj *responseObj) {
+    [KGGPublishOrderRequestManager publishUpdateOrderId:self.detailsModel.orderId Number:[model.subTitle integerValue] Days:[model1.subTitle integerValue] completion:^(KGGResponseObj *responseObj) {
         
         if (responseObj.code == KGGSuccessCode) {
             if (self.backBlock) {

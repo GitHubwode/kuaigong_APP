@@ -54,6 +54,10 @@
 //@property (nonatomic,assign) NSUInteger  firstDispatch;
 /** 备注 */
 @property (nonatomic,copy) NSString *remark;
+/** 开始时间 */
+@property (nonatomic,copy) NSString *workStartTime;
+/** 支付时间 */
+@property (nonatomic,copy) NSString *payTime;
 /** 创建时间 */
 //@property (nonatomic,copy) NSString *createTime;
 /** 更新时间 */
@@ -73,6 +77,8 @@
                     UnitPrice:(double )unitPrice
                           Fare:(double )fare
                         Remark:(NSString *)remark
+                 WorkStartTime:(NSString *)workStartTime
+                       PayTime:(NSString *)payTime
                     Longitude:(CGFloat )longitude
                      Latitude:(CGFloat )latitude
                       Address:(NSString *)address
@@ -88,6 +94,8 @@
                      UnitPrice:(double )unitPrice
                           Fare:(double )fare
                          Remark:(NSString *)remark
+                  WorkStartTime:(NSString *)workStartTime
+                        PayTime:(NSString *)payTime
                      Longitude:(CGFloat )longitude
                       Latitude:(CGFloat )latitude
                        Address:(NSString *)address

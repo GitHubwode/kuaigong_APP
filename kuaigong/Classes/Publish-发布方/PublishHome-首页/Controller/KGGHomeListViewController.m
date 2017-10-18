@@ -123,6 +123,11 @@
             }
         }
         
+        if (self.longitudeMap==0) {
+            [self.view showHint:@"工作地点不能为空"];
+            return;
+        }
+        
         if (isJump == YES) {
             KGGLog(@"我要用工");
             KGGUseWorkerViewController *useVC = [[KGGUseWorkerViewController alloc]init];

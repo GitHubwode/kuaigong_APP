@@ -22,6 +22,8 @@
                      UnitPrice:(double )unitPrice
                           Fare:(double )fare
                         Remark:(NSString *)remark
+                 WorkStartTime:(NSString *)workStartTime
+                       PayTime:(NSString *)payTime
                      Longitude:(CGFloat )longitude
                       Latitude:(CGFloat )latitude
                        Address:(NSString *)address
@@ -31,7 +33,6 @@
 {
     self = [super init];
     if (self) {
-//        self.orderId = order;
         self.userId = userid;
         self.name = name;
         self.type = type;
@@ -40,12 +41,12 @@
         self.unitPrice = unitPrice;
         self.fare = fare;
         self.remark = remark;
+        self.workStartTime = workStartTime;
+        self.payTime = payTime;
         self.longitude = longitude;
         self.latitude = latitude;
-//        self.status = status;
         self.address = address;
         self.whenLong = whenLong;
-//        self.fee = fee;
         self.contacts = contacts;
         self.contactsPhone = contactsPhone;
     }
@@ -60,6 +61,8 @@
                       UnitPrice:(double )unitPrice
                            Fare:(double )fare
                          Remark:(NSString *)remark
+                  WorkStartTime:(NSString *)workStartTime
+                        PayTime:(NSString *)payTime
                       Longitude:(CGFloat )longitude
                        Latitude:(CGFloat )latitude
                         Address:(NSString *)address
@@ -67,7 +70,7 @@
                        Contacts:(NSString *)contacts
                   ContactsPhone:(NSString *)contactsPhone
 {
-    return [[self alloc]initWithUserId:userid Name:name Type:type Number:number Days:days UnitPrice:unitPrice Fare:fare Remark:remark Longitude:longitude Latitude:latitude Address:address WhenLong:whenLong Contacts:contacts ContactsPhone:contactsPhone];
+    return [[self alloc]initWithUserId:userid Name:name Type:type Number:number Days:days UnitPrice:unitPrice Fare:fare Remark:remark WorkStartTime:workStartTime PayTime:payTime Longitude:longitude Latitude:latitude Address:address WhenLong:whenLong Contacts:contacts ContactsPhone:contactsPhone];
 }
 
 @end

@@ -63,6 +63,11 @@
 /** 订单号 */
 @property (nonatomic,copy) NSString * orderNo;
 
+/** 开始时间 */
+@property (nonatomic,copy) NSString *workStartTime;
+/** 支付时间 */
+@property (nonatomic,copy) NSString *payTime;
+
 //增加的参数
 @property (nonatomic, copy) NSString *orderDetails;
 @property (nonatomic, copy) NSString *workerType;
