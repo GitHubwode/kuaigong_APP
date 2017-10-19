@@ -7,8 +7,6 @@
 		<string>头像</string>
 		<key>subTitle</key>
 		<string></string>
-		<key>perPlace</key>
-		<string></string>
 		<key>ishides</key>
 		<false/>
 		<key>isMust</key>
@@ -21,8 +19,6 @@
 		<string>昵称</string>
 		<key>subTitle</key>
 		<string></string>
-		<key>perPlace</key>
-		<string>请输入昵称</string>
 		<key>ishides</key>
 		<false/>
 		<key>isMust</key>
@@ -35,8 +31,6 @@
 		<string>性别</string>
 		<key>subTitle</key>
 		<string></string>
-		<key>perPlace</key>
-		<string>请选择性别</string>
 		<key>ishides</key>
 		<false/>
 		<key>isMust</key>
@@ -49,8 +43,6 @@
 		<string>手机号</string>
 		<key>subTitle</key>
 		<string></string>
-		<key>perPlace</key>
-		<string>手机号显示</string>
 		<key>ishides</key>
 		<true/>
 		<key>isMust</key>

@@ -10,12 +10,12 @@
 #import "KGGPersonMessageCell.h"
 #import "KGGPublishPersonModel.h"
 #import "KGGSexChangeViewCell.h"
-//#import "LCActionSheet.h"
 #import "TZImageManager.h"
 #import "KGGLoginRequestManager.h"
+#import "KGGPersonNameEditController.h"
 
 
-@interface KGGPersonalMessageController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+@interface KGGPersonalMessageController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,KGGSexChangeViewCellDelegate>
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
 
 @property (nonatomic, strong) UITableView *perTableView;
@@ -71,6 +71,7 @@
     KGGPublishPersonModel *model = self.newDatasource[indexPath.row];
     if (indexPath.row == 2) {
         KGGSexChangeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGSexChangeViewCell cellIdentifier]];
+        cell.sexDelegate = self;
         cell.personModel = model;
         return cell;
     }else{
@@ -84,13 +85,40 @@
 {
     KGGLog(@"%ld",(long)indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    KGGPublishPersonModel *model = self.datasource[indexPath.row];
-    if (model.isHidesAvatar) return;
+    
+    KGGPublishPersonModel *model = self.newDatasource[indexPath.row];
+    
     if (indexPath.row == 0) {
         [self updateUserAvatar];
     }
-    id cell = [tableView cellForRowAtIndexPath:indexPath];
-    [[cell personTextField] becomeFirstResponder];
+    if (indexPath.row == 2) {
+        id cell = [tableView cellForRowAtIndexPath:indexPath];
+        [[cell personTextField] becomeFirstResponder];
+    }
+    if (indexPath.row == 1) {
+        KGGLog(@"跳转页面更改昵称");
+        
+        KGGPersonNameEditController *deitVC = [[KGGPersonNameEditController alloc]initWithInfoItem:model currentUser:nil];
+        deitVC.completionHandler = ^(){
+            [self userMessage];
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if (self.editInfoSuccessBlock) {
+                self.editInfoSuccessBlock();
+            }
+        };
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:deitVC] animated:YES completion:nil];
+
+    }
+}
+
+#pragma mark - cellSexDelegate
+- (void)KGGSexChangeButtonClickSex:(NSString *)sex
+{
+    [KGGLoginRequestManager updataUserNameNickString:nil Sex:sex completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            [MBProgressHUD showSuYaSuccess:@"修改成功" toView:nil];
+        }
+    } aboveView:self.view inCaller:self];
 }
 
 - (void)updateUserAvatar
@@ -188,8 +216,11 @@
         if (!responseObj) return ;
         if (responseObj.code == KGGSuccessCode) {
             KGGLog(@"%@",responseObj);
-            
+            [self userMessage];
             [self.perTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if (self.editInfoSuccessBlock) {
+                self.editInfoSuccessBlock();
+            }
         }
     } aboveView:self.view inCaller:self];
     

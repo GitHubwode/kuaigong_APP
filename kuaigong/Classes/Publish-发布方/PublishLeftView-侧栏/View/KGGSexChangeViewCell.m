@@ -45,8 +45,11 @@ static NSString *sexChangeViewCell = @"SexChangeViewCell";
 
 #pragma mark - SNHSexFieldDelegate
 - (void)ensureButtonClick{
-    
     self.personModel.subTitle = self.personTextField.text;
+    NSString *sex = [self.personTextField.text isEqualToString:@"男"] ? @"MAN" :@"WOMAN";
+    if ([self.sexDelegate respondsToSelector:@selector(KGGSexChangeButtonClickSex:)]) {
+        [self.sexDelegate KGGSexChangeButtonClickSex:sex];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -87,13 +87,7 @@
 {
     KGGLeftDrawerModel *model = self.dataArray[indexPath.row];
     Class class = NSClassFromString(model.linkVC);
-    
-    if (indexPath.row == 0) {
-        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[class new]] animated:YES completion:nil];
-    }else{
-        [self.navigationController pushViewController:[class new] animated:YES];
-
-    }
+    [self.navigationController pushViewController:[class new] animated:YES];
 }
 
 #pragma mark - KGGLeftDrawerHeaderViewDelegate
@@ -102,6 +96,11 @@
     KGGLog(@"点击头像跳转到个人信息");
     if ([KGGUserManager shareUserManager].logined) {
         KGGPersonalMessageController *personalVC = [[KGGPersonalMessageController alloc]init];
+        
+        personalVC.editInfoSuccessBlock = ^{
+            [self.headerView leftTableHeaderView];
+            [self.tableView reloadData];
+        };
         [self.navigationController pushViewController:personalVC animated:YES];
     }else{
         [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];

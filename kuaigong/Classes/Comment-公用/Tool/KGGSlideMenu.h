@@ -1,9 +1,9 @@
 //
-//  CKSlideMenu.h
-//  CKSlideMenu-OC
+//  KGGSlideMenu.h
+//  7777777
 //
-//  Created by ck on 2017/8/21.
-//  Copyright © 2017年 caike. All rights reserved.
+//  Created by Ding on 2017/10/19.
+//  Copyright © 2017年 Ding. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -21,11 +21,17 @@ typedef NS_ENUM(NSInteger,SlideMenuIndicatorStyle){
     SlideMenuIndicatorStyleStretch          //伸缩
 };
 
+@protocol CKSlideMenuDelegate <NSObject>
+/*切换完成代理方法*/
+- (void)pageTabViewDidEndChangeIndex:(NSInteger )index;
+@end
 
-@interface CKSlideMenu : UIView
+@interface KGGSlideMenu : UIView
 
-/** 选中索引 */
-@property (nonatomic,assign)NSInteger currentIndex;
+/*设置当前选择项（无动画效果）*/
+@property (nonatomic, assign) NSInteger selectedTabIndex;
+
+@property (nonatomic, weak) id<CKSlideMenuDelegate >slideDelegate;
 
 /** title风格 */
 @property (nonatomic,assign)SlideMenuTitleStyle titleStyle;
@@ -34,9 +40,6 @@ typedef NS_ENUM(NSInteger,SlideMenuIndicatorStyle){
 @property (nonatomic,assign)SlideMenuIndicatorStyle indicatorStyle;
 /** 菜单是否固定  默认不固定*/
 @property (nonatomic,assign)BOOL isFixed;
-
-/** 是否懒加载自控制器 */
-@property (nonatomic,assign)BOOL lazyLoad;
 
 /** 选中颜色 */
 @property (nonatomic,strong)UIColor *selectedColor;
@@ -62,37 +65,19 @@ typedef NS_ENUM(NSInteger,SlideMenuIndicatorStyle){
 /** 下标伸缩动画的偏移量 SlideMenuIndicatorStyleStretch生效 */
 @property (nonatomic,assign)CGFloat indicatorAnimatePadding;
 
-/** bodyScrollView的父视图 默认为SlideMenu的父视图*/
-@property (nonatomic,weak)UIView *bodySuperView;
-
-/** bodyScrollView的frame */
-@property (nonatomic,assign)CGRect bodyFrame;
-
 /** 是否显示分割线 */
 @property (nonatomic,assign)BOOL showLine;
 
 /** 是否显示下标 默认显示*/
 @property (nonatomic,assign)BOOL showIndicator;
 
-- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles controllers:(NSArray *)controllers;
-
-
-/**
- 刷新数据
-
- @param titles 标题数组
- @param controllers 控制器数组
- @param index 显示位置
- */
-- (void)reloadTitles:(NSArray *)titles controllers:(NSArray *)controllers atIndex:(NSInteger)index;
+- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles;
 
 /**
  滚动到对应位置
-
+ 
  @param toIndex 需要显示的位置
  */
 - (void)scrollToIndex:(NSInteger)toIndex;
 
 @end
-
-

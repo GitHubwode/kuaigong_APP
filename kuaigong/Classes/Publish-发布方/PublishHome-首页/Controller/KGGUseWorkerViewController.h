@@ -14,5 +14,6 @@
 @property (nonatomic, copy) NSString *address;
 @property (nonatomic, assign) CGFloat longitudeMap;
 @property (nonatomic, assign) CGFloat latitudeMap;
-
+/** 用工类型 */
+@property (nonatomic,assign) NSUInteger workerType;
 @end

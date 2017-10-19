@@ -38,12 +38,12 @@ extern NSString * const KGGUserLogoutNotifacation;
 //设备在别处登录
 extern NSString *const KGGConnectionStatusOffLine;
 //点击发布方,定位位置的通知
-extern NSString *const KGGPublishLocationNotification;
+//extern NSString *const KGGPublishLocationNotification;
 //发布方滚动到哪一个下标发通知
-extern NSString *const KGGPublishTapWorkerType;
+//extern NSString *const KGGPublishTapWorkerType;
 
 /** 用户定位完成通知 */
-extern NSString * const KGGUpdateUserLocationNotifacation;
+//extern NSString * const KGGUpdateUserLocationNotifacation;
 
 /** 显示红点的通知 */
 extern NSString * const KGGShowAlertNotifacation;

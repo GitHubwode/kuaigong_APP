@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^editInfoSuccessBlock)(void);
+
 @interface KGGPersonalMessageController : UIViewController
+
+@property (nonatomic, copy) editInfoSuccessBlock editInfoSuccessBlock;
 
 @end

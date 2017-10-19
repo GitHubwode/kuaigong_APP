@@ -34,8 +34,7 @@
 @property (nonatomic, copy) NSString *priceNum;
 /** 手续费 */
 @property (nonatomic,assign) double  fee;
-/** 用工类型 */
-@property (nonatomic,assign) NSUInteger workerType;
+
 
 /** 备注成为第一响应者 */
 @property (nonatomic,assign) BOOL  Isfirst;
@@ -56,10 +55,7 @@
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self kgg_addButton];
-    //创建tarBarItem
-    [self setupNavi];
     KGGLog(@"%@",self.publishDatasource);
-    
     [self useWorkerMessage];
 }
 
@@ -78,7 +74,6 @@
         }
     }
     
-    self.workerType = [[NSUserDefaults objectForKey:KGGPublishTapWorkerType] integerValue]+1;
     NSString *worker;
     switch (self.workerType) {
         case 0:
@@ -116,17 +111,6 @@
     }else{
         self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每小时%@元,车费每人%@元。",worker,self.peopleNum,self.daysNum,self.priceNum,self.carMoney];
     }
-}
-
-#pragma mark - 创建item
-- (void)setupNavi
-{
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"nav_back" highImage:@"nav_back" target:self action:@selector(kgg_back)];
-}
-
-- (void)kgg_back
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - 键盘显示隐藏

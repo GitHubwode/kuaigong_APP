@@ -11,14 +11,18 @@
 
 @class KGGPublishPersonModel;
 
+@protocol KGGSexChangeViewCellDelegate <NSObject>
+
+- (void)KGGSexChangeButtonClickSex:(NSString *)sex;
+
+@end
+
 @interface KGGSexChangeViewCell : UITableViewCell
 
 /** 模型 */
 @property (nonatomic,strong)KGGPublishPersonModel *personModel;
 @property (weak, nonatomic) IBOutlet KGGSexField *personTextField;
-
-
-
+@property (nonatomic, weak) id<KGGSexChangeViewCellDelegate>sexDelegate;
 
 + (NSString *)cellIdentifier;
 

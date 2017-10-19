@@ -52,7 +52,7 @@
 - (void)updateCurrentUserNewToken:(NSString *)token;
 - (void)updateCurrentUserNewType:(NSString *)userType;
 - (void)updateCurrentUserBossVIP:(BOOL)isVIP;
-
+- (void)updateCurrentUserSex:(NSString *)sex;
 @end
 
 

@@ -42,16 +42,6 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入昵称" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eFR-or-sLd">
-                        <rect key="frame" x="100.5" y="73.5" width="222.5" height="30"/>
-                        <color key="tintColor" red="0.61960784313725492" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="Ywg-RG-cOL"/>
-                        </constraints>
-                        <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="PQG-HM-oMW">
                         <rect key="frame" x="348" y="80" width="10" height="16"/>
                     </imageView>
@@ -62,19 +52,27 @@
                             <constraint firstAttribute="height" constant="19" id="h49-yk-q7U"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈哈" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-gu-bCI">
+                        <rect key="frame" x="267.5" y="73.5" width="55.5" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="vuf-yD-OFc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="FLy-d2-GPG" secondAttribute="trailing" constant="14" id="0dO-QY-W0v"/>
-                    <constraint firstAttribute="trailing" secondItem="eFR-or-sLd" secondAttribute="trailing" constant="49" id="1Py-js-eZU"/>
+                    <constraint firstItem="Obg-gu-bCI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4vW-Uz-ouB"/>
                     <constraint firstAttribute="trailing" secondItem="PQG-HM-oMW" secondAttribute="trailing" constant="14" id="Ceh-MV-bCl"/>
                     <constraint firstItem="zTU-7A-9g0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="Izw-UB-lHR"/>
                     <constraint firstAttribute="bottom" secondItem="FLy-d2-GPG" secondAttribute="bottom" id="Qbn-7c-8Ay"/>
                     <constraint firstItem="zTU-7A-9g0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="WBT-XO-TyO"/>
-                    <constraint firstItem="eFR-or-sLd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bQR-1e-A7J"/>
+                    <constraint firstAttribute="trailing" secondItem="Obg-gu-bCI" secondAttribute="trailing" constant="49" id="bYp-BJ-jq9"/>
                     <constraint firstItem="FLy-d2-GPG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="e1J-mY-Fmd"/>
                     <constraint firstItem="K7f-CL-zoj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="oAj-Wi-cvj"/>
                     <constraint firstAttribute="trailing" secondItem="K7f-CL-zoj" secondAttribute="trailing" constant="49" id="qko-7w-iO8"/>
-                    <constraint firstItem="eFR-or-sLd" firstAttribute="leading" secondItem="zTU-7A-9g0" secondAttribute="trailing" constant="50" id="xrc-KZ-mZF"/>
                     <constraint firstItem="PQG-HM-oMW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zkG-AT-MNh"/>
                 </constraints>
             </tableViewCellContentView>
@@ -82,7 +80,7 @@
                 <outlet property="arrwImageView" destination="PQG-HM-oMW" id="rPG-cu-IFF"/>
                 <outlet property="avatarImageView" destination="K7f-CL-zoj" id="Txs-xJ-iAm"/>
                 <outlet property="lineHeight" destination="h49-yk-q7U" id="lxb-Yy-rUv"/>
-                <outlet property="personTextField" destination="eFR-or-sLd" id="sXa-hn-SFQ"/>
+                <outlet property="personLabel" destination="Obg-gu-bCI" id="ShH-Kg-sPQ"/>
                 <outlet property="titleLabel" destination="zTU-7A-9g0" id="sCo-tV-ZIe"/>
             </connections>
             <point key="canvasLocation" x="-18" y="-8"/>

@@ -1,12 +1,12 @@
 //
-//  CKSlideMenu.m
-//  CKSlideMenu-OC
+//  KGGSlideMenu.m
+//  7777777
 //
-//  Created by ck on 2017/8/21.
-//  Copyright © 2017年 caike. All rights reserved.
+//  Created by Ding on 2017/10/19.
+//  Copyright © 2017年 Ding. All rights reserved.
 //
 
-#import "CKSlideMenu.h"
+#import "KGGSlideMenu.h"
 #import <objc/runtime.h>
 
 // 在运行时关联的关键方法
@@ -23,17 +23,18 @@ static NSString *textMaxX_Key;
 
 /** text的MaxX */
 @property (nonatomic,assign,readonly)CGFloat textMaxX;
+
+
 @end
 
-@interface CKSlideMenu ()<UIScrollViewDelegate>
+@interface KGGSlideMenu ()<UIScrollViewDelegate>
 {
     
     NSInteger   _leftIndex;         /** 左边索引 */
     
     NSInteger   _rightIndex;        /** 右边索引 */
 }
-/** 子控制器数组 */
-@property (nonatomic,strong)NSArray *controllers;
+@property (nonatomic, assign) NSInteger lastSelectedTabIndex; //记录上一次的索引
 
 /** title数组 */
 @property (nonatomic,strong)NSArray *titleArr;
@@ -47,33 +48,23 @@ static NSString *textMaxX_Key;
 /** 菜单滚动视图 */
 @property (nonatomic,strong)UIScrollView *tabScrollView;
 
-/** body滚动视图 */
-@property (nonatomic,strong)UIScrollView *bodyScrollView;
-
 /** 下标视图 */
 @property (nonatomic,strong)UIView *indicatorView;
+
+/** 选中索引 */
+@property (nonatomic,assign)NSInteger currentIndex;
 
 /** item文字边距 */
 @property (nonatomic,assign)CGFloat itemPadding;
 
-@property (nonatomic, strong) NSMutableDictionary *dict;
-
 @end
 
-@implementation CKSlideMenu
+@implementation KGGSlideMenu
 
-- (NSMutableDictionary *)dict
+- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles
 {
-    if (!_dict) {
-        _dict = [NSMutableDictionary new];
-    }
-    return _dict;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles controllers:(NSArray *)controllers;
-{
-    if (self = [super initWithFrame:frame]) {
-        _controllers = controllers;
+    self = [super initWithFrame:frame];
+    if (self) {
         _titleArr = titles;
         [self initSetting];
         [self addSubview:self.tabScrollView];
@@ -81,14 +72,6 @@ static NSString *textMaxX_Key;
         [self addSubview:self.sepertateView];
     }
     return self;
-}
-
-- (void)reloadTitles:(NSArray *)titles controllers:(NSArray *)controllers atIndex:(NSInteger)index
-{
-    _titleArr = titles;
-    _controllers = controllers;
-    _currentIndex = index;
-    [self setNeedsLayout];
 }
 
 //初始化参数
@@ -102,41 +85,26 @@ static NSString *textMaxX_Key;
     _indicatorOffsety = 0;
     _itemPadding = 15;
     _indicatorAnimatePadding = 8;
+    _lastSelectedTabIndex = 0;
     _titleStyle = SlideMenuTitleStyleNormal;
     _indicatorStyle = SlideMenuIndicatorStyleNormal;
     _isFixed = NO;
     _itemArr = [NSMutableArray array];
     _font = [UIFont systemFontOfSize:14];
-    
-    [NSUserDefaults removeObjectForKey:KGGPublishTapWorkerType];
-    //首次存取角色
-    [NSUserDefaults setObject:[NSString stringWithFormat:@"0"] forKey:KGGPublishTapWorkerType];
-    
 }
-
 //布局
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
     self.tabScrollView.frame = self.bounds;
+    self.tabScrollView.frame = self.bounds;
     self.sepertateView.frame = CGRectMake(0, self.frame.size.height - 0.5, self.frame.size.width, 0.5);
     
     [self setupTabContents];
-    
-    [self setupBodyScrollView];
-    
-    [self loadBodyContentAtIndex:_currentIndex];
-    
     [self resetTabScrollViewFrame];
-    
-    _bodyScrollView.contentSize = CGSizeMake(_bodyScrollView.frame.size.width*_controllers.count, _bodyScrollView.frame.size.height);
-    [_bodyScrollView setContentOffset:CGPointMake(_bodyScrollView.frame.size.width*_currentIndex, 0) animated:NO];
-    
     [self setupIndicatorView];
 }
-
-
 /**
  配置indicator的UI
  */
@@ -218,45 +186,12 @@ static NSString *textMaxX_Key;
     _tabScrollView.contentSize = CGSizeMake(originX, self.frame.size.height);
 }
 
-/**
- 添加bodyScorllView视图
- */
-- (void)setupBodyScrollView
-{
-    if (self.bodySuperView == nil) {
-        [self.superview addSubview:self.bodyScrollView];
-    }
-    else{
-        [self.bodySuperView addSubview:self.bodyScrollView];
-    }
-}
-
-//加载子控制器
-- (void)loadBodyContentAtIndex:(NSInteger)index
-{
-    if (_lazyLoad) {
-        UIViewController *vc = _controllers[index];
-        if (!vc.viewLoaded) {
-            vc.view.frame = _bodyScrollView.bounds;
-            vc.view.center = CGPointMake(CGRectGetWidth(_bodyScrollView.frame)*(index+0.5), _bodyScrollView.frame.size.height/2);
-            [_bodyScrollView addSubview:vc.view];
-        }
-    }
-    else{
-        for (int i = 0; i < _controllers.count; i++) {
-            UIViewController *vc = _controllers[i];
-            vc.view.frame = _bodyScrollView.bounds;
-            vc.view.center = CGPointMake(CGRectGetWidth(_bodyScrollView.frame)*(i+0.5), _bodyScrollView.frame.size.height/2);
-            [_bodyScrollView addSubview:vc.view];
-        }
-    }
-}
-
-#pragma mark setter
-- (void)setBodyFrame:(CGRect)bodyFrame
-{
-    self.bodyScrollView.frame = bodyFrame;
-    self.bodyScrollView.contentSize = CGSizeMake(bodyFrame.size.width*self.controllers.count, bodyFrame.size.height);
+#pragma mark - 最后更新的地方
+- (void)finishReviseTabContentOffset {
+    _lastSelectedTabIndex = (NSInteger )index;
+//    if([self.slideDelegate respondsToSelector:@selector(pageTabViewDidEndChangeIndex:)]) {
+//        [self.slideDelegate pageTabViewDidEndChangeIndex:_lastSelectedTabIndex];
+//    }
 }
 
 - (void)setIndicatorWidth:(CGFloat)indicatorWidth
@@ -334,16 +269,13 @@ static NSString *textMaxX_Key;
         return;
     }
     [self scrollToIndex:[_itemArr indexOfObject:button]];
+    
 }
 
 - (void)scrollToIndex:(NSInteger)toIndex
 {
-    
     if (_itemArr.count <= toIndex) {
         _currentIndex = toIndex;
-        [NSUserDefaults removeObjectForKey:KGGPublishTapWorkerType];
-        //首次存取角色
-        [NSUserDefaults setObject:[NSString stringWithFormat:@"%ld",(long)_currentIndex] forKey:KGGPublishTapWorkerType];
         return;
     }
     
@@ -351,11 +283,6 @@ static NSString *textMaxX_Key;
     UIButton *toItem = _itemArr[toIndex];
     
     _currentIndex = toIndex;
-    KGGLog(@"点击到%ld",(long)_currentIndex);
-    
-    [NSUserDefaults removeObjectForKey:KGGPublishTapWorkerType];
-    //首次存取角色
-    [NSUserDefaults setObject:[NSString stringWithFormat:@"%ld",(long)_currentIndex] forKey:KGGPublishTapWorkerType];
     
     //title样式
     if (_titleStyle == SlideMenuTitleStyleTransfrom || _titleStyle == SlideMenuTitleStyleAll) {
@@ -370,7 +297,7 @@ static NSString *textMaxX_Key;
     }
     
     void (^completeAction)() = ^(){
-        [_bodyScrollView setContentOffset:CGPointMake(_bodyScrollView.frame.size.width*toIndex, 0) animated:NO];
+//        [_bodyScrollView setContentOffset:CGPointMake(_bodyScrollView.frame.size.width*toIndex, 0) animated:NO];
         [self resetTabScrollViewFrame];
     };
     
@@ -387,6 +314,12 @@ static NSString *textMaxX_Key;
             } completion:^(BOOL finished) {
                 completeAction();
             }];
+            
+            KGGLog(@"滚动刀哪里:%ld",(long)toIndex);
+            if([self.slideDelegate respondsToSelector:@selector(pageTabViewDidEndChangeIndex:)]) {
+                [self.slideDelegate pageTabViewDidEndChangeIndex:toIndex];
+            }
+            
         }
             break;
         case SlideMenuIndicatorStyleFollowText:
@@ -449,8 +382,6 @@ static NSString *textMaxX_Key;
             //常规模式 只需更新中心点即可
             CGFloat max = rightItem.center.x - leftItem.center.x;
             self.indicatorView.center = CGPointMake(leftItem.center.x + max*relativeLocation, self.indicatorView.center.y);
-            
-            
         }
             break;
         case SlideMenuIndicatorStyleFollowText:
@@ -514,7 +445,7 @@ static NSString *textMaxX_Key;
             break;
         case SlideMenuTitleStyleTransfrom:
         {
-
+            
             [self transfromItem:leftItem percent:1-relativeLocation];
             [self transfromItem:rightItem  percent:relativeLocation];
         }
@@ -541,7 +472,6 @@ static NSString *textMaxX_Key;
     item.selected = percent >= 0.5 ;
     item.transform = CGAffineTransformMakeScale(1+0.1*percent, 1+0.1*percent);
 }
-
 /**
  * 修正tabScrollView的位置
  */
@@ -566,60 +496,13 @@ static NSString *textMaxX_Key;
     [self.tabScrollView setContentOffset:CGPointMake(reviseX, 0) animated:YES];
 }
 
-
-#pragma mark Delegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView == self.bodyScrollView) {
-        CGFloat offsetX = scrollView.contentOffset.x;
-
-        if (_lazyLoad) {
-            _currentIndex = lroundf(offsetX / scrollView.frame.size.width);
-            NSInteger index = _currentIndex;
-            if (offsetX > scrollView.frame.size.width*_currentIndex) {
-                index = (_currentIndex + 1) >= _itemArr.count ? _currentIndex : _currentIndex + 1;
-            }
-            else if (offsetX < scrollView.frame.size.width * _currentIndex) {
-                index = (_currentIndex - 1) < 0 ? 0 : _currentIndex - 1;
-            }
-            [self loadBodyContentAtIndex:index];
-        }
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    if(scrollView == self.tabScrollView) {
+    } else {
+        [self finishReviseTabContentOffset];
         
-        if (offsetX <= 0) { //左边界
-            _leftIndex = 0;
-            _rightIndex = _leftIndex;
-        }
-        else if (offsetX >= scrollView.contentSize.width - scrollView.frame.size.width) {  //右边界
-            _leftIndex = self.itemArr.count - 1;
-            _rightIndex = _leftIndex;
-        }
-        else{
-            _leftIndex = (NSInteger)(offsetX/scrollView.frame.size.width);
-            _rightIndex = _leftIndex + 1;
-        }
-        
-        CGFloat relativeLocation = (offsetX/scrollView.frame.size.width - _leftIndex);
-        if (relativeLocation == 0) {
-            return;
-        }
-        [self updateIndicatorStyle:relativeLocation];
-        [self updateTitleStyle:relativeLocation];
     }
 }
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    if (scrollView == self.bodyScrollView) {
-        _currentIndex = scrollView.contentOffset.x / scrollView.frame.size.width;
-        KGGLog(@"滑动到%ld",(long)_currentIndex);
-        [self.dict removeAllObjects];
-        [self.dict setObject:@(_currentIndex) forKey:@"currentIndex"];
-        [KGGNotificationCenter postNotificationName:KGGPublishTapWorkerType object:nil userInfo:self.dict];
-        [self resetTabScrollViewFrame];
-    }
-}
-
-
 
 #pragma mark - 懒加载 UI
 - (UIScrollView *)tabScrollView
@@ -628,7 +511,7 @@ static NSString *textMaxX_Key;
         _tabScrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
         _tabScrollView.showsVerticalScrollIndicator = NO;
         _tabScrollView.showsHorizontalScrollIndicator = NO;
-        _tabScrollView.backgroundColor = [UIColor whiteColor];
+        _tabScrollView.backgroundColor = [UIColor clearColor];
     }
     return _tabScrollView;
 }
@@ -650,21 +533,6 @@ static NSString *textMaxX_Key;
     }
     return _sepertateView;
 }
-
-- (UIScrollView *)bodyScrollView
-{
-    if (_bodyScrollView == nil) {
-        _bodyScrollView = [[UIScrollView alloc]initWithFrame:CGRectZero];
-        _bodyScrollView.showsVerticalScrollIndicator = NO;
-        _bodyScrollView.showsHorizontalScrollIndicator = NO;
-        _bodyScrollView.bounces = NO;
-        _bodyScrollView.delegate = self;
-        _bodyScrollView.pagingEnabled = YES;
-    }
-    return _bodyScrollView;
-}
-
-
 #pragma mark other
 
 //渐变颜色
@@ -689,15 +557,8 @@ static NSString *textMaxX_Key;
     return [UIColor colorWithRed:nowRed green:nowGreen blue:nowBlue alpha:nowAlpha];
 }
 
-- (void)dealloc
-{
-    KGGLogFunc
-}
-
 
 @end
-
-
 
 #pragma mark Buttton 分类
 @implementation UIButton (textWith)
@@ -728,3 +589,4 @@ static NSString *textMaxX_Key;
 }
 
 @end
+

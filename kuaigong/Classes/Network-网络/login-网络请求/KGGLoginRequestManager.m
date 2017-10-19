@@ -151,5 +151,40 @@
     
 }
 
+/**
+ 更改用户昵称 和性别
+ 
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ */
++ (void)updataUserNameNickString:(NSString *)nameNick Sex:(NSString *)sex completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/user/updateUser");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"nickname"] = nameNick;
+    dic[@"sex"] = sex;
+    
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            [view showHint:KGGHttpNerworkErrorTip];
+            
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            KGGUserObj *userObj = [KGGUserObj mj_objectWithKeyValues:responseObj.data];
+            if (nameNick == nil) {
+                [[KGGUserManager shareUserManager] updateCurrentUserSex:userObj.sex];
+            }else{
+                [[KGGUserManager shareUserManager] updateCurrentUserName:userObj.nickname];
+            }
+            [[KGGUserManager shareUserManager] synchronize];
+            completionHandler(responseObj);
+        }
+    } aboveView:view inCaller:caller];
+    
+}
+
 
 @end

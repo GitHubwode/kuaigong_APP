@@ -26,18 +26,7 @@
     self.navigationItem.title = @"订单记录";
     [self setupChildViewControllers];
     [self setUpSlideSwitchView];
-    [self setupNavi];
     
-}
-#pragma mark - 创建item
-- (void)setupNavi
-{
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"nav_back" highImage:@"nav_back" target:self action:@selector(kgg_back)];
-}
-
-- (void)kgg_back
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)setupChildViewControllers

@@ -13,7 +13,7 @@
 @interface KGGPersonMessageCell : UITableViewCell
 /** 模型 */
 @property (nonatomic,strong)KGGPublishPersonModel *personModel;
-@property (weak, nonatomic) IBOutlet UITextField *personTextField;
+@property (weak, nonatomic) IBOutlet UILabel *personLabel;
 
 
 + (NSString *)personIdentifier;

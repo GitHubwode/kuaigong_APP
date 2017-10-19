@@ -99,6 +99,13 @@
     _currentUser.avatarUrl = avatar;
     [self saveAccount:_currentUser];
 }
+- (void)updateCurrentUserSex:(NSString *)sex
+{
+    if (!_currentUser) return;
+    _currentUser.sex = sex;
+    _currentUser.sexName = [sex isEqualToString:@"MAN"] ? @"男" :@"女";
+    [self saveAccount:_currentUser];
+}
 
 - (void)updateCurrentUserMobile:(NSString *)mobile
 {

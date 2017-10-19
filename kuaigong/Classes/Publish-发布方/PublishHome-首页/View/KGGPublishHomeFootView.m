@@ -10,8 +10,6 @@
 #import "SDCycleScrollView.h"
 
 @interface KGGPublishHomeFootView ()<SDCycleScrollViewDelegate>
-
-//@property (nonatomic, strong) UILabel *noteLabel;
 @property (nonatomic, strong) SDCycleScrollView *cycleTitleView;
 
 @end
