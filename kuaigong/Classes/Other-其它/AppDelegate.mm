@@ -170,17 +170,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 {
     KGGLog(@"%@",url);
     
-//    if ([url.host isEqualToString:@"safepay"]) {
-//        [self snh_aliPayResultHandle:url];
-//        
-//        [self snh_aliAutoCodeResultHandle:url];
-//    }
-//    
-//    if ([url.host isEqualToString:@"platformapi"]) {
-//        [self snh_aliAutoCodeResultHandle:url];
-//    }
-//    
-//    
+    if ([url.host isEqualToString:@"safepay"]) {
+        [self snh_aliPayResultHandle:url];
+        
+        [self snh_aliAutoCodeResultHandle:url];
+    }
+    
+    if ([url.host isEqualToString:@"platformapi"]) {
+        [self snh_aliAutoCodeResultHandle:url];
+    }
+    
+    
 //    if ([[url scheme] isEqualToString:kWeiXinPayURLScheme]) {
 //        return [WXApi handleOpenURL:url delegate:self];
 //    }
@@ -200,7 +200,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         [self snh_aliAutoCodeResultHandle:url];
     }
 //    
-//    if ([[url scheme] isEqualToString:kWeiXinPayURLScheme]) {
+//    if ([[url scheme] isEqualToString:KGGWeiXinPayURLScheme]) {
 //        return [WXApi handleOpenURL:url delegate:self];
 //    }
     return YES;
@@ -208,7 +208,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-//    if ([[url scheme]isEqualToString:kWeiXinPayURLScheme]) {
+//    if ([[url scheme]isEqualToString:KGGWeiXinPayURLScheme]) {
 //        return [WXApi handleOpenURL:url delegate:self];
 //    }
     return NO;

@@ -4,11 +4,31 @@
 <array>
 	<dict>
 		<key>title</key>
+		<string>价格/天</string>
+		<key>subtitle</key>
+		<string></string>
+		<key>placeholder</key>
+		<string>请填写工价费用</string>
+		<key>required</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>车费/辆</string>
+		<key>subtitle</key>
+		<string></string>
+		<key>placeholder</key>
+		<string>请填写车辆费用</string>
+		<key>required</key>
+		<false/>
+	</dict>
+	<dict>
+		<key>title</key>
 		<string>用工人数</string>
 		<key>subtitle</key>
 		<string></string>
 		<key>placeholder</key>
-		<string>请填写人数</string>
+		<string>请填写用工人数</string>
 		<key>required</key>
 		<true/>
 	</dict>
@@ -18,27 +38,7 @@
 		<key>subtitle</key>
 		<string></string>
 		<key>placeholder</key>
-		<string>请填写天数</string>
-		<key>required</key>
-		<true/>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>车辆/每人</string>
-		<key>subtitle</key>
-		<string></string>
-		<key>placeholder</key>
-		<string>写车辆费用</string>
-		<key>required</key>
-		<false/>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>价格/每小时</string>
-		<key>subtitle</key>
-		<string></string>
-		<key>placeholder</key>
-		<string>请填写单价</string>
+		<string>请填写用工天数</string>
 		<key>required</key>
 		<true/>
 	</dict>

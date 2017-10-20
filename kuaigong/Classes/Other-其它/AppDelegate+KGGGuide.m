@@ -22,14 +22,30 @@ static NSString *const KGGLastVersionKey = @"KGGLastVersion";
 - (void)setUpRootViewControllver
 {
     UIViewController *rootVc;
-    // 定义一个窗口的根控制器
-    if ([[KGGUserManager shareUserManager].currentUser.type isEqualToString:@"BOSS"]) {
-        rootVc = [[KGGTabBarController alloc] init];
-        self.window.rootViewController  = rootVc;
+    
+    BOOL isLogin = [KGGUserManager shareUserManager].logined;
+    if (!isLogin) {
+        rootVc = [[UITabBarController alloc]init];
+        self.window.rootViewController = rootVc;
+        
+        KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] initWithNibName:NSStringFromClass([KGGNewFeatureViewController class]) bundle:[NSBundle mainBundle]];
+        
+        newFeatureVc.view.frame = [UIScreen mainScreen].bounds;
+        [rootVc.view addSubview:newFeatureVc.view];
+        [rootVc addChildViewController:newFeatureVc];
+        
+        
     }else{
-        rootVc = [[KGGTabBarWorkController alloc] init];
-        self.window.rootViewController  = rootVc;
+        // 定义一个窗口的根控制器
+        if ([[KGGUserManager shareUserManager].currentUser.type isEqualToString:@"BOSS"]) {
+            rootVc = [[KGGTabBarController alloc] init];
+            self.window.rootViewController  = rootVc;
+        }else{
+            rootVc = [[KGGTabBarWorkController alloc] init];
+            self.window.rootViewController  = rootVc;
+        }
     }
+
 
     // 获取当前的最新版本号 2.0
 //    NSString *curVersion =  [NSBundle currentVersion];
@@ -37,16 +53,16 @@ static NSString *const KGGLastVersionKey = @"KGGLastVersion";
     // 获取上一次的版本号  1.0.1
     NSString *oldVersion = [NSUserDefaults objectForKey:KGGLastVersionKey];
     
-    if (![KGGUserManager shareUserManager].logined) {
-    
-//        [NSUserDefaults setObject:curVersion forKey:KGGLastVersionKey];
-        
-        KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] initWithNibName:NSStringFromClass([KGGNewFeatureViewController class]) bundle:[NSBundle mainBundle]];
-        
-        newFeatureVc.view.frame = [UIScreen mainScreen].bounds;
-        [rootVc.view addSubview:newFeatureVc.view];
-        [rootVc addChildViewController:newFeatureVc];
-    }
+//    if (![KGGUserManager shareUserManager].logined) {
+//    
+////        [NSUserDefaults setObject:curVersion forKey:KGGLastVersionKey];
+//        
+//        KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] initWithNibName:NSStringFromClass([KGGNewFeatureViewController class]) bundle:[NSBundle mainBundle]];
+//        
+//        newFeatureVc.view.frame = [UIScreen mainScreen].bounds;
+//        [rootVc.view addSubview:newFeatureVc.view];
+//        [rootVc addChildViewController:newFeatureVc];
+//    }
     
 }
 

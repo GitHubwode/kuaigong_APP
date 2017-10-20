@@ -75,7 +75,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KGGLeftDrawerModel *model = self.dataArray[indexPath.row];
-    
+//    http://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/fytsx0c17hj140ohse9uq5opr6p0c166.jpg
     KGGLeftDrawerCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGLeftDrawerCell leftIdentifierClass] forIndexPath:indexPath];
     cell.iconImageView.image = [UIImage imageNamed:model.icon];
     cell.iconLabel.text = model.title;

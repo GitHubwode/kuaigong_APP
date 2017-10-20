@@ -37,14 +37,6 @@ extern NSString * const KGGUserLoginNotifacation;
 extern NSString * const KGGUserLogoutNotifacation;
 //设备在别处登录
 extern NSString *const KGGConnectionStatusOffLine;
-//点击发布方,定位位置的通知
-//extern NSString *const KGGPublishLocationNotification;
-//发布方滚动到哪一个下标发通知
-//extern NSString *const KGGPublishTapWorkerType;
-
-/** 用户定位完成通知 */
-//extern NSString * const KGGUpdateUserLocationNotifacation;
-
 /** 显示红点的通知 */
 extern NSString * const KGGShowAlertNotifacation;
 /** 隐藏红点的通知 */
@@ -78,5 +70,13 @@ extern NSString *const KGGBankNumKey;
 extern NSString * const KGGCardholderKey;
 /** 开户行 */
 extern NSString * const KGGBankOfDepositKey;
+//微信
+extern NSString *const KGGWeiXinPayURLScheme;
+//微信secret
+extern NSString *const KGGWeiXinAppSecret;
+//支付宝
+extern NSString *const KGGAliPayURLScheme;
+//友盟
+extern NSString *const KGGUMSocialAppKey;
 
 @end

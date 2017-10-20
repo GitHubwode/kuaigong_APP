@@ -12,11 +12,6 @@
 #import "AppDelegate.h"
 #import "NSObject+swizzle.h"
 
-static NSString *const KGGUMSocialAppKey = @"582199e0b27b0a5d6c001e64";
-
-static NSString *const KGGWXAppKey = @"wxd6f50383b24095d6";
-static NSString *const KGGWXAppSecret = @"f6eb19b732bf404d45dd16fb5ddcde11";
-
 @implementation KGGUMSocialHelper
 /**
  初始化友盟
@@ -49,7 +44,7 @@ static NSString *const KGGWXAppSecret = @"f6eb19b732bf404d45dd16fb5ddcde11";
     //安装微信
     if ([self isWXAppInstalled]) {
         //设置微信的appkey和appSecret
-        [[UMSocialManager defaultManager]setPlaform:UMSocialPlatformType_WechatSession appKey:KGGWXAppKey appSecret:KGGWXAppSecret redirectURL:nil];
+        [[UMSocialManager defaultManager]setPlaform:UMSocialPlatformType_WechatSession appKey:KGGWeiXinPayURLScheme appSecret:KGGWeiXinAppSecret redirectURL:nil];
     }
 
 }

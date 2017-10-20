@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, strong) NSMutableArray *newDatasource;
 
+@property (nonatomic, strong) UIImageView *imageView;
+
 @end
 
 @implementation KGGPersonalMessageController
@@ -210,8 +212,9 @@
 //当选择一张图片后进入这里
 -(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     [picker dismissViewControllerAnimated:YES completion:nil];
-    NSData *data =UIImageJPEGRepresentation(info[UIImagePickerControllerEditedImage], 1.0f);
-    NSString *encodedImageString = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSData *data =UIImageJPEGRepresentation(info[UIImagePickerControllerEditedImage], 0.5f);
+    NSString *encodedImageString = [data base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
+    
     [KGGLoginRequestManager updataUserAvatarString:encodedImageString completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) return ;
         if (responseObj.code == KGGSuccessCode) {

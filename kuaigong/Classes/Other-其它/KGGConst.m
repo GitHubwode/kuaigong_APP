@@ -21,7 +21,7 @@ NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
 /** 保存用户的类型 */
 NSString * const KGGUserType = @"KGGUserType";
 /** Itnues上的地址 */
-NSString * const KGGAppItnuesURL = @"https://itunes.apple.com/app/id1176374492";
+NSString * const KGGAppItnuesURL = @"https://itunes.apple.com/app/id1299000005";
 /** 储存后台分配的deviceId的key */
 NSString * const KGGDeviceIdKey = @"KGGDeviceIdKey";
 /** 储存后台分配的aesKey的key */
@@ -30,17 +30,10 @@ NSString * const KGGAesKey = @"USGzksAv^4yjMOsiiH#hN^KTS@ir%cg7MpOrA#xBAhHzSKUQX
 NSString * const KGGJPushAPPKey = @"dad3761a709164767b06958e";
 /** 百度地图的key */
 NSString *const KGGAMApKey = @"0f36c68b1fd0ac66da53bf33d7b12797";
-
-/** 用户定位完成通知 */
-//NSString * const KGGUpdateUserLocationNotifacation = @"KGGUpdateUserLocationNotifacation";
-
 /** 测试 融云的appkey */
 NSString *const KGGRongCloudAppKey = @"pvxdm17jpicmr";
 //设备在别处登录
 NSString *const KGGConnectionStatusOffLine = @"KGG_KICKED_OFFLINE_BY_OTHER_CLIENT";
-//点击发布方,定位位置的通知
-//NSString *const KGGPublishLocationNotification = @"KGGPublishLocationNotification";
-
 /** 显示红点的通知 */
 NSString * const KGGShowAlertNotifacation = @"KGGShowAlertNotifacation";
 /** 隐藏红点的通知 */
@@ -104,6 +97,14 @@ NSString * const KGGApplyRechargeSuccessNotifacation = @"KGGApplyRechargeSuccess
 NSString * const KGGSubmitStageInfoNotifacation = @"KGGSubmitStageInfoNotifacation";
 /** 用户申请信物付费成功的通知 */
 NSString * const KGGApplyKeepsakeSuccessNotifacation = @"KGGApplyKeepsakeSuccessNotifacation";
+//微信
+NSString *const KGGWeiXinPayURLScheme = @"wx8dd9d756d12032a3";
+//微信Secret
+NSString *const KGGWeiXinAppSecret = @"da1f19a8e4a507845dbb7dd441ccdef2";
+//支付宝
+NSString *const KGGAliPayURLScheme = @"";
+//友盟
+NSString *const KGGUMSocialAppKey = @"582199e0b27b0a5d6c001e64";
 
 
 @end

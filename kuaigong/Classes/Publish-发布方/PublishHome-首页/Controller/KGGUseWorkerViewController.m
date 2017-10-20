@@ -67,7 +67,7 @@
             self.peopleNum = publishModel.subtitle;
         }else if ([publishModel.title isEqualToString:@"用工天数"]){
             self.daysNum = publishModel.subtitle;
-        }else if ([publishModel.title isEqualToString:@"车辆/每人"]){
+        }else if ([publishModel.title isEqualToString:@"车费/辆"]){
             self.carMoney = publishModel.subtitle;
         }else{
             self.priceNum = publishModel.subtitle;
@@ -107,9 +107,9 @@
    allFee = [self.priceNum intValue]*[self.daysNum intValue]*9*[self.peopleNum intValue]+[self.peopleNum intValue]*[self.carMoney intValue]*[self.daysNum intValue];
     
     if ([self.carMoney isEqualToString:@"0"] || self.carMoney.length == 0) {
-        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每小时%@元。",worker,self.peopleNum,self.daysNum,self.priceNum];
+        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每天%@元。",worker,self.peopleNum,self.daysNum,self.priceNum];
     }else{
-        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每小时%@元,车费每人%@元。",worker,self.peopleNum,self.daysNum,self.priceNum,self.carMoney];
+        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每天%@元,车费每辆%@元。",worker,self.peopleNum,self.daysNum,self.priceNum,self.carMoney];
     }
 }
 

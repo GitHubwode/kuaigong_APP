@@ -277,6 +277,8 @@
         if (!userinfo) {
             [weakself.view showHint:@"授权失败"];
         }else{
+            KGGLog(@"userinfo %@",userinfo);
+            
 //            // 设置性别，微信中 m 代表男，f 代表女
 //            UserGender sex = UserGenderUnknown;
 //            NSString *gender = userinfo.gender;
