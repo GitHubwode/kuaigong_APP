@@ -144,8 +144,12 @@
 /** 隐藏电话号码中间的位数 */
 + (NSString *)numberSuitScanf:(NSString *)number
 {
-    NSString *numberString = [number stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
-    return numberString;
+    if (number.length == 0 || number == nil) {
+        return @"";
+    }else{
+       NSString *numberString = [number stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        return numberString;
+    }
 }
 
 

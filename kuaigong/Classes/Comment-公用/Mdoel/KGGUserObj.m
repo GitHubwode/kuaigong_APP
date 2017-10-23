@@ -31,6 +31,8 @@ MJCodingImplementation
         _sexName = _sex;
     }
     
+    _avatarUrl = [NSString stringWithFormat:@"https:%@",_avatarUrl];
+    
     _isLocked = [_isLock isEqualToString:@"N"] ? NO : YES;
     _isDeleted = [_isDelete isEqualToString:@"N"] ? NO : YES;
     

@@ -23,14 +23,25 @@
 + (void)loginWithParam:(KGGLoginParam *)param completion:(void(^)(KGGUserInfo *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 /**
- 微信登录请求
+ 微信注册请求
  
- @param param 请求对象，请求参数封装为对象的属性
- @param completionHandler 请求完成的回调 responseObj 为SNHUserObj
+ @param openId 请求对象， platform 平台类型 userType 用户类型 请求参数封装为对象的属性
+ @param completionHandler 请求完成的回调 KGGResponseObj 为responseObj
  @param view HUD要添加的地方
  @param caller 方法调用者
  */
-+ (void)WXloginWithParam:(KGGWXLoginParam *)param completion:(void(^)(KGGUserObj *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)WXRegisterWithOpenId:(NSString *)openId Platform:(NSString *)platform UserType:(NSString *)userType Sex:(NSString *)sex vatarUrl:(NSString *)avatarUrl Nickname:(NSString *)nickname completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
+/**
+ 第三方登录
+ @param openId 请求对象，请求参数封装为对象的属性
+ @param completionHandler 请求完成的回调 responseObj 为SNHUserObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ 
+ */
++ (void)WXloginWithOpenId:(NSString *)openId completion:(void(^)(KGGUserInfo *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
 
 /**
  注册请求

@@ -11,7 +11,6 @@
 #import "KGGRegisterViewController.h"
 #import "KGGForgetPasswordViewController.h"
 #import "KGGUMSocialHelper.h"
-//#import "KGGNewFeatureViewController.h"
 #import "KGGLoginParam.h"
 #import "KGGLoginRequestManager.h"
 
@@ -203,11 +202,7 @@
 #pragma mark - 按钮的点击事件
 - (void)kgg_dissmissViewController
 {
-//    KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] initWithNibName:NSStringFromClass([KGGNewFeatureViewController class]) bundle:[NSBundle mainBundle]];
-//     self.view.window.rootViewController = newFeatureVc;
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 - (void)loginButton:(UIButton *)sender
@@ -278,33 +273,42 @@
             [weakself.view showHint:@"授权失败"];
         }else{
             KGGLog(@"userinfo %@",userinfo);
-            
-//            // 设置性别，微信中 m 代表男，f 代表女
-//            UserGender sex = UserGenderUnknown;
-//            NSString *gender = userinfo.gender;
-//            if ([gender isEqualToString:@"m"]) {
-//                sex = UserGenderMan;
-//            }else if ([gender isEqualToString:@"f"]){
-//                sex = UserGenderWoman;
-//            }
-            
 
-//            SNHWXLoginParam *param = [SNHWXLoginParam paramWithSex:sex openid:userinfo.openid avatar:userinfo.iconurl nickname:userinfo.name accessToken:userinfo.accessToken];
-//            // 微信登录
-//            [SNHLoginRequestManager WXloginWithParam:param completion:^(SNHUserObj *user) {
-//                
-//                SNHLog(@"%@--%zd",[user mj_keyValues],user.mobile.length);
-//                
-//                if (!user.mobile.length) {
-//                    // 绑定手机号码
-//                    [weakself presentViewController:[[SNHBindCellphoneViewController alloc]init] animated:YES completion:nil];
-//                }else{
-//                    [weakself closeButtonAction:nil];
-//                }
-//                
-//            } aboveView:weakself.scrollView inCaller:weakself];
+             // 设置性别，微信中 m 代表男，f 代表女
+            NSString *gender = userinfo.gender;
+            if ([gender isEqualToString:@"m"]) {
+                gender = @"MAN";
+            }else if ([gender isEqualToString:@"f"]){
+                gender = @"WOMAN";
+            }else{
+                gender = @"OTHER";
+            }
+
+            userinfo.iconurl = [userinfo.iconurl stringByReplacingOccurrencesOfString:@"https:" withString:@""];
+
+            [KGGLoginRequestManager WXRegisterWithOpenId:userinfo.openid Platform:nil UserType:[NSUserDefaults objectForKey:KGGUserType] Sex:gender vatarUrl:userinfo.iconurl Nickname:userinfo.name completion:^(KGGResponseObj *responseObj) {
+                KGGLog(@"%@",responseObj);
+                if (responseObj.code == KGGSuccessCode) {
+                    [weakself WXLoginOpenId:userinfo.openid];
+                }
+            } aboveView:self.view inCaller:self];
         }
     }];
+    
+//    [self WXLoginOpenId:@""];
+    
+}
+
+#pragma mark - 微信登录成功
+- (void)WXLoginOpenId:(NSString *)openId
+{
+//    openId = @"oq_U1xEXsFjRKaDp9QlCoGt232EY";
+    [KGGLoginRequestManager WXloginWithOpenId:openId completion:^(KGGUserInfo *user) {
+        KGGLog(@"微信登录成功");
+        KGGLog(@"%@",user);
+        [KGGNotificationCenter postNotificationName:KGGUserLoginNotifacation object:nil];
+        [self dismissViewControllerAnimated:YES completion:nil]; 
+    } aboveView:self.view inCaller:self];
 }
 
 - (void)didReceiveMemoryWarning {

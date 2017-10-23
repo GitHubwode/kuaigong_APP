@@ -41,7 +41,7 @@
         self.phoneLabel.text = [KGGUserManager shareUserManager].currentUser.phone;
         
     }else{
-        
+        KGGLog(@"没有登录成功");
     }
     
 }

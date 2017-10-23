@@ -186,5 +186,72 @@
     
 }
 
+/**
+ 微信注册请求
+ 
+ @param openId 请求对象，请求参数封装为对象的属性
+ @param completionHandler 请求完成的回调 KGGResponseObj 为responseObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ */
++ (void)WXRegisterWithOpenId:(NSString *)openId Platform:(NSString *)platform UserType:(NSString *)userType Sex:(NSString *)sex vatarUrl:(NSString *)avatarUrl Nickname:(NSString *)nickname completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/user/thirdPartyRegister");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"openID"] = openId;
+    dic[@"userType"] = userType;
+    dic[@"platform"] = @"WECHAT";
+    dic[@"sex"] = sex;
+    dic[@"nickname"] = nickname;
+    dic[@"avatarUrl"] = avatarUrl;
+    
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            return ;
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+            return ;
+        }else{
+            KGGLog(@"注册:%@",responseObj);
+            if (completionHandler) {
+                completionHandler(responseObj);
+            }
+        }
+    } aboveView:view inCaller:caller];
+}
+
+/**
+ 第三方登录
+ @param openId 请求对象，请求参数封装为对象的属性
+ @param completionHandler 请求完成的回调 responseObj 为SNHUserObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ 
+ */
++ (void)WXloginWithOpenId:(NSString *)openId completion:(void(^)(KGGUserInfo *user))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/login/thirdPartyLogin");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"openId"] = openId;
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) return ;
+        if (responseObj.code != KGGSuccessCode) {
+            [view showHint:responseObj.message];
+            return;
+        }
+        if (completionHandler) {
+            KGGUserInfo *userObj = [KGGUserInfo mj_objectWithKeyValues:responseObj.data];
+            userObj.userInfo.token = userObj.token;
+            [[KGGUserManager shareUserManager]loginWithCurrentUser:userObj.userInfo];
+            [KGGLoginVIPRequestManager loginWithRefeVIPcompletion:^(KGGResponseObj *responseObj) {
+
+                completionHandler(userObj);
+
+            } aboveView:view inCaller:self];
+        }
+    } aboveView:view inCaller:caller];
+}
+
 
 @end
