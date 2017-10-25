@@ -18,5 +18,6 @@
 
 @property (nonatomic, weak) id<KGGPublishHomeFootViewDelegate> delegate;
 @property (nonatomic, strong) UIButton *locationButton;
+@property (nonatomic, strong) UILabel *carLabel;
 
 @end

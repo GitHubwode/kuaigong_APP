@@ -13,18 +13,22 @@
 static CGFloat const itemHeight = 168.f;
 
 @interface KGGPublishHomeHeaderView ()<SDCycleScrollViewDelegate,CKSlideMenuDelegate>
-@property (nonatomic,strong) SDCycleScrollView  *headSDCycleView;
+@property (nonatomic, strong) SDCycleScrollView  *headSDCycleView;
 @property (nonatomic, strong) KGGSlideMenu *slideMenu;
+@property (nonatomic, strong) NSArray *titleArray;
+@property (nonatomic, strong) NSArray *imageArray;
 
 @end
 
 @implementation KGGPublishHomeHeaderView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame HeaderViewSDCycleImage:(NSArray *)imageArray SlideTitle:(NSArray *)titleArray
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupHomeView];
+        _titleArray = titleArray;
+        _imageArray = imageArray;
+         [self setupHomeView];
     }
     return self;
 }
@@ -36,22 +40,6 @@ static CGFloat const itemHeight = 168.f;
     [self addSubview:self.headSDCycleView];
     self.slideMenu.frame = CGRectMake(0, itemHeight, kMainScreenWidth, 37);
     [self addSubview:self.slideMenu];
-}
-
-#pragma mark - 赋值
-- (void)publishHomeHeaderViewSDCycleImage:(NSArray *)imageArray SlideTitle:(NSArray *)titleArray
-{
-    NSArray *imageNames = @[@"pic.png",
-                            @"pic_gangjin.png",
-                            @"pic_jiazi.png",
-                            @"pic-jia.png",
-                            @"pic.png",
-                            @"pic_gangjin.png",
-                            @"pic_jiazi.png",
-                            @"pic-jia.png"// 本地图片请填写全名
-                            ];
-    
-    self.headSDCycleView.imageURLStringsGroup = imageNames;
 }
 
 #pragma mark - KGGSlideMenuDelegate
@@ -88,6 +76,7 @@ static CGFloat const itemHeight = 168.f;
         _headSDCycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"image_loading_25_16"]];
         _headSDCycleView.currentPageDotImage = [UIImage imageNamed:@"point_xuan"];
         _headSDCycleView.pageDotImage = [UIImage imageNamed:@"point"];
+        _headSDCycleView.imageURLStringsGroup = _imageArray;
     }
     return _headSDCycleView;
 }
@@ -95,8 +84,8 @@ static CGFloat const itemHeight = 168.f;
 - (KGGSlideMenu *)slideMenu
 {
     if (!_slideMenu) {
-        NSArray *titles = @[@"木工",@"钢筋工",@"内架子工",@"外架子工",@"泥工",@"水电工",@"电焊工",@"小工"];
-        _slideMenu = [[KGGSlideMenu alloc]initWithFrame:CGRectZero titles:titles];
+//        NSArray *titles = @[@"木工",@"钢筋工",@"内架子工",@"外架子工",@"泥工",@"水电工",@"电焊工",@"小工"];
+        _slideMenu = [[KGGSlideMenu alloc]initWithFrame:CGRectZero titles:_titleArray];
         _slideMenu.indicatorOffsety = 2;
         _slideMenu.slideDelegate = self;
         _slideMenu.indicatorWidth = 40;

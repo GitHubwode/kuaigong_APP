@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UITextView *headerTextView;
 @property (nonatomic, strong) UILabel *orderDetailLabel;
+@property (nonatomic, strong) UILabel *orderTotalLabel;
 
 @end

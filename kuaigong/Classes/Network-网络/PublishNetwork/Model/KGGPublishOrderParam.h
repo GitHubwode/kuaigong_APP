@@ -21,7 +21,7 @@
 /** 订单名称 */
 @property (nonatomic,copy) NSString *name;
 /** 类型 */
-@property (nonatomic,assign) NSUInteger type;
+@property (nonatomic,copy) NSString *type;
 /** 用工人数 */
 @property (nonatomic,assign) NSUInteger  number;
 /** 用工天数 */
@@ -75,7 +75,7 @@
 
 - (instancetype)initWithUserId:(NSUInteger )userid
                          Name:(NSString *)name
-                         Type:(NSUInteger )type
+                         Type:(NSString *)type
                        Number:(NSUInteger )number
                          Days:(NSUInteger )days
                     UnitPrice:(double )unitPrice
@@ -93,7 +93,7 @@
 
 + (instancetype)paramWithUserId:(NSUInteger )userid
                           Name:(NSString *)name
-                          Type:(NSUInteger )type
+                          Type:(NSString *)type
                         Number:(NSUInteger )number
                           Days:(NSUInteger )days
                      UnitPrice:(double )unitPrice

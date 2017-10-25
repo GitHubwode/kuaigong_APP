@@ -14,16 +14,6 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>车费/辆</string>
-		<key>subtitle</key>
-		<string></string>
-		<key>placeholder</key>
-		<string>请填写车辆费用</string>
-		<key>required</key>
-		<false/>
-	</dict>
-	<dict>
-		<key>title</key>
 		<string>用工人数</string>
 		<key>subtitle</key>
 		<string></string>

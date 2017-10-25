@@ -48,6 +48,8 @@
 
 //时间戳转换为所需要的样式
 +(NSString *)TimeStamp:(NSString *)strTime;
+//时间戳转换为所需要的样式
++(NSString *)PublishWorkTimeStamp:(NSString *)strTime;
 //计算预约时间距离现在还剩多久
 +(NSString *)getNowTimeWithString:(NSString *)aTimeString;
 

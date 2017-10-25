@@ -20,6 +20,10 @@
 #import "KGGPublishHomeFootView.h"
 #import "KGGAMapBaseViewController.h"
 #import "KGGLoginViewController.h"
+#import "KGGPublishHomeRequestManager.h"
+#import "KGGWorkTypeModel.h"
+#import "KGGCarFeeModel.h"
+
 
 static CGFloat const itemHeight = 168.f;
 static CGFloat const topHeight = 37.f;
@@ -35,7 +39,10 @@ static CGFloat const topHeight = 37.f;
 @property (nonatomic, assign) CGFloat longitudeMap;
 @property (nonatomic, assign) CGFloat latitudeMap;
 @property (nonatomic, copy) NSString *workAddress;
-@property (nonatomic, assign) NSUInteger topIndex;
+//@property (nonatomic, assign) NSUInteger topIndex;
+@property (nonatomic, strong) NSMutableArray *workDatasource;
+@property (nonatomic, strong) KGGWorkTypeModel *priceModel;
+@property (nonatomic, strong) KGGCarFeeModel *feeModel;
 
 @end
 
@@ -45,6 +52,7 @@ static CGFloat const topHeight = 37.f;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self setupRequest];
     self.tabBarController.tabBar.hidden = YES;
 }
 
@@ -56,19 +64,63 @@ static CGFloat const topHeight = 37.f;
     self.automaticallyAdjustsScrollViewInsets = NO;
     //创建tarBarItem
     [self setupNavi];
-    self.topIndex = 0;
+    //获取车费
+    [self setupCarFee];
+    self.tableView.tableFooterView = self.footView;
+    [self.view addSubview:self.tableView];
     
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-//    [self setupForDismissKeyboard];
-    self.tableView.tableFooterView = self.footView;
-    self.tableView.tableHeaderView = self.headerView;
-    [self.headerView publishHomeHeaderViewSDCycleImage:nil SlideTitle:nil];
-    [self.view addSubview:self.tableView];
     [self kgg_addButton];
-
+    
 }
+
+#pragma mark -获取数据
+- (void)setupRequest
+{
+    [KGGPublishHomeRequestManager publishHomeWorkTypeCompletion:^(NSArray<KGGWorkTypeModel *> *response) {
+        if (!response)  return ;
+        [self.workDatasource addObjectsFromArray:response];
+        [self creatTableViewHeaderView];
+        self.priceModel = [self.workDatasource firstObject];
+        [self.tableView reloadData];
+    } aboveView:self.view inCaller:self];
+}
+
+- (void)setupCarFee
+{
+    [KGGPublishHomeRequestManager publishHomeWorkFeecompletion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            self.feeModel = [KGGCarFeeModel mj_objectWithKeyValues:responseObj.data];
+            self.footView.carLabel.text = [NSString stringWithFormat:@"每辆车车费:%d元",self.feeModel.itemValue];
+              }
+        
+    } aboveView:nil inCaller:self];
+}
+
+#pragma makr - 获取数据创建headerView
+- (void)creatTableViewHeaderView
+{
+    NSMutableArray *titleArray = [NSMutableArray array];
+    for (KGGWorkTypeModel *model in self.workDatasource) {
+        [titleArray addObject:model.name];
+    }
+    
+    NSArray *imageNames = @[@"pic.png",
+                            @"pic_gangjin.png",
+                            @"pic_jiazi.png",
+                            @"pic-jia.png",
+                            @"pic.png",
+                            @"pic_gangjin.png",
+                            @"pic_jiazi.png",
+                            @"pic-jia.png"// 本地图片请填写全名
+                            ];
+    self.headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, itemHeight+topHeight) HeaderViewSDCycleImage:imageNames SlideTitle:titleArray];
+    self.headerView.headerDelegate = self;
+    self.tableView.tableHeaderView = self.headerView;
+}
+
+
 
 - (void)kgg_addButton
 {
@@ -130,9 +182,11 @@ static CGFloat const topHeight = 37.f;
     if (sender.tag == 1000) {
         int i=0;
         BOOL isJump = NO;
+        CGFloat peopleNum = 0;
+        int carNum = 0;
         for ( KGGHomePublishModel *publishModel in self.datasource) {
             i++;
-            if (![publishModel.title isEqualToString:@"车辆/每人"]) {
+            if (![publishModel.title isEqualToString:@"价格/天"]) {
                 if (publishModel.subtitle.length==0 || publishModel.subtitle == nil || [publishModel.subtitle isEqualToString:@"0"]){
                     [self.view showHint:@"用工信息不能为空"];
                     isJump = NO;
@@ -141,7 +195,23 @@ static CGFloat const topHeight = 37.f;
                     isJump = YES;
                 }
             }
+            if ([publishModel.title isEqualToString:@"用工人数"]) {
+                peopleNum =  [publishModel.subtitle intValue];
+            }
         }
+        
+       
+        
+        if ((int)peopleNum<4) {
+            carNum = 0;
+        }else if([self isPureFloat:[NSString stringWithFormat:@"%f",peopleNum/7]]) {
+            carNum =(int) (peopleNum/7+1);
+        }
+        
+        KGGLog(@"车辆为%d",carNum);
+        
+        self.footView.carLabel.text = [NSString stringWithFormat:@"车费总计:%d元*%d",self.feeModel.itemValue,carNum];
+
         
         if (self.longitudeMap==0) {
             [self.view showHint:@"工作地点不能为空"];
@@ -155,7 +225,10 @@ static CGFloat const topHeight = 37.f;
             useVC.address = self.workAddress;
             useVC.longitudeMap = self.longitudeMap;
             useVC.latitudeMap = self.latitudeMap;
-            useVC.workerType = self.topIndex;
+            useVC.catTotal = self.feeModel.itemValue*carNum;
+            useVC.workType = self.priceModel;
+            useVC.peoplePrice = self.priceModel.guidePrice;;
+            
             [self.navigationController pushViewController:useVC animated:YES];
         }
     }else{
@@ -164,7 +237,12 @@ static CGFloat const topHeight = 37.f;
         [self.navigationController pushViewController:payVC animated:YES];
     }
 }
-
+#pragma mark - 字符串判断为浮点数
+-(BOOL)isPureFloat:(NSString*)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    float val;
+    return[scan scanFloat:&val] && [scan isAtEnd];
+}
 
 #pragma mark - UITableViewHeaderViewDelegate
 /** 轮播图的点击 */
@@ -176,7 +254,7 @@ static CGFloat const topHeight = 37.f;
 - (void)KGG_SlideMenuDidSelectItemAtIndex:(NSInteger )index
 {
     KGGLog(@"点击%ld",(long)index);
-    self.topIndex = (NSUInteger) index+1;
+    self.priceModel = self.workDatasource[index];
     [self.tableView reloadData];
 }
 
@@ -231,6 +309,9 @@ static CGFloat const topHeight = 37.f;
     KGGHomeListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGHomeListViewCell homeListIdentifier] forIndexPath:indexPath];
     self.homeCell = cell;
     cell.publishModel = publishModel;
+    if (indexPath.row == 0) {
+        cell.homeTextField.text = self.priceModel.guidePrice;
+    }
     return cell;
 }
 
@@ -251,15 +332,6 @@ static CGFloat const topHeight = 37.f;
         _footView.delegate =self;
     }
     return _footView;
-}
-
-- (KGGPublishHomeHeaderView *)headerView
-{
-    if (!_headerView) {
-        _headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, itemHeight+topHeight)];
-        _headerView.headerDelegate = self;
-    }
-    return _headerView;
 }
 
 
@@ -322,6 +394,14 @@ static CGFloat const topHeight = 37.f;
 {
     [KGGNotificationCenter removeObserver:self];
     KGGLogFunc;
+}
+
+- (NSMutableArray *)workDatasource
+{
+    if (!_workDatasource) {
+        _workDatasource = [NSMutableArray array];
+    }
+    return _workDatasource;
 }
 
 - (void)didReceiveMemoryWarning {

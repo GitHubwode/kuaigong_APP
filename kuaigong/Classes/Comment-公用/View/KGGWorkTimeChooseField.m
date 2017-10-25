@@ -214,6 +214,7 @@
     if (component == 0) {
         //设置第0列的标题信息
         _mouthString = [NSString stringWithFormat:@"%@",self.dayArray[row]];
+        KGGLog(@"月份:%@",_mouthString);
         return _mouthString;
     }else if (component == 1){
         //设置第1列的标题信息
@@ -227,6 +228,8 @@
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    KGGLog(@"component:%ld",(long)component);
+    _mouthString = [_dayArray1 firstObject];
     if (component == 0) {
         _mouthString = _dayArray1[row];
     }else if (component == 1){

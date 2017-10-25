@@ -16,7 +16,7 @@
 
 - (instancetype)initWithUserId:(NSUInteger )userid
                           Name:(NSString *)name
-                          Type:(NSUInteger )type
+                          Type:(NSString *)type
                         Number:(NSUInteger )number
                           Days:(NSUInteger )days
                      UnitPrice:(double )unitPrice
@@ -57,7 +57,7 @@
 
 + (instancetype)paramWithUserId:(NSUInteger )userid
                            Name:(NSString *)name
-                           Type:(NSUInteger )type
+                           Type:(NSString *)type
                          Number:(NSUInteger )number
                            Days:(NSUInteger )days
                       UnitPrice:(double )unitPrice

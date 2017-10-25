@@ -37,7 +37,10 @@
     headerView.backgroundColor = UIColorHex(0xffffff);
     [self addSubview:headerView];
     self.orderDetailLabel = [self creatLabelTitle:@""];
+    self.orderTotalLabel = [self creatLabelTitle:@""];
+    
     [headerView addSubview:self.orderDetailLabel];
+    [headerView addSubview:self.orderTotalLabel];
     
     [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakself.mas_centerX);
@@ -52,6 +55,13 @@
         make.right.equalTo(headerView.mas_right).offset(-15);
         make.height.equalTo(@55);
     }];
+    
+    [self.orderTotalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(headerView.mas_right).offset(-10);
+        make.bottom.equalTo(headerView.mas_bottom);
+    }];
+    
+    
     
     UIView *orderRemark = [self sectionViewWithTitle:@"订单备注"];
     [self addSubview:orderRemark];

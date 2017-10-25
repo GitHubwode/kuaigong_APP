@@ -21,6 +21,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self creatFootView];
+//        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -29,19 +30,19 @@
 - (void)creatFootView
 {
     weakSelf(self);
-//    [self addSubview:self.noteLabel];
-//    [self.noteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(weakself.mas_left);
-//        make.top.equalTo(weakself.mas_top);
-//        make.width.equalTo(@(kMainScreenWidth));
-//        make.height.equalTo(@28);
-//    }];
+    [self addSubview:self.carLabel];
+    [self.carLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakself.mas_left);
+        make.top.equalTo(weakself.mas_top);
+        make.width.equalTo(@(kMainScreenWidth));
+        make.height.equalTo(@28);
+    }];
     
     [self addSubview:self.cycleTitleView];
 //    self.cycleTitleView.backgroundColor = [UIColor redColor];
     [self.cycleTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.mas_left);
-        make.top.equalTo(weakself.mas_top);
+        make.top.equalTo(weakself.carLabel.mas_bottom).offset(10);
         make.width.equalTo(@(kMainScreenWidth));
         make.height.equalTo(@28);
     }];
@@ -122,6 +123,18 @@
         _cycleTitleView.titlesGroup = [titlesArray copy];
     }
     return _cycleTitleView;
+}
+
+- (UILabel *)carLabel
+{
+    if (!_carLabel) {
+        _carLabel = [UILabel new];
+        _carLabel.text = @"车费:10辆*210元";
+        _carLabel.textAlignment = NSTextAlignmentCenter;
+        _carLabel.textColor = UIColorHex(0x333333);
+        _carLabel.font = KGGFont(14);
+    }
+    return _carLabel;
 }
 
 @end

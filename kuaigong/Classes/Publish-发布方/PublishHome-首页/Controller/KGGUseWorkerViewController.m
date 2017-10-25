@@ -17,6 +17,7 @@
 #import "KGGApplyVIPView.h"
 #import "KGGPublishOrderRequestManager.h"
 #import "KGGPublishOrderParam.h"
+#import "KGGWorkTypeModel.h"
 
 @interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -28,14 +29,10 @@
 @property (nonatomic, copy) NSString *peopleNum;
 /** 天数 */
 @property (nonatomic, copy) NSString *daysNum;
-/** 车费每人 */
+/** 车费每辆每天 */
 @property (nonatomic, copy) NSString *carMoney;
-/** 每小时单价 */
-@property (nonatomic, copy) NSString *priceNum;
 /** 手续费 */
 @property (nonatomic,assign) double  fee;
-
-
 /** 备注成为第一响应者 */
 @property (nonatomic,assign) BOOL  Isfirst;
 
@@ -67,49 +64,22 @@
             self.peopleNum = publishModel.subtitle;
         }else if ([publishModel.title isEqualToString:@"用工天数"]){
             self.daysNum = publishModel.subtitle;
-        }else if ([publishModel.title isEqualToString:@"车费/辆"]){
-            self.carMoney = publishModel.subtitle;
-        }else{
-            self.priceNum = publishModel.subtitle;
+        }else if([publishModel.title isEqualToString:@"价格/天"]){
+            self.peoplePrice = publishModel.subtitle;
         }
     }
     
-    NSString *worker;
-    switch (self.workerType) {
-        case 0:
-            worker = @"木工";
-            break;
-        case 1:
-            worker = @"钢筋工";
-            break;
-        case 2:
-            worker = @"内架子工";
-            break;
-        case 3:
-            worker = @"外架子工";
-            break;
-        case 4:
-            worker = @"泥工";
-            break;
-        case 5:
-            worker = @"水电工";
-            break;
-        case 6:
-            worker = @"电焊工";
-            break;
-        case 7:
-            worker = @"小工";
-            break;
-        default:
-            break;
-    }
+    self.carMoney = [NSString stringWithFormat:@"%d",self.catTotal];
+
     int allFee ;//总计费用
-   allFee = [self.priceNum intValue]*[self.daysNum intValue]*9*[self.peopleNum intValue]+[self.peopleNum intValue]*[self.carMoney intValue]*[self.daysNum intValue];
+   allFee = [self.peoplePrice intValue]*[self.daysNum intValue]*[self.peopleNum intValue]+[self.carMoney intValue]*[self.daysNum intValue];
+    
+    self.headerView.orderTotalLabel.text = [NSString stringWithFormat:@"用工总价:%d元",allFee];
     
     if ([self.carMoney isEqualToString:@"0"] || self.carMoney.length == 0) {
-        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每天%@元。",worker,self.peopleNum,self.daysNum,self.priceNum];
+        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每天%@元。",self.workType.name,self.peopleNum,self.daysNum,self.peoplePrice];
     }else{
-        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每天%@元,车费每辆%@元。",worker,self.peopleNum,self.daysNum,self.priceNum,self.carMoney];
+        self.headerView.orderDetailLabel.text = [NSString stringWithFormat:@"订单详情: 需要%@%@人,工作%@天,每天%@元,车费%@元。",self.workType.name,self.peopleNum,self.daysNum,self.peoplePrice,self.carMoney];
     }
 }
 
@@ -304,11 +274,21 @@
     NSUInteger userId = [[KGGUserManager shareUserManager].currentUser.userId integerValue];
     NSString *contactsPhone = [KGGUserManager shareUserManager].currentUser.phone;
     //车费
-    double carFare = [self.carMoney intValue]*[self.peopleNum intValue] *[self.daysNum intValue];
+    double carFare = [self.carMoney intValue]*[self.daysNum intValue];
     time = [NSString getWorkBeginTime:time];
     payTime = [NSString payTime:time WorkTime:self.daysNum PayTime:payTime];
     
-    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workerType Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.priceNum integerValue] Fare:carFare Remark:self.headerView.headerTextView.text WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:@"9" Contacts:name ContactsPhone:contactsPhone];
+    
+    
+    time = [NSString PublishWorkTimeStamp:time];
+    payTime = [NSString PublishWorkTimeStamp:payTime];
+    
+    KGGLog(@"开始时间:%@ 支付时间:%@",time,payTime);
+    
+    
+    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.headerView.headerTextView.text WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:@"9" Contacts:name ContactsPhone:contactsPhone];
+    
+    KGGLog(@"工种类型:%@",self.workType.type);
     
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
@@ -348,6 +328,14 @@
     [button setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(snh_sureMessageButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     return button;
+}
+
+- (KGGWorkTypeModel *)workType
+{
+    if (!_workType) {
+        _workType = [[KGGWorkTypeModel alloc]init];
+    }
+    return _workType;
 }
 
 - (void)dealloc
