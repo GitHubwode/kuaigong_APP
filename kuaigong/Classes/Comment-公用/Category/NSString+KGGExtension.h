@@ -54,5 +54,12 @@
 - (NSString*)encodeString;
 -(NSString *)decodeString;
 
+//计算当前月的总后一天是几号
++ (NSString *)getMonthBeginAndEndWith:(NSString *)dateStr;
+
+/** 获取当前时间戳 */
++ (NSString *)getWorkBeginTime:(NSString *)beginTime;
+/** 支付之间的时间戳 */
++ (NSString *)payTime:(NSString *)beginTime WorkTime:(NSString *)workTime PayTime:(NSString *)payTime;
 
 @end

@@ -7,20 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KGGWorkTimeChooseField.h"
 
 @class KGGCustomInfoItem;
-
-@protocol KGGStartWorkTimeViewCellDelegate <NSObject>
-
-@optional
-- (void)workStartChooseSureButtonClick;
-
-@end
 
 @interface KGGStartWorkTimeViewCell : UITableViewCell
 
 @property (nonatomic, strong) KGGCustomInfoItem *infoItem;
-@property (nonatomic, weak) id<KGGStartWorkTimeViewCellDelegate>cellDelegate;
+@property (weak, nonatomic) IBOutlet KGGWorkTimeChooseField *workTextField;
+
 
 + (NSString *)workStartIdentifier;
 

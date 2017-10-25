@@ -56,6 +56,7 @@ static CGFloat const topHeight = 37.f;
     self.automaticallyAdjustsScrollViewInsets = NO;
     //创建tarBarItem
     [self setupNavi];
+    self.topIndex = 0;
     
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];

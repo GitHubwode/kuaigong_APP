@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -38,37 +38,33 @@
                             <constraint firstAttribute="height" constant="15" id="qqy-ps-29y"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOW-nj-aii">
-                        <rect key="frame" x="54" y="23" width="295" height="30"/>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请选择工作开始时间" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T1p-xt-hQK" customClass="KGGWorkTimeChooseField">
+                        <rect key="frame" x="54" y="23" width="150" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="iUF-Wk-iDH"/>
+                            <constraint firstAttribute="height" constant="30" id="3Qt-l0-v7E"/>
+                            <constraint firstAttribute="width" constant="150" id="QRK-Eg-bJM"/>
                         </constraints>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="  ">
-                            <color key="titleColor" red="0.79607843137254897" green="0.79607843137254897" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="workStartChooseEnsureButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Fc4-Zm-2hv"/>
-                        </connections>
-                    </button>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="vbM-wL-KlW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="7dd-bY-tA7"/>
                     <constraint firstAttribute="trailing" secondItem="h8u-88-K8M" secondAttribute="trailing" constant="15" id="Bj7-a9-yBA"/>
+                    <constraint firstItem="T1p-xt-hQK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QiB-ZG-O7e"/>
                     <constraint firstItem="pKu-R2-E6O" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UfI-RW-pyD"/>
                     <constraint firstItem="h8u-88-K8M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="h63-2J-ej1"/>
+                    <constraint firstItem="T1p-xt-hQK" firstAttribute="leading" secondItem="vbM-wL-KlW" secondAttribute="trailing" constant="10" id="mAQ-uv-cvR"/>
                     <constraint firstAttribute="bottom" secondItem="h8u-88-K8M" secondAttribute="bottom" id="qkI-68-GCD"/>
-                    <constraint firstItem="HOW-nj-aii" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qpK-VF-c00"/>
-                    <constraint firstItem="pKu-R2-E6O" firstAttribute="leading" secondItem="HOW-nj-aii" secondAttribute="trailing" constant="10" id="sK0-Yz-1iu"/>
                     <constraint firstItem="vbM-wL-KlW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uON-gO-viI"/>
-                    <constraint firstItem="HOW-nj-aii" firstAttribute="leading" secondItem="vbM-wL-KlW" secondAttribute="trailing" constant="10" id="uVr-Bg-eFy"/>
                     <constraint firstAttribute="trailing" secondItem="pKu-R2-E6O" secondAttribute="trailing" constant="15" id="wCY-mP-thX"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="lineHeight" destination="qqy-ps-29y" id="7Rg-K0-cGK"/>
-                <outlet property="timeButton" destination="HOW-nj-aii" id="9ac-5D-m9P"/>
                 <outlet property="titleLabel" destination="vbM-wL-KlW" id="1q9-ca-21K"/>
+                <outlet property="workTextField" destination="T1p-xt-hQK" id="4gO-Pr-mgl"/>
             </connections>
             <point key="canvasLocation" x="87" y="96"/>
         </tableViewCell>

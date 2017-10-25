@@ -207,6 +207,7 @@
 		35BEB1661F725D7C0060298A /* KGGMyWorkViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35BEB1641F725D7C0060298A /* KGGMyWorkViewCell.xib */; };
 		35BEB16F1F73C1F30060298A /* KGGWorkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BEB16D1F73C1F30060298A /* KGGWorkDetailsViewController.m */; };
 		35BEB1701F73C1F30060298A /* KGGWorkDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35BEB16E1F73C1F30060298A /* KGGWorkDetailsViewController.xib */; };
+		35C72C511F9EFF3300A82336 /* KGGWorkTimeChooseField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */; };
 		35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */; };
 		35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C61F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m */; };
 		35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C91F8DC39600DCA0EB /* KGGPublishOrderParam.m */; };
@@ -621,6 +622,8 @@
 		35BEB16D1F73C1F30060298A /* KGGWorkDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGWorkDetailsViewController.m; sourceTree = "<group>"; };
 		35BEB16E1F73C1F30060298A /* KGGWorkDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGWorkDetailsViewController.xib; sourceTree = "<group>"; };
 		35C5D9911F5D5A6400CF6BE8 /* kuaigong.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = kuaigong.entitlements; sourceTree = "<group>"; };
+		35C72C4F1F9EFF3300A82336 /* KGGWorkTimeChooseField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGWorkTimeChooseField.h; sourceTree = "<group>"; };
+		35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGWorkTimeChooseField.m; sourceTree = "<group>"; };
 		35E8B6C11F8DBE5C00DCA0EB /* KGGOrderDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderDetailsModel.h; sourceTree = "<group>"; };
 		35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderDetailsModel.m; sourceTree = "<group>"; };
 		35E8B6C51F8DC36100DCA0EB /* KGGPublishOrderRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishOrderRequestManager.h; sourceTree = "<group>"; };
@@ -1228,6 +1231,8 @@
 				3505C7F31F9637E80085D688 /* KGGOrderCorrectViewCell.h */,
 				3505C7F41F9637E80085D688 /* KGGOrderCorrectViewCell.m */,
 				3505C7F51F9637E80085D688 /* KGGOrderCorrectViewCell.xib */,
+				35C72C4F1F9EFF3300A82336 /* KGGWorkTimeChooseField.h */,
+				35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2314,6 +2319,7 @@
 				35AE11731F8FB66600BCD2BD /* KGGAMapSearchViewCell.m in Sources */,
 				3505C82F1F97696B0085D688 /* TZImagePickerController.m in Sources */,
 				3505C80F1F9726D60085D688 /* UIColor+HcdCustom.m in Sources */,
+				35C72C511F9EFF3300A82336 /* KGGWorkTimeChooseField.m in Sources */,
 				189D21261F42FE170004F1EB /* SDWebImageDownloader.m in Sources */,
 				359CD0851F56B14C00DDFA62 /* KGGPersonalMessageController.m in Sources */,
 				188F2D511F500A370023F4BE /* KGGMeWorkHeaderView.m in Sources */,

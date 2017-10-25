@@ -58,6 +58,10 @@
 @property (nonatomic,copy) NSString *workStartTime;
 /** 支付时间 */
 @property (nonatomic,copy) NSString *payTime;
+
+/** 头像 */
+@property (nonatomic,copy) NSString *avatarUrl;
+
 /** 创建时间 */
 //@property (nonatomic,copy) NSString *createTime;
 /** 更新时间 */
@@ -82,6 +86,7 @@
                     Longitude:(CGFloat )longitude
                      Latitude:(CGFloat )latitude
                       Address:(NSString *)address
+                     AvatarUrl:(NSString *)avatarUrl
                      WhenLong:(NSString *)whenLong
                      Contacts:(NSString *)contacts
                 ContactsPhone:(NSString *)contactsPhone;
@@ -99,6 +104,7 @@
                      Longitude:(CGFloat )longitude
                       Latitude:(CGFloat )latitude
                        Address:(NSString *)address
+                      AvatarUrl:(NSString *)avatarUrl
                       WhenLong:(NSString *)whenLong
                       Contacts:(NSString *)contacts
                  ContactsPhone:(NSString *)contactsPhone;

@@ -13,7 +13,7 @@
 
 static NSString *startWorkTimeViewCell = @"KGGStartWorkTimeViewIdentifier";
 
-@interface KGGStartWorkTimeViewCell()
+@interface KGGStartWorkTimeViewCell()<KGGWorkTimeChooseFieldDelegate>
 
 @property (nonatomic, strong) HcdDateTimePickerView * dateTimePickerView;
 
@@ -28,7 +28,7 @@ static NSString *startWorkTimeViewCell = @"KGGStartWorkTimeViewIdentifier";
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.workTextField.workDelegate = self;
     self.lineHeight.constant = KGGOnePixelHeight;
 }
 
@@ -36,34 +36,18 @@ static NSString *startWorkTimeViewCell = @"KGGStartWorkTimeViewIdentifier";
 {
     _infoItem = infoItem;
     self.titleLabel.text = infoItem.title;
-    [self.timeButton setTitle:infoItem.placeholder forState:UIControlStateNormal];
-    
+    self.workTextField.placeholder = infoItem.placeholder;
+    self.workTextField.text = infoItem.subtitle;
+    self.workTextField.keyboardType = infoItem.keyboardType;
 }
-- (IBAction)workStartChooseEnsureButtonClick:(UIButton *)sender {
-    
-    weakSelf(self);
-    self.dateTimePickerView = [[HcdDateTimePickerView alloc] initWithDatePickerMode:DatePickerDateHourMinuteMode defaultDateTime:[[NSDate alloc]initWithTimeIntervalSinceNow:1000]];
-    [self.dateTimePickerView setMinYear:2017];
-    [self.dateTimePickerView setMaxYear:2022];
-    self.dateTimePickerView.clickedOkBtn = ^(NSString * datetimeStr){
-        
-        weakself.infoItem.subtitle = datetimeStr;
-        [weakself.timeButton setTitle:datetimeStr forState:UIControlStateNormal];
-        [weakself.timeButton setTitleColor:UIColorHex(0x333333) forState:UIControlStateNormal];
-        NSLog(@"datetimeStr:%@", datetimeStr);
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-        NSDate *date =[dateFormatter dateFromString:datetimeStr];
-        
-        NSString *timsSp = [NSString stringWithFormat:@"%ld",(long)[date timeIntervalSince1970]];
-        KGGLog(@"timsSp:%@",timsSp);
-    };
-    
-    if (self.dateTimePickerView) {
-        [self.window addSubview:self.dateTimePickerView];
-        [self.dateTimePickerView showHcdDateTimePicker];
+
+#pragma mark - KGGWorkTimeChooseFieldDelegate
+
+- (void)workTimeChooseFieldEnsureButtonClick
+{
+    if (self.infoItem.editabled) {
+        self.infoItem.subtitle = self.workTextField.text;
     }
-    
 }
 
 + (NSString *)workStartIdentifier

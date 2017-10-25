@@ -210,7 +210,7 @@
     if (indexPath.row == 3) {
         [[cell timeTextField] becomeFirstResponder];
     }else if (indexPath.row == 2){
-        
+        [[cell workTextField] becomeFirstResponder];
     }else{
      [[cell textField] becomeFirstResponder];
     }
@@ -243,12 +243,43 @@
 {
     KGGLog(@"确认发布");
     
-//    self.vipView = [KGGApplyVIPView kgg_alertPromptApplyForViewKGGApplyButtonClick:^(NSString *money) {
-//        KGGLog(@"支付会员费:%@",money);
-//    } KGGUnderstandButtonClick:^{
-//
-//    }];
-    
+    BOOL isVIP = [KGGUserManager shareUserManager].currentUser.hasVIP;
+    if (isVIP) {
+        [self creatOrderMessage];
+    }else{
+        self.vipView = [KGGApplyVIPView kgg_alertPromptApplyForViewKGGApplyButtonClick:^(NSString *money) {
+            KGGLog(@"支付会员费:%@",money);
+            [self jumpPayViewMoney:money];
+        } KGGUnderstandButtonClick:^{
+            
+        }];
+    }
+}
+
+#pragma mark - 跳转支付页面
+- (void)jumpPayViewMoney:(NSString *)money
+{
+    KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
+    sheetVC.moneyString = money;
+    sheetVC.receiverId = @"";
+    sheetVC.tradeType = 1;
+    sheetVC.payFrom = 22;
+    sheetVC.isPublish = NO;
+    sheetVC.itemId = 11;
+    //    __weak typeof(self) weakSelf = self;
+    sheetVC.callPaySuccessBlock = ^(NSString *code){
+        if ([code isEqualToString:@"200"]) {
+            KGGLog(@"付费成功");
+        }
+    };
+    sheetVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self presentViewController:sheetVC animated:YES completion:nil];
+}
+
+
+#pragma mark - 是VIP老板 发单成功
+- (void)creatOrderMessage
+{
     NSString *name;
     NSString *time;
     NSString *payTime;
@@ -274,8 +305,10 @@
     NSString *contactsPhone = [KGGUserManager shareUserManager].currentUser.phone;
     //车费
     double carFare = [self.carMoney intValue]*[self.peopleNum intValue] *[self.daysNum intValue];
+    time = [NSString getWorkBeginTime:time];
+    payTime = [NSString payTime:time WorkTime:self.daysNum PayTime:payTime];
     
-    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workerType Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.priceNum integerValue] Fare:carFare Remark:self.headerView.headerTextView.text WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address WhenLong:nil Contacts:name ContactsPhone:contactsPhone];
+    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workerType Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.priceNum integerValue] Fare:carFare Remark:self.headerView.headerTextView.text WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:@"9" Contacts:name ContactsPhone:contactsPhone];
     
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
@@ -283,7 +316,11 @@
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     } aboveView:self.view inCaller:self];
+    
 }
+
+
+
 
 - (UITableView *)tableView
 {

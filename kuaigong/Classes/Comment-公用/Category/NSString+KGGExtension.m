@@ -115,8 +115,25 @@
     return currentDateStr;
 }
 
-
-
+/** 获取当前时间戳 */
++ (NSString *)getWorkBeginTime:(NSString *)beginTime
+{
+    NSDate *now = [NSDate date];
+//    NSLog(@"now date is: %@", now);
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSCalendarUnitYear;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
+    NSInteger year = [dateComponent year];
+    
+    beginTime = [NSString stringWithFormat:@"%ld年%@00秒",(long)year,beginTime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateFormat:@"yyyy年MM月dd日 HH时mm分ss秒"];
+    NSDate *expireDate = [formatter dateFromString:beginTime];
+    NSTimeInterval timeInter = [expireDate timeIntervalSince1970];
+    NSString *timeString = [NSString stringWithFormat:@"%0.f",timeInter];//转为字符型
+    return timeString;
+}
 - (NSString*)encodeString{
     
     NSString *encodedString = (NSString *)
@@ -151,6 +168,100 @@
         return numberString;
     }
 }
+
+//计算当前月的总后一天是几号
++ (NSString *)getMonthBeginAndEndWith:(NSString *)dateStr
+{
+    NSDateFormatter *format=[[NSDateFormatter alloc] init];
+    [format setDateFormat:@"MM"];
+    NSDate *newDate=[format dateFromString:dateStr];
+    double interval = 0;
+    NSDate *beginDate = nil;
+    NSDate *endDate = nil;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar setFirstWeekday:2];//设定周一为周首日
+    BOOL ok = [calendar rangeOfUnit:NSCalendarUnitMonth startDate:&beginDate interval:&interval forDate:newDate];
+    //分别修改为 NSDayCalendarUnit NSWeekCalendarUnit NSYearCalendarUnit
+    if (ok) {
+        endDate = [beginDate dateByAddingTimeInterval:interval-1];
+    }else {
+        return @"";
+    }
+    NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+    [myDateFormatter setDateFormat:@"dd"];
+//    NSString *beginString = [myDateFormatter stringFromDate:beginDate];
+    NSString *endString = [myDateFormatter stringFromDate:endDate];
+//    NSString *s = [NSString stringWithFormat:@"%@-%@",beginString,endString];
+    return endString;
+}
+
+//获取剩余时间
++(NSString *)getNowTimeWithString:(NSString *)aTimeString
+{
+    NSDateFormatter* formater = [[NSDateFormatter alloc] init];
+    [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    // 截止时间date格式
+    NSDate  *expireDate = [formater dateFromString:aTimeString];
+    NSDate  *nowDate = [NSDate date];
+    // 当前时间字符串格式
+    NSString *nowDateStr = [formater stringFromDate:nowDate];
+    // 当前时间date格式
+    nowDate = [formater dateFromString:nowDateStr];
+    
+    NSTimeInterval timeInterval =[expireDate timeIntervalSinceDate:nowDate];
+    
+    int days = (int)(timeInterval/(3600*24));
+    int hours = (int)((timeInterval-days*24*3600)/3600);
+    int minutes = (int)(timeInterval-days*24*3600-hours*3600)/60;
+    int seconds = timeInterval-days*24*3600-hours*3600-minutes*60;
+    
+    NSString *dayStr;NSString *hoursStr;NSString *minutesStr;NSString *secondsStr;
+    //天
+    dayStr = [NSString stringWithFormat:@"%d",days];
+    //小时
+    hoursStr = [NSString stringWithFormat:@"%d",hours];
+    //分钟
+    if(minutes<10)
+        minutesStr = [NSString stringWithFormat:@"0%d",minutes];
+    else
+        minutesStr = [NSString stringWithFormat:@"%d",minutes];
+    //秒
+    if(seconds < 10)
+        secondsStr = [NSString stringWithFormat:@"0%d", seconds];
+    else
+        secondsStr = [NSString stringWithFormat:@"%d",seconds];
+    if (hours<=0&&minutes<=0&&seconds<=0) {
+        return @"0";
+    }
+    if (days) {
+        return [NSString stringWithFormat:@"%@天 %@小时 %@分 %@秒", dayStr,hoursStr, minutesStr,secondsStr];
+    }
+    return [NSString stringWithFormat:@"%@小时 %@分 %@秒",hoursStr , minutesStr,secondsStr];
+}
+
+/** 支付之间的时间戳 */
++ (NSString *)payTime:(NSString *)beginTime WorkTime:(NSString *)workTime PayTime:(NSString *)payTime
+{
+    int dayTime = [workTime intValue] *24*3600;//工作时间的秒数
+    int pay;
+    if ([payTime isEqualToString:@"工期结束立即支付"]) {
+//        24 *3600
+        pay = 86400;
+    }else if ([payTime isEqualToString:@"延后7天支付"]){
+//        24 *3600*8
+        pay = 691200;
+    }else{
+//        24 *3600*16
+        pay = 1382400;
+    }
+    
+    dayTime = dayTime+pay+[beginTime intValue];
+    NSString *totalTime;
+    totalTime = [NSString stringWithFormat:@"%d",dayTime];
+    return totalTime;
+}
+
 
 
 @end

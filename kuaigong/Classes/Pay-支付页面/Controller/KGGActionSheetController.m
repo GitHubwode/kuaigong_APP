@@ -125,6 +125,8 @@ static CGFloat itemHeight = 61.f;
     if (sender.selected == NO) {
         [self.view showHint:@"请选择支付方式"];
         return;
+    }else{
+        [self.view showHint:@"跳转对应的支付页面"];
     }
 }
 

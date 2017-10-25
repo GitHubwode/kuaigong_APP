@@ -27,6 +27,7 @@
                      Longitude:(CGFloat )longitude
                       Latitude:(CGFloat )latitude
                        Address:(NSString *)address
+                     AvatarUrl:(NSString *)avatarUrl
                       WhenLong:(NSString *)whenLong
                       Contacts:(NSString *)contacts
                  ContactsPhone:(NSString *)contactsPhone
@@ -46,6 +47,7 @@
         self.longitude = longitude;
         self.latitude = latitude;
         self.address = address;
+        self.avatarUrl = avatarUrl;
         self.whenLong = whenLong;
         self.contacts = contacts;
         self.contactsPhone = contactsPhone;
@@ -66,11 +68,12 @@
                       Longitude:(CGFloat )longitude
                        Latitude:(CGFloat )latitude
                         Address:(NSString *)address
+                      AvatarUrl:(NSString *)avatarUrl
                        WhenLong:(NSString *)whenLong
                        Contacts:(NSString *)contacts
                   ContactsPhone:(NSString *)contactsPhone
 {
-    return [[self alloc]initWithUserId:userid Name:name Type:type Number:number Days:days UnitPrice:unitPrice Fare:fare Remark:remark WorkStartTime:workStartTime PayTime:payTime Longitude:longitude Latitude:latitude Address:address WhenLong:whenLong Contacts:contacts ContactsPhone:contactsPhone];
+    return [[self alloc]initWithUserId:userid Name:name Type:type Number:number Days:days UnitPrice:unitPrice Fare:fare Remark:remark WorkStartTime:workStartTime PayTime:payTime Longitude:longitude Latitude:latitude Address:address AvatarUrl:avatarUrl WhenLong:whenLong Contacts:contacts ContactsPhone:contactsPhone];
 }
 
 @end
