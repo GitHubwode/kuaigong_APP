@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class KGGOrderDetailsModel;
 @interface KGGWorkDetailsViewController : UIViewController
+
+@property (nonatomic, strong)KGGOrderDetailsModel *searchOrderModel;
 
 @end

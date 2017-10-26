@@ -8,6 +8,7 @@
 
 #import "KGGForgetPasswordViewController.h"
 #import "KGGLoginView.h"
+#import "KGGLoginRequestManager.h"
 
 @interface KGGForgetPasswordViewController ()<KGGLoginViewDelegate>
 
@@ -21,11 +22,11 @@
 
 @implementation KGGForgetPasswordViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden=YES;
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBarHidden=YES;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -163,6 +164,7 @@
     return self.loginView1.loginTextField.text;
 }
 
+//验证码的类型
 - (NSString *)codeType
 {
     return @"EDIT_LOGIN_PWD";
@@ -195,49 +197,47 @@
 
 #pragma mark - 按钮的点击事件
 - (void)kgg_dissmissViewController
-{
-//    [self.navigationController popViewControllerAnimated:YES];
-    
+{    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)loginButton:(UIButton *)sender
 {
-    KGGLog(@"完成更改密码");
+    KGGLog(@"点击提交更改密码");
     
     NSString *cellphone = self.loginView1.loginTextField.text;
     if (!cellphone.length){
-        [MBProgressHUD showMessag:@"请填写手机号码"];
+        [self.view showHint:@"请填写手机号码"];
         return;
     };
     
     NSString *containCode = self.loginView2.loginTextField.text;
     if (!containCode.length){
-        [MBProgressHUD showMessag:@"请填写验证码"];
+        [self.view showHint:@"请填写验证码"];
         return;
     }
     
     NSString *pwd1 = self.loginView3.loginTextField.text;
     if (!pwd1.length){
-        [MBProgressHUD showMessag:@"请填写密码"];
+        [self.view showHint:@"请填写密码"];
         return;
     }
     
-    NSString *pwd2 = self.loginView3.loginTextField.text;
+    NSString *pwd2 = self.loginView4.loginTextField.text;
     if (!pwd2.length){
-        [MBProgressHUD showMessag:@"请填写确认密码"];
+        [self.view showHint:@"请填写确认密码"];
         return;
     }
     
     if (pwd1.length < KGGPasswordMinLength && pwd2.length < KGGPasswordMaxLength){
-        [MBProgressHUD showMessag:[NSString stringWithFormat:@"密码不能小于%zd位",KGGPasswordMinLength]];
+        [self.view showHint:[NSString stringWithFormat:@"密码不能小于%zd位",KGGPasswordMinLength]];
         return;
     }
     
     // 1.对用户密码是否相等
     BOOL isSame = [pwd1 isEqualToString:pwd2];
     if (!isSame){ // 不相等
-        [MBProgressHUD showMessag:@"请检查密码是否一样"];
+        [self.view showHint:@"请检查密码是否一样"];
         return;
     }
     
@@ -245,14 +245,48 @@
     BOOL isMatch = [cellphone isPhoneNumer];
     // 2.对不同的匹配结果做处理
     if (!isMatch){ // 不是正规的手机号码
-        [MBProgressHUD showMessag:@"请输入正确格式的手机号码"];
+        [self.view showHint:@"请输入正确格式的手机号码"];
         return;
     }
-    
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    
+    [self updataUserPhone:cellphone Code:containCode PassWord:pwd1];
+}
+
+#pragma mark - 忘记密码   绑定手机号
+- (void)updataUserPhone:(NSString *)phone Code:(NSString *)code PassWord:(NSString *)passWord
+{
+    if ([self.itemTitle isEqualToString:@"更改密码"]) {
+        [self updataPassWord:passWord Code:code];
+    }else if([self.itemTitle isEqualToString:@"绑定手机号"]){
+        [KGGLoginRequestManager updataUserPhoneNum:phone Code:code completion:^(KGGResponseObj *responseObj) {
+            if (responseObj.code == KGGSuccessCode) {
+                KGGLog(@"修改电话成功");
+                [self updataPassWord:passWord Code:code];
+            }
+            
+        } aboveView:self.view inCaller:self];
+    }else{
+        KGGLog(@"找回密码");
+    }
+}
+
+- (void)updataPassWord:(NSString *)passWord Code:(NSString *)code
+{
+    [KGGLoginRequestManager updataUserPhoneWord:passWord Code:code completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            [self.view showHint:@"修改密码成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if ([self.itemTitle isEqualToString:@"更改密码"]) {
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        if (self.forgetSuccessBlock) {
+                            self.forgetSuccessBlock();
+                        }
+                    }];
+                }else if([self.itemTitle isEqualToString:@"绑定手机号"]){
+                    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                }
+            });
+        }
+    } aboveView:self.view inCaller:self];
 }
 
 

@@ -34,4 +34,48 @@
     } aboveView:view inCaller:caller];
 }
 
+/**
+ 获取订单信息列表或者完成 进行中
+ @param type 接口类型
+ @param page 页数  userId 用户id
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ 
+ */
++ (void)searchOrderListType:(KGGSearchOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    switch (type) {
+        case KGGSearchOrderRequestMyDoingType: // 我未完成的订单
+            url = KGGURL(@"/api/order/getMyAcceptUnComplete");
+            dic[@"page"] = @(page);
+            break;
+        case KGGSearchOrderRequestCompleteType: // 我已完成的订单
+            url = KGGURL(@"/api/order/getMyAcceptComplete");
+            dic[@"page"] = @(page);
+            break;
+        default:
+            break;
+    }
+    
+    [self requestWithURL:url httpMethod:GETHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
+        
+        NSArray *responseDatasource;
+        if (!responseObj) {
+            
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }else{
+            NSArray *recordList = [responseObj.data objectForKey:@"recordList"];
+            responseDatasource = [KGGOrderDetailsModel mj_objectArrayWithKeyValuesArray:recordList];
+            if (completionHandler) {
+                completionHandler(responseDatasource);
+            }
+        }
+        
+    } aboveView:nil inCaller:caller];
+    
+    
+}
 @end

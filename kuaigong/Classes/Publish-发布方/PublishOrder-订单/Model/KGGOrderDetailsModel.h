@@ -54,6 +54,8 @@
 @property (nonatomic,copy) NSString *createTime;
 /** 更新时间 */
 @property (nonatomic,copy) NSString *updateTime;
+/** 接单时间 */
+@property (nonatomic,copy) NSString *accpetTime;
 /** 删除 */
 @property (nonatomic,assign) NSUInteger  deleted;
 /** 订单总金额 */
@@ -62,11 +64,12 @@
 @property (nonatomic,assign) NSUInteger  acceptUser;
 /** 订单号 */
 @property (nonatomic,copy) NSString * orderNo;
-
 /** 开始时间 */
 @property (nonatomic,copy) NSString *workStartTime;
 /** 支付时间 */
 @property (nonatomic,copy) NSString *payTime;
+/** 发布方头像 */
+@property (nonatomic,copy) NSString *avatarUrl;
 
 //增加的参数
 @property (nonatomic, copy) NSString *orderDetails;

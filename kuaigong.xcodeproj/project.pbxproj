@@ -211,6 +211,7 @@
 		35BEB16F1F73C1F30060298A /* KGGWorkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BEB16D1F73C1F30060298A /* KGGWorkDetailsViewController.m */; };
 		35BEB1701F73C1F30060298A /* KGGWorkDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35BEB16E1F73C1F30060298A /* KGGWorkDetailsViewController.xib */; };
 		35C72C511F9EFF3300A82336 /* KGGWorkTimeChooseField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */; };
+		35CBD3C31FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3C21FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m */; };
 		35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */; };
 		35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C61F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m */; };
 		35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C91F8DC39600DCA0EB /* KGGPublishOrderParam.m */; };
@@ -633,6 +634,8 @@
 		35C5D9911F5D5A6400CF6BE8 /* kuaigong.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = kuaigong.entitlements; sourceTree = "<group>"; };
 		35C72C4F1F9EFF3300A82336 /* KGGWorkTimeChooseField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGWorkTimeChooseField.h; sourceTree = "<group>"; };
 		35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGWorkTimeChooseField.m; sourceTree = "<group>"; };
+		35CBD3C11FA1B4B1007E88AD /* KGGMyWorkBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGMyWorkBaseViewController.h; sourceTree = "<group>"; };
+		35CBD3C21FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGMyWorkBaseViewController.m; sourceTree = "<group>"; };
 		35E8B6C11F8DBE5C00DCA0EB /* KGGOrderDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderDetailsModel.h; sourceTree = "<group>"; };
 		35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderDetailsModel.m; sourceTree = "<group>"; };
 		35E8B6C51F8DC36100DCA0EB /* KGGPublishOrderRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishOrderRequestManager.h; sourceTree = "<group>"; };
@@ -910,6 +913,8 @@
 				188F2D301F4ED50E0023F4BE /* KGGLookWorkViewController.m */,
 				188F2D311F4ED50E0023F4BE /* KGGMeWorkViewController.h */,
 				188F2D321F4ED50E0023F4BE /* KGGMeWorkViewController.m */,
+				35CBD3C11FA1B4B1007E88AD /* KGGMyWorkBaseViewController.h */,
+				35CBD3C21FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m */,
 				35BEB15F1F725BBA0060298A /* KGGMyWorkViewController.h */,
 				35BEB1601F725BBA0060298A /* KGGMyWorkViewController.m */,
 				35BEB16C1F73C1F30060298A /* KGGWorkDetailsViewController.h */,
@@ -2271,6 +2276,7 @@
 				358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */,
 				35F830711F62887800204989 /* KGGFillBankInfoViewController.m in Sources */,
 				35F73AB71F78E3A0000CD1D6 /* KGGLocationTextFieldSubClass.m in Sources */,
+				35CBD3C31FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m in Sources */,
 				358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */,
 				18F5BA5E1F4ED24F00E6ADC4 /* KGGHomeViewController.m in Sources */,
 				35FF5CB11F6A933200E1A50B /* KGGPaychooseHeaderView.m in Sources */,

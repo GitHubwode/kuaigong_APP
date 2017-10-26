@@ -33,7 +33,7 @@
 #pragma mark - 给headerView赋值
 - (void)searceHeaderView
 {
-    [self.headerView orderMessageAvatar:@"" Content:self.orderDetails.contacts ContentPhone:self.orderDetails.hidePhone];
+    [self.headerView orderMessageAvatar:self.orderDetails.avatarUrl Content:self.orderDetails.contacts ContentPhone:self.orderDetails.hidePhone];
 }
 
 #pragma mark - buttonAction

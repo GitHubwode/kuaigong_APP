@@ -11,7 +11,8 @@
 #import "KGGMeWorkViewCell.h"
 #import "KGGMoreSettingController.h"
 #import "KGGMyWalletViewController.h"
-#import "KGGMyWorkViewController.h"
+//#import "KGGMyWorkViewController.h"
+#import "KGGMyWorkBaseViewController.h"
 #import "KGGLoginViewController.h"
 
 
@@ -31,7 +32,6 @@
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self.headerView updataUserMessageLogin:[KGGUserManager shareUserManager].logined];
-    [self addCollectButton];
     [KGGNotificationCenter addObserver:self selector:@selector(loginSuccess) name:KGGUserLoginNotifacation object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(loginOutSuccess) name:KGGUserLogoutNotifacation object:nil];
 }
@@ -44,7 +44,7 @@
 
 - (void)loginOutSuccess
 {
-    KGGLog(@"登出成功");
+    KGGLog(@"退出登录");
     [self.headerView updataUserMessageLogin:[KGGUserManager shareUserManager].logined];
 }
 
@@ -76,24 +76,12 @@
         [self.navigationController pushViewController:walletVC animated:YES];
     }
     if (indexPath.row ==1) {
-        KGGMyWorkViewController *myVC = [[KGGMyWorkViewController alloc]init];
+        KGGMyWorkBaseViewController *myVC = [[KGGMyWorkBaseViewController alloc]init];
         [self.navigationController pushViewController:myVC animated:YES];
     }
     KGGLog(@"第几行 %ld",(long)indexPath.row);
     
 }
-
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    UIView *view = [UIView new];
-//    view.backgroundColor = KGGViewBackgroundColor;
-//    return view;
-//}
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 10.f;
-//}
 
 #pragma mark -KGGMeWorkHeaderViewDelegate
 - (void)kggMeWorkHeaderViewButtonClick
@@ -112,18 +100,18 @@
     KGGLog(@"确认收款按钮");
 }
 
-- (void)addCollectButton
-{
-    weakSelf(self);
-    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"确认收款"];
-    [self.view addSubview:useButton];
-    [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(weakself.view.mas_centerX);
-        make.bottom.equalTo(weakself.view.mas_bottom);
-        make.height.equalTo(@(KGGLoginButtonHeight));
-        make.width.equalTo(@(kMainScreenWidth));
-    }];
-}
+//- (void)addCollectButton
+//{
+//    weakSelf(self);
+//    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"确认收款"];
+//    [self.view addSubview:useButton];
+//    [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(weakself.view.mas_centerX);
+//        make.bottom.equalTo(weakself.view.mas_bottom);
+//        make.height.equalTo(@(KGGLoginButtonHeight));
+//        make.width.equalTo(@(kMainScreenWidth));
+//    }];
+//}
 
 #pragma mark - lazyButton
 - (UIButton *)snh_creatButtonImage:(NSString *)image Title:(NSString *)title
@@ -142,7 +130,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-50-64-KGGLoginButtonHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-50-64) style:UITableViewStylePlain];
         [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGMeWorkViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGMeWorkViewCell meWorkViewIdentifier]];
         _tableView.rowHeight = 59.f;
         _tableView.backgroundColor = KGGViewBackgroundColor;

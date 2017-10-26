@@ -8,6 +8,7 @@
 
 #import "KGGLookWorkViewCell.h"
 #import "KGGOrderDetailsModel.h"
+#import "UIImageView+WebCache.h"
 
 static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
 
@@ -27,7 +28,8 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.avatarImageView.layer.masksToBounds = YES;
+    self.avatarImageView.layer.cornerRadius = 18.f;
     self.lineViewHeight.constant = KGGOnePixelHeight;
 }
 
@@ -36,10 +38,10 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
     _detailsModel = detailsModel;
     self.classNameLabel.text = detailsModel.workerType;
     self.peopleNumLabel.text = [NSString stringWithFormat:@"%lu人",(unsigned long)detailsModel.number];
-    self.timeLabel.text = detailsModel.whenLong;
+    self.timeLabel.text = [NSString stringWithFormat:@"工作时间:%@",detailsModel.workStartTime];
     self.moneyLabel.text = [NSString stringWithFormat:@"总价:%.f元",detailsModel.differentPrice];
     self.nickNameLabel.text = detailsModel.contacts;
-    
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:detailsModel.avatarUrl] placeholderImage:[UIImage imageNamed:@"icon_touxiang"]];
 }
 
 + (NSString *)lookWorkIdentifier

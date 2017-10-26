@@ -64,7 +64,10 @@
         KGGLog(@"忘记密码");
         KGGForgetPasswordViewController *forgrtVC = [[KGGForgetPasswordViewController alloc]init];
         forgrtVC.itemTitle = @"更改密码";
-        [self.navigationController pushViewController:forgrtVC animated:YES];
+        forgrtVC.forgetSuccessBlock = ^{
+            [self kgg_loginOut];
+        };
+        [self presentViewController:forgrtVC animated:YES completion:nil];
     }else{
         KGGLog(@"关于快工");
     }
@@ -80,19 +83,26 @@
     
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         KGGLog(@"退出登录安妮");
-        [KGGLoginRequestManager loginOutWithcompletion:^(KGGResponseObj *responseObj) {
-            
-            [[KGGUserManager shareUserManager] logout];
-            [self.useButton removeFromSuperview];
-            [KGGNotificationCenter postNotificationName:KGGUserLogoutNotifacation object:nil];
-            [self.navigationController popViewControllerAnimated:YES];
-            
-        } aboveView:self.view inCaller:self];
-        
+        [self kgg_loginOut];
     }]];
     
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+#pragma mark - 退出登录网络请求
+- (void)kgg_loginOut
+{
+    [KGGLoginRequestManager loginOutWithcompletion:^(KGGResponseObj *responseObj) {
+        
+        [[KGGUserManager shareUserManager] logout];
+        [self.useButton removeFromSuperview];
+        [KGGNotificationCenter postNotificationName:KGGUserLogoutNotifacation object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    } aboveView:self.view inCaller:self];
+}
+
+
 
 #pragma mark-  懒加载
 

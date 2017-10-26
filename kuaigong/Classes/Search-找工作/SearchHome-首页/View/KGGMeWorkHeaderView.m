@@ -35,15 +35,16 @@
 - (void)updataUserMessageLogin:(BOOL)login
 {
     if (login) {
-        [self.loginButton removeFromSuperview];
+        self.loginButton.hidden = YES;
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[KGGUserManager shareUserManager].currentUser.avatarUrl] placeholderImage:[UIImage imageNamed:@"icon_touxiang"]];
         self.nickLabel.text = [KGGUserManager shareUserManager].currentUser.nickname;
-        self.phoneLabel.text = [KGGUserManager shareUserManager].currentUser.phone;
-        
+        self.phoneLabel.text = [KGGUserManager shareUserManager].currentUser.hidePhone;
     }else{
         KGGLog(@"没有登录成功");
+        [self kggremoveSubViews];
+        [self creatHeaderUI];
+        
     }
-    
 }
 
 #pragma mark - event
@@ -54,7 +55,7 @@
     KGGLog(@"登录按钮...");
 }
 
-- (void)removeSubViews
+- (void)kggremoveSubViews
 {
     if (_nickLabel) {
         [_nickLabel removeFromSuperview];
@@ -69,6 +70,10 @@
     if (_loginButton) {
         [_loginButton removeFromSuperview];
         _loginButton = nil;
+    }
+    if (_avatarImageView) {
+        [_avatarImageView removeFromSuperview];
+        _avatarImageView = nil;
     }
 }
 

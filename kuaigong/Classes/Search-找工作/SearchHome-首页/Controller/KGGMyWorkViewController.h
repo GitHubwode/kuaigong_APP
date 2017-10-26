@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KGGSearchOrderRequestManager.h"
 
-@interface KGGMyWorkViewController : UITableViewController
+@interface KGGMyWorkViewController : UIViewController
+
+@property (nonatomic, assign) KGGSearchOrderRequestType requestType;
 
 @end

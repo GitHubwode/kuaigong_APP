@@ -135,9 +135,9 @@ static CGFloat const topHeight = 37.f;
         make.height.equalTo(@(KGGLoginButtonHeight));
     }];
     
-    UIButton *useButton = [self snh_creatButtonImage:@"btn_left" Title:nil];
+    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"现在用工"];
     useButton.tag = 1000;
-    UIButton *orderButton = [self snh_creatButtonImage:@"btn_right" Title:nil];
+    UIButton *orderButton = [self snh_creatButtonImage:@"bg_button" Title:@"我的订单"];
     orderButton.tag = 1001;
     [bgView addSubview:useButton];
     [bgView addSubview:orderButton];
@@ -162,6 +162,9 @@ static CGFloat const topHeight = 37.f;
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.titleLabel.font = KGGFont(17);
+    [button setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(snh_beginButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }

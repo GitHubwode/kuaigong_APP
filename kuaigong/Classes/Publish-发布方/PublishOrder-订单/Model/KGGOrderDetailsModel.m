@@ -25,42 +25,47 @@
 - (void)mj_keyValuesDidFinishConvertingToObject{
     
     switch (_type) {
-        case 0:
+        case 1:
             _workerType = @"木工";
             break;
-        case 1:
+        case 2:
             _workerType = @"钢筋工";
             break;
-        case 2:
+        case 3:
             _workerType = @"内架子工";
             break;
-        case 3:
+        case 4:
             _workerType = @"外架子工";
             break;
-        case 4:
+        case 5:
             _workerType = @"泥工";
             break;
-        case 5:
+        case 6:
             _workerType = @"水电工";
             break;
-        case 6:
+        case 7:
             _workerType = @"电焊工";
             break;
-        case 7:
+        case 8:
             _workerType = @"小工";
             break;
         default:
             break;
     }
     
-    int allFee ;//总计费用
-    allFee = (_unitPrice *9 + _fare) * _days * _number;
-    
-    _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作9小时 每小时%.f元,车费每人%.f元,总计%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_unitPrice,_fare,_totalAmount];
+    _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作9小时 每天%.f元,车费每辆%.f元,总计%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_unitPrice,_fare,_totalAmount];
     
     _differentPrice = _totalAmount - _fare;
     //隐藏电话点好
     _hidePhone = [NSString numberSuitScanf:_contactsPhone];
+    
+    //头像地址
+    if (_avatarUrl.length > 0) {
+        _avatarUrl = [NSString stringWithFormat:@"https:%@",_avatarUrl];
+    }
+    _accpetTime = [NSString TimeStamp:_accpetTime];
+    _workStartTime = [NSString TimeStamp:_workStartTime];
+    
 }
 
 /**

@@ -70,7 +70,6 @@
     }
     
     self.carMoney = [NSString stringWithFormat:@"%d",self.catTotal];
-
     int allFee ;//总计费用
    allFee = [self.peoplePrice intValue]*[self.daysNum intValue]*[self.peopleNum intValue]+[self.carMoney intValue]*[self.daysNum intValue];
     
@@ -293,14 +292,11 @@
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             KGGLog(@"创建订单成功");
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     } aboveView:self.view inCaller:self];
     
 }
-
-
-
 
 - (UITableView *)tableView
 {
@@ -325,6 +321,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
+    button.titleLabel.font = KGGFont(17);
     [button setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(snh_sureMessageButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     return button;

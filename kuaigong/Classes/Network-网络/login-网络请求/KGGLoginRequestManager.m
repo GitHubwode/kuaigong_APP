@@ -253,5 +253,70 @@
     } aboveView:view inCaller:caller];
 }
 
+/**
+ 更改用户登录密码
+ 
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ */
++ (void)updataUserPhoneWord:(NSString *)phoneword Code:(NSString *)code completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/user/updateLoginPwd");
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"password"] = phoneword;
+    dic[@"code"] = code;
+    
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            return ;
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+            return ;
+        }else{
+            KGGLog(@"注册:%@",responseObj);
+            if (completionHandler) {
+                completionHandler(responseObj);
+            }
+        }
+        
+    } aboveView:view inCaller:caller];
+}
+
+/**
+ 绑定用户手机号 输入密码
+ 
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ */
++ (void)updataUserPhoneNum:(NSString *)phoneNum Code:(NSString *)code completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/user/updatePhone");
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"phone"] = phoneNum;
+    dic[@"code"] = code;
+    
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            return ;
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+            return ;
+        }else{
+            
+            KGGLog(@"修改手机号:%@",responseObj);
+            if (completionHandler) {
+                
+                KGGUserObj *userObj = [KGGUserObj mj_objectWithKeyValues:responseObj.data];
+                [[KGGUserManager shareUserManager] updateCurrentUserMobile:userObj.phone];
+                [[KGGUserManager shareUserManager] synchronize];
+                completionHandler(responseObj);
+            }
+        }
+        
+    } aboveView:view inCaller:caller];
+}
+
 
 @end

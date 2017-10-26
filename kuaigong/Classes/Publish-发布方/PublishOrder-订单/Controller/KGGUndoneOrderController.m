@@ -82,6 +82,11 @@
 
 #pragma mark - UITableViewDelegate  UITableViewDatasource
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.01f;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 10.f;
@@ -117,7 +122,7 @@
 - (UITableView *)orderTableView
 {
     if (!_orderTableView) {
-        _orderTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-47-64) style:UITableViewStylePlain];
+        _orderTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStyleGrouped];
         _orderTableView.backgroundColor = UIColorHex(0xd9d9d9);
         [_orderTableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGPublishOrderViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGPublishOrderViewCell publishOrderIdentifier]];
         _orderTableView.rowHeight = 95.f;

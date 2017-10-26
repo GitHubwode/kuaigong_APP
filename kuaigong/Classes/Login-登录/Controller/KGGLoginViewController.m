@@ -285,7 +285,6 @@
             }
 
             userinfo.iconurl = [userinfo.iconurl stringByReplacingOccurrencesOfString:@"https:" withString:@""];
-
             [KGGLoginRequestManager WXRegisterWithOpenId:userinfo.openid Platform:nil UserType:[NSUserDefaults objectForKey:KGGUserType] Sex:gender vatarUrl:userinfo.iconurl Nickname:userinfo.name completion:^(KGGResponseObj *responseObj) {
                 KGGLog(@"%@",responseObj);
                 if (responseObj.code == KGGSuccessCode) {
@@ -294,22 +293,28 @@
             } aboveView:self.view inCaller:self];
         }
     }];
-    
-//    [self WXLoginOpenId:@""];
-    
 }
 
 #pragma mark - 微信登录成功
 - (void)WXLoginOpenId:(NSString *)openId
 {
-//    openId = @"oq_U1xEXsFjRKaDp9QlCoGt232EY";
     [KGGLoginRequestManager WXloginWithOpenId:openId completion:^(KGGUserInfo *user) {
         KGGLog(@"微信登录成功");
         KGGLog(@"%@",user);
         [KGGNotificationCenter postNotificationName:KGGUserLoginNotifacation object:nil];
-        [self dismissViewControllerAnimated:YES completion:nil]; 
+//        [self dismissViewControllerAnimated:YES completion:nil];
+        [self bindingPhoneNum];
     } aboveView:self.view inCaller:self];
 }
+
+#pragma mark - 绑定手机号和输入密码
+- (void)bindingPhoneNum
+{
+    KGGForgetPasswordViewController *forgrtVC = [[KGGForgetPasswordViewController alloc]init];
+    forgrtVC.itemTitle = @"绑定手机号";
+    [self presentViewController:[[KGGNavigationController alloc] initWithRootViewController:forgrtVC] animated:YES completion:nil];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

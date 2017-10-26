@@ -32,7 +32,7 @@ static NSString *KGGSearchOrderView = @"KGGSearchOrderViewCell";
 - (void)setOrderDetails:(KGGOrderDetailsModel *)orderDetails
 {
     _orderDetails = orderDetails;
-    self.timeTitleLabel.text = @"用工时间还没有参数";
+    self.timeTitleLabel.text = orderDetails.workStartTime;
     self.addressLabel.text = orderDetails.address;
     self.detailsLabel.text = orderDetails.orderDetails;
     self.ramarkLabel.text = orderDetails.remark;

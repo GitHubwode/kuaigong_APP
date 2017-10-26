@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ForgetPwdBackBlock)();
+
+
 @interface KGGForgetPasswordViewController : UIViewController
+@property (nonatomic, copy) ForgetPwdBackBlock forgetSuccessBlock;
 
 /** 导航栏标题 */
 @property (nonatomic, strong) NSString *itemTitle;
