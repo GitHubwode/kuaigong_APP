@@ -9,7 +9,6 @@
 #import "KGGHomeViewController.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "KGGLeftTableController.h"
-#import "KGGSliderMenuTool.h"
 #import "SDCycleScrollView.h"
 #import "KGGUseWorkerViewController.h"
 #import "KGGOrderRecordController.h"
@@ -23,12 +22,14 @@
 #import "KGGPublishHomeRequestManager.h"
 #import "KGGWorkTypeModel.h"
 #import "KGGCarFeeModel.h"
+#import "MenuView.h"
+#import "KGGPersonalMessageController.h"
 
 
 static CGFloat const itemHeight = 168.f;
 static CGFloat const topHeight = 37.f;
 
-@interface KGGHomeViewController ()<KGGPublishHomeHeaderViewDelegate,KGGPublishHomeFootViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface KGGHomeViewController ()<KGGPublishHomeHeaderViewDelegate,KGGPublishHomeFootViewDelegate,UITableViewDataSource,UITableViewDelegate,HomeMenuViewDelegate>
 
 @property (nonatomic,strong)SDCycleScrollView  *headSDCycleView;
 @property (nonatomic, strong)KGGPublishHomeHeaderView *headerView;
@@ -39,10 +40,12 @@ static CGFloat const topHeight = 37.f;
 @property (nonatomic, assign) CGFloat longitudeMap;
 @property (nonatomic, assign) CGFloat latitudeMap;
 @property (nonatomic, copy) NSString *workAddress;
-//@property (nonatomic, assign) NSUInteger topIndex;
 @property (nonatomic, strong) NSMutableArray *workDatasource;
 @property (nonatomic, strong) KGGWorkTypeModel *priceModel;
 @property (nonatomic, strong) KGGCarFeeModel *feeModel;
+@property (nonatomic ,strong) MenuView   * menu;
+//@property (nonatomic, copy) NSString *guidePrice;
+
 
 @end
 
@@ -52,7 +55,6 @@ static CGFloat const topHeight = 37.f;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupRequest];
     self.tabBarController.tabBar.hidden = YES;
 }
 
@@ -64,6 +66,7 @@ static CGFloat const topHeight = 37.f;
     self.automaticallyAdjustsScrollViewInsets = NO;
     //创建tarBarItem
     [self setupNavi];
+    [self setupRequest];
     //获取车费
     [self setupCarFee];
     self.tableView.tableFooterView = self.footView;
@@ -73,13 +76,39 @@ static CGFloat const topHeight = 37.f;
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [self kgg_addButton];
     
+    KGGLeftTableController *leftView = [[KGGLeftTableController alloc]initWithFrame:CGRectMake(0, 0, KGGAdaptedWidth(kMainScreenWidth*0.68), kMainScreenHeight)];
+    leftView.customDelegate = self;
+    self.menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:leftView isShowCoverView:YES];
 }
+
+#pragma mark - 侧栏的代理
+-(void)LeftMenuViewClick:(NSInteger)tag Drawer:(NSString *)model{
+    [self.menu hidenWithAnimation];
+    
+    if (tag == 1000) {
+        
+        if ([KGGUserManager shareUserManager].logined) {
+            KGGPersonalMessageController *personalVC = [[KGGPersonalMessageController alloc]init];
+            personalVC.editInfoSuccessBlock = ^{
+            };
+            [self.navigationController pushViewController:personalVC animated:YES];
+        }else{
+            [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+        }
+        
+    }else{
+        Class class = NSClassFromString(model);
+        [self.navigationController pushViewController:[class new] animated:YES];
+    }
+}
+
 
 #pragma mark -获取数据
 - (void)setupRequest
 {
     [KGGPublishHomeRequestManager publishHomeWorkTypeCompletion:^(NSArray<KGGWorkTypeModel *> *response) {
         if (!response)  return ;
+        [self.workDatasource removeAllObjects];
         [self.workDatasource addObjectsFromArray:response];
         [self creatTableViewHeaderView];
         self.priceModel = [self.workDatasource firstObject];
@@ -115,7 +144,7 @@ static CGFloat const topHeight = 37.f;
                             @"pic_jiazi.png",
                             @"pic-jia.png"// 本地图片请填写全名
                             ];
-    self.headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, itemHeight+topHeight) HeaderViewSDCycleImage:imageNames SlideTitle:titleArray];
+    self.headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight+topHeight)) HeaderViewSDCycleImage:imageNames SlideTitle:titleArray];
     self.headerView.headerDelegate = self;
     self.tableView.tableHeaderView = self.headerView;
 }
@@ -135,7 +164,7 @@ static CGFloat const topHeight = 37.f;
         make.height.equalTo(@(KGGLoginButtonHeight));
     }];
     
-    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"现在用工"];
+    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"发布用工"];
     useButton.tag = 1000;
     UIButton *orderButton = [self snh_creatButtonImage:@"bg_button" Title:@"我的订单"];
     orderButton.tag = 1001;
@@ -183,12 +212,11 @@ static CGFloat const topHeight = 37.f;
 {
     
     if (sender.tag == 1000) {
-        int i=0;
         BOOL isJump = NO;
         CGFloat peopleNum = 0;
+        
         int carNum = 0;
         for ( KGGHomePublishModel *publishModel in self.datasource) {
-            i++;
             if (![publishModel.title isEqualToString:@"价格/天"]) {
                 if (publishModel.subtitle.length==0 || publishModel.subtitle == nil || [publishModel.subtitle isEqualToString:@"0"]){
                     [self.view showHint:@"用工信息不能为空"];
@@ -202,8 +230,6 @@ static CGFloat const topHeight = 37.f;
                 peopleNum =  [publishModel.subtitle intValue];
             }
         }
-        
-       
         
         if ((int)peopleNum<4) {
             carNum = 0;
@@ -230,7 +256,7 @@ static CGFloat const topHeight = 37.f;
             useVC.latitudeMap = self.latitudeMap;
             useVC.catTotal = self.feeModel.itemValue*carNum;
             useVC.workType = self.priceModel;
-            useVC.peoplePrice = self.priceModel.guidePrice;;
+            useVC.peoplePrice = self.priceModel.guidePrice;
             
             [self.navigationController pushViewController:useVC animated:YES];
         }
@@ -296,11 +322,17 @@ static CGFloat const topHeight = 37.f;
 - (void)kgg_homeMessage
 {
     KGGLog(@"导航栏左边的按钮");
-    [KGGSliderMenuTool showWithRootViewController:self contentViewController:[[KGGLeftTableController alloc] init]];
+    [self.menu show];
 }
 
 
 #pragma mark - UITableViewDelegate  UITableViewDatasource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return KGGAdaptedHeight(10);
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.datasource.count;
@@ -314,6 +346,7 @@ static CGFloat const topHeight = 37.f;
     cell.publishModel = publishModel;
     if (indexPath.row == 0) {
         cell.homeTextField.text = self.priceModel.guidePrice;
+        publishModel.subtitle = self.priceModel.guidePrice;
     }
     return cell;
 }
@@ -331,7 +364,7 @@ static CGFloat const topHeight = 37.f;
 - (KGGPublishHomeFootView *)footView
 {
     if (!_footView) {
-        _footView = [[KGGPublishHomeFootView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, itemHeight)];
+        _footView = [[KGGPublishHomeFootView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight))];
         _footView.delegate =self;
     }
     return _footView;
@@ -344,7 +377,7 @@ static CGFloat const topHeight = 37.f;
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor whiteColor];
         [_tableView registerNib:[UINib nibWithNibName:@"KGGHomeListViewCell" bundle:nil] forCellReuseIdentifier:[KGGHomeListViewCell homeListIdentifier]];
-        _tableView.rowHeight = 45.f;
+        _tableView.rowHeight = KGGAdaptedHeight(51);
         _tableView.separatorStyle = UITableViewCellStyleDefault;
         _tableView.delegate = self;
         _tableView.dataSource = self;

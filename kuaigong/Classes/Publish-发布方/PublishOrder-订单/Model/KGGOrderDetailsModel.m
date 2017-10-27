@@ -53,7 +53,7 @@
             break;
     }
     
-    _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作9小时 每天%.f元,车费每辆%.f元,总计%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_unitPrice,_fare,_totalAmount];
+    _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作9小时 每天%.f元,车费每辆%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_unitPrice,_fare];
     
     _differentPrice = _totalAmount - _fare;
     //隐藏电话点好

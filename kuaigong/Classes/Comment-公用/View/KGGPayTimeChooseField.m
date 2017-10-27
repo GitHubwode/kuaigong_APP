@@ -149,7 +149,7 @@
 - (NSMutableArray *)timeDatasource
 {
     if (!_timeDatasource) {
-        _timeDatasource = [NSMutableArray arrayWithObjects:@"工期结束立即支付",@"延后7天支付",@"延后15天支付", nil];
+        _timeDatasource = [NSMutableArray arrayWithObjects:@"帮工结束立即支付",@"延后7天支付",@"延后15天支付", nil];
     }
     return _timeDatasource;
 }

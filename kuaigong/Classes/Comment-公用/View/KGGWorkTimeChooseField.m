@@ -76,7 +76,7 @@
     NSLog(@"day is: %d日", day);
     int endDay = [[NSString getMonthBeginAndEndWith:[NSString stringWithFormat:@"%d",_mouth]] intValue];
     KGGLog(@"%d",endDay);
-    for (int i = hour; i < 24; i++) {
+    for (int i = 0; i < 24; i++) {
         NSString *hourString = [NSString stringWithFormat:@"%d时",i+1];
         [self.hourArray addObject:hourString];
     }

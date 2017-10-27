@@ -8,7 +8,7 @@
 		<key>subtitle</key>
 		<string></string>
 		<key>placeholder</key>
-		<string>请填写工价费用</string>
+		<string>请填写工价</string>
 		<key>required</key>
 		<true/>
 	</dict>
@@ -18,7 +18,7 @@
 		<key>subtitle</key>
 		<string></string>
 		<key>placeholder</key>
-		<string>请填写用工人数</string>
+		<string>用工人数</string>
 		<key>required</key>
 		<true/>
 	</dict>
@@ -28,7 +28,7 @@
 		<key>subtitle</key>
 		<string></string>
 		<key>placeholder</key>
-		<string>请填写用工天数</string>
+		<string>用工天数</string>
 		<key>required</key>
 		<true/>
 	</dict>

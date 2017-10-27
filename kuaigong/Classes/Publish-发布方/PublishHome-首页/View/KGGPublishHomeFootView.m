@@ -21,7 +21,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self creatFootView];
-//        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -35,16 +34,15 @@
         make.left.equalTo(weakself.mas_left);
         make.top.equalTo(weakself.mas_top);
         make.width.equalTo(@(kMainScreenWidth));
-        make.height.equalTo(@28);
+        make.height.equalTo(@(KGGAdaptedHeight(32)));
     }];
     
     [self addSubview:self.cycleTitleView];
-//    self.cycleTitleView.backgroundColor = [UIColor redColor];
     [self.cycleTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.mas_left);
-        make.top.equalTo(weakself.carLabel.mas_bottom).offset(10);
+        make.top.equalTo(weakself.carLabel.mas_bottom).offset(KGGAdaptedHeight(10));
         make.width.equalTo(@(kMainScreenWidth));
-        make.height.equalTo(@28);
+        make.height.equalTo(@(KGGAdaptedHeight(32)));
     }];
     
     UIView *line1 = [self creatLineView];
@@ -57,12 +55,11 @@
     }];
     
     [self addSubview:self.locationButton];
-//    self.locationButton.backgroundColor = [UIColor blueColor];
     [self.locationButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.mas_left);
         make.top.equalTo(line1.mas_bottom);
         make.width.equalTo(@(kMainScreenWidth));
-        make.height.equalTo(@44);
+        make.height.equalTo(@(KGGAdaptedHeight(54)));
     }];
     
     UIView *line2 = [self creatLineView];

@@ -63,7 +63,7 @@
     }else if (indexPath.row == 3){
         KGGLog(@"忘记密码");
         KGGForgetPasswordViewController *forgrtVC = [[KGGForgetPasswordViewController alloc]init];
-        forgrtVC.itemTitle = @"更改密码";
+        forgrtVC.changetype = KGGUserChangePWDType;
         forgrtVC.forgetSuccessBlock = ^{
             [self kgg_loginOut];
         };

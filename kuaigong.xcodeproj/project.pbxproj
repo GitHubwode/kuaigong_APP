@@ -20,7 +20,6 @@
 		185C86841F45977E00356ECD /* KGGForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86831F45977E00356ECD /* KGGForgetPasswordViewController.m */; };
 		185C86871F46836700356ECD /* UIView+XCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86861F46836700356ECD /* UIView+XCExtension.m */; };
 		185C868A1F46861A00356ECD /* KGGConfirmPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86891F46861A00356ECD /* KGGConfirmPasswordViewController.m */; };
-		185C86971F46DB6E00356ECD /* KGGSliderMenuTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86961F46DB6E00356ECD /* KGGSliderMenuTool.m */; };
 		185C86A91F46EADF00356ECD /* KGGLeftDrawer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 185C86A81F46EADF00356ECD /* KGGLeftDrawer.plist */; };
 		185C86BC1F4A9A5800356ECD /* SUNSlideSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86BB1F4A9A5800356ECD /* SUNSlideSwitchView.m */; };
 		185C86D11F4ABB6500356ECD /* KGGNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86CF1F4ABB6500356ECD /* KGGNewFeatureViewController.m */; };
@@ -90,8 +89,6 @@
 		18F5BA6F1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F5BA3A1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib */; };
 		18F5BA701F4ED24F00E6ADC4 /* KGGCustomerCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA3E1F4ED24F00E6ADC4 /* KGGCustomerCenterController.m */; };
 		18F5BA711F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F5BA3F1F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib */; };
-		18F5BA721F4ED24F00E6ADC4 /* KGGLeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA411F4ED24F00E6ADC4 /* KGGLeftDrawerViewController.m */; };
-		18F5BA731F4ED24F00E6ADC4 /* KGGLeftTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA431F4ED24F00E6ADC4 /* KGGLeftTableController.m */; };
 		18F5BA741F4ED24F00E6ADC4 /* KGGMoreSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA451F4ED24F00E6ADC4 /* KGGMoreSettingController.m */; };
 		18F5BA751F4ED24F00E6ADC4 /* KGGLeftDrawerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA481F4ED24F00E6ADC4 /* KGGLeftDrawerModel.m */; };
 		18F5BA761F4ED24F00E6ADC4 /* KGGLeftDrawerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA4B1F4ED24F00E6ADC4 /* KGGLeftDrawerCell.m */; };
@@ -212,6 +209,9 @@
 		35BEB1701F73C1F30060298A /* KGGWorkDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35BEB16E1F73C1F30060298A /* KGGWorkDetailsViewController.xib */; };
 		35C72C511F9EFF3300A82336 /* KGGWorkTimeChooseField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */; };
 		35CBD3C31FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3C21FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m */; };
+		35CBD3C91FA2DD74007E88AD /* KGGLookforPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3C81FA2DD73007E88AD /* KGGLookforPWDViewController.m */; };
+		35CBD3CD1FA324B4007E88AD /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3CB1FA324B4007E88AD /* MenuView.m */; };
+		35CBD3D31FA326A4007E88AD /* KGGLeftTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */; };
 		35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */; };
 		35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C61F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m */; };
 		35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C91F8DC39600DCA0EB /* KGGPublishOrderParam.m */; };
@@ -305,8 +305,6 @@
 		185C86861F46836700356ECD /* UIView+XCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XCExtension.m"; sourceTree = "<group>"; };
 		185C86881F46861A00356ECD /* KGGConfirmPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGConfirmPasswordViewController.h; sourceTree = "<group>"; };
 		185C86891F46861A00356ECD /* KGGConfirmPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGConfirmPasswordViewController.m; sourceTree = "<group>"; };
-		185C86951F46DB6E00356ECD /* KGGSliderMenuTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGSliderMenuTool.h; sourceTree = "<group>"; };
-		185C86961F46DB6E00356ECD /* KGGSliderMenuTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGSliderMenuTool.m; sourceTree = "<group>"; };
 		185C86A81F46EADF00356ECD /* KGGLeftDrawer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KGGLeftDrawer.plist; sourceTree = "<group>"; };
 		185C86BA1F4A9A5800356ECD /* SUNSlideSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUNSlideSwitchView.h; sourceTree = "<group>"; };
 		185C86BB1F4A9A5800356ECD /* SUNSlideSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUNSlideSwitchView.m; sourceTree = "<group>"; };
@@ -437,10 +435,6 @@
 		18F5BA3D1F4ED24F00E6ADC4 /* KGGCustomerCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGCustomerCenterController.h; sourceTree = "<group>"; };
 		18F5BA3E1F4ED24F00E6ADC4 /* KGGCustomerCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGCustomerCenterController.m; sourceTree = "<group>"; };
 		18F5BA3F1F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGCustomerCenterController.xib; sourceTree = "<group>"; };
-		18F5BA401F4ED24F00E6ADC4 /* KGGLeftDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGLeftDrawerViewController.h; sourceTree = "<group>"; };
-		18F5BA411F4ED24F00E6ADC4 /* KGGLeftDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGLeftDrawerViewController.m; sourceTree = "<group>"; };
-		18F5BA421F4ED24F00E6ADC4 /* KGGLeftTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGLeftTableController.h; sourceTree = "<group>"; };
-		18F5BA431F4ED24F00E6ADC4 /* KGGLeftTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGLeftTableController.m; sourceTree = "<group>"; };
 		18F5BA441F4ED24F00E6ADC4 /* KGGMoreSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGMoreSettingController.h; sourceTree = "<group>"; };
 		18F5BA451F4ED24F00E6ADC4 /* KGGMoreSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGMoreSettingController.m; sourceTree = "<group>"; };
 		18F5BA471F4ED24F00E6ADC4 /* KGGLeftDrawerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGLeftDrawerModel.h; sourceTree = "<group>"; };
@@ -636,6 +630,12 @@
 		35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGWorkTimeChooseField.m; sourceTree = "<group>"; };
 		35CBD3C11FA1B4B1007E88AD /* KGGMyWorkBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGMyWorkBaseViewController.h; sourceTree = "<group>"; };
 		35CBD3C21FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGMyWorkBaseViewController.m; sourceTree = "<group>"; };
+		35CBD3C71FA2DD73007E88AD /* KGGLookforPWDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGLookforPWDViewController.h; sourceTree = "<group>"; };
+		35CBD3C81FA2DD73007E88AD /* KGGLookforPWDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGLookforPWDViewController.m; sourceTree = "<group>"; };
+		35CBD3CB1FA324B4007E88AD /* MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuView.m; sourceTree = "<group>"; };
+		35CBD3CC1FA324B4007E88AD /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
+		35CBD3D11FA326A4007E88AD /* KGGLeftTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLeftTableController.h; sourceTree = "<group>"; };
+		35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLeftTableController.m; sourceTree = "<group>"; };
 		35E8B6C11F8DBE5C00DCA0EB /* KGGOrderDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderDetailsModel.h; sourceTree = "<group>"; };
 		35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderDetailsModel.m; sourceTree = "<group>"; };
 		35E8B6C51F8DC36100DCA0EB /* KGGPublishOrderRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishOrderRequestManager.h; sourceTree = "<group>"; };
@@ -836,6 +836,8 @@
 				185C86891F46861A00356ECD /* KGGConfirmPasswordViewController.m */,
 				185C86821F45977E00356ECD /* KGGForgetPasswordViewController.h */,
 				185C86831F45977E00356ECD /* KGGForgetPasswordViewController.m */,
+				35CBD3C71FA2DD73007E88AD /* KGGLookforPWDViewController.h */,
+				35CBD3C81FA2DD73007E88AD /* KGGLookforPWDViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1086,6 +1088,7 @@
 		189D20EC1F42FE170004F1EB /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				35CBD3CA1FA3249B007E88AD /* LeftMenu */,
 				3505C8351F976A5E0085D688 /* PKShortVideo */,
 				3505C8151F9768FD0085D688 /* TZImagePickerController */,
 				3505C8011F971BBC0085D688 /* KGGTimeChoose */,
@@ -1215,8 +1218,6 @@
 			children = (
 				3505C8751F984FED0085D688 /* KGGSlideMenu.h */,
 				3505C8761F984FED0085D688 /* KGGSlideMenu.m */,
-				185C86951F46DB6E00356ECD /* KGGSliderMenuTool.h */,
-				185C86961F46DB6E00356ECD /* KGGSliderMenuTool.m */,
 				185C86FD1F4D51A100356ECD /* KGGTextView.h */,
 				185C86FE1F4D51A100356ECD /* KGGTextView.m */,
 				35F8308A1F66897800204989 /* KGGInfoTextFiel.h */,
@@ -1343,10 +1344,8 @@
 				18F5BA3D1F4ED24F00E6ADC4 /* KGGCustomerCenterController.h */,
 				18F5BA3E1F4ED24F00E6ADC4 /* KGGCustomerCenterController.m */,
 				18F5BA3F1F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib */,
-				18F5BA401F4ED24F00E6ADC4 /* KGGLeftDrawerViewController.h */,
-				18F5BA411F4ED24F00E6ADC4 /* KGGLeftDrawerViewController.m */,
-				18F5BA421F4ED24F00E6ADC4 /* KGGLeftTableController.h */,
-				18F5BA431F4ED24F00E6ADC4 /* KGGLeftTableController.m */,
+				35CBD3D11FA326A4007E88AD /* KGGLeftTableController.h */,
+				35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */,
 				18F5BA441F4ED24F00E6ADC4 /* KGGMoreSettingController.h */,
 				18F5BA451F4ED24F00E6ADC4 /* KGGMoreSettingController.m */,
 				359CD0831F56B14C00DDFA62 /* KGGPersonalMessageController.h */,
@@ -1567,6 +1566,15 @@
 				3583818B1F8B4B67002A17C5 /* KGGLoginParam.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		35CBD3CA1FA3249B007E88AD /* LeftMenu */ = {
+			isa = PBXGroup;
+			children = (
+				35CBD3CC1FA324B4007E88AD /* MenuView.h */,
+				35CBD3CB1FA324B4007E88AD /* MenuView.m */,
+			);
+			path = LeftMenu;
 			sourceTree = "<group>";
 		};
 		35E8B6C41F8DC32A00DCA0EB /* Model */ = {
@@ -2223,7 +2231,7 @@
 				188F2D591F540A470023F4BE /* KGGRefreshHeader.m in Sources */,
 				35F830441F60E4B000204989 /* KGGPublishPayViewController.m in Sources */,
 				35FF5CA71F6A7DEE00E1A50B /* KGGPaySheetViewCell.m in Sources */,
-				18F5BA721F4ED24F00E6ADC4 /* KGGLeftDrawerViewController.m in Sources */,
+				35CBD3D31FA326A4007E88AD /* KGGLeftTableController.m in Sources */,
 				18F5BA6E1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.m in Sources */,
 				18F5BA701F4ED24F00E6ADC4 /* KGGCustomerCenterController.m in Sources */,
 				350360521F594B6F00FB0EDD /* KGGSexField.m in Sources */,
@@ -2237,7 +2245,6 @@
 				3505C8331F9769760085D688 /* TZVideoPlayerController.m in Sources */,
 				189D21251F42FE170004F1EB /* SDWebImageDecoder.m in Sources */,
 				189D21281F42FE170004F1EB /* SDWebImageManager.m in Sources */,
-				185C86971F46DB6E00356ECD /* KGGSliderMenuTool.m in Sources */,
 				185C86811F4596F400356ECD /* KGGRegisterViewController.m in Sources */,
 				185C86721F452F2500356ECD /* KGGConst.m in Sources */,
 				189D21561F43E44C0004F1EB /* NSBundle+KGGExtension.m in Sources */,
@@ -2299,7 +2306,9 @@
 				3505C80E1F9726D10085D688 /* MXSCycleScrollView.m in Sources */,
 				185C86EE1F4BE93D00356ECD /* UITextField+KGGExtension.m in Sources */,
 				35F8307D1F628BCF00204989 /* SNHSecurityCodeViewController.m in Sources */,
+				35CBD3CD1FA324B4007E88AD /* MenuView.m in Sources */,
 				35F830501F61177E00204989 /* CYConst.m in Sources */,
+				35CBD3C91FA2DD74007E88AD /* KGGLookforPWDViewController.m in Sources */,
 				189D211B1F42FE170004F1EB /* TAAbstractDotView.m in Sources */,
 				189D21211F42FE170004F1EB /* UIView+SDExtension.m in Sources */,
 				185C867B1F4541C300356ECD /* KGGLoginView.m in Sources */,
@@ -2352,7 +2361,6 @@
 				35AE111C1F8EFFAE00BCD2BD /* KGGApplyVIPView.m in Sources */,
 				188F2D431F4ED50E0023F4BE /* KGGLookWorkViewCell.m in Sources */,
 				35F830691F627B2900204989 /* KGGAddBankCardFirstController.m in Sources */,
-				18F5BA731F4ED24F00E6ADC4 /* KGGLeftTableController.m in Sources */,
 				3505C85F1F976A5E0085D688 /* UIImage+PKShortVideoPlayer.m in Sources */,
 				35F830901F67C91300204989 /* KGGRongCloudModel.m in Sources */,
 				18F5BA671F4ED24F00E6ADC4 /* KGGHomeListViewCell.m in Sources */,

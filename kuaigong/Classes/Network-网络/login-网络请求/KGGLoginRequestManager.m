@@ -318,5 +318,37 @@
     } aboveView:view inCaller:caller];
 }
 
+/**
+ 找回用户登录密码
+ 
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ */
++ (void)lookForUserPhone:(NSString *)phone Code:(NSString *)code completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/user/findSelfPwd");
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"phone"] = phone;
+    dic[@"code"] = code;
+    
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) {
+            return ;
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+            return ;
+        }else{
+            KGGLog(@"注册:%@",responseObj);
+            if (completionHandler) {
+                completionHandler(responseObj);
+            }
+        }
+        
+    } aboveView:view inCaller:caller];
+    
+}
+
 
 @end

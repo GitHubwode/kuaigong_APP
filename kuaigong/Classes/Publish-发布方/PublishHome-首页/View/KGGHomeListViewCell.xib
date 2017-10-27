@@ -32,6 +32,9 @@
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用工人数" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BdV-w1-dB1">
                         <rect key="frame" x="105.5" y="7" width="109.5" height="30"/>
                         <color key="tintColor" red="0.61960784313725492" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="kcd-sh-FsN"/>
+                        </constraints>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -66,12 +69,12 @@
                     <constraint firstItem="pIT-3q-lch" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="2Vd-wr-f9p"/>
                     <constraint firstItem="pIT-3q-lch" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6W1-4p-tPg"/>
                     <constraint firstItem="ZBs-gf-bP1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Icp-tf-fif"/>
-                    <constraint firstItem="TXD-nd-LLU" firstAttribute="leading" secondItem="ZBs-gf-bP1" secondAttribute="trailing" priority="750" constant="30" id="M2L-Aq-inL"/>
+                    <constraint firstItem="TXD-nd-LLU" firstAttribute="leading" secondItem="ZBs-gf-bP1" secondAttribute="trailing" constant="30" id="M2L-Aq-inL"/>
                     <constraint firstItem="BdV-w1-dB1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Q5b-Ps-Kzo"/>
                     <constraint firstItem="TXD-nd-LLU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="er4-JC-7CY"/>
                     <constraint firstAttribute="trailing" secondItem="TXD-nd-LLU" secondAttribute="trailing" constant="30" id="gw4-Ae-wkf"/>
                     <constraint firstItem="BdV-w1-dB1" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="sG9-n1-Xhi"/>
-                    <constraint firstItem="ZBs-gf-bP1" firstAttribute="leading" secondItem="BdV-w1-dB1" secondAttribute="trailing" constant="5" id="x5M-W3-PMa"/>
+                    <constraint firstItem="ZBs-gf-bP1" firstAttribute="leading" secondItem="BdV-w1-dB1" secondAttribute="trailing" priority="750" constant="5" id="x5M-W3-PMa"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

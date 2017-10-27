@@ -36,9 +36,9 @@ static CGFloat const itemHeight = 168.f;
 #pragma mark - 设计页面
 - (void)setupHomeView
 {
-    self.headSDCycleView.frame = CGRectMake(0, 0, kMainScreenWidth, itemHeight);
+    self.headSDCycleView.frame = CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight));
     [self addSubview:self.headSDCycleView];
-    self.slideMenu.frame = CGRectMake(0, itemHeight, kMainScreenWidth, 37);
+    self.slideMenu.frame = CGRectMake(0, KGGAdaptedHeight(itemHeight), kMainScreenWidth, KGGAdaptedHeight(37));
     [self addSubview:self.slideMenu];
 }
 

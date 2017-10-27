@@ -94,35 +94,35 @@
     }
 }
 
-#pragma mark - 确认收款按钮
-- (void)snh_sureCollectButtonClick:(UIButton *)sender
-{
-    KGGLog(@"确认收款按钮");
-}
-
-//- (void)addCollectButton
+//#pragma mark - 确认收款按钮
+//- (void)snh_sureCollectButtonClick:(UIButton *)sender
 //{
-//    weakSelf(self);
-//    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"确认收款"];
-//    [self.view addSubview:useButton];
-//    [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(weakself.view.mas_centerX);
-//        make.bottom.equalTo(weakself.view.mas_bottom);
-//        make.height.equalTo(@(KGGLoginButtonHeight));
-//        make.width.equalTo(@(kMainScreenWidth));
-//    }];
+//    KGGLog(@"确认收款按钮");
 //}
-
-#pragma mark - lazyButton
-- (UIButton *)snh_creatButtonImage:(NSString *)image Title:(NSString *)title
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-    [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(snh_sureCollectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    return button;
-}
+//
+////- (void)addCollectButton
+////{
+////    weakSelf(self);
+////    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"确认收款"];
+////    [self.view addSubview:useButton];
+////    [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
+////        make.centerX.equalTo(weakself.view.mas_centerX);
+////        make.bottom.equalTo(weakself.view.mas_bottom);
+////        make.height.equalTo(@(KGGLoginButtonHeight));
+////        make.width.equalTo(@(kMainScreenWidth));
+////    }];
+////}
+//
+//#pragma mark - lazyButton
+//- (UIButton *)snh_creatButtonImage:(NSString *)image Title:(NSString *)title
+//{
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [button setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+//    [button setTitle:title forState:UIControlStateNormal];
+//    [button setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
+//    [button addTarget:self action:@selector(snh_sureCollectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    return button;
+//}
 
 
 

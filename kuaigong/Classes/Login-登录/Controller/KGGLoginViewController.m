@@ -13,6 +13,7 @@
 #import "KGGUMSocialHelper.h"
 #import "KGGLoginParam.h"
 #import "KGGLoginRequestManager.h"
+#import "KGGLookforPWDViewController.h"
 
 @interface KGGLoginViewController ()<UITextFieldDelegate>
 
@@ -258,9 +259,18 @@
 - (void)kgg_userForgetPasswordButton
 {
     KGGLog(@"忘记密码");
-    KGGForgetPasswordViewController *forgrtVC = [[KGGForgetPasswordViewController alloc]init];
-    forgrtVC.itemTitle = @"忘记密码";
+    KGGLookforPWDViewController *forgrtVC = [[KGGLookforPWDViewController alloc]init];
     [self presentViewController:[[KGGNavigationController alloc] initWithRootViewController:forgrtVC] animated:YES completion:nil];
+}
+
+- (void)kgg_loginOut
+{
+    [KGGLoginRequestManager loginOutWithcompletion:^(KGGResponseObj *responseObj) {
+        
+        [[KGGUserManager shareUserManager] logout];
+        [KGGNotificationCenter postNotificationName:KGGUserLogoutNotifacation object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    } aboveView:self.view inCaller:self];
 }
 
 - (void)kgg_weChatButton
@@ -273,7 +283,6 @@
             [weakself.view showHint:@"授权失败"];
         }else{
             KGGLog(@"userinfo %@",userinfo);
-
              // 设置性别，微信中 m 代表男，f 代表女
             NSString *gender = userinfo.gender;
             if ([gender isEqualToString:@"m"]) {
@@ -302,7 +311,6 @@
         KGGLog(@"微信登录成功");
         KGGLog(@"%@",user);
         [KGGNotificationCenter postNotificationName:KGGUserLoginNotifacation object:nil];
-//        [self dismissViewControllerAnimated:YES completion:nil];
         [self bindingPhoneNum];
     } aboveView:self.view inCaller:self];
 }
@@ -311,7 +319,7 @@
 - (void)bindingPhoneNum
 {
     KGGForgetPasswordViewController *forgrtVC = [[KGGForgetPasswordViewController alloc]init];
-    forgrtVC.itemTitle = @"绑定手机号";
+    forgrtVC.changetype = KGGUserChangeBindPhoneType;
     [self presentViewController:[[KGGNavigationController alloc] initWithRootViewController:forgrtVC] animated:YES completion:nil];
 }
 

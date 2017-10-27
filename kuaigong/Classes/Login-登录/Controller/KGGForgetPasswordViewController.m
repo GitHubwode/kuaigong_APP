@@ -17,20 +17,30 @@
 @property (nonatomic, strong) KGGLoginView *loginView3;
 @property (nonatomic, strong) KGGLoginView *loginView4;
 @property (nonatomic, strong) UIButton *completeButton;
+/** 导航栏标题 */
+@property (nonatomic, strong) NSString *itemTitle;
 
 @end
 
 @implementation KGGForgetPasswordViewController
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    self.navigationController.navigationBarHidden=YES;
-//}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColorHex(0xffffff);
+    
+    if (self.changetype == KGGUserChangePWDType) {
+        self.itemTitle = @"修改密码";
+    }else if (self.changetype == KGGUserChangeBindPhoneType){
+        self.itemTitle = @"绑定手机号";
+    }else if (self.changetype == KGGUserChangeLookForPWDType){
+        self.itemTitle = @"修改密码";
+    }
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     // 设置点击空白区域键盘收回
@@ -254,9 +264,9 @@
 #pragma mark - 忘记密码   绑定手机号
 - (void)updataUserPhone:(NSString *)phone Code:(NSString *)code PassWord:(NSString *)passWord
 {
-    if ([self.itemTitle isEqualToString:@"更改密码"]) {
+    if (self.changetype == KGGUserChangePWDType) {
         [self updataPassWord:passWord Code:code];
-    }else if([self.itemTitle isEqualToString:@"绑定手机号"]){
+    }else if (self.changetype == KGGUserChangeBindPhoneType){
         [KGGLoginRequestManager updataUserPhoneNum:phone Code:code completion:^(KGGResponseObj *responseObj) {
             if (responseObj.code == KGGSuccessCode) {
                 KGGLog(@"修改电话成功");
@@ -264,8 +274,8 @@
             }
             
         } aboveView:self.view inCaller:self];
-    }else{
-        KGGLog(@"找回密码");
+    }else if (self.changetype == KGGUserChangeLookForPWDType){
+        [self updataPassWord:passWord Code:code];
     }
 }
 
@@ -275,14 +285,20 @@
         if (responseObj.code == KGGSuccessCode) {
             [self.view showHint:@"修改密码成功"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if ([self.itemTitle isEqualToString:@"更改密码"]) {
+                if (self.changetype == KGGUserChangePWDType) {
                     [self dismissViewControllerAnimated:YES completion:^{
                         if (self.forgetSuccessBlock) {
                             self.forgetSuccessBlock();
                         }
                     }];
-                }else if([self.itemTitle isEqualToString:@"绑定手机号"]){
+                }else if(self.changetype == KGGUserChangeBindPhoneType){
                     [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                }else if (self.changetype == KGGUserChangeLookForPWDType){
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        if (self.forgetSuccessBlock) {
+                            self.forgetSuccessBlock();
+                        }
+                    }];
                 }
             });
         }

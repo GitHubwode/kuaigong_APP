@@ -2,7 +2,7 @@
 //  KGGLeftTableController.m
 //  kuaigong
 //
-//  Created by Ding on 2017/8/18.
+//  Created by Ding on 2017/10/27.
 //  Copyright © 2017年 Ding. All rights reserved.
 //
 
@@ -10,29 +10,33 @@
 #import "KGGLeftDrawerCell.h"
 #import "KGGLeftDrawerModel.h"
 #import "KGGLeftDrawerHeaderView.h"
-#import "KGGNavigationController.h"
-#import "KGGLoginViewController.h"
-#import "KGGPersonalMessageController.h"
 
-@interface KGGLeftTableController ()<UITableViewDelegate,UITableViewDataSource,KGGLeftDrawerHeaderViewDelegate>
+#define ImageviewWidth    18
+#define Frame_Width       self.frame.size.width//200
+
+@interface KGGLeftTableController ()<UITableViewDataSource,UITableViewDelegate,KGGLeftDrawerHeaderViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<KGGLeftDrawerModel *> *dataArray;
 @property (nonatomic, strong) UIImageView *avatarImageView;
 @property (nonatomic, strong) UILabel *nickLabel;
 @property (nonatomic, strong) KGGLeftDrawerHeaderView *headerView;
+
 @end
 
 @implementation KGGLeftTableController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView.tableHeaderView = self.headerView;
-    [self.view addSubview:self.tableView];
-    [self kgg_addsubViewBottom];
-    [KGGNotificationCenter addObserver:self selector:@selector(login) name:KGGUserLoginNotifacation object:nil];
-    [KGGNotificationCenter addObserver:self selector:@selector(loginOut) name:KGGUserLogoutNotifacation object:nil];
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.tableView.tableHeaderView = self.headerView;
+        [self addSubview:self.tableView];
+        [self kgg_addsubViewBottom];
+        [KGGNotificationCenter addObserver:self selector:@selector(login) name:KGGUserLoginNotifacation object:nil];
+        [KGGNotificationCenter addObserver:self selector:@selector(loginOut) name:KGGUserLogoutNotifacation object:nil];
+    }
+    return self;
 }
 
 #pragma mark -  添加底部图标
@@ -40,7 +44,7 @@
 {
     UIImageView *bottonImageView = [[UIImageView alloc]init];
     bottonImageView.image = [UIImage imageNamed:@"logo"];
-    [self.view addSubview:bottonImageView];
+    [self addSubview:bottonImageView];
     weakSelf(self);
     [bottonImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakself.tableView.mas_centerX);
@@ -75,7 +79,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KGGLeftDrawerModel *model = self.dataArray[indexPath.row];
-//    http://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/fytsx0c17hj140ohse9uq5opr6p0c166.jpg
     KGGLeftDrawerCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGLeftDrawerCell leftIdentifierClass] forIndexPath:indexPath];
     cell.iconImageView.image = [UIImage imageNamed:model.icon];
     cell.iconLabel.text = model.title;
@@ -86,32 +89,30 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KGGLeftDrawerModel *model = self.dataArray[indexPath.row];
-    Class class = NSClassFromString(model.linkVC);
-    [self.navigationController pushViewController:[class new] animated:YES];
+//    Class class = NSClassFromString(model.linkVC);
+//    [self.navigationController pushViewController:[class new] animated:YES];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if([self.customDelegate respondsToSelector:@selector(LeftMenuViewClick: Drawer:)]){
+        [self.customDelegate LeftMenuViewClick:indexPath.row Drawer:model.linkVC];
+    }
 }
 
 #pragma mark - KGGLeftDrawerHeaderViewDelegate
 - (void)kgg_avatarImageButtonClick
 {
-    KGGLog(@"点击头像跳转到个人信息");
-    if ([KGGUserManager shareUserManager].logined) {
-        KGGPersonalMessageController *personalVC = [[KGGPersonalMessageController alloc]init];
-        
-        personalVC.editInfoSuccessBlock = ^{
-            [self.headerView leftTableHeaderView];
-            [self.tableView reloadData];
-        };
-        [self.navigationController pushViewController:personalVC animated:YES];
-    }else{
-        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+    if([self.customDelegate respondsToSelector:@selector(LeftMenuViewClick: Drawer:)]){
+        [self.customDelegate LeftMenuViewClick:1000 Drawer:nil];
     }
+    KGGLog(@"点击头像跳转到个人信息");
 }
 
 
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth*0.68, kMainScreenHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KGGAdaptedWidth(kMainScreenWidth*0.68), kMainScreenHeight) style:UITableViewStylePlain];
         [_tableView registerNib:[UINib nibWithNibName:@"KGGLeftDrawerCell"bundle:nil] forCellReuseIdentifier:[KGGLeftDrawerCell leftIdentifierClass]];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = [UIColor whiteColor];
@@ -133,7 +134,7 @@
 - (KGGLeftDrawerHeaderView *)headerView
 {
     if (!_headerView) {
-        _headerView = [[KGGLeftDrawerHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.view.xc_width, 185.5)];
+        _headerView = [[KGGLeftDrawerHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.xc_width, 185.5)];
         _headerView.delegate = self;
         
     }
@@ -144,11 +145,6 @@
 {
     [KGGNotificationCenter removeObserver:self];
     KGGLogFunc;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

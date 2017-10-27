@@ -32,7 +32,11 @@ static NSString *const homeListViewCell = @"homeListViewCell";
 - (IBAction)homeAddButtonClick:(UIButton *)sender {
     KGGLog(@"加人数");
     int num =  [self.homeTextField.text intValue];
-    num++;
+    if ([self.homeTextField.placeholder isEqualToString:@"请填写工价"]) {
+        num=num+10;
+    }else{
+      num++;
+    }
     self.homeTextField.text = [NSString stringWithFormat:@"%d",num];
     [self homePublishText:self.homeTextField.text];
 }
@@ -40,7 +44,11 @@ static NSString *const homeListViewCell = @"homeListViewCell";
     KGGLog(@"减人数");
     int num =  [self.homeTextField.text intValue];
     if (num == 0) return;
-    num--;
+    if ([self.homeTextField.placeholder isEqualToString:@"请填写工价"]) {
+        num=num-10;
+    }else{
+        num--;
+    }
     self.homeTextField.text = [NSString stringWithFormat:@"%d",num];
     [self homePublishText:self.homeTextField.text];
 }
