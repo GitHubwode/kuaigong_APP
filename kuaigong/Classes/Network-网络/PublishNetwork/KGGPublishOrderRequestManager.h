@@ -10,6 +10,8 @@
 #import "KGGPublishOrderParam.h"
 #import "KGGOrderDetailsModel.h"
 
+@class KGGOrderImageModel;
+
 typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
     KGGOrderRequestAllUndoType, // 全部未完成的订单
     KGGOrderRequestCompleteType, // 我已完成的订单
@@ -65,6 +67,13 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
  */
 + (void)publishOrderDetailsMessageOrder:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
+/**
+ 获取发照片的信息
+ @param path 路径 timeStamp 时间戳 签名 signature 参数
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)publishOrderUpdataImagePath:(NSString *)path TimeStamp:(NSString *)timeStamp Signature:(NSString *)signature completion:(void(^)(KGGOrderImageModel *imageModel))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 @end
 

@@ -45,32 +45,51 @@
         make.height.equalTo(@(KGGAdaptedHeight(32)));
     }];
     
-    UIView *line1 = [self creatLineView];
-    [self addSubview:line1];
-    [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakself.mas_left);
+    UIView *addView = [UIView new];
+    addView.backgroundColor = KGGViewBackgroundColor;
+    addView.layer.masksToBounds = YES;
+    addView.layer.cornerRadius = 5;
+    [self addSubview:addView];
+    [addView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(weakself.mas_centerX);
         make.top.equalTo(weakself.cycleTitleView.mas_bottom).offset(1);
-        make.width.equalTo(@(kMainScreenWidth));
-        make.height.equalTo(@(KGGOnePixelHeight));
+        make.width.equalTo(@(KGGAdaptedWidth(307)));
+        make.height.equalTo(@(KGGAdaptedHeight(56)));
+    }];
+    UIView *dotView = [UIView new];
+    dotView.backgroundColor = KGGGoldenThemeColor;
+    dotView.layer.masksToBounds = YES;
+    dotView.layer.cornerRadius = 5;
+    [addView addSubview:dotView];
+    [dotView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(addView.mas_centerY);
+        make.left.equalTo(addView.mas_left).offset(KGGAdaptedWidth(20));
+        make.width.height.mas_equalTo(@(10));
     }];
     
-    [self addSubview:self.locationButton];
+    UIImageView *imageview = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_dingwei"]];
+    [addView addSubview:imageview];
+    [imageview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(dotView.mas_centerY);
+        make.right.equalTo(addView.mas_right).offset(KGGAdaptedWidth(-20));
+        make.width.equalTo(@(18));
+        make.height.equalTo(@(23));
+    }];
+    
+    [addView addSubview:self.locationLabel];
+    [self.locationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(dotView.mas_centerY);
+        make.left.equalTo(dotView.mas_right).offset(KGGAdaptedWidth(20));
+        make.right.equalTo(imageview.mas_left).offset(KGGAdaptedWidth(-20));
+    }];
+    
+    [addView addSubview:self.locationButton];
     [self.locationButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakself.mas_left);
-        make.top.equalTo(line1.mas_bottom);
-        make.width.equalTo(@(kMainScreenWidth));
-        make.height.equalTo(@(KGGAdaptedHeight(54)));
+        make.centerY.equalTo(addView.mas_centerY);
+        make.centerX.equalTo(addView.mas_centerX);
+        make.width.equalTo(addView.mas_width);
+        make.height.equalTo(addView.mas_height);
     }];
-    
-    UIView *line2 = [self creatLineView];
-    [self addSubview:line2];
-    [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakself.mas_left);
-        make.top.equalTo(weakself.locationButton.mas_bottom).offset(2);
-        make.width.equalTo(@(kMainScreenWidth));
-        make.height.equalTo(@(KGGOnePixelHeight));
-    }];
-    
 }
 
 #pragma mark - 定位
@@ -95,13 +114,21 @@
 {
     if (!_locationButton) {
         _locationButton = [[UIButton alloc]init];
-        [_locationButton setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateNormal];
-        [_locationButton setTitle:@" 请点击选择用工地址" forState:UIControlStateNormal];
-        [_locationButton setTitleColor:UIColorHex(0x333333) forState:UIControlStateNormal];
         [_locationButton addTarget:self action:@selector(locationButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        _locationButton.titleLabel.font = KGGFont(14);
     }
     return _locationButton;
+}
+
+- (UILabel *)locationLabel
+{
+    if (!_locationLabel) {
+        _locationLabel = [UILabel new];
+        _locationLabel.text = @"请点击选择用工地址";
+        _locationLabel.textAlignment = NSTextAlignmentLeft;
+        _locationLabel.font = KGGFont(14);
+        _locationLabel.textColor = UIColorHex(0x333333);
+    }
+    return _locationLabel;
 }
 
 - (SDCycleScrollView *)cycleTitleView
@@ -109,7 +136,7 @@
     if (!_cycleTitleView) {
         _cycleTitleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kMainScreenWidth, 28) delegate:self placeholderImage:nil];
         _cycleTitleView.autoScrollTimeInterval = 1.5f;
-        _cycleTitleView.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _cycleTitleView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _cycleTitleView.onlyDisplayText = YES;
         _cycleTitleView.titleLabelTextColor = UIColorHex(0x333333);
         _cycleTitleView.titleLabelBackgroundColor = [UIColor whiteColor];

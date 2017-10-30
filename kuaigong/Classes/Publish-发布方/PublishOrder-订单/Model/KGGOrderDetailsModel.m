@@ -64,7 +64,7 @@
         _avatarUrl = [NSString stringWithFormat:@"https:%@",_avatarUrl];
     }
     _accpetTime = [NSString TimeStamp:_accpetTime];
-    _workStartTime = [NSString TimeStamp:_workStartTime];
+    _workStartTime = [NSString OrderDetailsTimeStamp:_workStartTime];
     
 }
 

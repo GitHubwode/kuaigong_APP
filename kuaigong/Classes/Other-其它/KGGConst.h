@@ -19,7 +19,7 @@ extern NSString * const KGGUserType;
 extern NSString * const KGGAppItnuesURL;
 /** 储存后台分配的deviceId的key */
 extern NSString * const KGGDeviceIdKey;
-/** 储存后台分配的aesKey的key，暂时不用 */
+/** 储存后台分配的aesKey的key， */
 extern NSString * const KGGAesKey;
 /** 手机号码最大长度 */
 extern NSUInteger const KGGCellphoneMaxLength;

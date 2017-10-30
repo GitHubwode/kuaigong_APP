@@ -18,8 +18,9 @@
 #import "KGGPublishOrderRequestManager.h"
 #import "KGGPublishOrderParam.h"
 #import "KGGWorkTypeModel.h"
+#import "KGGEditPublishViewController.h"
 
-@interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource,KGGUseWorkerHeaderViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, strong) UITableView *tableView;
@@ -48,12 +49,27 @@
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.navigationItem.title = @"用工信息";
-    self.headerView = [[KGGUseWorkerHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 194.5)];
+    self.headerView = [[KGGUseWorkerHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 360)];
+    self.headerView.headerDelegate = self;
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self kgg_addButton];
     KGGLog(@"%@",self.publishDatasource);
     [self useWorkerMessage];
+}
+
+#pragma mark - header的代理  备注 和选择图片
+- (void)kgg_userworkHeaderPhoneButtonClick
+{
+    KGGLog(@"选择照片");
+    KGGEditPublishViewController *publish = [[KGGEditPublishViewController alloc]init];
+//    publish.delegate = self;
+    [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:publish] animated:YES completion:nil];
+}
+
+- (void)kgg_userworkHeaderOrderRemarkMessage:(NSString *)message
+{
+    KGGLog(@"%@备注信息",message);
 }
 
 #pragma mark - 用工信息赋值

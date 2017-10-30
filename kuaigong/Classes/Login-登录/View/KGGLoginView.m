@@ -131,12 +131,8 @@
     
     NSString *cellphone = [self.codeDelegate textFieldCanSendCode:self];
     NSString *codeType = [self.codeDelegate codeType];
-    
-    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
-    NSString *timeString = [NSString stringWithFormat:@"%f", a];//转为字符型
-    
-    long time1 = [timeString longLongValue];
+
+    long time1 = [[NSString publishSetUpNowTime] longLongValue];
     
     NSString *sig = [NSString stringWithFormat:@"%@%@%ld%@",cellphone,codeType,time1,KGGAesKey];
     NSString *sig1 = [sig md5String];

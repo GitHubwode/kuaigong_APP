@@ -86,6 +86,8 @@
 	<string>应用需要使用您的位置</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>应用需要访问您的相册</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>应用需要使用您的麦克风</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

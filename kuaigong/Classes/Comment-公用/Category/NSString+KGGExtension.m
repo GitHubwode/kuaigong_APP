@@ -114,6 +114,17 @@
     NSString *currentDateStr = [dateFormatter stringFromDate:date];
     return currentDateStr;
 }
+
+//时间戳转换为所需要的样式
++(NSString *)OrderDetailsTimeStamp:(NSString *)strTime
+{
+    NSTimeInterval time = [strTime doubleValue]/1000;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM月dd日 HH:mm"];
+    NSString *currentDateStr = [dateFormatter stringFromDate:date];
+    return currentDateStr;
+}
 //时间戳转换为所需要的样式
 +(NSString *)PublishWorkTimeStamp:(NSString *)strTime
 {
@@ -123,6 +134,14 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *currentDateStr = [dateFormatter stringFromDate:date];
     return currentDateStr;
+}
+//获取当前时间戳
++ (NSString *)publishSetUpNowTime
+{
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+    NSString *timeString = [NSString stringWithFormat:@"%f", a];//转为字符型
+    return timeString;
 }
 
 

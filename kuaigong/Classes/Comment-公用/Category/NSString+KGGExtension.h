@@ -53,11 +53,16 @@
 //计算预约时间距离现在还剩多久
 +(NSString *)getNowTimeWithString:(NSString *)aTimeString;
 
+//时间戳转换为所需要的样式
++(NSString *)OrderDetailsTimeStamp:(NSString *)strTime;
+
 - (NSString*)encodeString;
 -(NSString *)decodeString;
 
 //计算当前月的总后一天是几号
 + (NSString *)getMonthBeginAndEndWith:(NSString *)dateStr;
+//获取当前时间戳
++ (NSString *)publishSetUpNowTime;
 
 /** 获取当前时间戳 */
 + (NSString *)getWorkBeginTime:(NSString *)beginTime;

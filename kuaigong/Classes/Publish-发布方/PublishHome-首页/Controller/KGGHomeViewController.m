@@ -301,7 +301,8 @@ static CGFloat const topHeight = 37.f;
             self.longitudeMap = longitude;
             self.latitudeMap = latitude;
             self.workAddress = addressDetails;
-            [self.footView.locationButton setTitle:addressDetails forState:UIControlStateNormal];
+//            [self.footView.locationButton setTitle:addressDetails forState:UIControlStateNormal];
+            self.footView.locationLabel.text = addressDetails;
         }
     };
     [self.navigationController pushViewController:amapVC animated:YES];

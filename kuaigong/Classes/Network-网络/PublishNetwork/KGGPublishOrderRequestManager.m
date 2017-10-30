@@ -7,6 +7,7 @@
 //
 
 #import "KGGPublishOrderRequestManager.h"
+#import "KGGOrderImageModel.h"
 
 @implementation KGGPublishOrderRequestManager
 
@@ -168,8 +169,32 @@
             }
         }
     } aboveView:nil inCaller:caller];
+}
 
-    
+/**
+ 获取发照片的信息
+ @param path 路径 timeStamp 时间戳 签名 signature 参数
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)publishOrderUpdataImagePath:(NSString *)path TimeStamp:(NSString *)timeStamp Signature:(NSString *)signature completion:(void(^)(KGGOrderImageModel *imageModel))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/upload/getUploadSignature");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"path"] = path;
+    dic[@"timestamp"] = timeStamp;
+    dic[@"signature"] =signature;
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        KGGOrderImageModel *model = [KGGOrderImageModel mj_setKeyValues:responseObj.data];
+        if (completionHandler) {
+            completionHandler(model);
+        }
+    } aboveView:view inCaller:caller];
 }
 
 

@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol KGGUseWorkerHeaderViewDelegate <NSObject>
+
+- (void)kgg_userworkHeaderOrderRemarkMessage:(NSString *)message;
+- (void)kgg_userworkHeaderPhoneButtonClick;
+
+@end
+
 @interface KGGUseWorkerHeaderView : UIView
 
 @property (nonatomic, strong) UITextView *headerTextView;
 @property (nonatomic, strong) UILabel *orderDetailLabel;
 @property (nonatomic, strong) UILabel *orderTotalLabel;
+@property (nonatomic, weak) id<KGGUseWorkerHeaderViewDelegate>headerDelegate;
 
 @end
