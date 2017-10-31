@@ -14,6 +14,7 @@
 //#import "KGGMyWorkViewController.h"
 #import "KGGMyWorkBaseViewController.h"
 #import "KGGLoginViewController.h"
+#import "KGGCenterViewController.h"
 
 
 @interface KGGMeWorkViewController ()<UITableViewDelegate,UITableViewDataSource,KGGMeWorkHeaderViewDelegate>
@@ -79,8 +80,13 @@
         KGGMyWorkBaseViewController *myVC = [[KGGMyWorkBaseViewController alloc]init];
         [self.navigationController pushViewController:myVC animated:YES];
     }
-    KGGLog(@"第几行 %ld",(long)indexPath.row);
     
+    if (indexPath.row == 2) {
+        KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]init];
+        [self.navigationController pushViewController:centerVC animated:YES];
+    }
+    
+    KGGLog(@"第几行 %ld",(long)indexPath.row);
 }
 
 #pragma mark -KGGMeWorkHeaderViewDelegate

@@ -29,6 +29,7 @@
 #import "UIColor+KGGExtension.h"
 #import "NSString+KGGExtension.h"
 #import "NSBundle+KGGExtension.h"
+#import "UILabel+KGGExtension.h"
 #import "UIBarButtonItem+KGGExtension.h"
 #import "NSUserDefaults+KGGExtension.h"
 #import "MBProgressHUD+KGGExtension.h"

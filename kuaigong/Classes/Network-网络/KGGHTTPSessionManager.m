@@ -273,7 +273,7 @@
     NSDictionary *headerFieldValueDictionary = [self getHeaderFieldValueDictionary];
     // 设置请求头信息
     AFHTTPRequestSerializer *requestSerializer =  [AFJSONRequestSerializer serializer];
-    
+
     for (NSString *httpHeaderField in headerFieldValueDictionary.allKeys) {
         NSString *value = headerFieldValueDictionary[httpHeaderField];
         [requestSerializer setValue:value forHTTPHeaderField:httpHeaderField];
@@ -331,6 +331,88 @@
             completionHandler(nil);
         }
     }];
+}
+
+/**
+ 以POST form表单的形式提交数据图片
+ 
+ @param url <#url description#>
+ @param form <#form description#>
+ @param completionHandler <#completionHandler description#>
+ @param view <#view description#>
+ @param caller <#caller description#>
+ */
++ (void)postFormImageDataWithUrl:(NSString *)url form:(NSMutableDictionary *)form  completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    // 检查是否有网络
+    if (![self isReachable]) {
+        // 没有网络
+        weakSelf(caller);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completionHandler && weakcaller) {
+                completionHandler(nil);
+            }
+            [MBProgressHUD showSuYaError:@"哎哟，网络貌似没有打开哟~" toView:view];
+        });
+        return;
+    }
+    
+//    // 设置请求头信息
+//    AFHTTPRequestSerializer *requestSerializer =  [AFJSONRequestSerializer serializer];
+//    [self sharedHTTPSessionManager].requestSerializer = requestSerializer;
+    
+    if (view) [view showHUD];
+    
+    weakSelf(caller);
+    weakSelf(view);
+    
+    [[self sharedHTTPSessionManager] POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        NSArray *keys = form.allKeys;
+        for (NSString *key in keys) {
+            
+            id value = form[key];
+            NSData *data;
+            
+            if ([value isKindOfClass:[NSNumber class]]) {
+                NSNumber *number = value;
+                data = [number.stringValue dataUsingEncoding:NSUTF8StringEncoding];
+            }else if ([value isKindOfClass:[NSString class]]){
+                data = [form[key] dataUsingEncoding:NSUTF8StringEncoding];
+            }
+            
+            [formData appendPartWithFormData:data name:key];
+        }
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        KGGLog(@"%@",responseObject);
+        // 移除遮罩
+        if (weakview) [weakview hideHUD];
+        // 如果调用者已经不存在，就不用继续往下执行
+        KGGResponseObj *obj = [KGGResponseObj mj_objectWithKeyValues:responseObject];
+        
+        //        if (KGGExpiredTokenCode == obj.code) {
+        ////            [KGGNotificationCenter postNotificationName:KGGConnectionStatusOffLine object:nil];
+        //        }
+        
+        completionHandler(obj);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        KGGLog(@"%@",error);
+        // 移除遮罩
+        if (weakview) {
+            [weakview hideHUD];
+            [MBProgressHUD showMessag:KGGHttpNerworkErrorTip toView:view];
+        }
+        // 如果调用者已经不存在，就不用继续往下执行
+        if (completionHandler && weakcaller) {
+            completionHandler(nil);
+        }
+    }];
+    
+    
 }
 
 @end

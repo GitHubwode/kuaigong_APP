@@ -47,7 +47,7 @@
 //    [NSThread sleepForTimeInterval:1];
     mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    // LGBN4AOWr6jWp9rAY9bgixQ4RgenEfxU sunvhui:wK8KxZhyz2Yvr3Cq8KFETxG2v3aB4xmk
+    // LGBN4AOWr6jWp9rAY9bgixQ4RgenEfxU 
   BOOL success = [mapManager start:@"LGBN4AOWr6jWp9rAY9bgixQ4RgenEfxU"  generalDelegate:nil];
     if (success) {
         KGGLog(@"百度地图定位成功");

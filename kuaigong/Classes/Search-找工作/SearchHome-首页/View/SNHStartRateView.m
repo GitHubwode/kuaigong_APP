@@ -81,7 +81,7 @@ typedef void(^completeBlock)(CGFloat currentScore);
 
 - (void)creatStartView
 {
-    self.foregroundStartView = [self createStartViewImage:@"icon_xing"];
+    self.foregroundStartView = [self createStartViewImage:@"icon_xing-"];
     self.backgroundStartView = [self createStartViewImage:@"icon_kong"];
     self.foregroundStartView.frame = CGRectMake(0, 0, self.bounds.size.width * _currentScore/self.numberOfStart, self.bounds.size.height);
     [self addSubview:self.backgroundStartView];

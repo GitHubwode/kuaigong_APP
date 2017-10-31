@@ -12,6 +12,7 @@
 #import "KGGNewFeatureViewController.h"
 #import "KGGForgetPasswordViewController.h"
 #import "KGGLoginRequestManager.h"
+#import "KGGRegardKGViewController.h"
 
 @interface KGGMoreSettingController ()<UITableViewDelegate,UITableViewDataSource>
 /**  */
@@ -70,6 +71,8 @@
         [self presentViewController:forgrtVC animated:YES completion:nil];
     }else{
         KGGLog(@"关于快工");
+        KGGRegardKGViewController *regardVC = [[KGGRegardKGViewController alloc]initWithNibName:NSStringFromClass([KGGRegardKGViewController class]) bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:regardVC animated:YES];
     }
 }
 
@@ -110,6 +113,7 @@
 {
     if (!_setTableView) {
         _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -37, kMainScreenWidth, 59*5+37) style:UITableViewStyleGrouped];
+        _setTableView.scrollEnabled = NO;
         [_setTableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGMoreSettingViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGMoreSettingViewCell moreSettingIdentifier]];
         _setTableView.rowHeight = 59.f;
         _setTableView.separatorStyle = UITableViewCellSeparatorStyleNone;

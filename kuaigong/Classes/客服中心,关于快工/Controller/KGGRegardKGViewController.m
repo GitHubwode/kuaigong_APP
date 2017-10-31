@@ -1,24 +1,28 @@
 //
-//  KGGCustomerCenterController.m
+//  KGGRegardKGViewController.m
 //  kuaigong
 //
-//  Created by Ding on 2017/8/21.
+//  Created by Ding on 2017/10/31.
 //  Copyright © 2017年 Ding. All rights reserved.
 //
 
-#import "KGGCustomerCenterController.h"
+#import "KGGRegardKGViewController.h"
 
-@interface KGGCustomerCenterController ()
+@interface KGGRegardKGViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UIView *storeView;
 
 @end
 
-@implementation KGGCustomerCenterController
+@implementation KGGRegardKGViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = KGGViewBackgroundColor;
-    self.navigationItem.title = @"客服中心";
-
+    NSString *curVersion =  [NSBundle currentVersion];
+    self.versionLabel.text = [NSString stringWithFormat:@"快工 %@",curVersion];
+    
+    [UILabel changeLineSpaceForLabel:self.messageLabel WithSpace:5.0];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -96,6 +96,17 @@ typedef void (^progressHandler)(CGFloat progress);
 + (void)postFormDataWithUrl:(NSString *)url form:(NSMutableDictionary *)form  completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 /**
+ 以POST form表单的形式提交数据图片
+ 
+ @param url <#url description#>
+ @param form <#form description#>
+ @param completionHandler <#completionHandler description#>
+ @param view <#view description#>
+ @param caller <#caller description#>
+ */
++ (void)postFormImageDataWithUrl:(NSString *)url form:(NSMutableDictionary *)form  completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
+/**
  评分的请求
  @param url 请求地址
  @param httpMethod 请求方法 POST GET

@@ -16,6 +16,7 @@
 - (void)mj_keyValuesDidFinishConvertingToObject{
     
     if (_host) {
+//        _host = [_host stringByReplacingOccurrencesOfString:@"kuaigong0001." withString:@""];
         _host = [NSString stringWithFormat:@"https:%@",_host];
     }
 }

@@ -21,7 +21,6 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewHeight;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UIView *startView;
 @property (nonatomic, strong) SNHStartRateView *startRate;
@@ -33,8 +32,7 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.avatarImageView.layer.masksToBounds = YES;
-    self.avatarImageView.layer.cornerRadius = 18.f;
-    self.lineViewHeight.constant = KGGOnePixelHeight;
+    self.avatarImageView.layer.cornerRadius = 22.f;
     [self creatTableCell];
 }
 
@@ -42,7 +40,7 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
 {
     weakSelf(self);
     
-    self.startRate = [[SNHStartRateView alloc]initWithFrame:CGRectMake(0, 0, 150, 15) NumberOfStart:5 RateStyle:IncompleteStart IsAnimation:YES delegate:self];
+    self.startRate = [[SNHStartRateView alloc]initWithFrame:CGRectMake(0, 0, 80, 11) NumberOfStart:5 RateStyle:IncompleteStart IsAnimation:YES delegate:self];
     self.startRate.delegate = self;
     self.startRate.currentScore = 3.3;
     self.startRate.isDisplay = YES;

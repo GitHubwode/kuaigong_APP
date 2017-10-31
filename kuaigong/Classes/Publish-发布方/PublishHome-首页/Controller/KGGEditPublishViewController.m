@@ -21,6 +21,8 @@
 #import "KGGOrderImageModel.h"
 #import "KGGAliyunRequestManager.h"
 
+#import "AFNetworking.h"
+
 typedef NS_ENUM(NSUInteger, SNHSelectedPublishType) {
     SNHSelectedPublishTypeDefault,
     SNHSelectedPublishTypeVideo,
@@ -404,45 +406,31 @@ static NSString *TZTestCellIdfy = @"TZTestCell";
 
                     
                     [KGGPublishOrderRequestManager publishOrderUpdataImagePath:@"order/" TimeStamp:timeStamp Signature:sig completion:^(KGGOrderImageModel *imageModel) {
-                        
+                        if (!imageModel) {
+                            
+                        }else{
+                            [self updataAliOSSImageDatas:imageDatas ImageModel:imageModel];
+                        }
                     } aboveView:self.view inCaller:self];
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-//                    [SNHShowRequestManager publishImagesFeedWithParam:param completion:^(SNHShowFeedModel *response) {
-//
-//                        item.enabled = YES;
-//
-//                        if (!response) return;
-//
-//
-//                        if (!_stageId.length) {
-//                            [MBProgressHUD showSuYaSuccess:@"发表成功" toView:nil];
-//                        }
-//
-//
-//
-//                        [self dismissViewControllerAnimated:YES completion:^{
-//                            if ([self.delegate respondsToSelector:@selector(publisSuccess:)]) {
-//                                [self.delegate publisSuccess:response];
-//                            }
-//                        }];
-//
-//                    } aboveView:self.view inCaller:self];
-                    
                 }
             }];
             index++;
         }
         
     }
+}
+
+- (void)updataAliOSSImageDatas:(NSArray *)imageData ImageModel:(KGGOrderImageModel *)imageModel
+{
+    [KGGAliyunRequestManager asynUploadImageDatas:imageData ImageModel:imageModel complete:^(NSArray<NSString *> *responseObj) {
+
+        KGGLog(@"%@",responseObj);
+
+    } inCaller:self];
     
 }
+
+
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

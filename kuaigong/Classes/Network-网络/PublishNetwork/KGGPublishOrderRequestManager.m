@@ -190,7 +190,7 @@
         }else if (responseObj.code != KGGSuccessCode){
             [view showHint:responseObj.message];
         }
-        KGGOrderImageModel *model = [KGGOrderImageModel mj_setKeyValues:responseObj.data];
+        KGGOrderImageModel *model = [KGGOrderImageModel mj_objectWithKeyValues:responseObj.data];
         if (completionHandler) {
             completionHandler(model);
         }

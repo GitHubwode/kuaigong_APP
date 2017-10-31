@@ -87,8 +87,6 @@
 		18F5BA6D1F4ED24F00E6ADC4 /* KGGUseWorkerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA371F4ED24F00E6ADC4 /* KGGUseWorkerHeaderView.m */; };
 		18F5BA6E1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA391F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.m */; };
 		18F5BA6F1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F5BA3A1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib */; };
-		18F5BA701F4ED24F00E6ADC4 /* KGGCustomerCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA3E1F4ED24F00E6ADC4 /* KGGCustomerCenterController.m */; };
-		18F5BA711F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F5BA3F1F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib */; };
 		18F5BA741F4ED24F00E6ADC4 /* KGGMoreSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA451F4ED24F00E6ADC4 /* KGGMoreSettingController.m */; };
 		18F5BA751F4ED24F00E6ADC4 /* KGGLeftDrawerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA481F4ED24F00E6ADC4 /* KGGLeftDrawerModel.m */; };
 		18F5BA761F4ED24F00E6ADC4 /* KGGLeftDrawerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA4B1F4ED24F00E6ADC4 /* KGGLeftDrawerCell.m */; };
@@ -203,6 +201,16 @@
 		35961AFE1FA7040500A52B9E /* KGGAliyunRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961AFD1FA7040500A52B9E /* KGGAliyunRequestManager.m */; };
 		35961B011FA70F2C00A52B9E /* KGGOrderImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961B001FA70F2C00A52B9E /* KGGOrderImageModel.m */; };
 		35961B041FA727EB00A52B9E /* SNHStartRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961B031FA727EB00A52B9E /* SNHStartRateView.m */; };
+		35961B0B1FA86B9C00A52B9E /* KGGCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961B0A1FA86B9C00A52B9E /* KGGCenterViewController.m */; };
+		35961B0F1FA86BB000A52B9E /* KGGCenterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961B0D1FA86BB000A52B9E /* KGGCenterViewCell.m */; };
+		35961B101FA86BB000A52B9E /* KGGCenterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35961B0E1FA86BB000A52B9E /* KGGCenterViewCell.xib */; };
+		35961B121FA86E5D00A52B9E /* KGGCenter.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35961B111FA86E5D00A52B9E /* KGGCenter.plist */; };
+		35961B151FA86E7F00A52B9E /* KGGCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961B141FA86E7F00A52B9E /* KGGCenterModel.m */; };
+		35961B181FA871AA00A52B9E /* KGGCenterHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961B171FA871AA00A52B9E /* KGGCenterHeaderView.m */; };
+		35961B1B1FA87CE400A52B9E /* KGGCenterFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961B1A1FA87CE400A52B9E /* KGGCenterFooterView.m */; };
+		35961B1F1FA8811500A52B9E /* KGGRegardKGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961B1D1FA8811500A52B9E /* KGGRegardKGViewController.m */; };
+		35961B201FA8811500A52B9E /* KGGRegardKGViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35961B1E1FA8811500A52B9E /* KGGRegardKGViewController.xib */; };
+		35961B231FA884EE00A52B9E /* UILabel+KGGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961B221FA884EE00A52B9E /* UILabel+KGGExtension.m */; };
 		359CD0851F56B14C00DDFA62 /* KGGPersonalMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359CD0841F56B14C00DDFA62 /* KGGPersonalMessageController.m */; };
 		359CD0891F57DCB400DDFA62 /* KGGPersonMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 359CD0871F57DCB400DDFA62 /* KGGPersonMessageCell.m */; };
 		359CD08A1F57DCB400DDFA62 /* KGGPersonMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359CD0881F57DCB400DDFA62 /* KGGPersonMessageCell.xib */; };
@@ -446,9 +454,6 @@
 		18F5BA381F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGUseWorkerViewCell.h; sourceTree = "<group>"; };
 		18F5BA391F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGUseWorkerViewCell.m; sourceTree = "<group>"; };
 		18F5BA3A1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGUseWorkerViewCell.xib; sourceTree = "<group>"; };
-		18F5BA3D1F4ED24F00E6ADC4 /* KGGCustomerCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGCustomerCenterController.h; sourceTree = "<group>"; };
-		18F5BA3E1F4ED24F00E6ADC4 /* KGGCustomerCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGCustomerCenterController.m; sourceTree = "<group>"; };
-		18F5BA3F1F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGCustomerCenterController.xib; sourceTree = "<group>"; };
 		18F5BA441F4ED24F00E6ADC4 /* KGGMoreSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGMoreSettingController.h; sourceTree = "<group>"; };
 		18F5BA451F4ED24F00E6ADC4 /* KGGMoreSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGMoreSettingController.m; sourceTree = "<group>"; };
 		18F5BA471F4ED24F00E6ADC4 /* KGGLeftDrawerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGLeftDrawerModel.h; sourceTree = "<group>"; };
@@ -638,6 +643,23 @@
 		35961B001FA70F2C00A52B9E /* KGGOrderImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderImageModel.m; sourceTree = "<group>"; };
 		35961B021FA727EB00A52B9E /* SNHStartRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNHStartRateView.h; sourceTree = "<group>"; };
 		35961B031FA727EB00A52B9E /* SNHStartRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNHStartRateView.m; sourceTree = "<group>"; };
+		35961B091FA86B9C00A52B9E /* KGGCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCenterViewController.h; sourceTree = "<group>"; };
+		35961B0A1FA86B9C00A52B9E /* KGGCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCenterViewController.m; sourceTree = "<group>"; };
+		35961B0C1FA86BB000A52B9E /* KGGCenterViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCenterViewCell.h; sourceTree = "<group>"; };
+		35961B0D1FA86BB000A52B9E /* KGGCenterViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCenterViewCell.m; sourceTree = "<group>"; };
+		35961B0E1FA86BB000A52B9E /* KGGCenterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGCenterViewCell.xib; sourceTree = "<group>"; };
+		35961B111FA86E5D00A52B9E /* KGGCenter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KGGCenter.plist; sourceTree = "<group>"; };
+		35961B131FA86E7F00A52B9E /* KGGCenterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCenterModel.h; sourceTree = "<group>"; };
+		35961B141FA86E7F00A52B9E /* KGGCenterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCenterModel.m; sourceTree = "<group>"; };
+		35961B161FA871AA00A52B9E /* KGGCenterHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCenterHeaderView.h; sourceTree = "<group>"; };
+		35961B171FA871AA00A52B9E /* KGGCenterHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCenterHeaderView.m; sourceTree = "<group>"; };
+		35961B191FA87CE400A52B9E /* KGGCenterFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCenterFooterView.h; sourceTree = "<group>"; };
+		35961B1A1FA87CE400A52B9E /* KGGCenterFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCenterFooterView.m; sourceTree = "<group>"; };
+		35961B1C1FA8811500A52B9E /* KGGRegardKGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRegardKGViewController.h; sourceTree = "<group>"; };
+		35961B1D1FA8811500A52B9E /* KGGRegardKGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRegardKGViewController.m; sourceTree = "<group>"; };
+		35961B1E1FA8811500A52B9E /* KGGRegardKGViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGRegardKGViewController.xib; sourceTree = "<group>"; };
+		35961B211FA884EE00A52B9E /* UILabel+KGGExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+KGGExtension.h"; sourceTree = "<group>"; };
+		35961B221FA884EE00A52B9E /* UILabel+KGGExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+KGGExtension.m"; sourceTree = "<group>"; };
 		359CD0831F56B14C00DDFA62 /* KGGPersonalMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGPersonalMessageController.h; sourceTree = "<group>"; };
 		359CD0841F56B14C00DDFA62 /* KGGPersonalMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGPersonalMessageController.m; sourceTree = "<group>"; };
 		359CD0861F57DCB400DDFA62 /* KGGPersonMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGPersonMessageCell.h; sourceTree = "<group>"; };
@@ -1049,6 +1071,7 @@
 		189D20DA1F42EE900004F1EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				35961B051FA86B7600A52B9E /* 客服中心,关于快工 */,
 				35F73AAF1F78E191000CD1D6 /* AMap-地图 */,
 				35F8308D1F67C8F100204989 /* Chat-聊天 */,
 				35F830591F61186600204989 /* Pay-支付页面 */,
@@ -1119,6 +1142,7 @@
 				189D20EB1F42F3520004F1EB /* kuaigong.pch */,
 				185C86701F452F2500356ECD /* KGGConst.h */,
 				185C86711F452F2500356ECD /* KGGConst.m */,
+				35961B111FA86E5D00A52B9E /* KGGCenter.plist */,
 				35081F641FA08115001AF418 /* KGGPublishMessage.plist */,
 				185C86A81F46EADF00356ECD /* KGGLeftDrawer.plist */,
 				185C87181F4D782800356ECD /* KGCreatAddress.plist */,
@@ -1253,6 +1277,8 @@
 				185C86FB1F4C418800356ECD /* UIButton+KGGExtension.m */,
 				3543DB7C1F5E902900BE8B93 /* NSObject+swizzle.h */,
 				3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */,
+				35961B211FA884EE00A52B9E /* UILabel+KGGExtension.h */,
+				35961B221FA884EE00A52B9E /* UILabel+KGGExtension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1400,9 +1426,6 @@
 		18F5BA3C1F4ED24F00E6ADC4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				18F5BA3D1F4ED24F00E6ADC4 /* KGGCustomerCenterController.h */,
-				18F5BA3E1F4ED24F00E6ADC4 /* KGGCustomerCenterController.m */,
-				18F5BA3F1F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib */,
 				35CBD3D11FA326A4007E88AD /* KGGLeftTableController.h */,
 				35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */,
 				18F5BA441F4ED24F00E6ADC4 /* KGGMoreSettingController.h */,
@@ -1650,6 +1673,51 @@
 				35961AFD1FA7040500A52B9E /* KGGAliyunRequestManager.m */,
 			);
 			path = "OSS-图片请求";
+			sourceTree = "<group>";
+		};
+		35961B051FA86B7600A52B9E /* 客服中心,关于快工 */ = {
+			isa = PBXGroup;
+			children = (
+				35961B061FA86B7600A52B9E /* Controller */,
+				35961B071FA86B7600A52B9E /* Model */,
+				35961B081FA86B7600A52B9E /* View */,
+			);
+			path = "客服中心,关于快工";
+			sourceTree = "<group>";
+		};
+		35961B061FA86B7600A52B9E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				35961B091FA86B9C00A52B9E /* KGGCenterViewController.h */,
+				35961B0A1FA86B9C00A52B9E /* KGGCenterViewController.m */,
+				35961B1C1FA8811500A52B9E /* KGGRegardKGViewController.h */,
+				35961B1D1FA8811500A52B9E /* KGGRegardKGViewController.m */,
+				35961B1E1FA8811500A52B9E /* KGGRegardKGViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		35961B071FA86B7600A52B9E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35961B131FA86E7F00A52B9E /* KGGCenterModel.h */,
+				35961B141FA86E7F00A52B9E /* KGGCenterModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35961B081FA86B7600A52B9E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35961B0C1FA86BB000A52B9E /* KGGCenterViewCell.h */,
+				35961B0D1FA86BB000A52B9E /* KGGCenterViewCell.m */,
+				35961B0E1FA86BB000A52B9E /* KGGCenterViewCell.xib */,
+				35961B161FA871AA00A52B9E /* KGGCenterHeaderView.h */,
+				35961B171FA871AA00A52B9E /* KGGCenterHeaderView.m */,
+				35961B191FA87CE400A52B9E /* KGGCenterFooterView.h */,
+				35961B1A1FA87CE400A52B9E /* KGGCenterFooterView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		35CBD3CA1FA3249B007E88AD /* LeftMenu */ = {
@@ -2168,7 +2236,6 @@
 				35FD03791F5E7AD400558900 /* KGGPublishSetting.plist in Resources */,
 				18F5BA681F4ED24F00E6ADC4 /* KGGHomeListViewCell.xib in Resources */,
 				35AE11741F8FBBDD00BCD2BD /* KGGAMapSearchViewCell.xib in Resources */,
-				18F5BA711F4ED24F00E6ADC4 /* KGGCustomerCenterController.xib in Resources */,
 				3505C8651F976A5E0085D688 /* PK_Delete@2x.png in Resources */,
 				35BEB1701F73C1F30060298A /* KGGWorkDetailsViewController.xib in Resources */,
 				35FD037E1F5E7C8100558900 /* KGGMoreSettingViewCell.xib in Resources */,
@@ -2179,11 +2246,13 @@
 				3505C7F71F9637E80085D688 /* KGGOrderCorrectViewCell.xib in Resources */,
 				18F5BA6F1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib in Resources */,
 				35F73AAB1F78AE9F000CD1D6 /* KGGSearchOrderViewCell.xib in Resources */,
+				35961B201FA8811500A52B9E /* KGGRegardKGViewController.xib in Resources */,
 				35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */,
 				185C87191F4D782800356ECD /* KGCreatAddress.plist in Resources */,
 				189D20B41F42EAAD0004F1EB /* Assets.xcassets in Resources */,
 				3505C8641F976A5E0085D688 /* PK_Camera_Turn@2x.png in Resources */,
 				350360571F59503900FB0EDD /* KGGSexChangeViewCell.xib in Resources */,
+				35961B101FA86BB000A52B9E /* KGGCenterViewCell.xib in Resources */,
 				18F5B97C1F4EBC7800E6ADC4 /* 启动页_1.png in Resources */,
 				185C86A91F46EADF00356ECD /* KGGLeftDrawer.plist in Resources */,
 				185C86D21F4ABB6500356ECD /* KGGNewFeatureViewController.xib in Resources */,
@@ -2193,6 +2262,7 @@
 				188F2D561F500FA40023F4BE /* KGGMeWorkViewCell.xib in Resources */,
 				35BEB1661F725D7C0060298A /* KGGMyWorkViewCell.xib in Resources */,
 				35961ACE1FA6BA8000A52B9E /* SNHPublishToolBar.xib in Resources */,
+				35961B121FA86E5D00A52B9E /* KGGCenter.plist in Resources */,
 				359CD08A1F57DCB400DDFA62 /* KGGPersonMessageCell.xib in Resources */,
 				35F830611F6270B500204989 /* KGGMyWalletViewController.xib in Resources */,
 				3545BB7F1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.xib in Resources */,
@@ -2300,6 +2370,7 @@
 				189D21531F43E36D0004F1EB /* AppDelegate+KGGGuide.m in Sources */,
 				35961AEC1FA6CB5D00A52B9E /* TZPhotoPreviewCell.m in Sources */,
 				35081F681FA08127001AF418 /* KGGHomePublishModel.m in Sources */,
+				35961B181FA871AA00A52B9E /* KGGCenterHeaderView.m in Sources */,
 				185C86661F452B8E00356ECD /* UIViewController+DismissKeyboard.m in Sources */,
 				185C86751F4534E800356ECD /* KGGHTTPSessionManager.m in Sources */,
 				35F830811F629B2300204989 /* KGGWithdrawalPasswordViewController.m in Sources */,
@@ -2320,7 +2391,6 @@
 				35FF5CA71F6A7DEE00E1A50B /* KGGPaySheetViewCell.m in Sources */,
 				35CBD3D31FA326A4007E88AD /* KGGLeftTableController.m in Sources */,
 				18F5BA6E1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.m in Sources */,
-				18F5BA701F4ED24F00E6ADC4 /* KGGCustomerCenterController.m in Sources */,
 				35961AC91FA603AC00A52B9E /* KGGShowFeedApiItem.m in Sources */,
 				350360521F594B6F00FB0EDD /* KGGSexField.m in Sources */,
 				35BEB1611F725BBA0060298A /* KGGMyWorkViewController.m in Sources */,
@@ -2337,6 +2407,8 @@
 				189D21281F42FE170004F1EB /* SDWebImageManager.m in Sources */,
 				185C86811F4596F400356ECD /* KGGRegisterViewController.m in Sources */,
 				185C86721F452F2500356ECD /* KGGConst.m in Sources */,
+				35961B0B1FA86B9C00A52B9E /* KGGCenterViewController.m in Sources */,
+				35961B151FA86E7F00A52B9E /* KGGCenterModel.m in Sources */,
 				189D21561F43E44C0004F1EB /* NSBundle+KGGExtension.m in Sources */,
 				354885DC1FA066AB00636435 /* KGGPublishHomeRequestManager.m in Sources */,
 				3505C86C1F976A5E0085D688 /* PKPlayerView.m in Sources */,
@@ -2400,6 +2472,7 @@
 				3505C80E1F9726D10085D688 /* MXSCycleScrollView.m in Sources */,
 				185C86EE1F4BE93D00356ECD /* UITextField+KGGExtension.m in Sources */,
 				35F8307D1F628BCF00204989 /* SNHSecurityCodeViewController.m in Sources */,
+				35961B1B1FA87CE400A52B9E /* KGGCenterFooterView.m in Sources */,
 				35CBD3CD1FA324B4007E88AD /* MenuView.m in Sources */,
 				35F830501F61177E00204989 /* CYConst.m in Sources */,
 				35CBD3C91FA2DD74007E88AD /* KGGLookforPWDViewController.m in Sources */,
@@ -2440,6 +2513,7 @@
 				35FF5CAB1F6A80F200E1A50B /* KGGActionSheetController.m in Sources */,
 				35F830991F68D71200204989 /* AppDelegate+KGGJPush.m in Sources */,
 				189D212B1F42FE170004F1EB /* UIImage+GIF.m in Sources */,
+				35961B0F1FA86BB000A52B9E /* KGGCenterViewCell.m in Sources */,
 				35BEB16F1F73C1F30060298A /* KGGWorkDetailsViewController.m in Sources */,
 				35F8308C1F66897800204989 /* KGGInfoTextFiel.m in Sources */,
 				185C86FF1F4D51A100356ECD /* KGGTextView.m in Sources */,
@@ -2457,6 +2531,7 @@
 				35F830691F627B2900204989 /* KGGAddBankCardFirstController.m in Sources */,
 				35961AFE1FA7040500A52B9E /* KGGAliyunRequestManager.m in Sources */,
 				3505C85F1F976A5E0085D688 /* UIImage+PKShortVideoPlayer.m in Sources */,
+				35961B1F1FA8811500A52B9E /* KGGRegardKGViewController.m in Sources */,
 				35961AC01FA5FF5300A52B9E /* LxGridViewFlowLayout.m in Sources */,
 				35F830901F67C91300204989 /* KGGRongCloudModel.m in Sources */,
 				18F5BA671F4ED24F00E6ADC4 /* KGGHomeListViewCell.m in Sources */,
@@ -2471,6 +2546,7 @@
 				35FF5C9E1F6A230B00E1A50B /* KGGBillingDetailsViewController.m in Sources */,
 				3545BB821F6FCF4A008122B8 /* KGGUMSocialHelper.m in Sources */,
 				3505C8621F976A5E0085D688 /* GPUImageFramebuffer.m in Sources */,
+				35961B231FA884EE00A52B9E /* UILabel+KGGExtension.m in Sources */,
 				189D21201F42FE170004F1EB /* SDCycleScrollView.m in Sources */,
 				35F8306D1F627BCE00204989 /* KGGCustomInfoCell.m in Sources */,
 				185C86841F45977E00356ECD /* KGGForgetPasswordViewController.m in Sources */,
