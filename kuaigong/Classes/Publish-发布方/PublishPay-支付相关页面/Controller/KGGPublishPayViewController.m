@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderTimeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *sureButton;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UIView *factoryView;
 
 @end
 
@@ -52,7 +53,7 @@
 - (void)setupModel
 {
     self.orderDetailsLabel.text = self.detailsModel.orderDetails;
-    self.moneyLabel.text = [NSString stringWithFormat:@"%.f元",self.detailsModel.totalAmount];
+    self.moneyLabel.text = [NSString stringWithFormat:@"总价:%.f元",self.detailsModel.totalAmount];
     self.remarkLabel.text = self.detailsModel.remark;
     self.orderNumLabel.text = self.detailsModel.orderNo;
     self.orderTimeLabel.text = [NSString TimeStamp:self.detailsModel.createTime];
@@ -163,11 +164,11 @@
 {
     KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
         sheetVC.moneyString = [NSString stringWithFormat:@"%.2f",self.detailsModel.totalAmount];
-    sheetVC.receiverId = @"";
-    sheetVC.tradeType = 1;
-    sheetVC.payFrom = 22;
-    sheetVC.isPublish = NO;
-    sheetVC.itemId = 11;
+//    sheetVC.receiverId = @"";
+//    sheetVC.tradeType = 1;
+//    sheetVC.payFrom = 22;
+//    sheetVC.isPublish = NO;
+    sheetVC.itemId = self.detailsModel.orderId;
     //    __weak typeof(self) weakSelf = self;
     sheetVC.callPaySuccessBlock = ^(NSString *code){
         if ([code isEqualToString:@"200"]) {

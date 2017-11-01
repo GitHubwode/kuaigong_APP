@@ -28,8 +28,8 @@
 {
     UIButton    *_button1;
     UIButton    *_button2;
-    UIButton    *_button3;
-    UIButton    *_button4;
+//    UIButton    *_button3;
+//    UIButton    *_button4;
     UIView      *_middleView;
 }
 
@@ -46,7 +46,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.moneyString = @"399";
+        self.moneyString = @"99";
         [self setUpUIView];
     }
     return self;
@@ -145,8 +145,11 @@
 - (void)rewardBackUI
 {
 //    weakSelf(self);
-    CGFloat buttonWidth = (kMainScreenWidth-KGGAdaptedWidth(60)-2*KGGAdaptedWidth(20)-3*KGGAdaptedWidth(15))/4;
-    CGFloat buttonHeight = KGGAdaptedWidth(57.5);
+//    CGFloat buttonWidth = (kMainScreenWidth-KGGAdaptedWidth(60)-2*KGGAdaptedWidth(20)-3*KGGAdaptedWidth(15))/2;
+    CGFloat buttonWidth = KGGAdaptedWidth(116);
+    CGFloat buttonHeight = KGGAdaptedHeight(100);
+    
+//    CGFloat buttonHeight = KGGAdaptedHeight(110);
 
     _button1 = [self snh_buttonTag:10000 Image:@"btn1_chosed"];
     [_middleView addSubview:_button1];
@@ -154,39 +157,39 @@
     _button2 = [self snh_buttonTag:10001 Image:@"btn2"];
     [_middleView addSubview:_button2];
     
-    _button3 = [self snh_buttonTag:10002 Image:@"btn3"];
-    [_middleView addSubview:_button3];
-    
-    _button4 = [self snh_buttonTag:10003 Image:@"btn4"];
-    [_middleView addSubview:_button4];
+//    _button3 = [self snh_buttonTag:10002 Image:@"btn3"];
+//    [_middleView addSubview:_button3];
+//
+//    _button4 = [self snh_buttonTag:10003 Image:@"btn4"];
+//    [_middleView addSubview:_button4];
     
     [_button1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_middleView.mas_centerY);
-        make.left.equalTo(_middleView.mas_left).offset(KGGAdaptedWidth(20));
+        make.left.equalTo(_middleView.mas_left).offset(KGGAdaptedWidth(40));
         make.height.equalTo(@(buttonHeight));
         make.width.equalTo(@(buttonWidth));
     }];
     
         [_button2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(_button1.mas_centerY);
-            make.left.equalTo(_button1.mas_right).offset(KGGAdaptedWidth(15));
+            make.right.equalTo(_middleView.mas_right).offset(KGGAdaptedWidth(-40));
             make.height.equalTo(@(buttonHeight));
             make.width.equalTo(@(buttonWidth));
         }];
     
-        [_button3 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_button2.mas_centerY);
-            make.left.equalTo(_button2.mas_right).offset(KGGAdaptedWidth(15));
-            make.height.equalTo(@(buttonHeight));
-            make.width.equalTo(@(buttonWidth));
-        }];
-    
-        [_button4 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_button3.mas_centerY);
-            make.left.equalTo(_button3.mas_right).offset(KGGAdaptedWidth(15));
-            make.height.equalTo(@(buttonHeight));
-            make.width.equalTo(@(buttonWidth));
-        }];
+//        [_button3 mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerY.equalTo(_button2.mas_centerY);
+//            make.left.equalTo(_button2.mas_right).offset(KGGAdaptedWidth(15));
+//            make.height.equalTo(@(buttonHeight));
+//            make.width.equalTo(@(buttonWidth));
+//        }];
+//
+//        [_button4 mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerY.equalTo(_button3.mas_centerY);
+//            make.left.equalTo(_button3.mas_right).offset(KGGAdaptedWidth(15));
+//            make.height.equalTo(@(buttonHeight));
+//            make.width.equalTo(@(buttonWidth));
+//        }];
     
 }
 
@@ -215,21 +218,21 @@
     
     switch (sender.tag) {
         case 10000:
-            KGGLog(@"399");
-            self.moneyString = @"399";
+            KGGLog(@"99");
+            self.moneyString = @"99";
             break;
         case 10001:
-            KGGLog(@"699");
-            self.moneyString = @"699";
-            break;
-        case 10002:
-            KGGLog(@"999");
-            self.moneyString = @"999";
-            break;
-        case 10003:
             KGGLog(@"2699");
             self.moneyString = @"2699";
             break;
+//        case 10002:
+//            KGGLog(@"999");
+//            self.moneyString = @"999";
+//            break;
+//        case 10003:
+//            KGGLog(@"2699");
+//            self.moneyString = @"2699";
+//            break;
         default:
             break;
     }

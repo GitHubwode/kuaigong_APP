@@ -106,5 +106,12 @@ NSString *const KGGAliPayURLScheme = @"";
 //友盟
 NSString *const KGGUMSocialAppKey = @"582199e0b27b0a5d6c001e64";
 
+//支付宝
+NSString *const SNHPayBlackNotification = @"payBackInformation";
+//微信
+NSString *const SNHPayWeiXinNotification = @"weixinInfomation";
+//支付成功
+NSString *const SNHPaySuccessNotification = @"paySuccessNotification";
+
 
 @end

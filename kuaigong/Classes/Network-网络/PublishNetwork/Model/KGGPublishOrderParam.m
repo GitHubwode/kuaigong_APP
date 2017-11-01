@@ -22,6 +22,7 @@
                      UnitPrice:(double )unitPrice
                           Fare:(double )fare
                         Remark:(NSString *)remark
+                      OrderUrl:(NSString *)orderUrl
                  WorkStartTime:(NSString *)workStartTime
                        PayTime:(NSString *)payTime
                      Longitude:(CGFloat )longitude
@@ -42,6 +43,7 @@
         self.unitPrice = unitPrice;
         self.fare = fare;
         self.remark = remark;
+        self.orderUrl = orderUrl;
         self.workStartTime = workStartTime;
         self.payTime = payTime;
         self.longitude = longitude;
@@ -63,6 +65,7 @@
                       UnitPrice:(double )unitPrice
                            Fare:(double )fare
                          Remark:(NSString *)remark
+                       OrderUrl:(NSString *)orderUrl
                   WorkStartTime:(NSString *)workStartTime
                         PayTime:(NSString *)payTime
                       Longitude:(CGFloat )longitude
@@ -73,7 +76,7 @@
                        Contacts:(NSString *)contacts
                   ContactsPhone:(NSString *)contactsPhone
 {
-    return [[self alloc]initWithUserId:userid Name:name Type:type Number:number Days:days UnitPrice:unitPrice Fare:fare Remark:remark WorkStartTime:workStartTime PayTime:payTime Longitude:longitude Latitude:latitude Address:address AvatarUrl:avatarUrl WhenLong:whenLong Contacts:contacts ContactsPhone:contactsPhone];
+    return [[self alloc]initWithUserId:userid Name:name Type:type Number:number Days:days UnitPrice:unitPrice Fare:fare Remark:remark OrderUrl:orderUrl WorkStartTime:workStartTime PayTime:payTime Longitude:longitude Latitude:latitude Address:address AvatarUrl:avatarUrl WhenLong:whenLong Contacts:contacts ContactsPhone:contactsPhone];
 }
 
 @end

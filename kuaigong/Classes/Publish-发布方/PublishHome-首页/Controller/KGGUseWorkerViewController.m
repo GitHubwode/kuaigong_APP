@@ -37,7 +37,9 @@
 /** 备注成为第一响应者 */
 @property (nonatomic,assign) BOOL  Isfirst;
 /** 点击的备注 */
-@property (nonatomic,copy) NSString *clickString;;
+@property (nonatomic,copy) NSString *clickString;
+/** 图片的url */
+@property (nonatomic,copy) NSString *orderUrl;
 
 @end
 
@@ -311,9 +313,11 @@
     self.clickString = [NSString stringWithFormat:@"%@%@",self.headerView.headerTextView.text,self.clickString];
     
     KGGLog(@"开始时间:%@ 支付时间:%@",time,payTime);
+
+   self.orderUrl = [self.headerView.imageArray componentsJoinedByString:@","];
     
-    
-    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:@"9" Contacts:name ContactsPhone:contactsPhone];
+
+    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString OrderUrl:self.orderUrl WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:@"9" Contacts:name ContactsPhone:contactsPhone];
     
     KGGLog(@"工种类型:%@",self.workType.type);
     

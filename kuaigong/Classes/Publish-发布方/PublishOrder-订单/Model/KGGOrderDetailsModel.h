@@ -70,6 +70,8 @@
 @property (nonatomic,copy) NSString *payTime;
 /** 发布方头像 */
 @property (nonatomic,copy) NSString *avatarUrl;
+/** 工地图片 */
+@property (nonatomic,copy) NSString *orderUrl;
 
 //增加的参数
 @property (nonatomic, copy) NSString *orderDetails;

@@ -177,6 +177,9 @@
 		358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */; };
 		3583818C1F8B4B67002A17C5 /* KGGLoginParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 3583818B1F8B4B67002A17C5 /* KGGLoginParam.m */; };
 		358644691F91FD52007D3A79 /* UIView+ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 358644681F91FD51007D3A79 /* UIView+ErrorView.m */; };
+		359232301FA9C615005C67EA /* KGGPayRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592322F1FA9C615005C67EA /* KGGPayRequestManager.m */; };
+		359232361FA9E055005C67EA /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 359232321FA9E053005C67EA /* TXScrollLabelView.m */; };
+		359232371FA9E055005C67EA /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 359232331FA9E054005C67EA /* UIView+TXFrame.m */; };
 		35961ABD1FA5FE6500A52B9E /* KGGEditPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961ABC1FA5FE6400A52B9E /* KGGEditPublishViewController.m */; };
 		35961AC01FA5FF5300A52B9E /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961ABF1FA5FF5200A52B9E /* LxGridViewFlowLayout.m */; };
 		35961AC31FA5FF6C00A52B9E /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35961AC21FA5FF6C00A52B9E /* TZTestCell.m */; };
@@ -596,6 +599,12 @@
 		3583818B1F8B4B67002A17C5 /* KGGLoginParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLoginParam.m; sourceTree = "<group>"; };
 		358644671F91FD51007D3A79 /* UIView+ErrorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ErrorView.h"; sourceTree = "<group>"; };
 		358644681F91FD51007D3A79 /* UIView+ErrorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ErrorView.m"; sourceTree = "<group>"; };
+		3592322E1FA9C615005C67EA /* KGGPayRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPayRequestManager.h; sourceTree = "<group>"; };
+		3592322F1FA9C615005C67EA /* KGGPayRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPayRequestManager.m; sourceTree = "<group>"; };
+		359232321FA9E053005C67EA /* TXScrollLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXScrollLabelView.m; sourceTree = "<group>"; };
+		359232331FA9E054005C67EA /* UIView+TXFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TXFrame.m"; sourceTree = "<group>"; };
+		359232341FA9E054005C67EA /* TXScrollLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXScrollLabelView.h; sourceTree = "<group>"; };
+		359232351FA9E054005C67EA /* UIView+TXFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TXFrame.h"; sourceTree = "<group>"; };
 		35961ABB1FA5FE6400A52B9E /* KGGEditPublishViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGEditPublishViewController.h; sourceTree = "<group>"; };
 		35961ABC1FA5FE6400A52B9E /* KGGEditPublishViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGEditPublishViewController.m; sourceTree = "<group>"; };
 		35961ABE1FA5FF5200A52B9E /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
@@ -1113,6 +1122,7 @@
 		189D20E51F42EE900004F1EB /* Network-网络 */ = {
 			isa = PBXGroup;
 			children = (
+				3592322A1FA9C4ED005C67EA /* PayRequest */,
 				35961AFB1FA7036A00A52B9E /* OSS-图片请求 */,
 				185C86731F4534E800356ECD /* KGGHTTPSessionManager.h */,
 				185C86741F4534E800356ECD /* KGGHTTPSessionManager.m */,
@@ -1337,6 +1347,7 @@
 		18F5BA161F4ED24F00E6ADC4 /* PublishHome-首页 */ = {
 			isa = PBXGroup;
 			children = (
+				359232311FA9E03F005C67EA /* 跑马灯 */,
 				18F5BA171F4ED24F00E6ADC4 /* Controller */,
 				18F5BA261F4ED24F00E6ADC4 /* Model */,
 				18F5BA291F4ED24F00E6ADC4 /* View */,
@@ -1620,6 +1631,26 @@
 				3583818B1F8B4B67002A17C5 /* KGGLoginParam.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3592322A1FA9C4ED005C67EA /* PayRequest */ = {
+			isa = PBXGroup;
+			children = (
+				3592322E1FA9C615005C67EA /* KGGPayRequestManager.h */,
+				3592322F1FA9C615005C67EA /* KGGPayRequestManager.m */,
+			);
+			path = PayRequest;
+			sourceTree = "<group>";
+		};
+		359232311FA9E03F005C67EA /* 跑马灯 */ = {
+			isa = PBXGroup;
+			children = (
+				359232341FA9E054005C67EA /* TXScrollLabelView.h */,
+				359232321FA9E053005C67EA /* TXScrollLabelView.m */,
+				359232351FA9E054005C67EA /* UIView+TXFrame.h */,
+				359232331FA9E054005C67EA /* UIView+TXFrame.m */,
+			);
+			path = "跑马灯";
 			sourceTree = "<group>";
 		};
 		35961ACF1FA6CB5D00A52B9E /* TZImagePickerController */ = {
@@ -2360,6 +2391,7 @@
 				35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */,
 				188F2D5C1F540B8C0023F4BE /* KGGRefreshFooter.m in Sources */,
 				3505C86D1F976A5E0085D688 /* PKVideoDecoder.m in Sources */,
+				359232301FA9C615005C67EA /* KGGPayRequestManager.m in Sources */,
 				3505C86B1F976A5E0085D688 /* PKPlayerManager.m in Sources */,
 				18F5BA781F4ED24F00E6ADC4 /* KGGLeftDrawerHeaderView.m in Sources */,
 				189D212E1F42FE170004F1EB /* UIImageView+WebCache.m in Sources */,
@@ -2375,6 +2407,7 @@
 				185C86751F4534E800356ECD /* KGGHTTPSessionManager.m in Sources */,
 				35F830811F629B2300204989 /* KGGWithdrawalPasswordViewController.m in Sources */,
 				3505C8771F984FEE0085D688 /* KGGSlideMenu.m in Sources */,
+				359232361FA9E055005C67EA /* TXScrollLabelView.m in Sources */,
 				35961AEF1FA6CB5D00A52B9E /* UIView+Layout.m in Sources */,
 				189D21591F43E49B0004F1EB /* NSUserDefaults+KGGExtension.m in Sources */,
 				185C86631F443B6C00356ECD /* KGGLoginViewController.m in Sources */,
@@ -2502,6 +2535,7 @@
 				3505C8601F976A5E0085D688 /* GLProgram.m in Sources */,
 				185C86D51F4AC39000356ECD /* KGGTabBarWorkController.m in Sources */,
 				3505C86A1F976A5E0085D688 /* PKFullScreenPlayerViewController.m in Sources */,
+				359232371FA9E055005C67EA /* UIView+TXFrame.m in Sources */,
 				3505C7FD1F9652E60085D688 /* KGGOrderCorrectModel.m in Sources */,
 				35FF5CAE1F6A894D00E1A50B /* KGGPayChooseModel.m in Sources */,
 				3505C80B1F971FD10085D688 /* KGGStartWorkTimeViewCell.m in Sources */,

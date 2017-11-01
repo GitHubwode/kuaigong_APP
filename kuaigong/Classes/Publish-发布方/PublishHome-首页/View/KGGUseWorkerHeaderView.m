@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "SDPhotoBrowser.h"
 
+
 @interface KGGUseWorkerHeaderView ()<UITextViewDelegate,SDPhotoBrowserDelegate>
 
 @property (nonatomic, strong) UIView *sectionView;
@@ -47,9 +48,22 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupUI];
+        [self kgg_initializationString];
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
+}
+
+- (void)kgg_initializationString
+{
+    string1 = @"";
+    string2 = @"";
+    string3 = @"";
+    string4 = @"";
+    string5 = @"";
+    string6 = @"";
+    string7 = @"";
+    string8 = @"";
 }
 
 - (void)setupUI
@@ -284,8 +298,6 @@
     KGGLogFunc;
     
 }
-
-
 
 - (UIImageView *)creatImageView
 {

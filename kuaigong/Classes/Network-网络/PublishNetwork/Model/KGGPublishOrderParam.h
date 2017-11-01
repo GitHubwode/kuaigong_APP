@@ -58,6 +58,8 @@
 @property (nonatomic,copy) NSString *workStartTime;
 /** 支付时间 */
 @property (nonatomic,copy) NSString *payTime;
+/** 工地图片 */
+@property (nonatomic,copy) NSString *orderUrl;
 
 /** 头像 */
 @property (nonatomic,copy) NSString *avatarUrl;
@@ -81,6 +83,7 @@
                     UnitPrice:(double )unitPrice
                           Fare:(double )fare
                         Remark:(NSString *)remark
+                      OrderUrl:(NSString *)orderUrl
                  WorkStartTime:(NSString *)workStartTime
                        PayTime:(NSString *)payTime
                     Longitude:(CGFloat )longitude
@@ -99,6 +102,7 @@
                      UnitPrice:(double )unitPrice
                           Fare:(double )fare
                          Remark:(NSString *)remark
+                       OrderUrl:(NSString *)orderUrl
                   WorkStartTime:(NSString *)workStartTime
                         PayTime:(NSString *)payTime
                      Longitude:(CGFloat )longitude

@@ -96,7 +96,7 @@ static NSString *TZTestCellIdfy = @"TZTestCell";
  */
 - (void)setUpNavi{
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTitle:@"取消" target:self action:@selector(cancelPublish)];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithButtonTitle:@"发布" target:self action:@selector(publish:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithButtonTitle:@"确定" target:self action:@selector(publish:)];
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
     

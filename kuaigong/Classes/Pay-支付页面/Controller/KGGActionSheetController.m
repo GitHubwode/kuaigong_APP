@@ -10,6 +10,9 @@
 #import "KGGPaySheetViewCell.h"
 #import "KGGPayChooseModel.h"
 #import "KGGPaychooseHeaderView.h"
+#import "KGGPayRequestManager.h"
+#import "WXApi.h"
+
 
 static CGFloat tableHeight = 280.f;
 static CGFloat itemHeight = 61.f;
@@ -38,7 +41,7 @@ static CGFloat itemHeight = 61.f;
     
     [self kgg_datasourceMessage];
     [self kgg_choosePayViewUI];
-
+    [KGGNotificationCenter addObserver:self selector:@selector(weixinPayResulTMessage:) name:SNHPayWeiXinNotification object:nil];
 }
 
 - (void)kgg_choosePayViewUI
@@ -127,8 +130,65 @@ static CGFloat itemHeight = 61.f;
         return;
     }else{
         [self.view showHint:@"跳转对应的支付页面"];
+        
+        KGGLog(@"%ld",(long)self.indexPay);
+        self.itemId;
+        [self setUpPayRequest];
     }
 }
+
+#pragma mark - 请求数据获取后台的签名
+- (void)setUpPayRequest
+{
+    [KGGPayRequestManager payOrderDetailsMessageOrder:self.itemId completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            KGGLog(@"%@",responseObj);
+            [self kgg_weixinPay:responseObj.data];
+        }
+        
+    } aboveView:self.view inCaller:self];
+    
+}
+
+#pragma mark - 微信支付
+- (void)kgg_weixinPay:(id )result
+{
+    KGGLog(@"%@",result);
+    PayReq *request = [[PayReq alloc]init];
+    request.partnerId = @"1490727912";
+    request.prepayId = [result objectForKey:@"prepayId"];
+//    request.package = [result objectForKey:@"package2"];
+    request.nonceStr = [result objectForKey:@"nonceStr"];
+//    request.timeStamp = (UInt32)[[result objectForKey:@"timestamp"] intValue];
+    request.sign = [result objectForKey:@"sign"];
+    [WXApi sendReq:request];
+}
+
+#pragma mark - 微信成功的回调
+- (void)weixinPayResulTMessage:(NSNotification *)notification
+{
+    if ([notification.object isEqualToString:@"0"]) {
+        KGGLog(@"支付成功");
+        [self.view showHint:@"支付成功"];
+        [KGGNotificationCenter postNotificationName:SNHPaySuccessNotification object:self userInfo:nil];
+        NSString *code = @"200";
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.callPaySuccessBlock(code);
+        }];
+    }else if ([notification.object isEqualToString:@"-1"]){
+        [self.view showHint:@"支付失败"];
+    }else if ([notification.object isEqualToString:@"-2"]){
+        [self.view showHint:@"用户点击取消并返回"];
+    }else if ([notification.object isEqualToString:@"-3"]){
+        [self.view showHint:@"发送失败"];
+    }else if ([notification.object isEqualToString:@"-4"]){
+        [self.view showHint:@"授权失败"];
+    }else if ([notification.object isEqualToString:@"-5"]){
+        [self.view showHint:@"微信不支持"];
+    }
+}
+
+
 
 #pragma mark - 创建数据类型
 - (void)kgg_datasourceMessage

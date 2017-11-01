@@ -11,6 +11,8 @@
 #import "NSBundle+KGGExtension.h"
 #import "AppDelegate.h"
 #import "NSObject+swizzle.h"
+#import "WXApi.h"
+
 
 @implementation KGGUMSocialHelper
 /**

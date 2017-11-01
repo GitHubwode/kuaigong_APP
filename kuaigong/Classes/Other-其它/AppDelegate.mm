@@ -13,6 +13,7 @@
 #import "KGGNavigationController.h"
 #import "AppDelegate+KGGRongCloud.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
+#import "WXApi.h"
 
 
 //测试极光推送
@@ -26,7 +27,7 @@
 #import <AdSupport/AdSupport.h>
 
 
-@interface AppDelegate ()<JPUSHRegisterDelegate>
+@interface AppDelegate ()<JPUSHRegisterDelegate,WXApiDelegate>
 {
     BMKMapManager *mapManager;
 }
@@ -86,8 +87,6 @@
             advertisingIdentifier:advertisingId];
     //链接融云
     [self setUpRongCloud];
-    
-    
     
     return YES;
 }
@@ -181,9 +180,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
     
     
-//    if ([[url scheme] isEqualToString:kWeiXinPayURLScheme]) {
-//        return [WXApi handleOpenURL:url delegate:self];
-//    }
+    if ([[url scheme] isEqualToString:KGGWeiXinPayURLScheme]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
     
     return YES;
 }
@@ -199,41 +198,41 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if ([url.host isEqualToString:@"platformapi"]) {
         [self snh_aliAutoCodeResultHandle:url];
     }
-//    
-//    if ([[url scheme] isEqualToString:KGGWeiXinPayURLScheme]) {
-//        return [WXApi handleOpenURL:url delegate:self];
-//    }
+    
+    if ([[url scheme] isEqualToString:KGGWeiXinPayURLScheme]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-//    if ([[url scheme]isEqualToString:KGGWeiXinPayURLScheme]) {
-//        return [WXApi handleOpenURL:url delegate:self];
-//    }
+    if ([[url scheme]isEqualToString:KGGWeiXinPayURLScheme]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
     return NO;
 }
 
 
 #pragma mark - WXApiDelegate
 
-//- (void)onResp:(BaseResp *)resp
-//{
-////    NSString *strTitle;
-////    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
-////        strTitle = [NSString stringWithFormat:@"发送媒体信息结果"];
-////    }
-////    if ([resp isKindOfClass:[PayResp class]]) {
-////        NSString *code = [NSString stringWithFormat:@"%d",resp.errCode];
-////        [SNHNotificationCenter postNotificationName:SNHPayWeiXinNotification object:code];
-////    }
-//}
+- (void)onResp:(BaseResp *)resp
+{
+    NSString *strTitle;
+    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
+        strTitle = [NSString stringWithFormat:@"发送媒体信息结果"];
+    }
+    if ([resp isKindOfClass:[PayResp class]]) {
+        NSString *code = [NSString stringWithFormat:@"%d",resp.errCode];
+        [KGGNotificationCenter postNotificationName:SNHPayWeiXinNotification object:code];
+    }
+}
 
 #pragma mark - 请求调起支付宝支付的地方回调该方法
 - (void)snh_aliPayResultHandle:(NSURL *)url
 {
-//    SNHLog(@"url:%@",url);
-//    
+    KGGLog(@"url:%@",url);
+    
 //    [[AlipaySDK defaultService]processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
 //        SNHLog(@"resultDic:%@",resultDic);
 //        [SNHNotificationCenter postNotificationName:SNHPayBlackNotification object:self userInfo:resultDic];
