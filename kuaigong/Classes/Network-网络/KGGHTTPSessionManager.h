@@ -104,7 +104,12 @@ typedef void (^progressHandler)(CGFloat progress);
  @param view <#view description#>
  @param caller <#caller description#>
  */
-+ (void)postFormImageDataWithUrl:(NSString *)url form:(NSMutableDictionary *)form  completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+//+ (void)postFormImageDataWithUrl:(NSString *)url form:(NSMutableDictionary *)form  completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
+
+
+
+
 
 /**
  评分的请求

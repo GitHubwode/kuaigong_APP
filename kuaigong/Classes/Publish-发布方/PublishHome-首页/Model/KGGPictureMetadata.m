@@ -17,4 +17,13 @@ MJCodingImplementation
     return @[@"data"];
 }
 
+/**
+ *  当字典转模型完毕时调用
+ */
+- (void)mj_keyValuesDidFinishConvertingToObject{
+    _data = UIImageJPEGRepresentation(_image, 0.5);
+}
+
+
+
 @end

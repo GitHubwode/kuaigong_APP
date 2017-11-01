@@ -22,4 +22,8 @@
 /** 签名 */
 @property (nonatomic,copy) NSString *signature;
 
+//增加参数
+/** endPoint*/
+@property (nonatomic,copy) NSString *endPoint;
+
 @end

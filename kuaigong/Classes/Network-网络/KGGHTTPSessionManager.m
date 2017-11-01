@@ -357,7 +357,7 @@
         return;
     }
     
-//    // 设置请求头信息
+    // 设置请求头信息
 //    AFHTTPRequestSerializer *requestSerializer =  [AFJSONRequestSerializer serializer];
 //    [self sharedHTTPSessionManager].requestSerializer = requestSerializer;
     
@@ -365,7 +365,7 @@
     
     weakSelf(caller);
     weakSelf(view);
-    
+
     [[self sharedHTTPSessionManager] POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         NSArray *keys = form.allKeys;
@@ -382,6 +382,7 @@
             }
             
             [formData appendPartWithFormData:data name:key];
+
         }
         
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

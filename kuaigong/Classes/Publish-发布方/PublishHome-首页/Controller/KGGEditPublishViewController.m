@@ -200,163 +200,6 @@ static NSString *TZTestCellIdfy = @"TZTestCell";
         item.enabled = YES;
         return;
     }
-    
-//    if (SNHSelectedPublishTypeVideo == _selectedPublishType) {
-//
-//        [self.view showHUD];
-//
-//        // 上传视频
-//        [[TZImageManager manager] getVideoOutputPathWithAsset:self.selectedAssets.firstObject completion:^(NSString *outputPath) {
-//
-//            [self.view hideHUD];
-//            if (!outputPath.length) {
-//                [self.view showHint:@"导出视频出错!"];
-//                item.enabled = YES;
-//                return;
-//            }
-//
-//
-//            SNHShowFeedApiItem *param = [[SNHShowFeedApiItem alloc] init];
-//            param.uid = [SNHUserManager sharedUserManager].currentUser.userId;
-//            param.body = [self.textView getContentText];
-//            param.footer = self.userView.locationView.currentLocation;
-//            param.city_name = self.userView.locationView.city;
-//            param.videoCoverImage = self.selectedPhotos.firstObject;
-//            param.videoFilePath = outputPath;
-//            param.activity_id = self.activityId;
-//            if (self.stageId) {
-//                param.stage_id = self.stageId;
-//            }
-//
-//            [SNHShowRequestManager publishVideoFeedWithParam:param completion:^(SNHShowFeedModel *response) {
-//
-//                item.enabled = YES;
-//
-//                if (!response) return;
-//
-//                if (!_stageId.length) {
-//                    [MBProgressHUD showSuYaSuccess:@"发表成功" toView:nil];
-//                }
-//
-//                [self dismissViewControllerAnimated:YES completion:^{
-//                    if ([self.delegate respondsToSelector:@selector(publisSuccess:)]) {
-//                        [self.delegate publisSuccess:response];
-//                    }
-//                }];
-//
-//
-//            } aboveView:self.view inCaller:self];
-//
-//
-//        }];
-//
-////    }else if (SNHSelectedPublishTypePhoto == _selectedPublishType){
-//
-//        [self.view showHUD];
-//
-//        NSMutableArray<SNHPictureMetadata *> *imageDatas = [NSMutableArray array];
-//        for (NSUInteger i = 0; i < self.selectedAssets.count; i++) {
-//            SNHPictureMetadata *pictureMeta = [[SNHPictureMetadata alloc] init];
-//            [imageDatas addObject:pictureMeta];
-//        }
-//
-//        NSUInteger index = 0;
-//        for (id asset in self.selectedAssets) {
-//
-//            SNHPictureMetadata *pictureMeta = imageDatas[index];
-//
-//            if ([asset isKindOfClass:[PHAsset class]]) {
-//                PHAsset *alAsset = (PHAsset *)asset;
-//                pictureMeta.width = alAsset.pixelWidth;
-//                pictureMeta.height = alAsset.pixelHeight;
-//#pragma clang diagnostic push
-//#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-//            }else if ([asset isKindOfClass:[ALAsset class]]) {
-//                ALAsset *alAsset = (ALAsset *)asset;
-//                ALAssetRepresentation *assetRep = [alAsset defaultRepresentation];
-//#pragma clang diagnostic pop
-//                CGSize dimension = [assetRep dimensions];
-//                KGGLog(@"dimension = %@",NSStringFromCGSize(dimension));
-//                pictureMeta.width = dimension.width;
-//                pictureMeta.height = dimension.height;
-//            }
-//
-//            [[TZImageManager manager] getOriginalPhotoDataWithAsset:asset completion:^(NSData *data, NSDictionary *info) {
-//                KGGLog(@"index = %zd",index);
-//                [imageDatas removeObject:pictureMeta];
-//                pictureMeta.data = data;
-//                [imageDatas insertObject:pictureMeta atIndex:index];
-//
-//                if (asset == self.selectedAssets.lastObject) {
-//
-//                    SNHShowFeedApiItem *param = [[SNHShowFeedApiItem alloc] init];
-//                    param.uid = [SNHUserManager sharedUserManager].currentUser.userId;
-//                    param.body = [self.textView getContentText];
-//                    param.footer = self.userView.locationView.currentLocation;
-//                    param.city_name = self.userView.locationView.city;
-//                    param.imageDatas = imageDatas;
-//                    param.activity_id = self.activityId;
-//                    if (self.stageId) {
-//                        param.stage_id = self.stageId;
-//                    }
-//                    [self.view hideHUD];
-//
-//                    [SNHShowRequestManager publishImagesFeedWithParam:param completion:^(SNHShowFeedModel *response) {
-//
-//                        item.enabled = YES;
-//
-//                        if (!response) return;
-//
-//
-//                        if (!_stageId.length) {
-//                            [MBProgressHUD showSuYaSuccess:@"发表成功" toView:nil];
-//                        }
-//
-//
-//
-//                        [self dismissViewControllerAnimated:YES completion:^{
-//                            if ([self.delegate respondsToSelector:@selector(publisSuccess:)]) {
-//                                [self.delegate publisSuccess:response];
-//                            }
-//                        }];
-//
-//                    } aboveView:self.view inCaller:self];
-//
-//                }
-//            }];
-//            index++;
-//        }
-//
-//    }else{
-//        SNHShowFeedApiItem *param = [[SNHShowFeedApiItem alloc] init];
-//        param.uid = @"878";
-//        param.body = [self.textView getContentText];
-//        param.footer = self.userView.locationView.currentLocation;
-//        param.city_name = self.userView.locationView.city;
-//        param.activity_id = self.activityId;
-//        if (self.stageId) {
-//            param.stage_id = self.stageId;
-//        }
-//        [SNHShowRequestManager publishTextFeedWithParam:param completion:^(SNHShowFeedModel *response) {
-//
-//            item.enabled = YES;
-//
-//            if (!response) return;
-//
-//            if (!_stageId.length) {
-//                [MBProgressHUD showSuYaSuccess:@"发表成功" toView:nil];
-//            }
-//
-//            [self dismissViewControllerAnimated:YES completion:^{
-//                if ([self.delegate respondsToSelector:@selector(publisSuccess:)]) {
-//                    [self.delegate publisSuccess:response];
-//                }
-//            }];
-//
-//        } aboveView:self.view inCaller:self];
-//    }
-    
-    
     if (SNHSelectedPublishTypePhoto == _selectedPublishType){
         
         [self.view showHUD];
@@ -398,20 +241,20 @@ static NSString *TZTestCellIdfy = @"TZTestCell";
                     
                     KGGShowFeedApiItem *param = [[KGGShowFeedApiItem alloc] init];
                     param.imageDatas = imageDatas;
-                    [self.view hideHUD];
                     
-                    NSString *timeStamp = [NSString publishSetUpNowTime];
-                    NSString *sign = [NSString stringWithFormat:@"order/%@%@",timeStamp,KGGAesKey];
-                    NSString *sig = [sign md5String];
+//                    NSString *timeStamp = [NSString publishSetUpNowTime];
+//                    NSString *sign = [NSString stringWithFormat:@"order/%@%@",timeStamp,KGGAesKey];
+//                    NSString *sig = [sign md5String];
 
-                    
-                    [KGGPublishOrderRequestManager publishOrderUpdataImagePath:@"order/" TimeStamp:timeStamp Signature:sig completion:^(KGGOrderImageModel *imageModel) {
-                        if (!imageModel) {
-                            
-                        }else{
-                            [self updataAliOSSImageDatas:imageDatas ImageModel:imageModel];
-                        }
-                    } aboveView:self.view inCaller:self];
+                    [self updataAliOSSImageDatas:param ImageModel:nil];
+//                    [KGGPublishOrderRequestManager publishOrderUpdataImagePath:@"order/" TimeStamp:timeStamp Signature:sig completion:^(KGGOrderImageModel *imageModel) {
+//                        if (!imageModel) {
+////                            [self.view hideHUD];
+//                        }else{
+//
+//                        }
+//                        [self updataAliOSSImageDatas:param ImageModel:imageModel];
+//                    } aboveView:nil inCaller:self];
                 }
             }];
             index++;
@@ -420,14 +263,26 @@ static NSString *TZTestCellIdfy = @"TZTestCell";
     }
 }
 
-- (void)updataAliOSSImageDatas:(NSArray *)imageData ImageModel:(KGGOrderImageModel *)imageModel
+- (void)updataAliOSSImageDatas:(KGGShowFeedApiItem *)imageData ImageModel:(KGGOrderImageModel *)imageModel
 {
-    [KGGAliyunRequestManager asynUploadImageDatas:imageData ImageModel:imageModel complete:^(NSArray<NSString *> *responseObj) {
-
-        KGGLog(@"%@",responseObj);
-
-    } inCaller:self];
     
+    [KGGAliyunRequestManager asynUploadImageDatas:imageData.imageDatas complete:^(NSArray<NSString *> *responseObj) {
+        
+        KGGLog(@"%@",responseObj);
+        if (!responseObj) {
+            
+        }
+        if (responseObj.count == 0) {
+            
+        }else{
+            if (self.imageBlock) {
+                self.imageBlock(responseObj);
+                [self.view hideHUD];
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        
+    } inCaller:self];
 }
 
 

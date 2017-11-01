@@ -7,8 +7,10 @@
 //
 
 #import "KGGUseWorkerHeaderView.h"
+#import "UIImageView+WebCache.h"
+#import "SDPhotoBrowser.h"
 
-@interface KGGUseWorkerHeaderView ()<UITextViewDelegate>
+@interface KGGUseWorkerHeaderView ()<UITextViewDelegate,SDPhotoBrowserDelegate>
 
 @property (nonatomic, strong) UIView *sectionView;
 @property (nonatomic, strong) UILabel *placeLabel;
@@ -23,11 +25,22 @@
 @property (nonatomic, strong) UIButton *button8;
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) UIButton *addButton;
+@property (nonatomic, strong) UIImageView *imageView;
 
 
 @end
 
 @implementation KGGUseWorkerHeaderView
+{
+    NSString *string1;
+    NSString *string2;
+    NSString *string3;
+    NSString *string4;
+    NSString *string5;
+    NSString *string6;
+    NSString *string7;
+    NSString *string8;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -100,7 +113,7 @@
     [self.button2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(orderView.mas_top).offset(5);
         make.left.equalTo(weakself.button1.mas_right).offset(15);
-        make.width.equalTo(@(57.5));
+        make.width.equalTo(@(37));
         make.height.equalTo(@29);
     }];
     
@@ -109,7 +122,7 @@
     [self.button3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(orderView.mas_top).offset(5);
         make.left.equalTo(weakself.button2.mas_right).offset(15);
-        make.width.equalTo(@(57.5));
+        make.width.equalTo(@(37));
         make.height.equalTo(@29);
     }];
 
@@ -118,7 +131,7 @@
     [self.button4 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(orderView.mas_top).offset(5);
         make.left.equalTo(weakself.button3.mas_right).offset(15);
-        make.width.equalTo(@(57.5));
+        make.width.equalTo(@(37));
         make.height.equalTo(@29);
     }];
     
@@ -154,12 +167,11 @@
     [self.button8 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakself.button4.mas_bottom).offset(5);
         make.left.equalTo(weakself.button7.mas_right).offset(15);
-        make.width.equalTo(@(57.5));
+        make.width.equalTo(@(49));
         make.height.equalTo(@29);
     }];
     
     [self addSubview:self.headerTextView];
-//    self.headerTextView.backgroundColor = [UIColor yellowColor];
     [self.headerTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(orderView.mas_bottom);
         make.left.equalTo(weakself.mas_left).offset(15);
@@ -184,7 +196,6 @@
     
     self.bottomView = [UIView new];
     [self addSubview:self.bottomView];
-//    self.bottomView.backgroundColor = [UIColor redColor];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(photoView.mas_bottom);
         make.left.equalTo(weakself.mas_left);
@@ -203,8 +214,84 @@
         make.centerY.equalTo(weakself.bottomView.mas_centerY);
         make.width.height.mas_equalTo(62);
     }];
-    
+}
 
+#pragma mark - 给工地照片赋值
+- (void)setUpHeaderViewImageViewList:(NSArray *)array
+{
+    if (array.count!= 0) {
+        [self.addButton removeFromSuperview];
+        CGFloat widthImage = (kMainScreenWidth-65)/array.count;
+    for (int i =0; i<array.count; i++) {
+        self.imageView = [self creatImageView];
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
+        [self.imageView addGestureRecognizer:recognizer];
+        self.imageView.frame = CGRectMake(15+5*i+widthImage*i, 10, widthImage, 62);
+        [self.bottomView addSubview:self.imageView];
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:array[i]]];
+    }
+    }
+}
+
+ - (void)setImageArray:(NSMutableArray *)imageArray
+{
+    _imageArray = imageArray;
+    if (imageArray.count!= 0) {
+        [self.addButton removeFromSuperview];
+        CGFloat widthImage = (kMainScreenWidth-65)/imageArray.count;
+        for (int i =0; i<imageArray.count; i++) {
+            self.imageView = [self creatImageView];
+//            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
+//            [self.imageView addGestureRecognizer:recognizer];
+            self.imageView.frame = CGRectMake(15+5*i+widthImage*i, 10, widthImage, 62);
+            [self.bottomView addSubview:self.imageView];
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageArray[i]]];
+        }
+    }
+}
+
+
+- (void)snh_qrButtonClick:(UITapGestureRecognizer *)reg
+{
+    KGGLog(@"二维码");
+    SDPhotoBrowser *photoBrowser = [SDPhotoBrowser new];
+    photoBrowser.tag = 1000;
+    photoBrowser.delegate = self;
+    photoBrowser.currentImageIndex = 0;
+    photoBrowser.imageCount = 1;
+    photoBrowser.sourceImagesContainerView = self.bottomView;
+    [photoBrowser show];
+}
+
+#pragma mark  SDPhotoBrowserDelegate
+
+// 返回临时占位图片（即原来的小图）
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
+{
+    return self.imageView.image;
+}
+
+
+// 返回高质量图片的url
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
+{
+    
+    NSString *imgUrl = self.imageArray[index];
+    return [NSURL URLWithString:imgUrl];
+}
+
+- (void )photoBrowserDidDissmissed:(SDPhotoBrowser *)browser{
+    KGGLogFunc;
+    
+}
+
+
+
+- (UIImageView *)creatImageView
+{
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    return imageView;
 }
 
 #pragma mark - UITextView
@@ -281,73 +368,77 @@
 #pragma mark - 按钮的点击时间
 - (void)buttonClick:(UIButton *)sender
 {
-    if (sender.selected) {
-        switch (sender.tag) {
-            case 101:
-                
-                break;
-            case 102:
-                
-                break;
-            case 103:
-                
-                break;
-            case 104:
-                
-                break;
-            case 105:
-                
-                break;
-            case 106:
-                
-                break;
-            case 107:
-                
-                break;
-            case 108:
-                
-                break;
-                
-            default:
-                break;
-        }
-    }else{
-        switch (sender.tag) {
-            case 101:
-                
-                break;
-            case 102:
-                
-                break;
-            case 103:
-                
-                break;
-            case 104:
-                
-                break;
-            case 105:
-                
-                break;
-            case 106:
-                
-                break;
-            case 107:
-                
-                break;
-            case 108:
-                
-                break;
-            default:
-                break;
-        }
-    }
     sender.selected = !sender.selected;
+
+        switch (sender.tag) {
+            case 101:
+                if (sender.selected) {
+                    string1 = @"需要电动扳手";
+                }else{
+                    string1 = @"";
+                }
+                break;
+            case 102:
+                if (sender.selected) {
+                    string2 = @"需要电线";
+                }else{
+                    string2 = @"";
+                }
+                break;
+            case 103:
+                if (sender.selected) {
+                    string3 = @"需要电钻";
+                }else{
+                    string3 = @"";
+                }
+                break;
+            case 104:
+                if (sender.selected) {
+                    string4 = @"需要吊线";
+                }else{
+                    string4 = @"";
+                }
+                break;
+            case 105:
+                if (sender.selected) {
+                    string5 = @"风雨无阻";
+                }else{
+                    string5 = @"";
+                }
+                break;
+            case 106:
+                if (sender.selected) {
+                    string6 = @"不要女工";
+                }else{
+                    string6 = @"";
+                }
+                break;
+            case 107:
+                if (sender.selected) {
+                    string7 = @"不要小工";
+                }else{
+                    string7 = @"";
+                }
+                break;
+            case 108:
+                if (sender.selected) {
+                    string8 = @"需要手提锯";
+                }else{
+                    string8 = @"";
+                }
+                break;
+                
+            default:
+                break;
+        }
+
+    
+    NSString *totalString = [NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@, %@, %@,",string1,string2,string3,string4,string5,string6,string7,string8];
+    KGGLog(@"totalString:%@",totalString);
     
     if ([self.headerDelegate respondsToSelector:@selector(kgg_userworkHeaderOrderRemarkMessage:)]) {
-        [self.headerDelegate kgg_userworkHeaderOrderRemarkMessage:@"哈哈哈"];
+        [self.headerDelegate kgg_userworkHeaderOrderRemarkMessage:totalString];
     }
-    
-    
 }
 
 - (void)addButtonClick:(UIButton *)sender

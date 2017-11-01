@@ -19,10 +19,8 @@ typedef NS_ENUM(NSUInteger, KGGUploadAliyunState) {
 
 @interface KGGAliyunRequestManager : KGGHTTPSessionManager
 
-//+ (void)asyncUploadSingleVideo:(NSString *)path completion:(void(^)(NSString *resultUrl))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
-//
-//+ (void)asynUploadImages:(NSArray<UIImage *> *)images complete:(void(^)(NSArray<NSString *> *responseObj))completionHandler inCaller:(id)caller;
+//+ (void)asynUploadImageDatas:(NSArray *)images ImageModel:(KGGOrderImageModel *)imageModel complete:(void(^)(NSArray<NSString *> *responseObj))completionHandler inCaller:(id)caller;
 
-+ (void)asynUploadImageDatas:(NSArray<KGGPictureMetadata *> *)images ImageModel:(KGGOrderImageModel *)imageModel complete:(void(^)(NSArray<NSString *> *responseObj))completionHandler inCaller:(id)caller;
++ (void)asynUploadImageDatas:(NSArray<KGGPictureMetadata *> *)images complete:(void(^)(NSArray<NSString *> *responseObj))completionHandler inCaller:(id)caller;
 
 @end

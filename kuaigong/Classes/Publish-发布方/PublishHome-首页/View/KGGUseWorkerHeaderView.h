@@ -21,5 +21,7 @@
 @property (nonatomic, strong) UILabel *orderDetailLabel;
 @property (nonatomic, strong) UILabel *orderTotalLabel;
 @property (nonatomic, weak) id<KGGUseWorkerHeaderViewDelegate>headerDelegate;
+@property (nonatomic, strong) NSMutableArray *imageArray;
+- (void)setUpHeaderViewImageViewList:(NSArray *)array;
 
 @end

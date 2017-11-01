@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^UpdataImageBlock)(NSArray *imageListArray);
+
 @interface KGGEditPublishViewController : UIViewController
+
+@property (nonatomic, copy) UpdataImageBlock imageBlock;
 
 @end

@@ -135,7 +135,7 @@
 {
     if (!_cycleTitleView) {
         _cycleTitleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kMainScreenWidth, 28) delegate:self placeholderImage:nil];
-        _cycleTitleView.autoScrollTimeInterval = 1.5f;
+        _cycleTitleView.autoScrollTimeInterval = 2.f;
         _cycleTitleView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _cycleTitleView.onlyDisplayText = YES;
         _cycleTitleView.titleLabelTextColor = UIColorHex(0x333333);
@@ -143,7 +143,7 @@
         _cycleTitleView.titleLabelTextAlignment = NSTextAlignmentCenter;
         NSMutableArray *titlesArray = [NSMutableArray new];
         [titlesArray addObject:@"注:每天用工9小时"];
-        [titlesArray addObject:@"明天每个工时费为35元/小时"];
+        [titlesArray addObject:@"每车7人,少于4人无需车费"];
         _cycleTitleView.titlesGroup = [titlesArray copy];
     }
     return _cycleTitleView;

@@ -36,6 +36,8 @@
 @property (nonatomic,assign) double  fee;
 /** 备注成为第一响应者 */
 @property (nonatomic,assign) BOOL  Isfirst;
+/** 点击的备注 */
+@property (nonatomic,copy) NSString *clickString;;
 
 @end
 
@@ -62,14 +64,22 @@
 - (void)kgg_userworkHeaderPhoneButtonClick
 {
     KGGLog(@"选择照片");
+    
     KGGEditPublishViewController *publish = [[KGGEditPublishViewController alloc]init];
-//    publish.delegate = self;
+    publish.imageBlock = ^(NSArray *imageListArray) {
+        KGGLog(@"图片地址:%@",imageListArray);
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.headerView setUpHeaderViewImageViewList:imageListArray];
+            self.headerView.imageArray = [imageListArray mutableCopy];
+        });
+    };
     [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:publish] animated:YES completion:nil];
 }
 
 - (void)kgg_userworkHeaderOrderRemarkMessage:(NSString *)message
 {
     KGGLog(@"%@备注信息",message);
+    self.clickString = message;
 }
 
 #pragma mark - 用工信息赋值
@@ -297,11 +307,13 @@
     
     time = [NSString PublishWorkTimeStamp:time];
     payTime = [NSString PublishWorkTimeStamp:payTime];
+    //备注
+    self.clickString = [NSString stringWithFormat:@"%@%@",self.headerView.headerTextView.text,self.clickString];
     
     KGGLog(@"开始时间:%@ 支付时间:%@",time,payTime);
     
     
-    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.headerView.headerTextView.text WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:@"9" Contacts:name ContactsPhone:contactsPhone];
+    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:@"9" Contacts:name ContactsPhone:contactsPhone];
     
     KGGLog(@"工种类型:%@",self.workType.type);
     
