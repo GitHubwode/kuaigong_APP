@@ -172,6 +172,10 @@
 		3545BB851F6FD65B008122B8 /* AppDelegate+KGGUMSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 3545BB841F6FD65B008122B8 /* AppDelegate+KGGUMSocial.m */; };
 		354885D91FA0351600636435 /* KGGWorkTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354885D81FA0351600636435 /* KGGWorkTypeModel.m */; };
 		354885DC1FA066AB00636435 /* KGGPublishHomeRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 354885DB1FA066AB00636435 /* KGGPublishHomeRequestManager.m */; };
+		356AE9BE1FAB2CDC004E417B /* KGGCollectInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 356AE9BC1FAB2CDC004E417B /* KGGCollectInformationController.m */; };
+		356AE9BF1FAB2CDC004E417B /* KGGCollectInformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 356AE9BD1FAB2CDC004E417B /* KGGCollectInformationController.xib */; };
+		356AE9C31FAB35E5004E417B /* KGGCollectTotalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 356AE9C11FAB35E5004E417B /* KGGCollectTotalController.m */; };
+		356AE9C41FAB35E5004E417B /* KGGCollectTotalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 356AE9C21FAB35E5004E417B /* KGGCollectTotalController.xib */; };
 		358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381801F8B12E2002A17C5 /* KGGUserObj.m */; };
 		358381841F8B1622002A17C5 /* KGGUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381831F8B1622002A17C5 /* KGGUserManager.m */; };
 		358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */; };
@@ -589,6 +593,12 @@
 		354885D81FA0351600636435 /* KGGWorkTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGWorkTypeModel.m; sourceTree = "<group>"; };
 		354885DA1FA066AB00636435 /* KGGPublishHomeRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishHomeRequestManager.h; sourceTree = "<group>"; };
 		354885DB1FA066AB00636435 /* KGGPublishHomeRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPublishHomeRequestManager.m; sourceTree = "<group>"; };
+		356AE9BB1FAB2CDC004E417B /* KGGCollectInformationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCollectInformationController.h; sourceTree = "<group>"; };
+		356AE9BC1FAB2CDC004E417B /* KGGCollectInformationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCollectInformationController.m; sourceTree = "<group>"; };
+		356AE9BD1FAB2CDC004E417B /* KGGCollectInformationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGCollectInformationController.xib; sourceTree = "<group>"; };
+		356AE9C01FAB35E5004E417B /* KGGCollectTotalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCollectTotalController.h; sourceTree = "<group>"; };
+		356AE9C11FAB35E5004E417B /* KGGCollectTotalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCollectTotalController.m; sourceTree = "<group>"; };
+		356AE9C21FAB35E5004E417B /* KGGCollectTotalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGCollectTotalController.xib; sourceTree = "<group>"; };
 		3583817F1F8B12E2002A17C5 /* KGGUserObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserObj.h; sourceTree = "<group>"; };
 		358381801F8B12E2002A17C5 /* KGGUserObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGUserObj.m; sourceTree = "<group>"; };
 		358381821F8B1622002A17C5 /* KGGUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserManager.h; sourceTree = "<group>"; };
@@ -1080,6 +1090,7 @@
 		189D20DA1F42EE900004F1EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				356AE9B71FAB2CA6004E417B /* 收集信息 */,
 				35961B051FA86B7600A52B9E /* 客服中心,关于快工 */,
 				35F73AAF1F78E191000CD1D6 /* AMap-地图 */,
 				35F8308D1F67C8F100204989 /* Chat-聊天 */,
@@ -1610,6 +1621,43 @@
 				3505C85E1F976A5E0085D688 /* PKShortVideoSession.m */,
 			);
 			path = PKShortVideoWriter;
+			sourceTree = "<group>";
+		};
+		356AE9B71FAB2CA6004E417B /* 收集信息 */ = {
+			isa = PBXGroup;
+			children = (
+				356AE9B81FAB2CA6004E417B /* Controller */,
+				356AE9B91FAB2CA6004E417B /* Model */,
+				356AE9BA1FAB2CA6004E417B /* View */,
+			);
+			path = "收集信息";
+			sourceTree = "<group>";
+		};
+		356AE9B81FAB2CA6004E417B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				356AE9BB1FAB2CDC004E417B /* KGGCollectInformationController.h */,
+				356AE9BC1FAB2CDC004E417B /* KGGCollectInformationController.m */,
+				356AE9BD1FAB2CDC004E417B /* KGGCollectInformationController.xib */,
+				356AE9C01FAB35E5004E417B /* KGGCollectTotalController.h */,
+				356AE9C11FAB35E5004E417B /* KGGCollectTotalController.m */,
+				356AE9C21FAB35E5004E417B /* KGGCollectTotalController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		356AE9B91FAB2CA6004E417B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		356AE9BA1FAB2CA6004E417B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		358381851F8B4AB4002A17C5 /* login-网络请求 */ = {
@@ -2295,12 +2343,14 @@
 				35961ACE1FA6BA8000A52B9E /* SNHPublishToolBar.xib in Resources */,
 				35961B121FA86E5D00A52B9E /* KGGCenter.plist in Resources */,
 				359CD08A1F57DCB400DDFA62 /* KGGPersonMessageCell.xib in Resources */,
+				356AE9BF1FAB2CDC004E417B /* KGGCollectInformationController.xib in Resources */,
 				35F830611F6270B500204989 /* KGGMyWalletViewController.xib in Resources */,
 				3545BB7F1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.xib in Resources */,
 				35961AE91FA6CB5D00A52B9E /* TZImagePickerController.bundle in Resources */,
 				35F8306E1F627BCE00204989 /* KGGCustomInfoCell.xib in Resources */,
 				35F830521F61177E00204989 /* CYPasswordView.bundle in Resources */,
 				35FF5CA81F6A7DEE00E1A50B /* KGGPaySheetViewCell.xib in Resources */,
+				356AE9C41FAB35E5004E417B /* KGGCollectTotalController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2416,6 +2466,7 @@
 				18F5BA6D1F4ED24F00E6ADC4 /* KGGUseWorkerHeaderView.m in Sources */,
 				188F2D401F4ED50E0023F4BE /* KGGHomeWorkViewController.m in Sources */,
 				185C866C1F452D9100356ECD /* UIView+HUD.m in Sources */,
+				356AE9C31FAB35E5004E417B /* KGGCollectTotalController.m in Sources */,
 				3505C8681F976A5E0085D688 /* PKColorConversion.m in Sources */,
 				185C86BC1F4A9A5800356ECD /* SUNSlideSwitchView.m in Sources */,
 				188F2D591F540A470023F4BE /* KGGRefreshHeader.m in Sources */,
@@ -2522,6 +2573,7 @@
 				35F830541F61177E00204989 /* UIView+Extension.m in Sources */,
 				35F73AA61F78AD1F000CD1D6 /* KGGSearchOrderController.m in Sources */,
 				3505C86F1F976A5E0085D688 /* PKShortVideoProgressBar.m in Sources */,
+				356AE9BE1FAB2CDC004E417B /* KGGCollectInformationController.m in Sources */,
 				189D20A91F42EAAD0004F1EB /* main.m in Sources */,
 				359CD08D1F57EAFC00DDFA62 /* KGGPublishPersonModel.m in Sources */,
 				189D21231F42FE170004F1EB /* SDImageCache.m in Sources */,
@@ -2730,6 +2782,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = X8BDJ996M8;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "kuaigong/Classes/Other-其它/kuaigong.pch";
 				INFOPLIST_FILE = kuaigong/Info.plist;
@@ -2751,6 +2804,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = X8BDJ996M8;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "kuaigong/Classes/Other-其它/kuaigong.pch";
 				INFOPLIST_FILE = kuaigong/Info.plist;

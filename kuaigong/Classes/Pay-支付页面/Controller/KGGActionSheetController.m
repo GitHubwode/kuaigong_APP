@@ -132,7 +132,6 @@ static CGFloat itemHeight = 61.f;
         [self.view showHint:@"跳转对应的支付页面"];
         
         KGGLog(@"%ld",(long)self.indexPay);
-        self.itemId;
         [self setUpPayRequest];
     }
 }

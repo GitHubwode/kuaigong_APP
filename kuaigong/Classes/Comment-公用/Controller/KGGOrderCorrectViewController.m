@@ -150,7 +150,7 @@
     }];
     
     _middleView = [UIView new];
-    _middleView.backgroundColor = [UIColor redColor];
+    _middleView.backgroundColor = [UIColor whiteColor];
     [self.bottomView addSubview:_middleView];
     [_middleView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakself.bottomView.mas_left);
@@ -278,7 +278,7 @@
 {
     if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth-60, 100) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor yellowColor];
+        _tableView.backgroundColor = [UIColor whiteColor];
         [_tableView registerNib:[UINib nibWithNibName:@"KGGOrderCorrectViewCell" bundle:nil] forCellReuseIdentifier:[KGGOrderCorrectViewCell ordeCorrectIdentifier]];
         _tableView.rowHeight = KGGAdaptedHeight(40.f);
         _tableView.separatorStyle = UITableViewCellStyleDefault;

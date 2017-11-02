@@ -27,14 +27,24 @@
             
         }
         BOOL isVIP = false;
-        if (responseObj.code == 100) {
-            isVIP = NO;
-        }
+        NSString *endTime;
         if (responseObj.code == KGGSuccessCode) {
-            isVIP = YES;
+            NSInteger isActive = [[responseObj.data objectForKey:@"isActive"] integerValue];
+            
+            if (isActive==1) {
+                isVIP = YES;
+            }else{
+                isVIP = NO;
+            }
+            
+            if ([[responseObj.data objectForKey:@"userVipInfo"] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dic = [responseObj.data objectForKey:@"userVipInfo"];
+                endTime = [dic objectForKey:@"endTime"];
+            }
         }
         KGGUserObj *userInfo = [KGGUserManager shareUserManager].currentUser;
         userInfo.hasVIP = isVIP;
+        userInfo.vipEndTime = endTime;
         [[KGGUserManager shareUserManager] synchronize];
         if (completionHandler) {
             completionHandler(responseObj);

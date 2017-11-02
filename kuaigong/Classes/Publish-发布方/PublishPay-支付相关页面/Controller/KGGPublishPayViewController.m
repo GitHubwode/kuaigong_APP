@@ -72,10 +72,13 @@
         make.height.equalTo(@(KGGLoginButtonHeight));
     }];
     
+#warning 支付按钮隐藏
     UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"修改订单"];
     useButton.tag = 1000;
     UIButton *orderButton = [self snh_creatButtonImage:@"bg_button" Title:@"支付订单"];
     orderButton.tag = 1001;
+//    orderButton.hidden = YES;
+    
     [bgView addSubview:useButton];
     [bgView addSubview:orderButton];
     
@@ -164,10 +167,6 @@
 {
     KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
         sheetVC.moneyString = [NSString stringWithFormat:@"%.2f",self.detailsModel.totalAmount];
-//    sheetVC.receiverId = @"";
-//    sheetVC.tradeType = 1;
-//    sheetVC.payFrom = 22;
-//    sheetVC.isPublish = NO;
     sheetVC.itemId = self.detailsModel.orderId;
     //    __weak typeof(self) weakSelf = self;
     sheetVC.callPaySuccessBlock = ^(NSString *code){

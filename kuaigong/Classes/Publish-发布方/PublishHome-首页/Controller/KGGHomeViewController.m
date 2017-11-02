@@ -24,6 +24,8 @@
 #import "KGGCarFeeModel.h"
 #import "MenuView.h"
 #import "KGGPersonalMessageController.h"
+#import "KGGCollectInformationController.h"
+#import "KGGCollectTotalController.h"
 
 
 static CGFloat const itemHeight = 168.f;
@@ -134,22 +136,11 @@ static CGFloat const topHeight = 37.f;
     for (KGGWorkTypeModel *model in self.workDatasource) {
         [titleArray addObject:model.name];
     }
-    
-    NSArray *imageNames = @[@"pic.png",
-                            @"pic_gangjin.png",
-                            @"pic_jiazi.png",
-                            @"pic-jia.png",
-                            @"pic.png",
-                            @"pic_gangjin.png",
-                            @"pic_jiazi.png",
-                            @"pic-jia.png"// 本地图片请填写全名
-                            ];
-    self.headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight+topHeight)) HeaderViewSDCycleImage:imageNames SlideTitle:titleArray];
+
+    self.headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight+topHeight)) HeaderViewSlideTitle:titleArray];
     self.headerView.headerDelegate = self;
     self.tableView.tableHeaderView = self.headerView;
 }
-
-
 
 - (void)kgg_addButton
 {
@@ -277,7 +268,34 @@ static CGFloat const topHeight = 37.f;
 /** 轮播图的点击 */
 - (void)KGG_SDCycleTabViewDidSelectItemAtIndex:(NSInteger )index
 {
-    KGGLog(@"轮播图%ld",(long)index);
+    KGGLog(@"点击顶部按钮%ld",(long)index);
+    if (index == 100) {
+        KGGLog(@"共享老板");
+        KGGCollectInformationController *collVC = [[KGGCollectInformationController alloc]initWithNibName:NSStringFromClass([KGGCollectInformationController class]) bundle:nil];
+        collVC.itemName = @"共享老板";
+        [self.navigationController pushViewController:collVC animated:YES];
+    }else if (index == 101){
+        KGGLog(@"共享班组")
+        KGGCollectInformationController *collVC = [[KGGCollectInformationController alloc]initWithNibName:NSStringFromClass([KGGCollectInformationController class]) bundle:nil];
+        collVC.itemName = @"共享班组";
+        [self.navigationController pushViewController:collVC animated:YES];
+    }else if (index == 102){
+        KGGLog(@"快工救援")
+        KGGCollectTotalController *totalVC = [[KGGCollectTotalController alloc]initWithNibName:NSStringFromClass([KGGCollectTotalController class]) bundle:nil];
+        totalVC.imageName = @"快工救援";
+        [self.navigationController pushViewController:totalVC animated:YES];
+
+    }else if (index == 103){
+        KGGLog(@"快工公益")
+        KGGCollectTotalController *totalVC = [[KGGCollectTotalController alloc]initWithNibName:NSStringFromClass([KGGCollectTotalController class]) bundle:nil];
+        totalVC.imageName = @"快工公益";
+        [self.navigationController pushViewController:totalVC animated:YES];
+    }else if (index == 104){
+        KGGLog(@"快工保险")
+    }else if (index == 105){
+        KGGLog(@"快工贷")
+    }
+
 }
 /** top */
 - (void)KGG_SlideMenuDidSelectItemAtIndex:(NSInteger )index

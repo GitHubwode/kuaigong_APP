@@ -38,6 +38,8 @@ typedef NS_ENUM(NSUInteger, UserGender) {
 @property (nonatomic,copy) NSString *updateDate;
 /** 是否为会员 */
 @property (nonatomic,assign) BOOL  hasVIP;
+/** 会员结束时间 */
+@property (nonatomic,copy) NSString *vipEndTime;
 /** 增加的属性 */
 @property (nonatomic,copy) NSString *token;
 @property (nonatomic, copy) NSString *sexName;

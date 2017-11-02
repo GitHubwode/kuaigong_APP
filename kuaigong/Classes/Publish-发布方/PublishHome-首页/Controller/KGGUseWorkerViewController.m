@@ -49,8 +49,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
     //增减通知
-    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+//    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.navigationItem.title = @"用工信息";
     self.headerView = [[KGGUseWorkerHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 360)];
@@ -111,21 +111,21 @@
 }
 
 #pragma mark - 键盘显示隐藏
-- (void)keyboardWillShow:(NSNotification *)notification{
-    
-    CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    if (self.Isfirst == NO) {
+//- (void)keyboardWillShow:(NSNotification *)notification{
+//
+//    CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    if (self.Isfirst == NO) {
+//
+//    }else{
+//        CGFloat offset = self.headerView.xc_height+33 + 63.f * (self.datasource.count) - keyboardBounds.size.height;
+//
+//        [self.tableView setContentOffset:CGPointMake(0, offset) animated:NO];
+//    }
+//}
 
-    }else{
-        CGFloat offset = self.headerView.xc_height+33 + 63.f * (self.datasource.count) - keyboardBounds.size.height;
-        
-        [self.tableView setContentOffset:CGPointMake(0, offset) animated:NO];
-    }
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification{
-    [self.tableView setContentOffset:CGPointZero animated:NO];
-}
+//- (void)keyboardWillHide:(NSNotification *)notification{
+//    [self.tableView setContentOffset:CGPointZero animated:NO];
+//}
 
 #pragma mark - UITableViewDelegate UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -241,16 +241,28 @@
     KGGLog(@"确认发布");
     
     BOOL isVIP = [KGGUserManager shareUserManager].currentUser.hasVIP;
+    NSUInteger vipEndTime = [[KGGUserManager shareUserManager].currentUser.vipEndTime integerValue];
+    NSUInteger nowTime = [[NSString publishSetUpNowTime] integerValue];
     if (isVIP) {
-        [self creatOrderMessage];
+        if (vipEndTime > nowTime) {
+            [self creatOrderMessage];
+        }else{
+            [self jumpVIPView];
+        }
     }else{
-        self.vipView = [KGGApplyVIPView kgg_alertPromptApplyForViewKGGApplyButtonClick:^(NSString *money) {
-            KGGLog(@"支付会员费:%@",money);
-            [self jumpPayViewMoney:money];
-        } KGGUnderstandButtonClick:^{
-            
-        }];
+        [self jumpVIPView];
     }
+}
+
+#pragma mark - 跳出VIP页面
+- (void)jumpVIPView
+{
+    self.vipView = [KGGApplyVIPView kgg_alertPromptApplyForViewKGGApplyButtonClick:^(NSString *money) {
+        KGGLog(@"支付会员费:%@",money);
+        [self jumpPayViewMoney:money];
+    } KGGUnderstandButtonClick:^{
+        
+    }];
 }
 
 #pragma mark - 跳转支付页面
@@ -327,7 +339,6 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
     } aboveView:self.view inCaller:self];
-    
 }
 
 - (UITableView *)tableView

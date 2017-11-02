@@ -10,13 +10,13 @@
 
 @implementation KGGConst
 
-#ifdef DEBUG
+//#ifdef DEBUG
+//NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
+//
+//#else
 NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
 
-#else
-//NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
-
-#endif
+//#endif
 
 /** 保存用户的类型 */
 NSString * const KGGUserType = @"KGGUserType";

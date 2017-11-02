@@ -15,6 +15,7 @@
 #import "KGGMyWorkBaseViewController.h"
 #import "KGGLoginViewController.h"
 #import "KGGCenterViewController.h"
+#import "KGGPersonalMessageController.h"
 
 
 @interface KGGMeWorkViewController ()<UITableViewDelegate,UITableViewDataSource,KGGMeWorkHeaderViewDelegate>
@@ -64,16 +65,11 @@
     return cell;
 }
 
+#warning 隐藏钱包功能
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 3) {
-        KGGMoreSettingController *setVC = [[KGGMoreSettingController alloc]init];
-        [self.navigationController pushViewController:setVC animated:YES];
-    }
-    
     if (indexPath.row == 0) {
         KGGMyWalletViewController *walletVC = [[KGGMyWalletViewController alloc]initWithNibName:NSStringFromClass([KGGMyWalletViewController class]) bundle:[NSBundle mainBundle]];
-        
         [self.navigationController pushViewController:walletVC animated:YES];
     }
     if (indexPath.row ==1) {
@@ -85,7 +81,10 @@
         KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]init];
         [self.navigationController pushViewController:centerVC animated:YES];
     }
-    
+    if (indexPath.row == 3) {
+        KGGMoreSettingController *setVC = [[KGGMoreSettingController alloc]init];
+        [self.navigationController pushViewController:setVC animated:YES];
+    }
     KGGLog(@"第几行 %ld",(long)indexPath.row);
 }
 
@@ -95,6 +94,10 @@
     BOOL login = [KGGUserManager shareUserManager].logined;
     if (login) {
         KGGLog(@"已登录");
+        KGGPersonalMessageController *personalVC = [[KGGPersonalMessageController alloc]init];
+        personalVC.editInfoSuccessBlock = ^{
+        };
+        [self.navigationController pushViewController:personalVC animated:YES];
     }else{
         [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
     }
@@ -160,6 +163,7 @@
 {
     if (!_datasource) {
         _datasource = [NSMutableArray arrayWithObjects:@"钱包",@"我的工作",@"客服中心",@"设置", nil];
+//        _datasource = [NSMutableArray arrayWithObjects:@"我的工作",@"客服中心",@"设置", nil];
     }
     return _datasource;
 }

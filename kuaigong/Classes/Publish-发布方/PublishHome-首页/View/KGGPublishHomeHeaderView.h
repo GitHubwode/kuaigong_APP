@@ -21,6 +21,6 @@
 
 @property (nonatomic, weak) id<KGGPublishHomeHeaderViewDelegate >headerDelegate;
 
-- (instancetype)initWithFrame:(CGRect)frame HeaderViewSDCycleImage:(NSArray *)imageArray SlideTitle:(NSArray *)titleArray;
+- (instancetype)initWithFrame:(CGRect)frame HeaderViewSlideTitle:(NSArray *)titleArray;
 
 @end

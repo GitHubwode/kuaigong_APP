@@ -35,15 +35,14 @@
 - (void)updataUserMessageLogin:(BOOL)login
 {
     if (login) {
-        self.loginButton.hidden = YES;
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[KGGUserManager shareUserManager].currentUser.avatarUrl] placeholderImage:[UIImage imageNamed:@"icon_touxiang"]];
         self.nickLabel.text = [KGGUserManager shareUserManager].currentUser.nickname;
         self.phoneLabel.text = [KGGUserManager shareUserManager].currentUser.hidePhone;
     }else{
         KGGLog(@"没有登录成功");
-        [self kggremoveSubViews];
-        [self creatHeaderUI];
-        
+        self.nickLabel.text = @"点击登录";
+        self.phoneLabel.text = @"";
+        self.avatarImageView.image = [UIImage imageNamed:@"icon_touxiang"];
     }
 }
 
@@ -108,14 +107,24 @@
         make.top.equalTo(weakself.nickLabel.mas_bottom).offset(15);
     }];
     
-    if ([KGGUserManager shareUserManager].logined) {
-        
-    }else{
-        [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.top.equalTo(_avatarImageView.mas_bottom).with.offset(30.f);
-        }];
-    }
+    [imageView addSubview:self.loginButton];
+    [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakself.avatarImageView.mas_top);
+        make.left.equalTo(weakself.avatarImageView.mas_left);
+        make.width.equalTo(weakself.avatarImageView.mas_width);
+        make.bottom.equalTo(weakself.nickLabel.mas_bottom);
+    }];
+    
+    
+    
+//    if ([KGGUserManager shareUserManager].logined) {
+//        
+//    }else{
+//        [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerX.equalTo(self);
+//            make.top.equalTo(_avatarImageView.mas_bottom).with.offset(30.f);
+//        }];
+//    }
 
 }
 
@@ -154,7 +163,7 @@
 - (UIButton *)loginButton{
     if (!_loginButton) {
         _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_loginButton setImage:[UIImage imageNamed:@"icon_btn_login"] forState:UIControlStateNormal];
+        _loginButton.backgroundColor = [UIColor clearColor];
         _loginButton.adjustsImageWhenHighlighted = NO;
         [_loginButton addTarget:self action:@selector(loginButtonAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_loginButton];
