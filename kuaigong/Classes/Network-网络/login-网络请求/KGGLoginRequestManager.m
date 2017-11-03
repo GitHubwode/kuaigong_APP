@@ -210,13 +210,14 @@
             return ;
         }else if (responseObj.code != KGGSuccessCode){
             [view showHint:responseObj.message];
-            return ;
-        }else{
+//            return ;
+        }
+//        else{
             KGGLog(@"注册:%@",responseObj);
             if (completionHandler) {
                 completionHandler(responseObj);
             }
-        }
+//        }
     } aboveView:view inCaller:caller];
 }
 

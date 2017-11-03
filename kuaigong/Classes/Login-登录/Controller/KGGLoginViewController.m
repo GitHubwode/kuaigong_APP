@@ -198,6 +198,10 @@
         make.width.equalTo(@84.5);
         make.height.equalTo(@16);
     }];
+    
+    if (![KGGUMSocialHelper isWXAppInstalled]) {
+        weachatButton.hidden = YES;
+    }
 }
 
 #pragma mark - 按钮的点击事件
@@ -296,9 +300,12 @@
             userinfo.iconurl = [userinfo.iconurl stringByReplacingOccurrencesOfString:@"https:" withString:@""];
             [KGGLoginRequestManager WXRegisterWithOpenId:userinfo.openid Platform:nil UserType:[NSUserDefaults objectForKey:KGGUserType] Sex:gender vatarUrl:userinfo.iconurl Nickname:userinfo.name completion:^(KGGResponseObj *responseObj) {
                 KGGLog(@"%@",responseObj);
-                if (responseObj.code == KGGSuccessCode) {
+                if (responseObj.code == KGGSuccessCode || responseObj.code == KGGBindingWeChatSuccess) {
                     [weakself WXLoginOpenId:userinfo.openid];
                 }
+//                if (responseObj.code == KGGBindingWeChatSuccess) {
+//                    [self dismissViewControllerAnimated:YES completion:nil];
+//                }
             } aboveView:self.view inCaller:self];
         }
     }];

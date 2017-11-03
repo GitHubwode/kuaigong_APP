@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="publishHeader1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hca-O6-o8e">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="publishHeader1" translatesAutoresizingMaskIntoConstraints="NO" id="hca-O6-o8e">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
             </subviews>
@@ -34,6 +34,6 @@
         </view>
     </objects>
     <resources>
-        <image name="publishHeader1.jpg" width="750" height="1334"/>
+        <image name="publishHeader1" width="375" height="667"/>
     </resources>
 </document>

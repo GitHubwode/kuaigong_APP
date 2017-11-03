@@ -10,6 +10,7 @@
 #import "KGGLoginView.h"
 #import "KGGLoginRequestManager.h"
 #import "KGGLoginParam.h"
+#import "KGGLoginViewController.h"
 
 @interface KGGConfirmPasswordViewController ()
 @property (nonatomic, strong) KGGLoginView *loginView1;
@@ -186,7 +187,10 @@
         }else if (responseObj.code != KGGSuccessCode){
             [MBProgressHUD showError:responseObj.message toView:weakself.view];
         }else{
-            [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            [MBProgressHUD showMessag:@"注册成功请登录"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            });
         }
         
     } aboveView:self.view inCaller:self];

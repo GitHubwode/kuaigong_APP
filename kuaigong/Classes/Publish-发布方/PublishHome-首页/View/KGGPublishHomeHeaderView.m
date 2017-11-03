@@ -32,7 +32,7 @@ static CGFloat const itemHeight = 168.f;
     
     CGFloat buttonWidth = (kMainScreenWidth-20)/3;
     CGFloat buttonHeight = (KGGAdaptedHeight(itemHeight)-15)/2;
-    
+
     for (int i =0 ; i<3; i++) {
         UIButton *button =[self creatButtonSelectImage:[NSString stringWithFormat:@"icon_Publish_home_press_%d",i+1] ImageString:[NSString stringWithFormat:@"icon_Publish_home_%d",i+1] Tag:100+i];
             button.frame = CGRectMake(5+(buttonWidth+5)*i, 5, buttonWidth, buttonHeight);
@@ -107,7 +107,6 @@ static CGFloat const itemHeight = 168.f;
 - (KGGSlideMenu *)slideMenu
 {
     if (!_slideMenu) {
-//        NSArray *titles = @[@"木工",@"钢筋工",@"内架子工",@"外架子工",@"泥工",@"水电工",@"电焊工",@"小工"];
         _slideMenu = [[KGGSlideMenu alloc]initWithFrame:CGRectZero titles:_titleArray];
         _slideMenu.indicatorOffsety = 2;
         _slideMenu.slideDelegate = self;

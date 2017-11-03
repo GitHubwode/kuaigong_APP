@@ -29,6 +29,7 @@ typedef NS_ENUM(NSUInteger, KGGErrorCode) {
     KGGExpiredTokenCode = 402,
     KGGFailureCode,
     KGGNoPayCode = 268, //未付款的状态
+    KGGBindingWeChatSuccess = 612,//绑定微信成功
 };
 
 @interface KGGResponseObj : NSObject

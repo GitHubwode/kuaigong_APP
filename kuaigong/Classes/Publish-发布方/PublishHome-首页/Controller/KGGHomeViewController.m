@@ -24,8 +24,8 @@
 #import "KGGCarFeeModel.h"
 #import "MenuView.h"
 #import "KGGPersonalMessageController.h"
-#import "KGGCollectInformationController.h"
 #import "KGGCollectTotalController.h"
+#import "KGGCollectMessageController.h"
 
 
 static CGFloat const itemHeight = 168.f;
@@ -46,8 +46,7 @@ static CGFloat const topHeight = 37.f;
 @property (nonatomic, strong) KGGWorkTypeModel *priceModel;
 @property (nonatomic, strong) KGGCarFeeModel *feeModel;
 @property (nonatomic ,strong) MenuView   * menu;
-//@property (nonatomic, copy) NSString *guidePrice;
-
+@property (nonatomic, strong) KGGLeftTableController *leftView;
 
 @end
 
@@ -79,6 +78,7 @@ static CGFloat const topHeight = 37.f;
     [self kgg_addButton];
     
     KGGLeftTableController *leftView = [[KGGLeftTableController alloc]initWithFrame:CGRectMake(0, 0, KGGAdaptedWidth(kMainScreenWidth*0.68), kMainScreenHeight)];
+    self.leftView = leftView;
     leftView.customDelegate = self;
     self.menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:leftView isShowCoverView:YES];
 }
@@ -92,6 +92,7 @@ static CGFloat const topHeight = 37.f;
         if ([KGGUserManager shareUserManager].logined) {
             KGGPersonalMessageController *personalVC = [[KGGPersonalMessageController alloc]init];
             personalVC.editInfoSuccessBlock = ^{
+                [self.leftView changeUserAvatarIamge];
             };
             [self.navigationController pushViewController:personalVC animated:YES];
         }else{
@@ -271,12 +272,12 @@ static CGFloat const topHeight = 37.f;
     KGGLog(@"点击顶部按钮%ld",(long)index);
     if (index == 100) {
         KGGLog(@"共享老板");
-        KGGCollectInformationController *collVC = [[KGGCollectInformationController alloc]initWithNibName:NSStringFromClass([KGGCollectInformationController class]) bundle:nil];
+        KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];
         collVC.itemName = @"共享老板";
         [self.navigationController pushViewController:collVC animated:YES];
     }else if (index == 101){
         KGGLog(@"共享班组")
-        KGGCollectInformationController *collVC = [[KGGCollectInformationController alloc]initWithNibName:NSStringFromClass([KGGCollectInformationController class]) bundle:nil];
+        KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];
         collVC.itemName = @"共享班组";
         [self.navigationController pushViewController:collVC animated:YES];
     }else if (index == 102){

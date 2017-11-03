@@ -65,7 +65,6 @@
     return cell;
 }
 
-#warning 隐藏钱包功能
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
@@ -96,6 +95,7 @@
         KGGLog(@"已登录");
         KGGPersonalMessageController *personalVC = [[KGGPersonalMessageController alloc]init];
         personalVC.editInfoSuccessBlock = ^{
+            [self loginSuccess];
         };
         [self.navigationController pushViewController:personalVC animated:YES];
     }else{

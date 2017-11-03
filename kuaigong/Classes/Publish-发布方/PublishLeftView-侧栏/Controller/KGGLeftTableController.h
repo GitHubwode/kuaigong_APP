@@ -17,6 +17,6 @@
 @interface KGGLeftTableController : UIView
 
 @property (nonatomic ,weak)id <HomeMenuViewDelegate> customDelegate;
-
+- (void)changeUserAvatarIamge;
 
 @end

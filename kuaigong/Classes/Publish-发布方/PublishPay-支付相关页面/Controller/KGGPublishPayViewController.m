@@ -72,12 +72,10 @@
         make.height.equalTo(@(KGGLoginButtonHeight));
     }];
     
-#warning 支付按钮隐藏
     UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"修改订单"];
     useButton.tag = 1000;
     UIButton *orderButton = [self snh_creatButtonImage:@"bg_button" Title:@"支付订单"];
     orderButton.tag = 1001;
-//    orderButton.hidden = YES;
     
     [bgView addSubview:useButton];
     [bgView addSubview:orderButton];
@@ -115,7 +113,6 @@
     weakSelf(self);
     if (sender.tag == 1000){
         KGGLog(@"修改订单");
-        
         KGGOrderCorrectViewController *orderVC = [[KGGOrderCorrectViewController alloc]init];
         orderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         orderVC.detailsModel = self.detailsModel;

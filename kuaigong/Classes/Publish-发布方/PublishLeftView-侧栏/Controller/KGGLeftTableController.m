@@ -65,6 +65,12 @@
     [self.headerView leftTableHeaderView];
 }
 
+- (void)changeUserAvatarIamge
+{
+    [self.headerView leftTableHeaderView];
+
+}
+
 #pragma mark - UITableViewDeelgate  UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
