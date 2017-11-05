@@ -15,6 +15,8 @@
 //
 //#else
 NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
+//NSString * const KGGBasicURL = @"http://192.168.50.56:8080";
+//NSString * const KGGBasicURL = @"http://192.168.50.40:8080";
 
 //#endif
 

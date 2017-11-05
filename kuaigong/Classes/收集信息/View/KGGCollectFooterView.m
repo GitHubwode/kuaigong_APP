@@ -10,7 +10,6 @@
 
 @interface KGGCollectFooterView ()<UITextViewDelegate>
 
-
 @end
 
 @implementation KGGCollectFooterView
@@ -45,6 +44,20 @@
         make.right.equalTo(weakself.mas_right).offset(-15);
         make.height.equalTo(@110);
     }];
+    UILabel *label1 = [UILabel new];
+    label1.text = @"为您对接优秀项目，提交成功第一时间给您回复";
+    label1.font = KGGFont(12);
+    label1.textAlignment = NSTextAlignmentCenter;
+    label1.textColor =UIColorHex(0xffffff);
+    [self addSubview:label1];
+    [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakself.textView.mas_bottom);
+        make.left.equalTo(weakself.mas_left);
+        make.width.equalTo(@(kMainScreenWidth));
+        make.bottom.equalTo(weakself.mas_bottom);
+    }];
+    
+//    self.backgroundColor = [UIColor redColor];
     
 }
 
@@ -86,7 +99,6 @@
         if (toBeString.length <= maxLength) return;
         textView.text = [toBeString substringToIndex:maxLength];
     }
-    
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{

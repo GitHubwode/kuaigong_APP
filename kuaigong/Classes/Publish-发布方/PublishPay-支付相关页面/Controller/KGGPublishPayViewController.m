@@ -164,7 +164,7 @@
 {
     KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
         sheetVC.moneyString = [NSString stringWithFormat:@"%.2f",self.detailsModel.totalAmount];
-    sheetVC.itemId = self.detailsModel.orderId;
+    sheetVC.itemId = self.detailsModel.orderNo;
     //    __weak typeof(self) weakSelf = self;
     sheetVC.callPaySuccessBlock = ^(NSString *code){
         if ([code isEqualToString:@"200"]) {

@@ -10,6 +10,7 @@
 #import "KGGCustomInfoItem.h"
 #import "KGGCollectViewCell.h"
 #import "KGGCollectFooterView.h"
+#import "KGGPublishHomeRequestManager.h"
 
 @interface KGGCollectMessageController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -33,6 +34,7 @@
 #pragma mark - 底层图片
 - (void)creatBottomImageView
 {
+    weakSelf(self);
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64)];
     imageView.image = [UIImage imageNamed:@"bossBg"];
     imageView.userInteractionEnabled = YES;
@@ -40,6 +42,14 @@
     [self.view addSubview:imageView];
     [imageView addSubview:self.tableView];
     self.tableView.tableFooterView = self.footerView;
+    
+//    [self.footerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(weakself.tableView.mas_bottom);
+//        make.left.equalTo(weakself.view.mas_left);
+//        make.width.equalTo(@(kMainScreenWidth));
+//        make.height.equalTo(@(130));
+//    }];
+    
 }
 
 #pragma mark - UITableViewDelegate UITableViewDatasource
@@ -75,10 +85,20 @@
 #pragma mark - 提交按钮
 - (void)snh_beginButtonClick:(UIButton *)sender
 {
+    NSString *name;
+    NSString *phone;
+    NSString *age;
+    NSString *id_Card_Num;
+    NSString *industry;
+    NSString *nativePlace;
+    NSString *address;
+    
     for ( KGGCustomInfoItem *infoItem in self.datasource) {
         if ([infoItem.title isEqualToString:@"姓名:"] && infoItem.subtitle.length == 0) {
             [self.view showHint:@"姓名不能为空"];
             return;
+        }else{
+            name = infoItem.subtitle;
         }
         if ([infoItem.title isEqualToString:@"手机:"]) {
             if (infoItem.subtitle.length == 0) {
@@ -91,10 +111,47 @@
                 }
             }
             
+        }else{
+            phone = infoItem.subtitle;
+        }
+        if ([infoItem.title isEqualToString:@"年龄:"]) {
+            age = infoItem.subtitle;
+        }
+        if ([infoItem.title isEqualToString:@"身份证号码:"]) {
+            id_Card_Num = infoItem.subtitle;
+        }
+        if ([infoItem.title isEqualToString:@"行业:"]) {
+            industry = infoItem.subtitle;
+        }
+        if ([infoItem.title isEqualToString:@"年龄籍贯:"]) {
+            nativePlace = infoItem.subtitle;
+        }
+        if ([infoItem.title isEqualToString:@"现住址:"]) {
+            address = infoItem.subtitle;
         }
     }
-    
+   
+    [self publishHomeMessageRequestName:name Phone:phone Age:age IdCard:id_Card_Num Industry:industry NativePlace:nativePlace Address:address];
     KGGLog(@"提交按钮");
+}
+
+#pragma mark - 提交信息
+- (void)publishHomeMessageRequestName:(NSString *)name Phone:(NSString *)phone Age:(NSString *)age IdCard:(NSString *)idCard Industry:(NSString *)industry NativePlace:(NSString *)nativePlace Address:(NSString *)address
+{
+    NSString *type;
+    if ([self.itemName isEqualToString:@"共享老板"]) {
+        type = @"BOSS";
+    }else{
+        type = @"WORKER";
+    }
+    
+    [KGGPublishHomeRequestManager publishHomeHeaderViewType:type Name:name Phome:phone Age:age Id_Card_Num:idCard Industry:industry NativePlace:nativePlace Address:address completion:^(KGGResponseObj *responseObj) {
+        KGGLog(@"%@",responseObj);
+        if (responseObj.code == KGGSuccessCode) {
+            [self.view showHint:@"上传成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } aboveView:self.view inCaller:self];
 }
 
 #pragma mark - 键盘显示隐藏
@@ -182,7 +239,8 @@
 - (KGGCollectFooterView *)footerView
 {
     if (!_footerView) {
-        _footerView = [[KGGCollectFooterView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 130)];
+        _footerView = [[KGGCollectFooterView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 140)];
+//        _footerView.backgroundColor = [UIColor redColor];
     }
     return _footerView;
 }

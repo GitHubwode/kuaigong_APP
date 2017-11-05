@@ -139,14 +139,12 @@ static CGFloat itemHeight = 61.f;
 #pragma mark - 请求数据获取后台的签名
 - (void)setUpPayRequest
 {
-    [KGGPayRequestManager payOrderDetailsMessageOrder:self.itemId completion:^(KGGResponseObj *responseObj) {
+    [KGGPayRequestManager payOrderDetailsMessageOrder:self.itemId TradeType:@"USERVIP" PayChannel:@"WEIXIN" completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             KGGLog(@"%@",responseObj);
             [self kgg_weixinPay:responseObj.data];
         }
-        
     } aboveView:self.view inCaller:self];
-    
 }
 
 #pragma mark - 微信支付
@@ -154,11 +152,11 @@ static CGFloat itemHeight = 61.f;
 {
     KGGLog(@"%@",result);
     PayReq *request = [[PayReq alloc]init];
-    request.partnerId = @"1490727912";
+    request.partnerId = [result objectForKey:@"partnerid"];
     request.prepayId = [result objectForKey:@"prepayId"];
-//    request.package = [result objectForKey:@"package2"];
+    request.package = @"Sign=WXPay";
     request.nonceStr = [result objectForKey:@"nonceStr"];
-//    request.timeStamp = (UInt32)[[result objectForKey:@"timestamp"] intValue];
+    request.timeStamp = (UInt32)[[result objectForKey:@"timestamp"] intValue];
     request.sign = [result objectForKey:@"sign"];
     [WXApi sendReq:request];
 }

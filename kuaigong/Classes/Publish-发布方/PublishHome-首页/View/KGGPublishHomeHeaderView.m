@@ -27,8 +27,10 @@ static CGFloat const itemHeight = 168.f;
 //    weakSelf(self);
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight))];
     imageView.userInteractionEnabled = YES;
-    imageView.image = [UIImage imageNamed:@"pic"];
+    imageView.backgroundColor = KGGGoldenThemeColor;
+//    imageView.image = [UIImage imageNamed:@"pic"];
     [self addSubview:imageView];
+//    imageView.hidden = YES;
     
     CGFloat buttonWidth = (kMainScreenWidth-20)/3;
     CGFloat buttonHeight = (KGGAdaptedHeight(itemHeight)-15)/2;

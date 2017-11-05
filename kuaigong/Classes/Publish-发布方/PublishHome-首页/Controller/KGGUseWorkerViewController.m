@@ -19,6 +19,7 @@
 #import "KGGPublishOrderParam.h"
 #import "KGGWorkTypeModel.h"
 #import "KGGEditPublishViewController.h"
+#import "KGGPayRequestManager.h"
 
 @interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource,KGGUseWorkerHeaderViewDelegate>
 
@@ -259,22 +260,37 @@
 {
     self.vipView = [KGGApplyVIPView kgg_alertPromptApplyForViewKGGApplyButtonClick:^(NSString *money) {
         KGGLog(@"支付会员费:%@",money);
-        [self jumpPayViewMoney:money];
+        [self creatVIPMessage:money];
     } KGGUnderstandButtonClick:^{
         
     }];
 }
 
-#pragma mark - 跳转支付页面
-- (void)jumpPayViewMoney:(NSString *)money
+#pragma mark - 获取VIP价位的信息
+- (void)creatVIPMessage:(NSString *)money
+{
+//    @"ONE_MONTHS  ONE_YEAR"
+    NSString *type;
+    if ([money isEqualToString:@"99"]) {
+        type = @"ONE_MONTHS";
+    }else{
+        type = @"ONE_YEAR";
+    }
+    [KGGPayRequestManager creatVIPMessageVIPType:type completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            NSString *price = [responseObj.data objectForKey:@"price"];
+            NSString *orderNo = [responseObj.data objectForKey:@"orderNo"];
+            [self jumpPayViewMoney:price OrderNo:orderNo];
+        }
+    } aboveView:self.view inCaller:self];
+}
+
+#pragma mark - 跳转支付页面 申请会员
+- (void)jumpPayViewMoney:(NSString *)money OrderNo:(NSString *)orderNo
 {
     KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
-    sheetVC.moneyString = money;
-    sheetVC.receiverId = @"";
-    sheetVC.tradeType = 1;
-    sheetVC.payFrom = 22;
-    sheetVC.isPublish = NO;
-    sheetVC.itemId = 11;
+    sheetVC.tradeType = @"USERVIP";
+    sheetVC.itemId = orderNo;
     //    __weak typeof(self) weakSelf = self;
     sheetVC.callPaySuccessBlock = ^(NSString *code){
         if ([code isEqualToString:@"200"]) {
