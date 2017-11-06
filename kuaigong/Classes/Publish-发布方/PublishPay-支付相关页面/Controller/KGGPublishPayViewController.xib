@@ -17,6 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KGGPublishPayViewController">
             <connections>
                 <outlet property="factoryView" destination="If0-3I-aFc" id="Qeh-Xj-fg2"/>
+                <outlet property="factoryView1" destination="ioP-0T-Rjq" id="9SO-xh-rqh"/>
                 <outlet property="messageLabel" destination="iRf-au-S2T" id="Mao-fM-hVB"/>
                 <outlet property="moneyLabel" destination="jXy-3I-D80" id="9wp-GC-tq0"/>
                 <outlet property="orderDetailsLabel" destination="0Am-bU-UOU" id="JFZ-Wj-eVj"/>
@@ -238,6 +239,7 @@
                 <constraint firstItem="PIf-bo-Rmv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tNm-CF-hy0"/>
                 <constraint firstItem="qes-yo-Ire" firstAttribute="centerY" secondItem="RY3-Id-9r7" secondAttribute="centerY" id="tO6-JQ-KfJ"/>
                 <constraint firstItem="Fwp-29-gDB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uMR-kf-xtC"/>
+                <constraint firstItem="PIf-bo-Rmv" firstAttribute="top" secondItem="T7B-lE-O09" secondAttribute="bottom" priority="750" id="v0i-n8-fpe"/>
                 <constraint firstItem="Ucn-iT-KcF" firstAttribute="centerY" secondItem="3tG-3N-ELW" secondAttribute="centerY" id="xoI-nX-kMw"/>
                 <constraint firstItem="iRf-au-S2T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yly-7T-YoN"/>
                 <constraint firstItem="RY3-Id-9r7" firstAttribute="bottom" secondItem="Fwp-29-gDB" secondAttribute="bottom" constant="-15" id="zRV-9Y-APA"/>

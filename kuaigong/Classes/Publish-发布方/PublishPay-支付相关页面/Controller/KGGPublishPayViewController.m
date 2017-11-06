@@ -11,9 +11,11 @@
 #import "KGGOrderDetailsModel.h"
 #import "KGGOrderCorrectViewController.h"
 #import "KGGPublishOrderRequestManager.h"
+#import "UIImageView+WebCache.h"
+#import "SDPhotoBrowser.h"
 
 
-@interface KGGPublishPayViewController ()
+@interface KGGPublishPayViewController ()<SDPhotoBrowserDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *orderDetailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
@@ -22,11 +24,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *sureButton;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UIView *factoryView;
+@property (nonatomic, strong) UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIView *factoryView1;
 
 @end
 
 @implementation KGGPublishPayViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,6 +60,57 @@
     self.remarkLabel.text = self.detailsModel.remark;
     self.orderNumLabel.text = self.detailsModel.orderNo;
     self.orderTimeLabel.text = [NSString TimeStamp:self.detailsModel.createTime];
+    
+    if (!self.detailsModel.imageArray) {
+        [self.factoryView removeFromSuperview];
+        [self.factoryView1 removeFromSuperview];
+        return;
+    }
+    
+    CGFloat widthImage = (kMainScreenWidth-65)/self.detailsModel.imageArray.count;
+    for (int i =0; i<self.detailsModel.imageArray.count; i++) {
+        self.imageView = [self creatImageView];
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
+        [self.imageView addGestureRecognizer:recognizer];
+        self.imageView.tag = 100+i;
+        self.imageView.frame = CGRectMake(15+5*i+widthImage*i, 10, widthImage, 62);
+        [self.factoryView addSubview:self.imageView];
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.detailsModel.imageArray[i]]];
+    }
+}
+
+- (void)snh_qrButtonClick:(UITapGestureRecognizer *)reg
+{
+    KGGLog(@"二维码");
+    UIView *vi = reg.view;
+    self.view = vi;
+    SDPhotoBrowser *photoBrowser = [SDPhotoBrowser new];
+    photoBrowser.tag = 1000;
+    photoBrowser.delegate = self;
+    photoBrowser.currentImageIndex = vi.tag-100;
+    photoBrowser.imageCount = self.detailsModel.imageArray.count;
+    photoBrowser.sourceImagesContainerView = self.factoryView;
+    [photoBrowser show];
+}
+
+#pragma mark -SDPhotoBrowserDeleggate
+// 返回临时占位图片（即原来的小图）
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
+{
+    UIImageView *imageView;
+    imageView.tag = self.view.tag-100;
+    return imageView.image;
+}
+
+// 返回高质量图片的url
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
+{
+    NSString *imgUrl = self.detailsModel.imageArray[index];
+    return [NSURL URLWithString:imgUrl];
+}
+
+- (void )photoBrowserDidDissmissed:(SDPhotoBrowser *)browser{
+    KGGLogFunc;
 }
 
 - (void)addButton
@@ -93,6 +147,16 @@
         make.height.equalTo(bgView.mas_height);
         make.width.equalTo(@(kMainScreenWidth/2-0.5));
     }];
+    
+    
+}
+
+- (UIImageView *)creatImageView
+{
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.userInteractionEnabled = YES;
+    return imageView;
 }
 
 #pragma mark - lazyButton
@@ -163,8 +227,9 @@
 - (void)kgg_orderDetailsMessage
 {
     KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
-        sheetVC.moneyString = [NSString stringWithFormat:@"%.2f",self.detailsModel.totalAmount];
+    sheetVC.moneyString = [NSString stringWithFormat:@"工资: ¥%.2f",self.detailsModel.totalAmount];
     sheetVC.itemId = self.detailsModel.orderNo;
+    sheetVC.tradeType = @"ORDER";
     //    __weak typeof(self) weakSelf = self;
     sheetVC.callPaySuccessBlock = ^(NSString *code){
         if ([code isEqualToString:@"200"]) {

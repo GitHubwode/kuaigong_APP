@@ -55,7 +55,7 @@ static CGFloat itemHeight = 61.f;
     }];
 
     KGGPaychooseHeaderView *header = [[KGGPaychooseHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 48)];
-    header.titleStateLabel.text = [NSString stringWithFormat:@"工资: ¥%@",self.moneyString];
+    header.titleStateLabel.text = self.moneyString;
 
     self.payTableView.tableHeaderView = header;
     self.payTableView.backgroundColor = [UIColor whiteColor];
@@ -130,16 +130,21 @@ static CGFloat itemHeight = 61.f;
         return;
     }else{
         [self.view showHint:@"跳转对应的支付页面"];
-        
         KGGLog(@"%ld",(long)self.indexPay);
-        [self setUpPayRequest];
+        NSString *payMode;
+        if (self.indexPay == 1) {
+            payMode = @"WEIXIN";
+        }else{
+            payMode = @"ALIPAY";
+        }
+        [self setUpPayRequest:payMode];
     }
 }
 
 #pragma mark - 请求数据获取后台的签名
-- (void)setUpPayRequest
+- (void)setUpPayRequest:(NSString *)payMode
 {
-    [KGGPayRequestManager payOrderDetailsMessageOrder:self.itemId TradeType:@"USERVIP" PayChannel:@"WEIXIN" completion:^(KGGResponseObj *responseObj) {
+    [KGGPayRequestManager payOrderDetailsMessageOrder:self.itemId TradeType:self.tradeType PayChannel:payMode completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             KGGLog(@"%@",responseObj);
             [self kgg_weixinPay:responseObj.data];

@@ -23,4 +23,9 @@
 /** 类型 */
 @property (nonatomic,copy) NSString *type;
 
+//增加参数
+/** 工作时间 */
+@property (nonatomic,copy) NSString *whenLong;
+
+
 @end

@@ -269,7 +269,6 @@
 #pragma mark - 获取VIP价位的信息
 - (void)creatVIPMessage:(NSString *)money
 {
-//    @"ONE_MONTHS  ONE_YEAR"
     NSString *type;
     if ([money isEqualToString:@"99"]) {
         type = @"ONE_MONTHS";
@@ -291,6 +290,7 @@
     KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
     sheetVC.tradeType = @"USERVIP";
     sheetVC.itemId = orderNo;
+    sheetVC.moneyString = [NSString stringWithFormat:@"会员费: ¥%@",money];
     //    __weak typeof(self) weakSelf = self;
     sheetVC.callPaySuccessBlock = ^(NSString *code){
         if ([code isEqualToString:@"200"]) {
@@ -345,7 +345,7 @@
    self.orderUrl = [self.headerView.imageArray componentsJoinedByString:@","];
     
 
-    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString OrderUrl:self.orderUrl WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:@"9" Contacts:name ContactsPhone:contactsPhone];
+    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString OrderUrl:self.orderUrl WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:self.workType.whenLong Contacts:name ContactsPhone:contactsPhone];
     
     KGGLog(@"工种类型:%@",self.workType.type);
     

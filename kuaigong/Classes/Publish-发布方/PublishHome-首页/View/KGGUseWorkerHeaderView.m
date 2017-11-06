@@ -231,21 +231,25 @@
 }
 
 #pragma mark - 给工地照片赋值
-- (void)setUpHeaderViewImageViewList:(NSArray *)array
-{
-    if (array.count!= 0) {
-        [self.addButton removeFromSuperview];
-        CGFloat widthImage = (kMainScreenWidth-65)/array.count;
-    for (int i =0; i<array.count; i++) {
-        self.imageView = [self creatImageView];
-        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
-        [self.imageView addGestureRecognizer:recognizer];
-        self.imageView.frame = CGRectMake(15+5*i+widthImage*i, 10, widthImage, 62);
-        [self.bottomView addSubview:self.imageView];
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:array[i]]];
-    }
-    }
-}
+//- (void)setUpHeaderViewImageViewList:(NSArray *)array
+//{
+//    if (array.count!= 0) {
+//        [self.addButton removeFromSuperview];
+//        CGFloat widthImage = (kMainScreenWidth-65)/array.count;
+//    for (int i =0; i<array.count; i++) {
+//        self.imageView = [self creatImageView];
+//        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
+//        [self.imageView addGestureRecognizer:recognizer];
+//        self.imageView.tag = 100+i;
+//        self.imageView.frame = CGRectMake(15+5*i+widthImage*i, 10, widthImage, 62);
+//        [self.bottomView addSubview:self.imageView];
+//        [self.imageView sd_setImageWithURL:[NSURL URLWithString:array[i]]];
+//
+//    }
+//
+//    }
+//}
+
 
  - (void)setImageArray:(NSMutableArray *)imageArray
 {
@@ -255,8 +259,9 @@
         CGFloat widthImage = (kMainScreenWidth-65)/imageArray.count;
         for (int i =0; i<imageArray.count; i++) {
             self.imageView = [self creatImageView];
-//            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
-//            [self.imageView addGestureRecognizer:recognizer];
+            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
+            [self.imageView addGestureRecognizer:recognizer];
+            self.imageView.tag = 100+i;
             self.imageView.frame = CGRectMake(15+5*i+widthImage*i, 10, widthImage, 62);
             [self.bottomView addSubview:self.imageView];
             [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageArray[i]]];
@@ -268,11 +273,12 @@
 - (void)snh_qrButtonClick:(UITapGestureRecognizer *)reg
 {
     KGGLog(@"二维码");
+    UIView *vi = reg.view;
     SDPhotoBrowser *photoBrowser = [SDPhotoBrowser new];
     photoBrowser.tag = 1000;
     photoBrowser.delegate = self;
-    photoBrowser.currentImageIndex = 0;
-    photoBrowser.imageCount = 1;
+    photoBrowser.currentImageIndex = vi.tag-100;
+    photoBrowser.imageCount = self.imageArray.count;
     photoBrowser.sourceImagesContainerView = self.bottomView;
     [photoBrowser show];
 }
@@ -282,7 +288,7 @@
 // 返回临时占位图片（即原来的小图）
 - (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
 {
-    return self.imageView.image;
+    return [UIImage imageNamed:@""];
 }
 
 
@@ -303,6 +309,7 @@
 {
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.userInteractionEnabled = YES;
     return imageView;
 }
 

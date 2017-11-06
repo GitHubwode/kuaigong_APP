@@ -10,4 +10,16 @@
 
 @implementation KGGWorkTypeModel
 
+/**
+ *  当字典转模型完毕时调用
+ */
+- (void)mj_keyValuesDidFinishConvertingToObject{
+//    _name isEqualToString:@""
+    if ([_name isEqualToString:@"内架子工"] || [_name isEqualToString:@"外架子工"]) {
+        _whenLong = @"8";
+    }else{
+        _whenLong = @"9";
+    }
+}
+
 @end

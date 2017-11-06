@@ -81,5 +81,7 @@
 @property (nonatomic, assign) CGFloat differentPrice;
 /** 隐藏电话号码 */
 @property (nonatomic, copy) NSString *hidePhone;
+@property (nonatomic, strong) NSMutableArray *imageArray;
+
 
 @end

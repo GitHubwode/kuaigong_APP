@@ -24,6 +24,8 @@
  */
 - (void)mj_keyValuesDidFinishConvertingToObject{
     
+    _remark = _remark.length == 0 ? @"没有特殊要求":_remark;
+    
     switch (_type) {
         case 1:
             _workerType = @"木工";
@@ -55,9 +57,9 @@
     
 //    人数
     if (_fare == 0) {
-       _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作9小时 每天%.f元,无车费。",_workerType,(unsigned long)_number,(unsigned long)_days,_unitPrice];
+       _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作%@小时 每天%.f元,无车费。",_workerType,(unsigned long)_number,(unsigned long)_days,_whenLong,_unitPrice];
     }else{
-        _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作9小时 每天%.f元,车费每辆%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_unitPrice,_fare];
+        _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作%@小时 每天%.f元,车费每辆%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_whenLong,_unitPrice,_fare];
     }
     _differentPrice = _totalAmount - _fare;
     //隐藏电话点好
@@ -69,14 +71,16 @@
     }
     _accpetTime = [NSString TimeStamp:_accpetTime];
     _workStartTime = [NSString OrderDetailsTimeStamp:_workStartTime];
-    
+    if (_orderUrl.length != 0) {
+        _imageArray =[[_orderUrl componentsSeparatedByString:@","] mutableCopy];
+    }
 }
 
 /**
  *  这个数组中的属性名将会被忽略：不进行字典和模型的转换
  */
 + (NSArray *)mj_ignoredPropertyNames{
-    return @[@"orderDetails", @"workerType",@"differentPrice",@"hidePhone"];
+    return @[@"orderDetails", @"workerType",@"differentPrice",@"hidePhone",@"imageArray"];
 }
 
 @end

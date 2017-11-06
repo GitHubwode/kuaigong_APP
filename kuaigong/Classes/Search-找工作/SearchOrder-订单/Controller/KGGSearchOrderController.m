@@ -59,7 +59,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 410;
+    if (self.orderDetails.imageArray) {
+        return 410+132;
+    }else{
+        return 410;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,6 +104,7 @@
         [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGSearchOrderViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGSearchOrderViewCell searchOrderIdentifier]];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+//        _tableView.rowHeight = 542.f;
         
     }
     return _tableView;
