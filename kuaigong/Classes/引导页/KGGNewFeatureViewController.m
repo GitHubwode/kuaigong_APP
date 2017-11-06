@@ -39,7 +39,6 @@
     [self jumpLoginViewIdentity:@"WORKER"];
 }
 
-
 - (void)jumpLoginViewIdentity:(NSString *)IdString
 {
     [NSUserDefaults removeObjectForKey:KGGUserType];
@@ -54,9 +53,8 @@
         KGGTabBarWorkController *rootVc = [[KGGTabBarWorkController alloc] init];
         self.view.window.rootViewController = rootVc;
     }
+    [self.view removeAllSubViews];
 }
-
-
 
 - (void)dealloc
 {

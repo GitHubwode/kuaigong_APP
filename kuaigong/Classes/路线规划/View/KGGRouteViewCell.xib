@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="160" id="KGk-i7-Jjw" customClass="KGGRouteViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="156"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="373" height="155.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBK-Uh-IgA">
+                        <rect key="frame" x="0.0" y="0.0" width="373" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单详情:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWc-BJ-Xs4">
+                                <rect key="frame" x="15" y="18.5" width="53" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.52553833360000002" blue="0.2194468024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="KWc-BJ-Xs4" firstAttribute="leading" secondItem="uBK-Uh-IgA" secondAttribute="leading" constant="15" id="COt-di-CkS"/>
+                            <constraint firstAttribute="height" constant="50" id="ZFa-1g-Bqj"/>
+                            <constraint firstItem="KWc-BJ-Xs4" firstAttribute="centerY" secondItem="uBK-Uh-IgA" secondAttribute="centerY" id="rLq-V4-hYB"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPL-9R-ycN">
+                        <rect key="frame" x="0.0" y="50" width="373" height="105.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="架子工什么的  就爱子倒是巨大空间打开啦十九大" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfd-43-doz">
+                                <rect key="frame" x="15" y="46.5" width="343" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.61960784310000006" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Nfd-43-doz" firstAttribute="centerY" secondItem="HPL-9R-ycN" secondAttribute="centerY" id="8xN-b5-C6Z"/>
+                            <constraint firstItem="Nfd-43-doz" firstAttribute="leading" secondItem="HPL-9R-ycN" secondAttribute="leading" constant="15" id="PFA-eC-16S"/>
+                            <constraint firstAttribute="trailing" secondItem="Nfd-43-doz" secondAttribute="trailing" constant="15" id="T59-9p-Kle"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="HPL-9R-ycN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MR0-4c-MBF"/>
+                    <constraint firstItem="HPL-9R-ycN" firstAttribute="top" secondItem="uBK-Uh-IgA" secondAttribute="bottom" id="YSB-r9-u14"/>
+                    <constraint firstAttribute="trailing" secondItem="HPL-9R-ycN" secondAttribute="trailing" id="Yx3-hw-QmV"/>
+                    <constraint firstItem="uBK-Uh-IgA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="da9-6Q-gdN"/>
+                    <constraint firstAttribute="bottom" secondItem="HPL-9R-ycN" secondAttribute="bottom" id="eqM-sy-fBn"/>
+                    <constraint firstAttribute="trailing" secondItem="uBK-Uh-IgA" secondAttribute="trailing" id="hvi-Rp-IPb"/>
+                    <constraint firstItem="uBK-Uh-IgA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nmN-Xp-CH1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="subTitleLabel" destination="Nfd-43-doz" id="3C2-nK-MMS"/>
+                <outlet property="titleLabel" destination="KWc-BJ-Xs4" id="4nn-7P-P3B"/>
+            </connections>
+            <point key="canvasLocation" x="52.5" y="124"/>
+        </tableViewCell>
+    </objects>
+</document>

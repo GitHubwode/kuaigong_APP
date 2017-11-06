@@ -11,6 +11,7 @@
 #import "KGGSearchOrderHeaderView.h"
 #import "KGGPublishOrderRequestManager.h"
 #import "KGGSearchOrderRequestManager.h"
+#import "KGGRoutePlanningController.h"
 
 @interface KGGSearchOrderController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -46,9 +47,18 @@
             [self.view showHint:@"接单成功,请按时出单"];
             [self.orderButton setTitle:@"已接单" forState:UIControlStateNormal];
             self.orderButton.enabled = NO;
+            [self jumpRoutePlanning];
         }
         
     } aboveView:self.view inCaller:self];
+}
+
+#pragma mark - 跳转到路线规划
+- (void)jumpRoutePlanning
+{
+    KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
+    routeVC.orderDetails = self.orderDetails;
+    [self.navigationController pushViewController:routeVC animated:YES];
 }
 
 #pragma mark- UITableViewDatasource UITableViewDelegate
