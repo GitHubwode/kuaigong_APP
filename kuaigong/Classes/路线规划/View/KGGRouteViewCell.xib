@@ -11,63 +11,62 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="160" id="KGk-i7-Jjw" customClass="KGGRouteViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="373" height="156"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="43" id="KGk-i7-Jjw" customClass="KGGRouteViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="39"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="373" height="155.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="403" height="38.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBK-Uh-IgA">
-                        <rect key="frame" x="0.0" y="0.0" width="373" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="403" height="38.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单详情:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWc-BJ-Xs4">
-                                <rect key="frame" x="15" y="18.5" width="53" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="订单详情:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWc-BJ-Xs4">
+                                <rect key="frame" x="15" y="10" width="53" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.52553833360000002" blue="0.2194468024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="KWc-BJ-Xs4" firstAttribute="leading" secondItem="uBK-Uh-IgA" secondAttribute="leading" constant="15" id="COt-di-CkS"/>
-                            <constraint firstAttribute="height" constant="50" id="ZFa-1g-Bqj"/>
-                            <constraint firstItem="KWc-BJ-Xs4" firstAttribute="centerY" secondItem="uBK-Uh-IgA" secondAttribute="centerY" id="rLq-V4-hYB"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPL-9R-ycN">
-                        <rect key="frame" x="0.0" y="50" width="373" height="105.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="架子工什么的  就爱子倒是巨大空间打开啦十九大" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfd-43-doz">
-                                <rect key="frame" x="15" y="46.5" width="343" height="12"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="架子工什么的  就爱子倒是巨大空间打开啦十." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfd-43-doz">
+                                <rect key="frame" x="78" y="10" width="310" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hle-Ur-T24">
+                                <rect key="frame" x="0.0" y="37.5" width="403" height="1"/>
+                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="gCM-Bl-CMS"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.61960784310000006" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Nfd-43-doz" firstAttribute="centerY" secondItem="HPL-9R-ycN" secondAttribute="centerY" id="8xN-b5-C6Z"/>
-                            <constraint firstItem="Nfd-43-doz" firstAttribute="leading" secondItem="HPL-9R-ycN" secondAttribute="leading" constant="15" id="PFA-eC-16S"/>
-                            <constraint firstAttribute="trailing" secondItem="Nfd-43-doz" secondAttribute="trailing" constant="15" id="T59-9p-Kle"/>
+                            <constraint firstItem="KWc-BJ-Xs4" firstAttribute="leading" secondItem="uBK-Uh-IgA" secondAttribute="leading" constant="15" id="COt-di-CkS"/>
+                            <constraint firstItem="Nfd-43-doz" firstAttribute="top" secondItem="KWc-BJ-Xs4" secondAttribute="top" id="Gl0-RN-YFE"/>
+                            <constraint firstItem="Nfd-43-doz" firstAttribute="leading" secondItem="KWc-BJ-Xs4" secondAttribute="trailing" constant="10" id="SPD-Aa-WH0"/>
+                            <constraint firstItem="hle-Ur-T24" firstAttribute="leading" secondItem="uBK-Uh-IgA" secondAttribute="leading" id="hG3-Qe-gRH"/>
+                            <constraint firstAttribute="bottom" secondItem="hle-Ur-T24" secondAttribute="bottom" id="iGj-cg-J99"/>
+                            <constraint firstAttribute="trailing" secondItem="Nfd-43-doz" secondAttribute="trailing" constant="15" id="lm4-Qh-CIS"/>
+                            <constraint firstAttribute="trailing" secondItem="hle-Ur-T24" secondAttribute="trailing" id="mHm-IJ-iUx"/>
+                            <constraint firstItem="KWc-BJ-Xs4" firstAttribute="top" secondItem="uBK-Uh-IgA" secondAttribute="top" constant="10" id="zY1-Jj-cA6"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="HPL-9R-ycN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MR0-4c-MBF"/>
-                    <constraint firstItem="HPL-9R-ycN" firstAttribute="top" secondItem="uBK-Uh-IgA" secondAttribute="bottom" id="YSB-r9-u14"/>
-                    <constraint firstAttribute="trailing" secondItem="HPL-9R-ycN" secondAttribute="trailing" id="Yx3-hw-QmV"/>
                     <constraint firstItem="uBK-Uh-IgA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="da9-6Q-gdN"/>
-                    <constraint firstAttribute="bottom" secondItem="HPL-9R-ycN" secondAttribute="bottom" id="eqM-sy-fBn"/>
+                    <constraint firstAttribute="bottom" secondItem="uBK-Uh-IgA" secondAttribute="bottom" id="gRk-eK-aw3"/>
                     <constraint firstAttribute="trailing" secondItem="uBK-Uh-IgA" secondAttribute="trailing" id="hvi-Rp-IPb"/>
                     <constraint firstItem="uBK-Uh-IgA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nmN-Xp-CH1"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="lineheight" destination="gCM-Bl-CMS" id="79j-2W-ZB6"/>
                 <outlet property="subTitleLabel" destination="Nfd-43-doz" id="3C2-nK-MMS"/>
                 <outlet property="titleLabel" destination="KWc-BJ-Xs4" id="4nn-7P-P3B"/>
             </connections>
-            <point key="canvasLocation" x="52.5" y="124"/>
+            <point key="canvasLocation" x="76.5" y="64.5"/>
         </tableViewCell>
     </objects>
 </document>

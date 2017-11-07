@@ -41,16 +41,16 @@
 - (void)snh_sureOrderButtonClick:(UIButton *)sender
 {
     KGGLog(@"接单的确认按钮");
-    
-    [KGGSearchOrderRequestManager searchReciveOrderId:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
-        if (responseObj.code == KGGSuccessCode) {
-            [self.view showHint:@"接单成功,请按时出单"];
-            [self.orderButton setTitle:@"已接单" forState:UIControlStateNormal];
-            self.orderButton.enabled = NO;
-            [self jumpRoutePlanning];
-        }
-        
-    } aboveView:self.view inCaller:self];
+    [self jumpRoutePlanning];
+//    [KGGSearchOrderRequestManager searchReciveOrderId:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
+//        if (responseObj.code == KGGSuccessCode) {
+//            [self.view showHint:@"接单成功,请按时出单"];
+//            [self.orderButton setTitle:@"已接单" forState:UIControlStateNormal];
+//            self.orderButton.enabled = NO;
+//            [self jumpRoutePlanning];
+//        }
+//        
+//    } aboveView:self.view inCaller:self];
 }
 
 #pragma mark - 跳转到路线规划
@@ -58,6 +58,7 @@
 {
     KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
     routeVC.orderDetails = self.orderDetails;
+    routeVC.planType = KGGRoutePlanningWORKERType;
     [self.navigationController pushViewController:routeVC animated:YES];
 }
 

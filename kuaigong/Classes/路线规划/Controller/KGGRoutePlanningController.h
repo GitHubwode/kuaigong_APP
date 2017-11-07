@@ -10,9 +10,15 @@
 
 @class KGGOrderDetailsModel;
 
+typedef NS_ENUM(NSUInteger, KGGRoutePlanningType) {
+    KGGRoutePlanningBOSSType, // 发布方接单详情
+    KGGRoutePlanningWORKERType, // 接单方接单详情
+};
+
 @interface KGGRoutePlanningController : UIViewController
 
 @property (nonatomic, strong)KGGOrderDetailsModel *orderDetails;
-
+/** 发布方接单详情Or接单方接单详情 */
+@property (nonatomic, assign) KGGRoutePlanningType planType;
 
 @end

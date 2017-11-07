@@ -250,6 +250,7 @@
 		35CBD3C91FA2DD74007E88AD /* KGGLookforPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3C81FA2DD73007E88AD /* KGGLookforPWDViewController.m */; };
 		35CBD3CD1FA324B4007E88AD /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3CB1FA324B4007E88AD /* MenuView.m */; };
 		35CBD3D31FA326A4007E88AD /* KGGLeftTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */; };
+		35DF9E321FB19AA700AAA429 /* KGGRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */; };
 		35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */; };
 		35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C61F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m */; };
 		35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C91F8DC39600DCA0EB /* KGGPublishOrderParam.m */; };
@@ -742,6 +743,8 @@
 		35CBD3CC1FA324B4007E88AD /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
 		35CBD3D11FA326A4007E88AD /* KGGLeftTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLeftTableController.h; sourceTree = "<group>"; };
 		35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLeftTableController.m; sourceTree = "<group>"; };
+		35DF9E301FB19AA700AAA429 /* KGGRouteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRouteModel.h; sourceTree = "<group>"; };
+		35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRouteModel.m; sourceTree = "<group>"; };
 		35E8B6C11F8DBE5C00DCA0EB /* KGGOrderDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderDetailsModel.h; sourceTree = "<group>"; };
 		35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderDetailsModel.m; sourceTree = "<group>"; };
 		35E8B6C51F8DC36100DCA0EB /* KGGPublishOrderRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishOrderRequestManager.h; sourceTree = "<group>"; };
@@ -1713,6 +1716,8 @@
 		357691291FB05DDC00803D9A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				35DF9E301FB19AA700AAA429 /* KGGRouteModel.h */,
+				35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2570,6 +2575,7 @@
 				185C86811F4596F400356ECD /* KGGRegisterViewController.m in Sources */,
 				185C86721F452F2500356ECD /* KGGConst.m in Sources */,
 				35961B0B1FA86B9C00A52B9E /* KGGCenterViewController.m in Sources */,
+				35DF9E321FB19AA700AAA429 /* KGGRouteModel.m in Sources */,
 				35961B151FA86E7F00A52B9E /* KGGCenterModel.m in Sources */,
 				189D21561F43E44C0004F1EB /* NSBundle+KGGExtension.m in Sources */,
 				354885DC1FA066AB00636435 /* KGGPublishHomeRequestManager.m in Sources */,

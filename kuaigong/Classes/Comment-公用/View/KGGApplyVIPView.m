@@ -146,8 +146,8 @@
 {
 //    weakSelf(self);
 //    CGFloat buttonWidth = (kMainScreenWidth-KGGAdaptedWidth(60)-2*KGGAdaptedWidth(20)-3*KGGAdaptedWidth(15))/2;
-    CGFloat buttonWidth = KGGAdaptedWidth(116);
-    CGFloat buttonHeight = KGGAdaptedHeight(100);
+    CGFloat buttonWidth = KGGAdaptedWidth(58);
+    CGFloat buttonHeight = KGGAdaptedHeight(50);
     
 //    CGFloat buttonHeight = KGGAdaptedHeight(110);
 
@@ -165,14 +165,14 @@
     
     [_button1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_middleView.mas_centerY);
-        make.left.equalTo(_middleView.mas_left).offset(KGGAdaptedWidth(40));
+        make.left.equalTo(_middleView.mas_left).offset(KGGAdaptedWidth(60));
         make.height.equalTo(@(buttonHeight));
         make.width.equalTo(@(buttonWidth));
     }];
     
         [_button2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(_button1.mas_centerY);
-            make.right.equalTo(_middleView.mas_right).offset(KGGAdaptedWidth(-40));
+            make.right.equalTo(_middleView.mas_right).offset(KGGAdaptedWidth(-60));
             make.height.equalTo(@(buttonHeight));
             make.width.equalTo(@(buttonWidth));
         }];
@@ -218,8 +218,8 @@
     
     switch (sender.tag) {
         case 10000:
-            KGGLog(@"99");
-            self.moneyString = @"99";
+            KGGLog(@"399");
+            self.moneyString = @"399";
             break;
         case 10001:
             KGGLog(@"2699");

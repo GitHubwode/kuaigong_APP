@@ -11,5 +11,6 @@
 @interface KGGRouteViewCell : UITableViewCell
 
 + (NSString *)identifierRouteView;
-
+@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end

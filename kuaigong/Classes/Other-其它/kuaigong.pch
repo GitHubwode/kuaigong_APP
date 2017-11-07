@@ -74,6 +74,9 @@
 /** 1像素高度 */
 #define KGGOnePixelHeight (1.0f / [UIScreen mainScreen].scale)
 
+/** 路线的tableview的宽度 */
+
+
 /*** 日志 ***/
 #ifdef DEBUG
 #define KGGString [NSString stringWithFormat:@"%s", __FILE__].lastPathComponent

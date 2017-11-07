@@ -8,14 +8,192 @@
 
 #import "KGGRouteTableView.h"
 #import "KGGRouteViewCell.h"
+#import "KGGRouteHeaderView.h"
+#import "KGGRouteFooterView.h"
+#import "KGGOrderDetailsModel.h"
+#import "KGGRouteModel.h"
 
-@interface KGGRouteTableView ()<UITableViewDelegate,UITableViewDataSource>
+@interface KGGRouteTableView ()<UITableViewDelegate,UITableViewDataSource,KGGRouteHeaderViewDelegate,KGGRouteFooterViewDelegate>
 
-@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *datasource;
+@property (nonatomic, strong) KGGRouteHeaderView *headerView;
+@property (nonatomic, strong) KGGRouteFooterView *footerView;
+@property (nonatomic, strong)KGGOrderDetailsModel *orderModel;
+
 
 @end
 @implementation KGGRouteTableView
+
+- (instancetype)initWithFrame:(CGRect)frame OrderModel:(KGGOrderDetailsModel *)orderModel
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor redColor];
+        self.orderModel = orderModel;
+        [self addSubview:self.tableView];
+        self.tableView.tableHeaderView = self.headerView;
+        self.tableView.tableFooterView = self.footerView;
+        KGGLog(@"RouteTableView模型:%@",self.orderModel)
+        [self routeHeaderView];
+        [self creatMessageDatasource];
+    }
+    return self;
+}
+
+#pragma mark - 创建模型
+- (void)creatMessageDatasource
+{
+    KGGRouteModel *model = [[KGGRouteModel alloc]init];
+    model.title = @"订单详情:";
+    model.subTitle = self.orderModel.orderDetails;
+    [self.datasource addObject:model];
+    
+    KGGRouteModel *model1 = [[KGGRouteModel alloc]init];
+    model1.title = @"订单备注:";
+    model1.subTitle = self.orderModel.remark;
+    [self.datasource addObject:model1];
+    
+    KGGRouteModel *model2 = [[KGGRouteModel alloc]init];
+    model2.title = @"用工时间:";
+    model2.subTitle = self.orderModel.workStartTime;
+    [self.datasource addObject:model2];
+    
+    
+}
+
+#pragma mark - 给headerView赋值
+- (void)routeHeaderView{
+    [self.headerView routeHeaderViewAvatar:self.orderModel.avatarUrl Name:self.orderModel.contacts Phone:self.orderModel.contactsPhone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.differentPrice]];
+}
+
+//- (instancetype)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        [self addSubview:self.tableView];
+//        self.tableView.tableHeaderView = self.headerView;
+//        self.tableView.tableFooterView = self.footerView;
+//        KGGLog(@"RouteTableView模型:%@",self.orderModel)
+//        
+//        KGGLog(@"RouteTableView模型:%@",self.orderModel)
+//
+//        
+//    }
+//    return self;
+//}
+
+#pragma mark -KGGRouteHeaderViewDelegate
+- (void)routeHeaderViewButtonClickTag:(UIButton *)buttonTag
+{
+    if ([self.routeDelegate respondsToSelector:@selector(routeRouteTableViewButtonClickTag:)]) {
+        [self.routeDelegate routeRouteTableViewButtonClickTag:buttonTag];
+    }
+}
+- (void)routeHeaderViewArrowButtonClick:(UIButton *)sender
+{
+    if (!sender.selected) {
+        [self.datasource removeAllObjects];
+    }else{
+        [self creatMessageDatasource];
+    }
+    
+    if ([self.routeDelegate respondsToSelector:@selector(routeRouteTableViewArrowButtonClick:)]) {
+        [self.routeDelegate routeRouteTableViewArrowButtonClick:sender];
+    }
+    self.tableView.frame = CGRectMake(0, 0, self.xc_width, self.xc_height);
+    [self.tableView reloadData];
+}
+
+#pragma mark -KGGRouteFooterViewDelegate
+- (void)routeFooterViewButtonClickTag:(UIButton *)buttonTag
+{
+    if ([self.routeDelegate respondsToSelector:@selector(routeRouteTableViewButtonClickTag:)]) {
+        [self.routeDelegate routeRouteTableViewButtonClickTag:buttonTag];
+    }
+}
+- (void)routeFooterViewGoButtonClickTag:(UIButton *)buttonTag
+{
+    if ([self.routeDelegate respondsToSelector:@selector(routeRouteTableViewButtonClickTag:)]) {
+        [self.routeDelegate routeRouteTableViewButtonClickTag:buttonTag];
+    }
+}
+
+#pragma mark - UITableViewDeelgate  UITableViewDatasource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.datasource.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 2) {
+        return 25.f;
+    }else{
+        return 50;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    KGGRouteModel *model = self.datasource[indexPath.row];
+    KGGRouteViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGRouteViewCell identifierRouteView] forIndexPath:indexPath];
+    cell.titleLabel.text = model.title;
+    cell.subTitleLabel.text = model.subTitle;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+
+#pragma mark - 懒加载
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.xc_width,self.xc_height) style:UITableViewStylePlain];
+        [_tableView registerNib:[UINib nibWithNibName:@"KGGRouteViewCell"bundle:nil] forCellReuseIdentifier:[KGGRouteViewCell identifierRouteView]];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
+}
+
+- (KGGRouteHeaderView *)headerView
+{
+    if (!_headerView) {
+        _headerView = [[KGGRouteHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.xc_width, 106)];
+        _headerView.headerDelegate = self;
+    }
+    return _headerView;
+}
+
+- (KGGRouteFooterView *)footerView
+{
+    if (!_footerView) {
+        _footerView = [[KGGRouteFooterView alloc]initWithFrame:CGRectMake(0, 0, self.xc_width, 103)];
+        _footerView.footerDelegate = self;
+    }
+    return _footerView;
+}
+
+- (KGGOrderDetailsModel *)orderModel
+{
+    if (!_orderModel) {
+        _orderModel = [[KGGOrderDetailsModel alloc]init];
+    }
+    return _orderModel;
+}
+
+- (NSMutableArray *)datasource
+{
+    if (!_datasource) {
+        _datasource = [NSMutableArray array];
+    }
+    return _datasource;
+}
+
 
 
 @end

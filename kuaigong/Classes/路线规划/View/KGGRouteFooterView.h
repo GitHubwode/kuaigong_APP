@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol KGGRouteFooterViewDelegate <NSObject>
+
+- (void)routeFooterViewButtonClickTag:(UIButton *)buttonTag;
+- (void)routeFooterViewGoButtonClickTag:(UIButton *)buttonTag;
+
+@end
 @interface KGGRouteFooterView : UIView
+
+@property (nonatomic, weak) id<KGGRouteFooterViewDelegate>footerDelegate;
 
 @end

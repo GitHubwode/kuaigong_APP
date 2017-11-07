@@ -11,8 +11,8 @@
 static NSString *routeViewCell = @"routeViewCell";
 
 @interface KGGRouteViewCell ()
-@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineheight;
 
 @end
 
@@ -21,6 +21,7 @@ static NSString *routeViewCell = @"routeViewCell";
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.lineheight.constant = KGGOnePixelHeight;
 }
 
 + (NSString *)identifierRouteView
