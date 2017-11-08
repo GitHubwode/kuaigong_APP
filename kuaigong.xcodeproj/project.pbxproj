@@ -174,7 +174,7 @@
 		354885DC1FA066AB00636435 /* KGGPublishHomeRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 354885DB1FA066AB00636435 /* KGGPublishHomeRequestManager.m */; };
 		356AE9C31FAB35E5004E417B /* KGGCollectTotalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 356AE9C11FAB35E5004E417B /* KGGCollectTotalController.m */; };
 		356AE9C41FAB35E5004E417B /* KGGCollectTotalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 356AE9C21FAB35E5004E417B /* KGGCollectTotalController.xib */; };
-		3576912D1FB05E0A00803D9A /* KGGRoutePlanningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3576912C1FB05E0A00803D9A /* KGGRoutePlanningController.m */; };
+		3576912D1FB05E0A00803D9A /* KGGRoutePlanningController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3576912C1FB05E0A00803D9A /* KGGRoutePlanningController.mm */; };
 		357691301FB06FC700803D9A /* KGGRouteTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3576912F1FB06FC700803D9A /* KGGRouteTableView.m */; };
 		357691341FB0704F00803D9A /* KGGRouteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 357691321FB0704F00803D9A /* KGGRouteViewCell.m */; };
 		357691351FB0704F00803D9A /* KGGRouteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357691331FB0704F00803D9A /* KGGRouteViewCell.xib */; };
@@ -251,6 +251,7 @@
 		35CBD3CD1FA324B4007E88AD /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3CB1FA324B4007E88AD /* MenuView.m */; };
 		35CBD3D31FA326A4007E88AD /* KGGLeftTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */; };
 		35DF9E321FB19AA700AAA429 /* KGGRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */; };
+		35DF9E351FB317A800AAA429 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DF9E341FB317A800AAA429 /* UIImage+Rotate.m */; };
 		35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */; };
 		35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C61F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m */; };
 		35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C91F8DC39600DCA0EB /* KGGPublishOrderParam.m */; };
@@ -607,7 +608,7 @@
 		356AE9C11FAB35E5004E417B /* KGGCollectTotalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCollectTotalController.m; sourceTree = "<group>"; };
 		356AE9C21FAB35E5004E417B /* KGGCollectTotalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGCollectTotalController.xib; sourceTree = "<group>"; };
 		3576912B1FB05E0A00803D9A /* KGGRoutePlanningController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRoutePlanningController.h; sourceTree = "<group>"; };
-		3576912C1FB05E0A00803D9A /* KGGRoutePlanningController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRoutePlanningController.m; sourceTree = "<group>"; };
+		3576912C1FB05E0A00803D9A /* KGGRoutePlanningController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = KGGRoutePlanningController.mm; sourceTree = "<group>"; };
 		3576912E1FB06FC700803D9A /* KGGRouteTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRouteTableView.h; sourceTree = "<group>"; };
 		3576912F1FB06FC700803D9A /* KGGRouteTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRouteTableView.m; sourceTree = "<group>"; };
 		357691311FB0704F00803D9A /* KGGRouteViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRouteViewCell.h; sourceTree = "<group>"; };
@@ -745,6 +746,8 @@
 		35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLeftTableController.m; sourceTree = "<group>"; };
 		35DF9E301FB19AA700AAA429 /* KGGRouteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRouteModel.h; sourceTree = "<group>"; };
 		35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRouteModel.m; sourceTree = "<group>"; };
+		35DF9E331FB317A700AAA429 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		35DF9E341FB317A800AAA429 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
 		35E8B6C11F8DBE5C00DCA0EB /* KGGOrderDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderDetailsModel.h; sourceTree = "<group>"; };
 		35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderDetailsModel.m; sourceTree = "<group>"; };
 		35E8B6C51F8DC36100DCA0EB /* KGGPublishOrderRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishOrderRequestManager.h; sourceTree = "<group>"; };
@@ -1330,6 +1333,8 @@
 				3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */,
 				35961B211FA884EE00A52B9E /* UILabel+KGGExtension.h */,
 				35961B221FA884EE00A52B9E /* UILabel+KGGExtension.m */,
+				35DF9E331FB317A700AAA429 /* UIImage+Rotate.h */,
+				35DF9E341FB317A800AAA429 /* UIImage+Rotate.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1708,7 +1713,7 @@
 			isa = PBXGroup;
 			children = (
 				3576912B1FB05E0A00803D9A /* KGGRoutePlanningController.h */,
-				3576912C1FB05E0A00803D9A /* KGGRoutePlanningController.m */,
+				3576912C1FB05E0A00803D9A /* KGGRoutePlanningController.mm */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2555,7 +2560,7 @@
 				35F830441F60E4B000204989 /* KGGPublishPayViewController.m in Sources */,
 				35961AEA1FA6CB5D00A52B9E /* TZImagePickerController.m in Sources */,
 				35FF5CA71F6A7DEE00E1A50B /* KGGPaySheetViewCell.m in Sources */,
-				3576912D1FB05E0A00803D9A /* KGGRoutePlanningController.m in Sources */,
+				3576912D1FB05E0A00803D9A /* KGGRoutePlanningController.mm in Sources */,
 				35CBD3D31FA326A4007E88AD /* KGGLeftTableController.m in Sources */,
 				18F5BA6E1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.m in Sources */,
 				35961AC91FA603AC00A52B9E /* KGGShowFeedApiItem.m in Sources */,
@@ -2683,6 +2688,7 @@
 				188F2D4A1F4ED8440023F4BE /* KGGPublishOrderViewCell.m in Sources */,
 				188F2D421F4ED50E0023F4BE /* KGGMeWorkViewController.m in Sources */,
 				189D211D1F42FE170004F1EB /* TADotView.m in Sources */,
+				35DF9E351FB317A800AAA429 /* UIImage+Rotate.m in Sources */,
 				189D211E1F42FE170004F1EB /* TAPageControl.m in Sources */,
 				35FF5CAB1F6A80F200E1A50B /* KGGActionSheetController.m in Sources */,
 				35F830991F68D71200204989 /* AppDelegate+KGGJPush.m in Sources */,

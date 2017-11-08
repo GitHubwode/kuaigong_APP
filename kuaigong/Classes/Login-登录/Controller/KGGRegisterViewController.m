@@ -64,7 +64,7 @@
     
 
     UIButton *loginButton = [[UIButton alloc]init];
-    loginButton.enabled = NO;
+//    loginButton.enabled = NO;
     [loginButton addTarget:self action:@selector(loginButton:) forControlEvents:UIControlEventTouchUpInside];
     [loginButton setBackgroundImage:[UIImage imageNamed:@"but_kean"] forState:UIControlStateNormal];
     [loginButton setTitle:@"下一步" forState:UIControlStateNormal];
