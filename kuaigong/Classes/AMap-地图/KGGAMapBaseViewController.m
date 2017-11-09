@@ -42,7 +42,6 @@
 - (void)addSearchTextField
 {
     self.navigationItem.titleView = self.searchController.searchBar;
-//    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTitle:@"返回" target:self action:@selector(baseLeftAction)];
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"nav_back" highImage:@"nav_back" target:self action:@selector(baseLeftAction)];
 }

@@ -345,7 +345,7 @@
    self.orderUrl = [self.headerView.imageArray componentsJoinedByString:@","];
     
 
-    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString OrderUrl:self.orderUrl WorkStartTime:time PayTime:payTime Longitude:self.latitudeMap Latitude:self.longitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:self.workType.whenLong Contacts:name ContactsPhone:contactsPhone];
+    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString OrderUrl:self.orderUrl WorkStartTime:time PayTime:payTime Longitude:self.longitudeMap Latitude:self.latitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:self.workType.whenLong Contacts:name ContactsPhone:contactsPhone];
     
     KGGLog(@"工种类型:%@",self.workType.type);
     

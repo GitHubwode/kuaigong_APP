@@ -10,6 +10,8 @@
 #import "KGGOrderDetailsModel.h"
 #import "KGGRouteTableView.h"
 #import "UIImage+Rotate.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
+
 
 #define  routeHeight  334
 #define  routeWidth  kMainScreenWidth-30
@@ -40,12 +42,13 @@
 @end
 
 
-@interface KGGRoutePlanningController ()<KGGRouteTableViewDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate,BMKRouteSearchDelegate>
+@interface KGGRoutePlanningController ()<KGGRouteTableViewDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate,BMKRouteSearchDelegate,BMKGeoCodeSearchDelegate>
 
 @property (nonatomic, strong) KGGRouteTableView *routeTableView;
 @property (nonatomic, strong) BMKMapView *mapView;
 @property (nonatomic, strong) BMKLocationService *locService;
 @property (nonatomic, strong) BMKRouteSearch *routesearch;
+@property (nonatomic, assign) CLLocationCoordinate2D userPt;
 
 @end
 
@@ -72,88 +75,84 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
-    KGGLog(@"orderDetails:%@",self.orderDetails);
-    self.view = _mapView;
-    self.routesearch.delegate = self;
-    [self.view addSubview:self.routeTableView];
-    //设置地图
-    [self showDriveSearch];
+    self.fd_interactivePopDisabled = YES;//禁止右滑
+    [self loadMapView];
+    [self getUserLocation];
+    [self searchRoute];
 }
 
-#pragma mark - 设置驾车的路线
-- (void)driveBtnClick
+#pragma mark -- 加载地图
+- (void)loadMapView
 {
-    BMKPlanNode* start = [[BMKPlanNode alloc]init];
-//    start.pt = nil;
-    start.cityName = @"杭州市";
-    BMKPlanNode* end = [[BMKPlanNode alloc]init];
-//    end.pt = nil;
-    end.cityName = @"杭州市";
-    BMKDrivingRoutePlanOption *drivingRouteSearchOption = [[BMKDrivingRoutePlanOption alloc]init];
-    drivingRouteSearchOption.from = start;
-    drivingRouteSearchOption.to = end;
-    drivingRouteSearchOption.drivingRequestTrafficType = BMK_DRIVING_REQUEST_TRAFFICE_TYPE_NONE;//不获取路况信息
-    BOOL flag = [_routesearch drivingSearch:drivingRouteSearchOption];
-    if(flag){
-        NSLog(@"car检索发送成功");
-    }
-    else{
-        NSLog(@"car检索发送失败");
-    }
+    _mapView = [[BMKMapView alloc] initWithFrame:self.view.bounds];
+    self.view = _mapView;
+    [self.mapView addSubview:self.routeTableView];
 }
 
-
-#pragma mark - 设置地图
-- (void)showDriveSearch{
+#pragma mark -- 定位功能
+- (void)getUserLocation
+{
     [self setMapProperty];
     _locService = [[BMKLocationService alloc]init];
     _locService.distanceFilter = 5.0;//设置定位的最小距离
+    //启动LocationService
     [_locService startUserLocationService];
 }
+
+
 
 /** 设置地图属性 */
 - (void)setMapProperty
 {
-    self.mapView.showsUserLocation = NO;
+    self.mapView.showsUserLocation = NO;//蓝圈
+    // 设置定位模式
     self.mapView.userTrackingMode = BMKUserTrackingModeFollow;//定位跟随模式
-    //允许旋转地图
-    [self.mapView setZoomLevel:16.2];
+    // 允许旋转地图
+    self.mapView.rotateEnabled = YES;
+    [_mapView setZoomLevel:16.1];//设置地图方法等级
+    // 显示比例尺 和比例尺位置
     self.mapView.showMapScaleBar = YES;
     self.mapView.mapScaleBarPosition = CGPointMake(0, self.view.xc_height - 90);
+    // 定位图层自定义样式参数
     BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc]init];
-    displayParam.isRotateAngleValid = YES;
-    displayParam.isAccuracyCircleShow = NO;
+    displayParam.isRotateAngleValid = YES;//跟随态旋转角度是否生效
+    displayParam.isAccuracyCircleShow = NO;//精度圈是否显示
     [self.mapView updateLocationViewWithParam:displayParam];
 }
+#pragma mark - 获取用户经纬度
 
+//实现相关delegate 处理位置信息更新
+//处理方向变更信息
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-    KGGLog(@"heading is %@",userLocation.heading);
+    KGGLog(@"heading is %@",userLocation.location);
 }
 
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     [_mapView updateLocationData:userLocation];
-    [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
-    BMKPointAnnotation *poiAn = [self creatPointWithLocaiton:userLocation.location title:@"这事您的位置"];
+    [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];//设置定位到的位置为屏幕中心
+    BMKPointAnnotation *poiAn = [self creatPointWithLocaiton:userLocation.location title:@"这是您的位置"];
     BMKAnnotationView *an = [_mapView viewForAnnotation:poiAn];
     an.tag = 10000;
-    [_locService stopUserLocationService];
+    [_locService stopUserLocationService];//需要停止定位，否则创建大头针的时候会不断的添加
 }
 
-#pragma mark - annotation添加标注
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation
+#pragma mark -- annotation添加标注
+- (BMKAnnotationView *)mapView:(BMKMapView *)view viewForAnnotation:(id <BMKAnnotation>)annotation
 {
     if ([annotation isKindOfClass:[RouteAnnotation class]]) {
-        return [self getRouteAnnotationView:mapView viewForAnnotation:(RouteAnnotation*)annotation];
+        return [self getRouteAnnotationView:view viewForAnnotation:(RouteAnnotation*)annotation];
     }
-    //这里没有做任何判断,根绝自己的要求,判断不同点给不同的图
-    BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@""];
-    newAnnotationView.image = [UIImage imageNamed:@""];
-    newAnnotationView.animatesDrop = YES;
+    
+    //这里没做任何的判断，开发者可以根据自己的要求，判断不同点给不同的图
+    BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
+    newAnnotationView.image = [UIImage imageNamed:@"icon_gongren"];
+    newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
     return newAnnotationView;
 }
+
 /** 封装添加大头针方法 */
 - (BMKPointAnnotation *)creatPointWithLocaiton:(CLLocation *)location title:(NSString *)title;
 {
@@ -170,97 +169,12 @@
     KGGLog(@"%ld",(long)view.tag);
 }
 
-#pragma makr - 返回驾乘搜索结果
-- (BMKAnnotationView*)getRouteAnnotationView:(BMKMapView *)mapview viewForAnnotation:(RouteAnnotation*)routeAnnotation
-{
-    BMKAnnotationView* view = nil;
-    switch (routeAnnotation.type) {
-        case 0:
-        {
-            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"start_node"];
-            if (view == nil) {
-                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"start_node"];
-                view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_start.png"]];
-                view.centerOffset = CGPointMake(0, -(view.frame.size.height * 0.5));
-                view.canShowCallout = TRUE;
-            }
-            view.annotation = routeAnnotation;
-        }
-            break;
-        case 1:
-        {
-            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"end_node"];
-            if (view == nil) {
-                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"end_node"];
-                view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_end.png"]];
-                view.centerOffset = CGPointMake(0, -(view.frame.size.height * 0.5));
-                view.canShowCallout = TRUE;
-            }
-            view.annotation = routeAnnotation;
-        }
-            break;
-        case 2:
-        {
-            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"bus_node"];
-            if (view == nil) {
-                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"bus_node"];
-                view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_bus.png"]];
-                view.canShowCallout = TRUE;
-            }
-            view.annotation = routeAnnotation;
-        }
-            break;
-        case 3:
-        {
-            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"rail_node"];
-            if (view == nil) {
-                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"rail_node"];
-                view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_rail.png"]];
-                view.canShowCallout = TRUE;
-            }
-            view.annotation = routeAnnotation;
-        }
-            break;
-        case 4:
-        {
-            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"route_node"];
-            if (view == nil) {
-                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"route_node"];
-                view.canShowCallout = TRUE;
-            } else {
-                [view setNeedsDisplay];
-            }
-            
-            UIImage* image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_direction.png"]];
-            view.image = [image imageRotatedByDegrees:routeAnnotation.degree];
-            view.annotation = routeAnnotation;
-            
-        }
-            break;
-        case 5:
-        {
-            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"waypoint_node"];
-            if (view == nil) {
-                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"waypoint_node"];
-                view.canShowCallout = TRUE;
-            } else {
-                [view setNeedsDisplay];
-            }
-            
-            UIImage* image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_waypoint.png"]];
-            view.image = [image imageRotatedByDegrees:routeAnnotation.degree];
-            view.annotation = routeAnnotation;
-        }
-            break;
-        default:
-            break;
-    }
-    
-    return view;
-    
+#pragma mark -- 添加搜索功能
+- (void)searchRoute{
+    _routesearch = [[BMKRouteSearch alloc]init];
+    [self driveBtnClick];
 }
 
-#pragma mark - 根据overlay生成对应的View
 - (BMKOverlayView*)mapView:(BMKMapView *)map viewForOverlay:(id<BMKOverlay>)overlay
 {
     if ([overlay isKindOfClass:[BMKPolyline class]]) {
@@ -273,7 +187,8 @@
     return nil;
 }
 
-#pragma mark - BMKRouteSearchDelegate 开车的
+#pragma mark -- 事件
+
 - (void)onGetDrivingRouteResult:(BMKRouteSearch*)searcher result:(BMKDrivingRouteResult*)result errorCode:(BMKSearchErrorCode)error
 {
     NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
@@ -344,17 +259,95 @@
     }
 }
 
-#pragma mark - 私有
-
-- (NSString*)getMyBundlePath1:(NSString *)filename
+- (BMKAnnotationView*)getRouteAnnotationView:(BMKMapView *)mapview viewForAnnotation:(RouteAnnotation*)routeAnnotation
 {
-    
-    NSBundle * libBundle = MYBUNDLE ;
-    if ( libBundle && filename ){
-        NSString * s=[[libBundle resourcePath ] stringByAppendingPathComponent : filename];
-        return s;
+    BMKAnnotationView* view = nil;
+    switch (routeAnnotation.type) {
+        case 0:
+        {
+            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"start_node"];
+            if (view == nil) {
+                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"start_node"];
+//                view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_start.png"]];
+                view.image = [UIImage imageNamed:@"icon_gongren"];
+                view.centerOffset = CGPointMake(0, -(view.frame.size.height * 0.5));
+                view.canShowCallout = TRUE;
+            }
+            view.annotation = routeAnnotation;
+        }
+            break;
+        case 1:
+        {
+            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"end_node"];
+            if (view == nil) {
+                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"end_node"];
+                view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_end.png"]];
+                view.image = [UIImage imageNamed:@"icon_zhong"];
+                view.centerOffset = CGPointMake(0, -(view.frame.size.height * 0.5));
+                view.canShowCallout = TRUE;
+            }
+            view.annotation = routeAnnotation;
+        }
+            break;
+        case 2:
+        {
+            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"bus_node"];
+            if (view == nil) {
+                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"bus_node"];
+                view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_bus.png"]];
+                view.canShowCallout = TRUE;
+            }
+            view.annotation = routeAnnotation;
+        }
+            break;
+        case 3:
+        {
+            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"rail_node"];
+            if (view == nil) {
+                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"rail_node"];
+                view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_rail.png"]];
+                
+                view.canShowCallout = TRUE;
+            }
+            view.annotation = routeAnnotation;
+        }
+            break;
+        case 4:
+        {
+            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"route_node"];
+            if (view == nil) {
+                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"route_node"];
+                view.canShowCallout = TRUE;
+            } else {
+                [view setNeedsDisplay];
+            }
+            
+            UIImage* image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_direction.png"]];
+            view.image = [image imageRotatedByDegrees:routeAnnotation.degree];
+            view.annotation = routeAnnotation;
+            
+        }
+            break;
+        case 5:
+        {
+            view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"waypoint_node"];
+            if (view == nil) {
+                view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"waypoint_node"];
+                view.canShowCallout = TRUE;
+            } else {
+                [view setNeedsDisplay];
+            }
+            
+            UIImage* image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_waypoint.png"]];
+            view.image = [image imageRotatedByDegrees:routeAnnotation.degree];
+            view.annotation = routeAnnotation;
+        }
+            break;
+        default:
+            break;
     }
-    return nil ;
+    
+    return view;
 }
 
 //根据polyline设置地图范围
@@ -389,6 +382,45 @@
 }
 
 
+#pragma mark - 设置驾车的路线
+- (void)driveBtnClick
+{
+    BMKPlanNode* start = [[BMKPlanNode alloc]init];
+    NSString *latt1 = @"30.28339767456055";
+    NSString *longt1 = @"120.0134963989258";
+        CLLocationCoordinate2D startPt = CLLocationCoordinate2DMake([latt1 doubleValue], [longt1 doubleValue]);
+    start.pt = startPt;
+//    start.pt = self.userPt;
+    BMKPlanNode* end = [[BMKPlanNode alloc]init];
+    CLLocationCoordinate2D endPt = CLLocationCoordinate2DMake([self.orderDetails.latitude doubleValue], [self.orderDetails.longitude doubleValue]);
+    end.pt = endPt;
+    BMKDrivingRoutePlanOption *drivingRouteSearchOption = [[BMKDrivingRoutePlanOption alloc]init];
+    drivingRouteSearchOption.from = start;
+    drivingRouteSearchOption.to = end;
+    drivingRouteSearchOption.drivingRequestTrafficType = BMK_DRIVING_REQUEST_TRAFFICE_TYPE_NONE;//不获取路况信息
+    BOOL flag = [_routesearch drivingSearch:drivingRouteSearchOption];
+    if(flag){
+        NSLog(@"car检索发送成功");
+    }
+    else{
+        NSLog(@"car检索发送失败");
+    }
+}
+
+
+#pragma mark - 私有
+
+- (NSString*)getMyBundlePath1:(NSString *)filename
+{
+    
+    NSBundle * libBundle = MYBUNDLE ;
+    if ( libBundle && filename ){
+        NSString * s=[[libBundle resourcePath ] stringByAppendingPathComponent : filename];
+        return s;
+    }
+    return nil ;
+}
+
 
 
 #pragma mark -KGGRouteTableViewDelegate
@@ -420,26 +452,6 @@
     }
 }
 
-#pragma mark - 地图的加载
-
-- (BMKMapView *)mapView
-{
-    if (!_mapView) {
-        _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, self.view.xc_height)];
-        _mapView.delegate = self;
-    }
-    return _mapView;
-}
-
-//- (BMKLocationService *)service
-//{
-//    if (!_service) {
-//        _service = [[BMKLocationService alloc]init];
-//        _service.delegate = self;
-//    }
-//    return _service;
-//}
-
 #pragma mark -懒加载
 
 - (KGGRouteTableView *)routeTableView
@@ -461,3 +473,4 @@
     KGGLogFunc
 }
 @end
+

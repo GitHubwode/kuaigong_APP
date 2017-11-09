@@ -60,6 +60,7 @@
     routeVC.orderDetails = self.orderDetails;
     routeVC.planType = KGGRoutePlanningWORKERType;
     [self.navigationController pushViewController:routeVC animated:YES];
+    
 }
 
 #pragma mark- UITableViewDatasource UITableViewDelegate
