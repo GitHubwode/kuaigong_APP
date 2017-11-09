@@ -197,5 +197,31 @@
     } aboveView:view inCaller:caller];
 }
 
+/**
+ 获取接单者的用户信息
+ @param acceptId   参数
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)publishOrderAcceptId:(NSInteger )acceptId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/user/findUserByID");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"id"] = @(acceptId);
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) {
+            
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
+        
+    } aboveView:view inCaller:caller];
+    
+}
+
 
 @end

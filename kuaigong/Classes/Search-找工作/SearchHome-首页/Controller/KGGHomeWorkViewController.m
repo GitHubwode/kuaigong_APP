@@ -80,7 +80,8 @@
             if (!self.cityName) {
                 self.cityName = placemark.administrativeArea;
             }
-            self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTitle:self.cityName target:self action:@selector(kgg_homelocation)];            [manager stopUpdatingLocation];
+            self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTitle:self.cityName target:self action:@selector(kgg_homelocation)];
+            [manager stopUpdatingLocation];
             
         }else if (error == nil && [placemarks count] == 0){
             [self.view showHint:@"定位不成功"];

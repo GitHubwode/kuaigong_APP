@@ -9,6 +9,7 @@
 #import "KGGUndoneOrderController.h"
 #import "KGGPublishOrderViewCell.h"
 #import "KGGPublishPayViewController.h"
+#import "KGGRoutePlanningController.h"
 
 @interface KGGUndoneOrderController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -113,10 +114,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KGGOrderDetailsModel *model = self.datasource[indexPath.row];
-    KGGPublishPayViewController *payVC = [[KGGPublishPayViewController alloc]initWithNibName:NSStringFromClass([KGGPublishPayViewController class]) bundle:[NSBundle mainBundle]];
-    payVC.requestType = self.requestType;
-    payVC.detailsModel = model;
-    [self.navigationController pushViewController:payVC animated:YES];
+//    KGGPublishPayViewController *payVC = [[KGGPublishPayViewController alloc]initWithNibName:NSStringFromClass([KGGPublishPayViewController class]) bundle:[NSBundle mainBundle]];
+//    payVC.requestType = self.requestType;
+//    payVC.detailsModel = model;
+//    [self.navigationController pushViewController:payVC animated:YES];
+    KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
+    routeVC.orderDetails = model;
+    routeVC.planType = KGGRoutePlanningBOSSType;
+    [self.navigationController pushViewController:routeVC animated:YES];
 }
 
 - (UITableView *)orderTableView

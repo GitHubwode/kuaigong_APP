@@ -144,6 +144,7 @@
 		35252F081F5E3BA5001D09F4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252F071F5E3BA5001D09F4 /* AdSupport.framework */; };
 		35252F0A1F5E3BB0001D09F4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252F091F5E3BB0001D09F4 /* UserNotifications.framework */; };
 		35252F0C1F5E3BBE001D09F4 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252F0B1F5E3BBE001D09F4 /* libresolv.tbd */; };
+		352687241FB43ECA002CB92C /* KGGLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 352687231FB43ECA002CB92C /* KGGLocationHelper.m */; };
 		3543DB7E1F5E902900BE8B93 /* NSObject+swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */; };
 		3543DB811F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 3543DB801F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m */; };
 		3543DB831F5E990800BE8B93 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3543DB821F5E990800BE8B93 /* AssetsLibrary.framework */; };
@@ -568,6 +569,8 @@
 		35252F071F5E3BA5001D09F4 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		35252F091F5E3BB0001D09F4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		35252F0B1F5E3BBE001D09F4 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		352687221FB43ECA002CB92C /* KGGLocationHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLocationHelper.h; sourceTree = "<group>"; };
+		352687231FB43ECA002CB92C /* KGGLocationHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLocationHelper.m; sourceTree = "<group>"; };
 		3543DB7C1F5E902900BE8B93 /* NSObject+swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+swizzle.h"; sourceTree = "<group>"; };
 		3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+swizzle.m"; sourceTree = "<group>"; };
 		3543DB7F1F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+KGGRongCloud.h"; sourceTree = "<group>"; };
@@ -1352,6 +1355,8 @@
 				3545BB811F6FCF4A008122B8 /* KGGUMSocialHelper.m */,
 				358381821F8B1622002A17C5 /* KGGUserManager.h */,
 				358381831F8B1622002A17C5 /* KGGUserManager.m */,
+				352687221FB43ECA002CB92C /* KGGLocationHelper.h */,
+				352687231FB43ECA002CB92C /* KGGLocationHelper.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -2706,6 +2711,7 @@
 				188F2D511F500A370023F4BE /* KGGMeWorkHeaderView.m in Sources */,
 				188F2D4E1F4FC6730023F4BE /* KGGPublishHomeFootView.m in Sources */,
 				35AE111C1F8EFFAE00BCD2BD /* KGGApplyVIPView.m in Sources */,
+				352687241FB43ECA002CB92C /* KGGLocationHelper.m in Sources */,
 				188F2D431F4ED50E0023F4BE /* KGGLookWorkViewCell.m in Sources */,
 				35961AC61FA602EA00A52B9E /* KGGPictureMetadata.m in Sources */,
 				35F830691F627B2900204989 /* KGGAddBankCardFirstController.m in Sources */,

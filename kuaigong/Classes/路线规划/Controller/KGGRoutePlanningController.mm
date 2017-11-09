@@ -54,14 +54,14 @@
 
 @implementation KGGRoutePlanningController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [_mapView viewWillAppear];
-    _mapView.delegate = self;
-    _locService.delegate = self;
-    _routesearch.delegate = self;
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+////    [_mapView viewWillAppear];
+////    _mapView.delegate = self;
+////    _locService.delegate = self;
+//    _routesearch.delegate = self;
+//}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -84,41 +84,26 @@
 #pragma mark -- 加载地图
 - (void)loadMapView
 {
-    _mapView = [[BMKMapView alloc] initWithFrame:self.view.bounds];
-    self.view = _mapView;
+    self.view = self.mapView;
+    BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc]init];
+    displayParam.isRotateAngleValid = YES;//跟随态旋转角度是否生效
+    displayParam.isAccuracyCircleShow = NO;//精度圈是否显示
+    [self.mapView updateLocationViewWithParam:displayParam];
     [self.mapView addSubview:self.routeTableView];
 }
 
 #pragma mark -- 定位功能
 - (void)getUserLocation
 {
-    [self setMapProperty];
+//    [self setMapProperty];
     _locService = [[BMKLocationService alloc]init];
+    _locService.delegate = self;
     _locService.distanceFilter = 5.0;//设置定位的最小距离
     //启动LocationService
     [_locService startUserLocationService];
 }
 
 
-
-/** 设置地图属性 */
-- (void)setMapProperty
-{
-    self.mapView.showsUserLocation = NO;//蓝圈
-    // 设置定位模式
-    self.mapView.userTrackingMode = BMKUserTrackingModeFollow;//定位跟随模式
-    // 允许旋转地图
-    self.mapView.rotateEnabled = YES;
-    [_mapView setZoomLevel:16.1];//设置地图方法等级
-    // 显示比例尺 和比例尺位置
-    self.mapView.showMapScaleBar = YES;
-    self.mapView.mapScaleBarPosition = CGPointMake(0, self.view.xc_height - 90);
-    // 定位图层自定义样式参数
-    BMKLocationViewDisplayParam *displayParam = [[BMKLocationViewDisplayParam alloc]init];
-    displayParam.isRotateAngleValid = YES;//跟随态旋转角度是否生效
-    displayParam.isAccuracyCircleShow = NO;//精度圈是否显示
-    [self.mapView updateLocationViewWithParam:displayParam];
-}
 #pragma mark - 获取用户经纬度
 
 //实现相关delegate 处理位置信息更新
@@ -131,6 +116,12 @@
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
+    //展示定位
+    //发起反地理编码
+    CLLocationCoordinate2D pt = (CLLocationCoordinate2D){userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude};
+
+    self.userPt = pt;
+    [self driveBtnClick];
     [_mapView updateLocationData:userLocation];
     [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];//设置定位到的位置为屏幕中心
     BMKPointAnnotation *poiAn = [self creatPointWithLocaiton:userLocation.location title:@"这是您的位置"];
@@ -172,7 +163,8 @@
 #pragma mark -- 添加搜索功能
 - (void)searchRoute{
     _routesearch = [[BMKRouteSearch alloc]init];
-    [self driveBtnClick];
+    _routesearch.delegate = self;
+//    [self driveBtnClick];
 }
 
 - (BMKOverlayView*)mapView:(BMKMapView *)map viewForOverlay:(id<BMKOverlay>)overlay
@@ -181,7 +173,7 @@
         BMKPolylineView* polylineView = [[BMKPolylineView alloc] initWithOverlay:overlay];
         polylineView.fillColor = [[UIColor alloc] initWithRed:0 green:1 blue:1 alpha:1];
         polylineView.strokeColor = [[UIColor alloc] initWithRed:0 green:0 blue:1 alpha:0.7];
-        polylineView.lineWidth = 3.0;
+        polylineView.lineWidth = 5.0;
         return polylineView;
     }
     return nil;
@@ -268,7 +260,6 @@
             view = [mapview dequeueReusableAnnotationViewWithIdentifier:@"start_node"];
             if (view == nil) {
                 view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"start_node"];
-//                view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_start.png"]];
                 view.image = [UIImage imageNamed:@"icon_gongren"];
                 view.centerOffset = CGPointMake(0, -(view.frame.size.height * 0.5));
                 view.canShowCallout = TRUE;
@@ -386,18 +377,13 @@
 - (void)driveBtnClick
 {
     BMKPlanNode* start = [[BMKPlanNode alloc]init];
-    NSString *latt1 = @"30.28339767456055";
-    NSString *longt1 = @"120.0134963989258";
-        CLLocationCoordinate2D startPt = CLLocationCoordinate2DMake([latt1 doubleValue], [longt1 doubleValue]);
-    start.pt = startPt;
-//    start.pt = self.userPt;
+    start.pt = self.userPt;
     BMKPlanNode* end = [[BMKPlanNode alloc]init];
     CLLocationCoordinate2D endPt = CLLocationCoordinate2DMake([self.orderDetails.latitude doubleValue], [self.orderDetails.longitude doubleValue]);
     end.pt = endPt;
     BMKDrivingRoutePlanOption *drivingRouteSearchOption = [[BMKDrivingRoutePlanOption alloc]init];
     drivingRouteSearchOption.from = start;
     drivingRouteSearchOption.to = end;
-    drivingRouteSearchOption.drivingRequestTrafficType = BMK_DRIVING_REQUEST_TRAFFICE_TYPE_NONE;//不获取路况信息
     BOOL flag = [_routesearch drivingSearch:drivingRouteSearchOption];
     if(flag){
         NSLog(@"car检索发送成功");
@@ -452,12 +438,29 @@
     }
 }
 
+#pragma mark - 地图的懒加载
+- (BMKMapView *)mapView
+{
+    if (!_mapView) {
+        _mapView = [[BMKMapView alloc]initWithFrame:self.view.bounds];
+        _mapView.delegate = self;
+        _mapView.mapType = BMKMapTypeStandard;
+        _mapView.zoomLevel = 16.1;
+        _mapView.rotateEnabled =NO;
+        _mapView.scrollEnabled = YES;
+        _mapView.showMapScaleBar = YES;
+        _mapView.mapScaleBarPosition = CGPointMake(0, self.view.xc_height - 90);
+        _mapView.userTrackingMode = BMKUserTrackingModeFollow;
+    }
+    return _mapView;
+}
+
 #pragma mark -懒加载
 
 - (KGGRouteTableView *)routeTableView
 {
     if (!_routeTableView) {
-        _routeTableView = [[KGGRouteTableView alloc]initWithFrame:CGRectMake(15, self.view.xc_height-routeHeight-64-10, routeWidth, routeHeight) OrderModel:self.orderDetails];
+        _routeTableView = [[KGGRouteTableView alloc]initWithFrame:CGRectMake(15, self.view.xc_height-routeHeight-64-10, routeWidth, routeHeight) OrderModel:self.orderDetails IdentifiyType:self.planType];
         _routeTableView.routeDelegate = self;
     }
     return _routeTableView;

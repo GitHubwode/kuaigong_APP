@@ -75,5 +75,13 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
  */
 + (void)publishOrderUpdataImagePath:(NSString *)path TimeStamp:(NSString *)timeStamp Signature:(NSString *)signature completion:(void(^)(KGGOrderImageModel *imageModel))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
+/**
+ 获取接单者的用户信息
+ @param acceptId   参数
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)publishOrderAcceptId:(NSInteger )acceptId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
 @end
 

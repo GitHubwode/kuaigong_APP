@@ -19,7 +19,7 @@
 
 @interface KGGRouteTableView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame OrderModel:(KGGOrderDetailsModel *)orderModel;
+- (instancetype)initWithFrame:(CGRect)frame OrderModel:(KGGOrderDetailsModel *)orderModel IdentifiyType:(NSUInteger)identifyType;
 @property (nonatomic, weak)id<KGGRouteTableViewDelegate>routeDelegate;
 @property (nonatomic, strong) UITableView *tableView;
 

@@ -12,24 +12,28 @@
 #import "KGGRouteFooterView.h"
 #import "KGGOrderDetailsModel.h"
 #import "KGGRouteModel.h"
+#import "KGGPublishOrderRequestManager.h"
 
 @interface KGGRouteTableView ()<UITableViewDelegate,UITableViewDataSource,KGGRouteHeaderViewDelegate,KGGRouteFooterViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, strong) KGGRouteHeaderView *headerView;
 @property (nonatomic, strong) KGGRouteFooterView *footerView;
-@property (nonatomic, strong)KGGOrderDetailsModel *orderModel;
-
+@property (nonatomic, strong) KGGOrderDetailsModel *orderModel;
+/** 身份类型  BOSS or WORKER */
+/**  */
+@property (nonatomic,assign) NSUInteger  identifyType;
 
 @end
 @implementation KGGRouteTableView
 
-- (instancetype)initWithFrame:(CGRect)frame OrderModel:(KGGOrderDetailsModel *)orderModel
+- (instancetype)initWithFrame:(CGRect)frame OrderModel:(KGGOrderDetailsModel *)orderModel IdentifiyType:(NSUInteger )identifyType
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor redColor];
         self.orderModel = orderModel;
+        self.identifyType = identifyType;
         [self addSubview:self.tableView];
         self.tableView.tableHeaderView = self.headerView;
         self.tableView.tableFooterView = self.footerView;
@@ -57,30 +61,27 @@
     model2.title = @"用工时间:";
     model2.subTitle = self.orderModel.workStartTime;
     [self.datasource addObject:model2];
-    
-    
 }
 
 #pragma mark - 给headerView赋值
 - (void)routeHeaderView{
-    [self.headerView routeHeaderViewAvatar:self.orderModel.avatarUrl Name:self.orderModel.contacts Phone:self.orderModel.contactsPhone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.differentPrice]];
+    if (self.identifyType == 1 ) {
+        [self setupAcceptUserMessage];
+    }else{
+       [self.headerView routeHeaderViewAvatar:self.orderModel.avatarUrl Name:self.orderModel.contacts Phone:self.orderModel.contactsPhone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.differentPrice]];
+    }
 }
 
-//- (instancetype)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        [self addSubview:self.tableView];
-//        self.tableView.tableHeaderView = self.headerView;
-//        self.tableView.tableFooterView = self.footerView;
-//        KGGLog(@"RouteTableView模型:%@",self.orderModel)
-//        
-//        KGGLog(@"RouteTableView模型:%@",self.orderModel)
-//
-//        
-//    }
-//    return self;
-//}
+#pragma mark -网络请求 获取接单方的用户信息
+#warning 获取接单方的用户信息
+- (void)setupAcceptUserMessage
+{
+    [KGGPublishOrderRequestManager publishOrderAcceptId:self.orderModel.acceptUser completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+//            [self.headerView routeHeaderViewAvatar:self.orderModel.avatarUrl Name:self.orderModel.contacts Phone:self.orderModel.contactsPhone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.differentPrice]];
+        }
+    } aboveView:nil inCaller:self];
+}
 
 #pragma mark -KGGRouteHeaderViewDelegate
 - (void)routeHeaderViewButtonClickTag:(UIButton *)buttonTag
@@ -172,7 +173,7 @@
 - (KGGRouteFooterView *)footerView
 {
     if (!_footerView) {
-        _footerView = [[KGGRouteFooterView alloc]initWithFrame:CGRectMake(0, 0, self.xc_width, 103)];
+        _footerView = [[KGGRouteFooterView alloc]initWithFrame:CGRectMake(0, 0, self.xc_width, 103)IdentifyType:self.identifyType];
         _footerView.footerDelegate = self;
     }
     return _footerView;

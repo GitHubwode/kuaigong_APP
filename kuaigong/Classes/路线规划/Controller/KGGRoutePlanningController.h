@@ -11,8 +11,8 @@
 @class KGGOrderDetailsModel;
 
 typedef NS_ENUM(NSUInteger, KGGRoutePlanningType) {
-    KGGRoutePlanningBOSSType, // 发布方接单详情
-    KGGRoutePlanningWORKERType, // 接单方接单详情
+    KGGRoutePlanningBOSSType =1, // 发布方接单详情
+    KGGRoutePlanningWORKERType =2, // 接单方接单详情
 };
 
 @interface KGGRoutePlanningController : UIViewController

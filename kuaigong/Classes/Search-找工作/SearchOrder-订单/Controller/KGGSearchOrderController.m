@@ -12,11 +12,15 @@
 #import "KGGPublishOrderRequestManager.h"
 #import "KGGSearchOrderRequestManager.h"
 #import "KGGRoutePlanningController.h"
+#import "KGGLocationHelper.h"
 
 @interface KGGSearchOrderController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) KGGSearchOrderHeaderView *headerView;
 @property (nonatomic, strong) UIButton *orderButton;
+@property (nonatomic, copy) NSString *acceptLatitude;
+@property (nonatomic, copy) NSString *acceptLongitude;
+@property (nonatomic, strong) KGGLocationHelper *locationHelper;
 @end
 
 @implementation KGGSearchOrderController
@@ -40,16 +44,38 @@
 #pragma mark - buttonAction
 - (void)snh_sureOrderButtonClick:(UIButton *)sender
 {
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"id"] = @(self.orderDetails.orderId);
     KGGLog(@"接单的确认按钮");
+    __block CGFloat longitude;
+    __block CGFloat latitude;
+    weakSelf(self);
+    [self.locationHelper getUserCurrentLocation:^(CLLocation *location) {
+        
+        [weakself.locationHelper clearLocationDelegate];
+        weakself.locationHelper = nil;
+        
+        CLLocationCoordinate2D coordinate = location.coordinate;
+        longitude = coordinate.longitude;
+        latitude = coordinate.latitude;
+
+        param[@"acceptLongitude"] = @(longitude);
+        param[@"acceptLatitude"] = @(latitude);
+        
+        [weakself setupUserLocationParam:param];
+    }];
+}
+
+- (void)setupUserLocationParam:(NSMutableDictionary *)param
+{
     [self jumpRoutePlanning];
-//    [KGGSearchOrderRequestManager searchReciveOrderId:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
+//    [KGGSearchOrderRequestManager searchReciveParam:param completion:^(KGGResponseObj *responseObj) {
 //        if (responseObj.code == KGGSuccessCode) {
 //            [self.view showHint:@"接单成功,请按时出单"];
 //            [self.orderButton setTitle:@"已接单" forState:UIControlStateNormal];
 //            self.orderButton.enabled = NO;
 //            [self jumpRoutePlanning];
 //        }
-//        
 //    } aboveView:self.view inCaller:self];
 }
 
@@ -135,6 +161,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (KGGLocationHelper *)locationHelper{
+    if (!_locationHelper) {
+        _locationHelper = [[KGGLocationHelper alloc] init];
+    }
+    return _locationHelper;
+}
+
 - (void)dealloc
 {
     KGGLogFunc

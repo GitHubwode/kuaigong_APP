@@ -20,16 +20,24 @@
 
 @implementation KGGRouteFooterView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame IdentifyType:(NSUInteger)identifyType
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self creatFooterViewUI];
+        [self creatFooterViewUIType:identifyType];
     }
     return self;
 }
+//- (instancetype)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        [self creatFooterViewUI];
+//    }
+//    return self;
+//}
 
-- (void)creatFooterViewUI
+- (void)creatFooterViewUIType:(NSUInteger )type
 {
     weakSelf(self);
     CGFloat buttonWidth = (kMainScreenWidth-2-30)/3;
@@ -89,6 +97,11 @@
         make.width.equalTo(@(KGGAdaptedWidth(115)));
     }];
     
+    if (type == 1) {
+        [self.cancelButton setTitle:@"修改订单" forState:UIControlStateNormal];
+        self.messageLabel.text = @"如果工作已完成,请支付工资";
+        [self.sureButton setTitle:@"支付订单" forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - 按钮的点击事件

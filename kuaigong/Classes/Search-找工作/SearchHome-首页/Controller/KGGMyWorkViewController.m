@@ -11,6 +11,7 @@
 #import "KGGWorkDetailsViewController.h"
 #import "KGGOrderDetailsModel.h"
 #import "KGGPublishOrderViewCell.h"
+#import "KGGRoutePlanningController.h"
 
 @interface KGGMyWorkViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -99,9 +100,16 @@
 {
     KGGLog(@"点击我的工作进入工作详情");
     KGGOrderDetailsModel *model = self.datasource[indexPath.row];
-    KGGWorkDetailsViewController *workVC = [[KGGWorkDetailsViewController alloc]initWithNibName:NSStringFromClass([KGGWorkDetailsViewController class]) bundle:[NSBundle mainBundle]];
-    workVC.searchOrderModel = model;
-    [self.navigationController pushViewController:workVC animated:YES];
+    if (self.requestType == KGGSearchOrderRequestMyDoingType) {
+        KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
+        routeVC.orderDetails = model;
+        routeVC.planType = KGGRoutePlanningWORKERType;
+        [self.navigationController pushViewController:routeVC animated:YES];
+    }else{
+        KGGWorkDetailsViewController *workVC = [[KGGWorkDetailsViewController alloc]initWithNibName:NSStringFromClass([KGGWorkDetailsViewController class]) bundle:[NSBundle mainBundle]];
+        workVC.searchOrderModel = model;
+        [self.navigationController pushViewController:workVC animated:YES];
+    }
 }
 
 #pragma mark - lazy
