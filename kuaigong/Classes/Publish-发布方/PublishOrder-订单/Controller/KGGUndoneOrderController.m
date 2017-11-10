@@ -27,7 +27,6 @@
     KGGLog(@"我的我我弟弟爱打打");
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
@@ -35,25 +34,9 @@
     self.orderTableView.mj_header = [KGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(doneRefreshMessage)];
     self.orderTableView.mj_footer = [KGGRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(doneLoadAddMoreMessage)];
     [self.orderTableView.mj_header beginRefreshing];
-//    [self distanceBetweenOrderBy:30.24058 :30.28343 :120.44293 :120.01342];
-//    KGGLog(@"%f",[self distanceBetweenOrderBy:30.24058 :30.28343 :120.44293 :120.01342]);
 }
 
-//-(double)distanceBetweenOrderBy:(double) lat1 :(double) lat2 :(double) lng1 :(double) lng2{
-//
-//    CLLocation *curLocation = [[CLLocation alloc] initWithLatitude:lat1 longitude:lng1];
-//
-//    CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:lat2 longitude:lng2];
-//
-//    double  distance  = [curLocation distanceFromLocation:otherLocation];
-//
-//    return  distance;
-//
-//}
-
-
 #pragma mark - 刷新
-
 - (void)doneRefreshMessage
 {
     self.pageNum = 1;

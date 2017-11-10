@@ -52,7 +52,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIf-4F-8Xt">
                                     <rect key="frame" x="0.0" y="217.5" width="137.5" height="108.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <state key="normal" title="快工保险"/>
+                                    <state key="normal" title="保险"/>
                                     <connections>
                                         <action selector="kuiagongInsButtonClick:" destination="-1" eventType="touchUpInside" id="fkj-eK-2fa"/>
                                     </connections>
@@ -68,7 +68,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lr6-Ea-v0j">
                                     <rect key="frame" x="137.5" y="217.5" width="137.5" height="108.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <state key="normal" title="快工贷"/>
+                                    <state key="normal" title="小额贷款"/>
                                     <connections>
                                         <action selector="kuaigongLoanButtonClick:" destination="-1" eventType="touchUpInside" id="jmM-fG-qOf"/>
                                     </connections>

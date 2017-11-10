@@ -183,6 +183,7 @@
 		3576913B1FB0723C00803D9A /* KGGRouteFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3576913A1FB0723C00803D9A /* KGGRouteFooterView.m */; };
 		357F5E0C1FB56C8500252C4D /* KGGShareMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0A1FB56C8500252C4D /* KGGShareMessageViewController.m */; };
 		357F5E0D1FB56C8500252C4D /* KGGShareMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */; };
+		357F5E101FB5C14500252C4D /* KGGSearchUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0F1FB5C14500252C4D /* KGGSearchUserModel.m */; };
 		358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381801F8B12E2002A17C5 /* KGGUserObj.m */; };
 		358381841F8B1622002A17C5 /* KGGUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381831F8B1622002A17C5 /* KGGUserManager.m */; };
 		358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */; };
@@ -626,6 +627,8 @@
 		357F5E091FB56C8500252C4D /* KGGShareMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGShareMessageViewController.h; sourceTree = "<group>"; };
 		357F5E0A1FB56C8500252C4D /* KGGShareMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGShareMessageViewController.m; sourceTree = "<group>"; };
 		357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGShareMessageViewController.xib; sourceTree = "<group>"; };
+		357F5E0E1FB5C14500252C4D /* KGGSearchUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGSearchUserModel.h; sourceTree = "<group>"; };
+		357F5E0F1FB5C14500252C4D /* KGGSearchUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGSearchUserModel.m; sourceTree = "<group>"; };
 		3583817F1F8B12E2002A17C5 /* KGGUserObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserObj.h; sourceTree = "<group>"; };
 		358381801F8B12E2002A17C5 /* KGGUserObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGUserObj.m; sourceTree = "<group>"; };
 		358381821F8B1622002A17C5 /* KGGUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserManager.h; sourceTree = "<group>"; };
@@ -1736,6 +1739,8 @@
 			children = (
 				35DF9E301FB19AA700AAA429 /* KGGRouteModel.h */,
 				35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */,
+				357F5E0E1FB5C14500252C4D /* KGGSearchUserModel.h */,
+				357F5E0F1FB5C14500252C4D /* KGGSearchUserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2741,6 +2746,7 @@
 				185C86871F46836700356ECD /* UIView+XCExtension.m in Sources */,
 				35FF5C9E1F6A230B00E1A50B /* KGGBillingDetailsViewController.m in Sources */,
 				3545BB821F6FCF4A008122B8 /* KGGUMSocialHelper.m in Sources */,
+				357F5E101FB5C14500252C4D /* KGGSearchUserModel.m in Sources */,
 				3505C8621F976A5E0085D688 /* GPUImageFramebuffer.m in Sources */,
 				35961B231FA884EE00A52B9E /* UILabel+KGGExtension.m in Sources */,
 				189D21201F42FE170004F1EB /* SDCycleScrollView.m in Sources */,

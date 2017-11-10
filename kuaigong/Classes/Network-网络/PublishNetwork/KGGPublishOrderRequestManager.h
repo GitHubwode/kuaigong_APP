@@ -11,6 +11,7 @@
 #import "KGGOrderDetailsModel.h"
 
 @class KGGOrderImageModel;
+//@class KGGSearchUserModel;
 
 typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
     KGGOrderRequestAllUndoType, // 全部未完成的订单

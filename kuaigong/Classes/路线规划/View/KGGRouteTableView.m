@@ -13,6 +13,7 @@
 #import "KGGOrderDetailsModel.h"
 #import "KGGRouteModel.h"
 #import "KGGPublishOrderRequestManager.h"
+#import "KGGSearchUserModel.h"
 
 @interface KGGRouteTableView ()<UITableViewDelegate,UITableViewDataSource,KGGRouteHeaderViewDelegate,KGGRouteFooterViewDelegate>
 
@@ -73,12 +74,12 @@
 }
 
 #pragma mark -网络请求 获取接单方的用户信息
-#warning 获取接单方的用户信息
 - (void)setupAcceptUserMessage
 {
     [KGGPublishOrderRequestManager publishOrderAcceptId:self.orderModel.acceptUser completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
-//            [self.headerView routeHeaderViewAvatar:self.orderModel.avatarUrl Name:self.orderModel.contacts Phone:self.orderModel.contactsPhone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.differentPrice]];
+            KGGSearchUserModel *userModel = [KGGSearchUserModel mj_objectWithKeyValues:responseObj.data];
+            [self.headerView routeHeaderViewAvatar:userModel.avatarUrl Name:userModel.nickname Phone:userModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.differentPrice]];
         }
     } aboveView:nil inCaller:self];
 }
