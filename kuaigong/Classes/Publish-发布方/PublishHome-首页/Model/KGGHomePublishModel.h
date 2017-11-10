@@ -16,5 +16,7 @@
 @property (nonatomic, strong) NSString *placeholder;
 /** 是否是必填项 */
 @property (nonatomic, assign) BOOL required;
+/** 是否编辑 */
+@property (nonatomic,assign) BOOL  editabled;
 
 @end

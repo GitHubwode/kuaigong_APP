@@ -11,6 +11,8 @@
 		<string>请填写工价</string>
 		<key>required</key>
 		<true/>
+		<key>editabled</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -21,6 +23,8 @@
 		<string>用工人数</string>
 		<key>required</key>
 		<true/>
+		<key>editabled</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -30,6 +34,8 @@
 		<key>placeholder</key>
 		<string>用工天数</string>
 		<key>required</key>
+		<true/>
+		<key>editabled</key>
 		<true/>
 	</dict>
 </array>

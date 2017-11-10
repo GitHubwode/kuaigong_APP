@@ -67,6 +67,7 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
     self.moneyLabel.text = [NSString stringWithFormat:@"总价:%.f元",detailsModel.differentPrice];
     self.nickNameLabel.text = detailsModel.contacts;
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:detailsModel.avatarUrl] placeholderImage:[UIImage imageNamed:@"icon_touxiang"]];
+    self.distanceLabel.text = detailsModel.instance;
 }
 
 + (NSString *)lookWorkIdentifier

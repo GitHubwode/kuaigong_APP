@@ -46,7 +46,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.moneyString = @"99";
+        self.moneyString = @"399";
         [self setUpUIView];
     }
     return self;

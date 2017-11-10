@@ -68,5 +68,7 @@
 + (NSString *)getWorkBeginTime:(NSString *)beginTime;
 /** 支付之间的时间戳 */
 + (NSString *)payTime:(NSString *)beginTime WorkTime:(NSString *)workTime PayTime:(NSString *)payTime;
+/** 米换算为Km */
++ (NSString *)getDistanceString:(NSString *)string;
 
 @end

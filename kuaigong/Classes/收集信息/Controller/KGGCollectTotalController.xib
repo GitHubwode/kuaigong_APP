@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KGGCollectTotalController">
             <connections>
-                <outlet property="imageView" destination="hca-O6-o8e" id="XlY-3W-af5"/>
+                <outlet property="imageView" destination="k5w-1R-F3b" id="KdU-lj-mKR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,20 +20,51 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="publishHeader1" translatesAutoresizingMaskIntoConstraints="NO" id="hca-O6-o8e">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ywh-Pf-geD" userLabel="headerView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快工救援" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4i-yG-nYy">
+                            <rect key="frame" x="150.5" y="24" width="73.5" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="NrQ-HR-uQB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsC-xu-352">
+                            <rect key="frame" x="323" y="26.5" width="37" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="取消"/>
+                            <connections>
+                                <action selector="cancelButtonClick:" destination="-1" eventType="touchUpInside" id="co8-ub-ld3"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.61960784313725492" green="0.12941176470588234" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="zsC-xu-352" firstAttribute="centerY" secondItem="w4i-yG-nYy" secondAttribute="centerY" id="HKW-XY-TOB"/>
+                        <constraint firstAttribute="bottom" secondItem="w4i-yG-nYy" secondAttribute="bottom" id="HNn-FK-ED3"/>
+                        <constraint firstAttribute="height" constant="64" id="avY-jx-Ak2"/>
+                        <constraint firstItem="w4i-yG-nYy" firstAttribute="centerX" secondItem="ywh-Pf-geD" secondAttribute="centerX" id="hL7-Oy-62a"/>
+                        <constraint firstAttribute="trailing" secondItem="zsC-xu-352" secondAttribute="trailing" constant="15" id="xgs-TU-iC1"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k5w-1R-F3b">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="hca-O6-o8e" secondAttribute="trailing" id="0l7-fT-krF"/>
-                <constraint firstItem="hca-O6-o8e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7TN-Gp-5PB"/>
-                <constraint firstAttribute="bottom" secondItem="hca-O6-o8e" secondAttribute="bottom" id="OID-wf-FhP"/>
-                <constraint firstItem="hca-O6-o8e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rNh-7K-0d6"/>
+                <constraint firstItem="ywh-Pf-geD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9I6-Rb-wBn"/>
+                <constraint firstAttribute="trailing" secondItem="ywh-Pf-geD" secondAttribute="trailing" id="CD0-vJ-0No"/>
+                <constraint firstItem="ywh-Pf-geD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="CK7-gX-JrN"/>
+                <constraint firstAttribute="bottom" secondItem="k5w-1R-F3b" secondAttribute="bottom" id="JEe-r8-vTn"/>
+                <constraint firstAttribute="trailing" secondItem="k5w-1R-F3b" secondAttribute="trailing" id="aLi-xb-WRs"/>
+                <constraint firstItem="k5w-1R-F3b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ac1-NM-qTT"/>
+                <constraint firstItem="k5w-1R-F3b" firstAttribute="top" secondItem="ywh-Pf-geD" secondAttribute="bottom" id="sG5-NJ-f0v"/>
             </constraints>
+            <point key="canvasLocation" x="59.5" y="95.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="publishHeader1" width="375" height="667"/>
-    </resources>
 </document>

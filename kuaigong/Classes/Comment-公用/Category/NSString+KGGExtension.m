@@ -293,6 +293,20 @@
     return totalTime;
 }
 
+/** 米换算为Km */
++ (NSString *)getDistanceString:(NSString *)string
+{
+    NSString *distanceString;
+    int distance = 999;
+    int string1 = [string intValue];
+    if (distance > string1) {
+        return distanceString = [NSString stringWithFormat:@"%@m",string];
+    }else{
+        string1 = round(string1/1000);
+        return distanceString = [NSString stringWithFormat:@"%dkm",string1];
+    }
+}
+
 
 
 @end

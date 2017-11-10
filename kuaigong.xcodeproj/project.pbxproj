@@ -181,6 +181,8 @@
 		357691351FB0704F00803D9A /* KGGRouteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357691331FB0704F00803D9A /* KGGRouteViewCell.xib */; };
 		357691381FB0722C00803D9A /* KGGRouteHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357691371FB0722C00803D9A /* KGGRouteHeaderView.m */; };
 		3576913B1FB0723C00803D9A /* KGGRouteFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3576913A1FB0723C00803D9A /* KGGRouteFooterView.m */; };
+		357F5E0C1FB56C8500252C4D /* KGGShareMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0A1FB56C8500252C4D /* KGGShareMessageViewController.m */; };
+		357F5E0D1FB56C8500252C4D /* KGGShareMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */; };
 		358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381801F8B12E2002A17C5 /* KGGUserObj.m */; };
 		358381841F8B1622002A17C5 /* KGGUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381831F8B1622002A17C5 /* KGGUserManager.m */; };
 		358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */; };
@@ -621,6 +623,9 @@
 		357691371FB0722C00803D9A /* KGGRouteHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRouteHeaderView.m; sourceTree = "<group>"; };
 		357691391FB0723C00803D9A /* KGGRouteFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRouteFooterView.h; sourceTree = "<group>"; };
 		3576913A1FB0723C00803D9A /* KGGRouteFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRouteFooterView.m; sourceTree = "<group>"; };
+		357F5E091FB56C8500252C4D /* KGGShareMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGShareMessageViewController.h; sourceTree = "<group>"; };
+		357F5E0A1FB56C8500252C4D /* KGGShareMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGShareMessageViewController.m; sourceTree = "<group>"; };
+		357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGShareMessageViewController.xib; sourceTree = "<group>"; };
 		3583817F1F8B12E2002A17C5 /* KGGUserObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserObj.h; sourceTree = "<group>"; };
 		358381801F8B12E2002A17C5 /* KGGUserObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGUserObj.m; sourceTree = "<group>"; };
 		358381821F8B1622002A17C5 /* KGGUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserManager.h; sourceTree = "<group>"; };
@@ -1415,6 +1420,9 @@
 				18F5BA251F4ED24F00E6ADC4 /* KGGUseWorkerViewController.m */,
 				35961ABB1FA5FE6400A52B9E /* KGGEditPublishViewController.h */,
 				35961ABC1FA5FE6400A52B9E /* KGGEditPublishViewController.m */,
+				357F5E091FB56C8500252C4D /* KGGShareMessageViewController.h */,
+				357F5E0A1FB56C8500252C4D /* KGGShareMessageViewController.m */,
+				357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2400,6 +2408,7 @@
 				18F5BA6A1F4ED24F00E6ADC4 /* KGGOrderDetailsViewCell.xib in Resources */,
 				18F5BA771F4ED24F00E6ADC4 /* KGGLeftDrawerCell.xib in Resources */,
 				3505C80C1F971FD10085D688 /* KGGStartWorkTimeViewCell.xib in Resources */,
+				357F5E0D1FB56C8500252C4D /* KGGShareMessageViewController.xib in Resources */,
 				35FD03791F5E7AD400558900 /* KGGPublishSetting.plist in Resources */,
 				18F5BA681F4ED24F00E6ADC4 /* KGGHomeListViewCell.xib in Resources */,
 				35AE11741F8FBBDD00BCD2BD /* KGGAMapSearchViewCell.xib in Resources */,
@@ -2537,6 +2546,7 @@
 				189D212E1F42FE170004F1EB /* UIImageView+WebCache.m in Sources */,
 				35F73ABD1F790119000CD1D6 /* KGGAMapSearchViewController.m in Sources */,
 				3505C8701F976A5E0085D688 /* PKShortVideoRecorder.m in Sources */,
+				357F5E0C1FB56C8500252C4D /* KGGShareMessageViewController.m in Sources */,
 				3545BB7A1F6FA23F008122B8 /* KGGPayTimeChooseField.m in Sources */,
 				189D21421F43DF8A0004F1EB /* NSString+KGGExtension.m in Sources */,
 				189D21531F43E36D0004F1EB /* AppDelegate+KGGGuide.m in Sources */,

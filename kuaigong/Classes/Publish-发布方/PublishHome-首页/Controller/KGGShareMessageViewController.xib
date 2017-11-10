@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KGGShareMessageViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clearsContextBeforeDrawing="NO" alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4CQ-2d-4D9">
+                    <rect key="frame" x="50" y="170.5" width="275" height="326"/>
+                    <subviews>
+                        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvP-5K-MiR">
+                            <rect key="frame" x="0.0" y="0.0" width="275" height="326"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D6s-tN-5sW">
+                                    <rect key="frame" x="0.0" y="0.0" width="137.5" height="108.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="快工老板"/>
+                                    <connections>
+                                        <action selector="kuaigongBossButtonClick:" destination="-1" eventType="touchUpInside" id="xeC-JX-qaC"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bu5-FF-9rh">
+                                    <rect key="frame" x="137.5" y="0.5" width="137.5" height="108.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="快工班组"/>
+                                    <connections>
+                                        <action selector="kuiagongTeamButtonClick:" destination="-1" eventType="touchUpInside" id="6es-4x-DgO"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhG-TY-liI">
+                                    <rect key="frame" x="0.0" y="108.5" width="137.5" height="109"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="快工救援"/>
+                                    <connections>
+                                        <action selector="kuiagongHelpButtonClick:" destination="-1" eventType="touchUpInside" id="In1-wr-KYv"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIf-4F-8Xt">
+                                    <rect key="frame" x="0.0" y="217.5" width="137.5" height="108.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="快工保险"/>
+                                    <connections>
+                                        <action selector="kuiagongInsButtonClick:" destination="-1" eventType="touchUpInside" id="fkj-eK-2fa"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zA6-d0-7PF">
+                                    <rect key="frame" x="137.5" y="109" width="137.5" height="108.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="快工公益"/>
+                                    <connections>
+                                        <action selector="kuaigongPublishButtonClick:" destination="-1" eventType="touchUpInside" id="jtX-PK-MF1"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lr6-Ea-v0j">
+                                    <rect key="frame" x="137.5" y="217.5" width="137.5" height="108.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <state key="normal" title="快工贷"/>
+                                    <connections>
+                                        <action selector="kuaigongLoanButtonClick:" destination="-1" eventType="touchUpInside" id="jmM-fG-qOf"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="zA6-d0-7PF" secondAttribute="trailing" id="3Fb-Kt-v4t"/>
+                                <constraint firstItem="GIf-4F-8Xt" firstAttribute="leading" secondItem="rvP-5K-MiR" secondAttribute="leading" id="3s8-1z-Fso"/>
+                                <constraint firstItem="GIf-4F-8Xt" firstAttribute="top" secondItem="LhG-TY-liI" secondAttribute="bottom" id="5dy-Ic-3nm"/>
+                                <constraint firstAttribute="trailing" secondItem="Lr6-Ea-v0j" secondAttribute="trailing" id="6TS-dM-9tZ"/>
+                                <constraint firstItem="GIf-4F-8Xt" firstAttribute="top" secondItem="zA6-d0-7PF" secondAttribute="bottom" id="6Vh-G8-E8K"/>
+                                <constraint firstItem="D6s-tN-5sW" firstAttribute="leading" secondItem="rvP-5K-MiR" secondAttribute="leading" id="7d3-uW-S3r"/>
+                                <constraint firstItem="zA6-d0-7PF" firstAttribute="width" secondItem="Bu5-FF-9rh" secondAttribute="width" id="7eI-LD-2Pj"/>
+                                <constraint firstItem="LhG-TY-liI" firstAttribute="leading" secondItem="rvP-5K-MiR" secondAttribute="leading" id="8nt-41-SUv"/>
+                                <constraint firstItem="zA6-d0-7PF" firstAttribute="top" secondItem="Bu5-FF-9rh" secondAttribute="bottom" id="9FC-92-xO7"/>
+                                <constraint firstItem="zA6-d0-7PF" firstAttribute="top" secondItem="D6s-tN-5sW" secondAttribute="bottom" id="BUs-81-7or"/>
+                                <constraint firstItem="zA6-d0-7PF" firstAttribute="top" secondItem="D6s-tN-5sW" secondAttribute="bottom" id="CgV-3N-1g1"/>
+                                <constraint firstItem="D6s-tN-5sW" firstAttribute="top" secondItem="rvP-5K-MiR" secondAttribute="top" id="CqC-KD-q9c"/>
+                                <constraint firstAttribute="trailing" secondItem="Bu5-FF-9rh" secondAttribute="trailing" id="Hew-8m-eyQ"/>
+                                <constraint firstItem="Bu5-FF-9rh" firstAttribute="height" secondItem="D6s-tN-5sW" secondAttribute="height" id="K1n-Ck-fAO"/>
+                                <constraint firstItem="Lr6-Ea-v0j" firstAttribute="width" secondItem="Bu5-FF-9rh" secondAttribute="width" id="KIF-Fb-MKT"/>
+                                <constraint firstItem="GIf-4F-8Xt" firstAttribute="width" secondItem="D6s-tN-5sW" secondAttribute="width" id="N7A-CK-waH"/>
+                                <constraint firstItem="zA6-d0-7PF" firstAttribute="height" secondItem="Bu5-FF-9rh" secondAttribute="height" id="NR9-cf-EA7"/>
+                                <constraint firstAttribute="trailing" secondItem="Bu5-FF-9rh" secondAttribute="trailing" id="S5a-lq-ViU"/>
+                                <constraint firstAttribute="bottom" secondItem="Lr6-Ea-v0j" secondAttribute="bottom" id="SXx-km-clS"/>
+                                <constraint firstItem="GIf-4F-8Xt" firstAttribute="height" secondItem="D6s-tN-5sW" secondAttribute="height" id="ScB-bI-OBO"/>
+                                <constraint firstItem="LhG-TY-liI" firstAttribute="height" secondItem="D6s-tN-5sW" secondAttribute="height" id="ULF-0k-SMZ"/>
+                                <constraint firstItem="Bu5-FF-9rh" firstAttribute="width" secondItem="D6s-tN-5sW" secondAttribute="width" id="dEV-Co-5Ub"/>
+                                <constraint firstItem="D6s-tN-5sW" firstAttribute="leading" secondItem="rvP-5K-MiR" secondAttribute="leading" id="dh3-wV-8gH"/>
+                                <constraint firstAttribute="bottom" secondItem="GIf-4F-8Xt" secondAttribute="bottom" id="gYq-3O-mWr"/>
+                                <constraint firstItem="Bu5-FF-9rh" firstAttribute="top" secondItem="rvP-5K-MiR" secondAttribute="top" id="jxo-5j-k4I"/>
+                                <constraint firstItem="D6s-tN-5sW" firstAttribute="top" secondItem="rvP-5K-MiR" secondAttribute="top" id="lxA-1c-IiD"/>
+                                <constraint firstItem="LhG-TY-liI" firstAttribute="width" secondItem="D6s-tN-5sW" secondAttribute="width" id="pkf-ke-odG"/>
+                                <constraint firstItem="Lr6-Ea-v0j" firstAttribute="top" secondItem="LhG-TY-liI" secondAttribute="bottom" id="pn3-9H-qcS"/>
+                                <constraint firstItem="Bu5-FF-9rh" firstAttribute="top" secondItem="rvP-5K-MiR" secondAttribute="top" id="pyI-W4-vkB"/>
+                                <constraint firstItem="LhG-TY-liI" firstAttribute="top" secondItem="D6s-tN-5sW" secondAttribute="bottom" id="q5X-E8-2CV"/>
+                                <constraint firstItem="Lr6-Ea-v0j" firstAttribute="height" secondItem="Bu5-FF-9rh" secondAttribute="height" id="r9i-2e-1MV"/>
+                                <constraint firstItem="Bu5-FF-9rh" firstAttribute="leading" secondItem="D6s-tN-5sW" secondAttribute="trailing" id="whh-9J-LZA"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="rvP-5K-MiR" firstAttribute="leading" secondItem="4CQ-2d-4D9" secondAttribute="leading" id="0wz-8d-FbO"/>
+                        <constraint firstAttribute="height" constant="326" id="2km-dj-29m"/>
+                        <constraint firstItem="rvP-5K-MiR" firstAttribute="top" secondItem="4CQ-2d-4D9" secondAttribute="top" id="jGy-0s-lnY"/>
+                        <constraint firstAttribute="bottom" secondItem="rvP-5K-MiR" secondAttribute="bottom" id="pf4-zd-Woo"/>
+                        <constraint firstAttribute="trailing" secondItem="rvP-5K-MiR" secondAttribute="trailing" id="zgM-6V-zyP"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="4CQ-2d-4D9" secondAttribute="trailing" constant="50" id="1FE-qq-vca"/>
+                <constraint firstItem="4CQ-2d-4D9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="8tq-8x-tf5"/>
+                <constraint firstItem="4CQ-2d-4D9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="N2c-Ei-sGf"/>
+                <constraint firstItem="4CQ-2d-4D9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nUy-cT-8j7"/>
+            </constraints>
+            <point key="canvasLocation" x="59.5" y="95.5"/>
+        </view>
+    </objects>
+</document>

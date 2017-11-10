@@ -26,6 +26,7 @@
 #import "KGGPersonalMessageController.h"
 #import "KGGCollectTotalController.h"
 #import "KGGCollectMessageController.h"
+#import "KGGShareMessageViewController.h"
 
 
 static CGFloat const itemHeight = 168.f;
@@ -62,7 +63,7 @@ static CGFloat const topHeight = 37.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"快工";
+    self.navigationItem.title = @"快工邦";
     self.view.backgroundColor = KGGViewBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     //创建tarBarItem
@@ -111,6 +112,7 @@ static CGFloat const topHeight = 37.f;
 {
     [KGGPublishHomeRequestManager publishHomeWorkTypeCompletion:^(NSArray<KGGWorkTypeModel *> *response) {
         if (!response)  return ;
+        if (response.count == 0) return;
         [self.workDatasource removeAllObjects];
         [self.workDatasource addObjectsFromArray:response];
         [self creatTableViewHeaderView];
@@ -223,10 +225,10 @@ static CGFloat const topHeight = 37.f;
             }
         }
         
-        if ((int)peopleNum<4) {
+        if ((int)peopleNum<5) {
             carNum = 0;
-        }else if([self isPureFloat:[NSString stringWithFormat:@"%f",peopleNum/7]]) {
-            carNum =(int) (peopleNum/7+1);
+        }else {
+            carNum =ceil(peopleNum/7);
         }
         
         KGGLog(@"车辆为%d",carNum);
@@ -259,43 +261,20 @@ static CGFloat const topHeight = 37.f;
     }
 }
 #pragma mark - 字符串判断为浮点数
--(BOOL)isPureFloat:(NSString*)string{
-    NSScanner* scan = [NSScanner scannerWithString:string];
-    float val;
-    return[scan scanFloat:&val] && [scan isAtEnd];
-}
+//-(BOOL)isPureFloat:(NSString*)string{
+//    NSScanner* scan = [NSScanner scannerWithString:string];
+//    float val;
+//    return[scan scanFloat:&val] && [scan isAtEnd];
+//}
 
 #pragma mark - UITableViewHeaderViewDelegate
 /** 轮播图的点击 */
 - (void)KGG_SDCycleTabViewDidSelectItemAtIndex:(NSInteger )index
 {
-    KGGLog(@"点击顶部按钮%ld",(long)index);
-    if (index == 100) {
-        KGGLog(@"共享老板");
-        KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];
-        collVC.itemName = @"共享老板";
-        [self.navigationController pushViewController:collVC animated:YES];
-    }else if (index == 101){
-        KGGLog(@"共享班组")
-        KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];
-        collVC.itemName = @"共享班组";
-        [self.navigationController pushViewController:collVC animated:YES];
-    }else if (index == 102){
-        KGGLog(@"快工救援")
-        KGGCollectTotalController *totalVC = [[KGGCollectTotalController alloc]initWithNibName:NSStringFromClass([KGGCollectTotalController class]) bundle:nil];
-        totalVC.imageName = @"快工救援";
-        [self.navigationController pushViewController:totalVC animated:YES];
-
-    }else if (index == 103){
-        KGGLog(@"快工公益")
-        KGGCollectTotalController *totalVC = [[KGGCollectTotalController alloc]initWithNibName:NSStringFromClass([KGGCollectTotalController class]) bundle:nil];
-        totalVC.imageName = @"快工公益";
-        [self.navigationController pushViewController:totalVC animated:YES];
-    }else if (index == 104){
-        KGGLog(@"快工保险")
-    }else if (index == 105){
-        KGGLog(@"快工贷")
-    }
+    
+    KGGShareMessageViewController *shareVC = [[KGGShareMessageViewController alloc]initWithNibName:NSStringFromClass([KGGShareMessageViewController class]) bundle:nil];
+    shareVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self presentViewController:shareVC animated:YES completion:nil];
 
 }
 /** top */
@@ -365,7 +344,11 @@ static CGFloat const topHeight = 37.f;
     cell.publishModel = publishModel;
     if (indexPath.row == 0) {
         cell.homeTextField.text = self.priceModel.guidePrice;
+        cell.price = self.priceModel.guidePrice;
+        cell.homeTextField.enabled = NO;
         publishModel.subtitle = self.priceModel.guidePrice;
+        cell.loseButton.enabled = NO;
+        cell.addButton.enabled = YES;
     }
     return cell;
 }

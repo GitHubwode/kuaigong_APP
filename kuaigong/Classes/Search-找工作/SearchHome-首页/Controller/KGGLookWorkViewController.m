@@ -10,12 +10,15 @@
 #import "KGGLookWorkViewCell.h"
 #import "KGGOrderDetailsModel.h"
 #import "KGGSearchOrderController.h"
+#import "KGGLocationHelper.h"
 
 @interface KGGLookWorkViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, assign) NSUInteger pageNum;
+@property (nonatomic, strong) KGGLocationHelper *locationHelper;
+
 @end
 
 @implementation KGGLookWorkViewController
@@ -42,7 +45,25 @@
 
 - (void)kgg_hostLiveLocation:(BOOL)refresh
 {
-    [KGGPublishOrderRequestManager publishOrderListType:self.requestType Page:self.pageNum UserId:[[KGGUserManager shareUserManager].currentUser.userId integerValue] Order:0 completion:^(NSArray<KGGOrderDetailsModel *> *response) {
+    __block CGFloat longitude;
+    __block CGFloat latitude;
+    weakSelf(self);
+    [self.locationHelper getUserCurrentLocation:^(CLLocation *location) {
+        
+        [weakself.locationHelper clearLocationDelegate];
+        weakself.locationHelper = nil;
+        
+        CLLocationCoordinate2D coordinate = location.coordinate;
+        longitude = coordinate.longitude;
+        latitude = coordinate.latitude;        
+        [weakself setupUserLongitude:longitude Latitude:latitude Refresh:refresh];
+    }];
+}
+
+#pragma mark - 获取经纬度
+- (void)setupUserLongitude:(CGFloat )longitude Latitude:(CGFloat)latitude Refresh:(BOOL)refresh
+{
+    [KGGPublishOrderRequestManager publishOrderListType:self.requestType Page:self.pageNum UserId:[[KGGUserManager shareUserManager].currentUser.userId integerValue] Order:0 Latitude:latitude Longitude:longitude completion:^(NSArray<KGGOrderDetailsModel *> *response) {
         if (!response) {
             if (refresh) {
                 [self.tableView.mj_header endRefreshing];
@@ -69,6 +90,7 @@
         }
         
     } aboveView:self.view inCaller:self];
+    
 }
 
 
@@ -121,6 +143,13 @@
         _datasource = [NSMutableArray array];
     }
     return _datasource;
+}
+
+- (KGGLocationHelper *)locationHelper{
+    if (!_locationHelper) {
+        _locationHelper = [[KGGLocationHelper alloc] init];
+    }
+    return _locationHelper;
 }
 
 - (void)didReceiveMemoryWarning {

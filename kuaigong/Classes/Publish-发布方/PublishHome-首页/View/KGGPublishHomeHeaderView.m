@@ -28,23 +28,32 @@ static CGFloat const itemHeight = 168.f;
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight))];
     imageView.userInteractionEnabled = YES;
     imageView.backgroundColor = KGGGoldenThemeColor;
-//    imageView.image = [UIImage imageNamed:@"pic"];
+    imageView.image = [UIImage imageNamed:@"pic"];
     [self addSubview:imageView];
 //    imageView.hidden = YES;
+    UIButton *button = [self creatButtonSelectImage:@"icon_nine" ImageString:@"icon_nine" Tag:100];
+    [imageView addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(imageView.mas_right).offset(-15);
+        make.bottom.equalTo(imageView.mas_bottom).offset(-20);
+        make.width.equalTo(@(40));
+        make.height.equalTo(@(40));
+    }];
     
-    CGFloat buttonWidth = (kMainScreenWidth-20)/3;
-    CGFloat buttonHeight = (KGGAdaptedHeight(itemHeight)-15)/2;
-
-    for (int i =0 ; i<3; i++) {
-        UIButton *button =[self creatButtonSelectImage:[NSString stringWithFormat:@"icon_Publish_home_press_%d",i+1] ImageString:[NSString stringWithFormat:@"icon_Publish_home_%d",i+1] Tag:100+i];
-            button.frame = CGRectMake(5+(buttonWidth+5)*i, 5, buttonWidth, buttonHeight);
-        [imageView addSubview:button];
-    }
-    for (int i =3 ; i<6; i++) {
-        UIButton *button =[self creatButtonSelectImage:[NSString stringWithFormat:@"icon_Publish_home_press_%d",i+1] ImageString:[NSString stringWithFormat:@"icon_Publish_home_%d",i+1] Tag:100+i];
-        button.frame = CGRectMake(5+(buttonWidth+5)*(i-3), 5+(buttonHeight+5), buttonWidth, buttonHeight);
-        [imageView addSubview:button];
-    }
+    
+//    CGFloat buttonWidth = (kMainScreenWidth-20)/3;
+//    CGFloat buttonHeight = (KGGAdaptedHeight(itemHeight)-15)/2;
+//
+//    for (int i =0 ; i<3; i++) {
+//        UIButton *button =[self creatButtonSelectImage:[NSString stringWithFormat:@"icon_Publish_home_press_%d",i+1] ImageString:[NSString stringWithFormat:@"icon_Publish_home_%d",i+1] Tag:100+i];
+//            button.frame = CGRectMake(5+(buttonWidth+5)*i, 5, buttonWidth, buttonHeight);
+//        [imageView addSubview:button];
+//    }
+//    for (int i =3 ; i<6; i++) {
+//        UIButton *button =[self creatButtonSelectImage:[NSString stringWithFormat:@"icon_Publish_home_press_%d",i+1] ImageString:[NSString stringWithFormat:@"icon_Publish_home_%d",i+1] Tag:100+i];
+//        button.frame = CGRectMake(5+(buttonWidth+5)*(i-3), 5+(buttonHeight+5), buttonWidth, buttonHeight);
+//        [imageView addSubview:button];
+//    }
 }
 
 - (instancetype)initWithFrame:(CGRect)frame HeaderViewSlideTitle:(NSArray *)titleArray;

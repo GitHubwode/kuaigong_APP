@@ -53,7 +53,7 @@
             /** Step5: 开始滚动(Start scrolling!) */
     
     //    * Step2: 创建 ScrollLabelView
-    self.scrollLabelView = [TXScrollLabelView scrollWithTitle:@"注:每天用工9小时 每车7人,少于4人无需车费" type:TXScrollLabelViewTypeLeftRight velocity:1 options:UIViewAnimationOptionCurveEaseInOut];
+    self.scrollLabelView = [TXScrollLabelView scrollWithTitle:@"注:架子工每天用工8小时,其它工种每天用工9小时 每车7人,少于4人无需车费" type:TXScrollLabelViewTypeLeftRight velocity:1 options:UIViewAnimationOptionCurveEaseInOut];
     
     /** Step3: 设置代理进行回调 */
     self.scrollLabelView.scrollLabelViewDelegate = self;

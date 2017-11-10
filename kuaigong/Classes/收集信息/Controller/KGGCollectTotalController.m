@@ -24,6 +24,9 @@
         self.imageView.image = [UIImage imageNamed:@"publishHeader2"];
     }
 }
+- (IBAction)cancelButtonClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

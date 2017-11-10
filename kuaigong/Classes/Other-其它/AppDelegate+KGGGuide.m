@@ -34,7 +34,6 @@ static NSString *const KGGLastVersionKey = @"KGGLastVersion";
         [rootVc.view addSubview:newFeatureVc.view];
         [rootVc addChildViewController:newFeatureVc];
         
-        
     }else{
         // 定义一个窗口的根控制器
         if ([[KGGUserManager shareUserManager].currentUser.type isEqualToString:@"BOSS"]) {

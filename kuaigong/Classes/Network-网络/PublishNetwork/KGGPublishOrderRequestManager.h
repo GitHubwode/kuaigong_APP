@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
  @param caller 方法调用者
  
  */
-+ (void)publishOrderListType:(KGGOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)publishOrderListType:(KGGOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId Latitude:(CGFloat )latitude Longitude:(CGFloat )longitude completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 /**
  获取订单详情

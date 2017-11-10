@@ -78,8 +78,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addButton" destination="TXD-nd-LLU" id="H0Z-SR-58B"/>
                 <outlet property="homeTextField" destination="BdV-w1-dB1" id="LOi-7W-YOl"/>
                 <outlet property="homeTypeLabel" destination="pIT-3q-lch" id="SzX-JF-cvc"/>
+                <outlet property="loseButton" destination="ZBs-gf-bP1" id="eou-uF-3JW"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -24,17 +24,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.title = self.itemName;
+//    self.navigationItem.title = self.itemName;
+//    [self creatNaviUI];
     [self creatBottomImageView];
     [self kgg_addButton];
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)creatNaviUI
+{
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, kMainScreenWidth, 44)];
+    label.text = self.itemName;
+    label.textColor = UIColorHex(0xffffff);
+    label.backgroundColor = KGGGoldenThemeColor;
+    label.font = KGGLightFont(18);
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    
+    UIButton *jumpButton = [[UIButton alloc]init];
+    [jumpButton setTitle:@"跳过" forState:UIControlStateNormal];
+    [jumpButton addTarget:self action:@selector(kgg_dissmissViewController) forControlEvents:UIControlEventTouchUpInside];
+    [jumpButton setTitleColor:UIColorHex(0x737373) forState:UIControlStateNormal];
+    jumpButton.titleLabel.font = KGGLightFont(18);
+    [self.view addSubview:jumpButton];
+    [jumpButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(label.mas_centerY);
+        make.right.equalTo(label.mas_right).offset(-14);
+        make.width.equalTo(@40);
+        make.height.equalTo(@40);
+    }];
+    
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, kMainScreenWidth, KGGOnePixelHeight)];
+    lineView.backgroundColor = UIColorHex(0xb2b2b2);
+    [self.view addSubview:lineView];
+}
+
+#pragma mark - 按钮的点击事件
+- (void)kgg_dissmissViewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - 底层图片
 - (void)creatBottomImageView
 {
-    weakSelf(self);
+//    weakSelf(self);
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64)];
     imageView.image = [UIImage imageNamed:@"bossBg"];
     imageView.userInteractionEnabled = YES;
@@ -42,13 +77,33 @@
     [self.view addSubview:imageView];
     [imageView addSubview:self.tableView];
     self.tableView.tableFooterView = self.footerView;
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 64)];
+    view.backgroundColor =KGGGoldenThemeColor;
+    [imageView addSubview:view];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, kMainScreenWidth, 44)];
+    label.text = self.itemName;
+    label.textColor = UIColorHex(0xffffff);
+    label.backgroundColor = KGGGoldenThemeColor;
+    label.font = KGGLightFont(18);
+    label.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:label];
     
-//    [self.footerView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(weakself.tableView.mas_bottom);
-//        make.left.equalTo(weakself.view.mas_left);
-//        make.width.equalTo(@(kMainScreenWidth));
-//        make.height.equalTo(@(130));
-//    }];
+    UIButton *jumpButton = [[UIButton alloc]init];
+    [jumpButton setTitle:@"取消" forState:UIControlStateNormal];
+    [jumpButton addTarget:self action:@selector(kgg_dissmissViewController) forControlEvents:UIControlEventTouchUpInside];
+    [jumpButton setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
+    jumpButton.titleLabel.font = KGGLightFont(18);
+    [view addSubview:jumpButton];
+    [jumpButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(label.mas_centerY);
+        make.right.equalTo(label.mas_right).offset(-14);
+        make.width.equalTo(@40);
+        make.height.equalTo(@40);
+    }];
+    
+//    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, kMainScreenWidth, KGGOnePixelHeight)];
+//    lineView.backgroundColor = UIColorHex(0xb2b2b2);
+//    [view addSubview:lineView];
     
 }
 
@@ -180,7 +235,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-KGGLoginButtonHeight) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kMainScreenWidth, kMainScreenHeight-64-KGGLoginButtonHeight) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.separatorStyle = UITableViewCellStyleDefault;
         [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGCollectViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGCollectViewCell collectIdentifier]];

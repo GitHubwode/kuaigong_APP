@@ -13,6 +13,7 @@
 #import "KGGSearchOrderRequestManager.h"
 #import "KGGRoutePlanningController.h"
 #import "KGGLocationHelper.h"
+#import "KGGForgetPasswordViewController.h"
 
 @interface KGGSearchOrderController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -44,39 +45,58 @@
 #pragma mark - buttonAction
 - (void)snh_sureOrderButtonClick:(UIButton *)sender
 {
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"id"] = @(self.orderDetails.orderId);
-    KGGLog(@"接单的确认按钮");
-    __block CGFloat longitude;
-    __block CGFloat latitude;
-    weakSelf(self);
-    [self.locationHelper getUserCurrentLocation:^(CLLocation *location) {
+    
+    if ([KGGUserManager shareUserManager].currentUser.phone.length == 0) {
+        [self.view showHint:@"你没有绑定电话"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"请绑定手机号" preferredStyle:UIAlertControllerStyleAlert];
         
-        [weakself.locationHelper clearLocationDelegate];
-        weakself.locationHelper = nil;
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
         
-        CLLocationCoordinate2D coordinate = location.coordinate;
-        longitude = coordinate.longitude;
-        latitude = coordinate.latitude;
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            KGGLog(@"绑定手机号");
+            KGGForgetPasswordViewController *forgrtVC = [[KGGForgetPasswordViewController alloc]init];
+            forgrtVC.changetype = KGGUserChangeBindPhoneType;
+            [self presentViewController:[[KGGNavigationController alloc] initWithRootViewController:forgrtVC] animated:YES completion:nil];
+        }]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
 
-        param[@"acceptLongitude"] = @(longitude);
-        param[@"acceptLatitude"] = @(latitude);
-        
-        [weakself setupUserLocationParam:param];
-    }];
+    }else{
+        KGGLog(@"有电话 可以接单");
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"id"] = @(self.orderDetails.orderId);
+        KGGLog(@"接单的确认按钮");
+        __block CGFloat longitude;
+        __block CGFloat latitude;
+        weakSelf(self);
+        [self.locationHelper getUserCurrentLocation:^(CLLocation *location) {
+            
+            [weakself.locationHelper clearLocationDelegate];
+            weakself.locationHelper = nil;
+            
+            CLLocationCoordinate2D coordinate = location.coordinate;
+            longitude = coordinate.longitude;
+            latitude = coordinate.latitude;
+            
+            param[@"acceptLongitude"] = @(longitude);
+            param[@"acceptLatitude"] = @(latitude);
+            param[@"phone"] = [KGGUserManager shareUserManager].currentUser.phone;
+            
+            [weakself setupUserLocationParam:param];
+        }];
+    }
 }
 
 - (void)setupUserLocationParam:(NSMutableDictionary *)param
 {
-    [self jumpRoutePlanning];
-//    [KGGSearchOrderRequestManager searchReciveParam:param completion:^(KGGResponseObj *responseObj) {
-//        if (responseObj.code == KGGSuccessCode) {
-//            [self.view showHint:@"接单成功,请按时出单"];
-//            [self.orderButton setTitle:@"已接单" forState:UIControlStateNormal];
-//            self.orderButton.enabled = NO;
-//            [self jumpRoutePlanning];
-//        }
-//    } aboveView:self.view inCaller:self];
+    [KGGSearchOrderRequestManager searchReciveParam:param completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            [self.view showHint:@"接单成功,请按时出单"];
+            [self.orderButton setTitle:@"已接单" forState:UIControlStateNormal];
+            self.orderButton.enabled = NO;
+            [self jumpRoutePlanning];
+        }
+    } aboveView:self.view inCaller:self];
 }
 
 #pragma mark - 跳转到路线规划

@@ -46,7 +46,7 @@
     topView.frame = CGRectMake(0, 0, self.xc_width, 38);
     topView.backgroundColor = UIColorHex(0xf1f1f1);
     [self addSubview:topView];
-    self.contactButton = [self creatButtonTitle:@"联系我们" Tag:10000];
+    self.contactButton = [self creatButtonTitle:@"联系客服" Tag:10000];
     [topView addSubview:self.contactButton];
     [self.contactButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(topView.mas_left);

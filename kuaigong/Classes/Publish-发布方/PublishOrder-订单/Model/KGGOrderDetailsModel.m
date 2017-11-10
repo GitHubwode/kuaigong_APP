@@ -74,6 +74,9 @@
     if (_orderUrl.length != 0) {
         _imageArray =[[_orderUrl componentsSeparatedByString:@","] mutableCopy];
     }
+    if (_instance.length > 0) {
+        _instance = [NSString getDistanceString:_instance];
+    }
 }
 
 /**

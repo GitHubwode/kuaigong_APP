@@ -18,6 +18,7 @@ static NSString *const homeListViewCell = @"homeListViewCell";
 @property (weak, nonatomic) IBOutlet UILabel *homeTypeLabel;
 @property (nonatomic, assign) int number;
 
+
 @end
 
 @implementation KGGHomeListViewCell
@@ -25,6 +26,8 @@ static NSString *const homeListViewCell = @"homeListViewCell";
 - (void)setPublishModel:(KGGHomePublishModel *)publishModel
 {
     _publishModel = publishModel;
+    if ([self.homeTextField.placeholder isEqualToString:@"请填写工价"]) {
+    }
     self.homeTypeLabel.text = publishModel.title;
     self.homeTextField.placeholder = publishModel.placeholder;
 }
@@ -33,7 +36,8 @@ static NSString *const homeListViewCell = @"homeListViewCell";
     KGGLog(@"加人数");
     int num =  [self.homeTextField.text intValue];
     if ([self.homeTextField.placeholder isEqualToString:@"请填写工价"]) {
-        num=num+10;
+        self.loseButton.enabled = YES;
+        num=num+5;
     }else{
       num++;
     }
@@ -45,7 +49,8 @@ static NSString *const homeListViewCell = @"homeListViewCell";
     int num =  [self.homeTextField.text intValue];
     if (num == 0) return;
     if ([self.homeTextField.placeholder isEqualToString:@"请填写工价"]) {
-        num=num-10;
+        if ([self.price isEqualToString: self.homeTextField.text]) return;
+        num=num-5;
     }else{
         num--;
     }
@@ -66,6 +71,7 @@ static NSString *const homeListViewCell = @"homeListViewCell";
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    if (!self.publishModel.editabled) return;
     self.publishModel.subtitle = textField.text;
     [KGGNotificationCenter addObserver:self selector:@selector(textViewEditChanged:) name:UITextViewTextDidChangeNotification object:textField];
 
@@ -74,6 +80,7 @@ static NSString *const homeListViewCell = @"homeListViewCell";
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    if (!self.publishModel.editabled) return;
     self.publishModel.subtitle = textField.text;
     [self homePublishText:textField.text];
 }

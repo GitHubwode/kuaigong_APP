@@ -72,6 +72,12 @@
 @property (nonatomic,copy) NSString *avatarUrl;
 /** 工地图片 */
 @property (nonatomic,copy) NSString *orderUrl;
+/** 接单者的纬度 */
+@property (nonatomic,copy) NSString *acceptLatitude;
+/** 接单者的经度 */
+@property (nonatomic,copy) NSString *acceptLongitude;
+/** 两地距离 */
+@property (nonatomic,copy) NSString *instance;
 
 //增加的参数
 @property (nonatomic, copy) NSString *orderDetails;

@@ -101,7 +101,7 @@
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)publishOrderListType:(KGGOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)publishOrderListType:(KGGOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId Latitude:(CGFloat )latitude Longitude:(CGFloat )longitude completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
     NSString *url;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
@@ -109,6 +109,8 @@
         case KGGOrderRequestAllUndoType: // 全部未完成的订单
             url = KGGURL(@"/api/order/getAllOrder");
             dic[@"page"] = @(page);
+            dic[@"acceptLongitude"] = @(longitude);
+            dic[@"acceptLatitude"] = @(latitude);
             break;
         case KGGOrderRequestCompleteType: // 我已完成的订单
             url = KGGURL(@"/api/order/getComplete");

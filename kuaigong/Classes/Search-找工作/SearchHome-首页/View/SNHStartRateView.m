@@ -108,7 +108,7 @@ typedef void(^completeBlock)(CGFloat currentScore);
 
 - (void)snh_userTapRateView:(UITapGestureRecognizer *)gesture
 {
-//    if (_isDisplay)  return;
+    if (_isDisplay)  return;
     
     CGPoint tapPoint = [gesture locationInView:self];
     CGFloat offset = tapPoint.x;
