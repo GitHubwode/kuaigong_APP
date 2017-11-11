@@ -303,9 +303,6 @@
                 if (responseObj.code == KGGSuccessCode || responseObj.code == KGGBindingWeChatSuccess) {
                     [weakself WXLoginOpenId:userinfo.openid];
                 }
-//                if (responseObj.code == KGGBindingWeChatSuccess) {
-//                    [self dismissViewControllerAnimated:YES completion:nil];
-//                }
             } aboveView:self.view inCaller:self];
         }
     }];
@@ -318,7 +315,11 @@
         KGGLog(@"微信登录成功");
         KGGLog(@"%@",user);
         [KGGNotificationCenter postNotificationName:KGGUserLoginNotifacation object:nil];
-        [self bindingPhoneNum];
+        if ([KGGUserManager shareUserManager].currentUser.phone.length==11) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+           [self bindingPhoneNum];
+        }
     } aboveView:self.view inCaller:self];
 }
 

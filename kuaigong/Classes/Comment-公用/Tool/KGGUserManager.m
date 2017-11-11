@@ -111,6 +111,7 @@
 {
     if (!_currentUser) return;
     _currentUser.phone = mobile;
+    _currentUser.hidePhone = [NSString numberSuitScanf:mobile];
     [self saveAccount:_currentUser];
 }
 

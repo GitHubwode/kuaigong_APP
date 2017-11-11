@@ -72,6 +72,33 @@
         }
         
     } aboveView:nil inCaller:caller];
+}
+
+/**
+ 取消订单  接单方接单取消订单 发布方接单取消订单
+ @param userType 接口类型
+ @param orderId 订单ID
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)cancelOrderMessageUserType:(KGGUserStatusType)userType OrderId:(NSString *)orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/order/postAcceptedCancel");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    switch (userType) {
+        case KGGUserStatusBOSSType:
+            
+            break;
+        case KGGUserStatusWORKERType:
+            
+            break;
+        default:
+            break;
+    }
+    
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        
+    } aboveView:view inCaller:caller];
     
     
 }

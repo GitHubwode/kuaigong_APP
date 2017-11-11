@@ -17,6 +17,7 @@ static NSString *const homeListViewCell = @"homeListViewCell";
 
 @property (weak, nonatomic) IBOutlet UILabel *homeTypeLabel;
 @property (nonatomic, assign) int number;
+@property (nonatomic, strong) NSMutableDictionary *param;
 
 
 @end
@@ -38,9 +39,15 @@ static NSString *const homeListViewCell = @"homeListViewCell";
     if ([self.homeTextField.placeholder isEqualToString:@"请填写工价"]) {
         self.loseButton.enabled = YES;
         num=num+5;
-    }else{
+    }else if([self.homeTextField.placeholder isEqualToString:@"用工人数"]){
       num++;
+        self.param[@"peopleNum"] = @(num);
+        [KGGNotificationCenter postNotificationName:KGGInputCarNumNotifacation object:nil userInfo:self.param];
+    }else{
+        num++;
     }
+    
+    
     self.homeTextField.text = [NSString stringWithFormat:@"%d",num];
     [self homePublishText:self.homeTextField.text];
 }
@@ -51,6 +58,10 @@ static NSString *const homeListViewCell = @"homeListViewCell";
     if ([self.homeTextField.placeholder isEqualToString:@"请填写工价"]) {
         if ([self.price isEqualToString: self.homeTextField.text]) return;
         num=num-5;
+    }else if([self.homeTextField.placeholder isEqualToString:@"用工人数"]){
+        num--;
+        self.param[@"peopleNum"] = @(num);
+        [KGGNotificationCenter postNotificationName:KGGInputCarNumNotifacation object:nil userInfo:self.param];
     }else{
         num--;
     }
@@ -121,6 +132,13 @@ static NSString *const homeListViewCell = @"homeListViewCell";
     return YES;
 }
 
+- (NSMutableDictionary *)param
+{
+    if (!_param) {
+        _param = [NSMutableDictionary dictionary];
+    }
+    return _param;
+}
 
 
 + (NSString *)homeListIdentifier

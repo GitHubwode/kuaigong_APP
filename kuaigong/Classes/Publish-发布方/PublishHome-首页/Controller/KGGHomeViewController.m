@@ -48,6 +48,8 @@ static CGFloat const topHeight = 37.f;
 @property (nonatomic, strong) KGGCarFeeModel *feeModel;
 @property (nonatomic ,strong) MenuView   * menu;
 @property (nonatomic, strong) KGGLeftTableController *leftView;
+/** 车辆数 */
+@property (nonatomic,assign) int  carNum;
 
 @end
 
@@ -76,6 +78,7 @@ static CGFloat const topHeight = 37.f;
     
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(kggPeopleNumChange:) name:KGGInputCarNumNotifacation object:nil];
     [self kgg_addButton];
     
     KGGLeftTableController *leftView = [[KGGLeftTableController alloc]initWithFrame:CGRectMake(0, 0, KGGAdaptedWidth(kMainScreenWidth*0.68), kMainScreenHeight)];
@@ -192,6 +195,21 @@ static CGFloat const topHeight = 37.f;
     return button;
 }
 
+- (void)kggPeopleNumChange:(NSNotification *)notification
+{
+    CGFloat peopleNum;
+    peopleNum = [[notification.userInfo objectForKey:@"peopleNum"] floatValue];
+    KGGLog(@"人数:%f",peopleNum);
+    if ((int)peopleNum < 5) {
+        self.carNum = 0;
+    }else {
+        self.carNum =ceil(peopleNum/7);
+    }
+    KGGLog(@"车辆为%d",self.carNum);
+    self.footView.carLabel.text = [NSString stringWithFormat:@"车费总计:%d元*%d车",self.feeModel.itemValue,self.carNum];
+    
+}
+
 #pragma mark - 底部按钮
 - (void)snh_beginButtonClick:(UIButton *)sender
 {
@@ -207,9 +225,6 @@ static CGFloat const topHeight = 37.f;
     
     if (sender.tag == 1000) {
         BOOL isJump = NO;
-        CGFloat peopleNum = 0;
-        
-        int carNum = 0;
         for ( KGGHomePublishModel *publishModel in self.datasource) {
             if (![publishModel.title isEqualToString:@"价格/天"]) {
                 if (publishModel.subtitle.length==0 || publishModel.subtitle == nil || [publishModel.subtitle isEqualToString:@"0"]){
@@ -220,21 +235,7 @@ static CGFloat const topHeight = 37.f;
                     isJump = YES;
                 }
             }
-            if ([publishModel.title isEqualToString:@"用工人数"]) {
-                peopleNum =  [publishModel.subtitle intValue];
-            }
         }
-        
-        if ((int)peopleNum<5) {
-            carNum = 0;
-        }else {
-            carNum =ceil(peopleNum/7);
-        }
-        
-        KGGLog(@"车辆为%d",carNum);
-        
-        self.footView.carLabel.text = [NSString stringWithFormat:@"车费总计:%d元*%d",self.feeModel.itemValue,carNum];
-
         
         if (self.longitudeMap==0) {
             [self.view showHint:@"工作地点不能为空"];
@@ -248,7 +249,7 @@ static CGFloat const topHeight = 37.f;
             useVC.address = self.workAddress;
             useVC.longitudeMap = self.longitudeMap;
             useVC.latitudeMap = self.latitudeMap;
-            useVC.catTotal = self.feeModel.itemValue*carNum;
+            useVC.catTotal = self.feeModel.itemValue*self.carNum;
             useVC.workType = self.priceModel;
             useVC.peoplePrice = self.priceModel.guidePrice;
             
@@ -260,18 +261,10 @@ static CGFloat const topHeight = 37.f;
         [self.navigationController pushViewController:payVC animated:YES];
     }
 }
-#pragma mark - 字符串判断为浮点数
-//-(BOOL)isPureFloat:(NSString*)string{
-//    NSScanner* scan = [NSScanner scannerWithString:string];
-//    float val;
-//    return[scan scanFloat:&val] && [scan isAtEnd];
-//}
-
 #pragma mark - UITableViewHeaderViewDelegate
 /** 轮播图的点击 */
 - (void)KGG_SDCycleTabViewDidSelectItemAtIndex:(NSInteger )index
 {
-    
     KGGShareMessageViewController *shareVC = [[KGGShareMessageViewController alloc]initWithNibName:NSStringFromClass([KGGShareMessageViewController class]) bundle:nil];
     shareVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:shareVC animated:YES completion:nil];

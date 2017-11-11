@@ -59,4 +59,47 @@
     } aboveView:view inCaller:caller];
 }
 
+/**
+ 更新用户VIP的信息
+ @param type 参数
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)updataUserVIPMessageVIPType:(NSString *)type completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"type"] = type;
+    
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) {
+        }
+        BOOL isVIP = false;
+        NSString *endTime;
+        if (responseObj.code == KGGSuccessCode) {
+            NSInteger isActive = [[responseObj.data objectForKey:@"isActive"] integerValue];
+            
+            if (isActive==1) {
+                isVIP = YES;
+            }else{
+                isVIP = NO;
+            }
+            
+            if ([[responseObj.data objectForKey:@"userVipInfo"] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dic = [responseObj.data objectForKey:@"userVipInfo"];
+                endTime = [dic objectForKey:@"endTime"];
+            }
+        }
+        KGGUserObj *userInfo = [KGGUserManager shareUserManager].currentUser;
+        userInfo.hasVIP = isVIP;
+        userInfo.vipEndTime = endTime;
+        [[KGGUserManager shareUserManager] synchronize];
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
+        
+    } aboveView:view inCaller:caller];
+}
+
 @end

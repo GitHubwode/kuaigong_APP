@@ -78,7 +78,6 @@
     self.view.frame = frame;
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.view endEditing:YES];
@@ -89,7 +88,6 @@
     [KGGNotificationCenter removeObserver:self];
     KGGLogFunc
 }
-
 
 #pragma mark - 设计页面
 - (void)creatUI
@@ -114,16 +112,22 @@
     self.loginView2 = [[KGGLoginView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220+44+32), kMainScreenWidth, 44) WithTitle:nil imageString:@"icon_yanzheng" PlaceText:@" 请输入验证码"];
     self.loginView2.containCodeButton = YES;
     self.loginView2.codeDelegate = self;
-    self.loginView3 = [[KGGLoginView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220+44+32+44+33), kMainScreenWidth, 44) WithTitle:nil imageString:@"icon_mima" PlaceText:@" 请输入新密码"];
-    self.loginView3.isPassWord = YES;
     
-    self.loginView4 = [[KGGLoginView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220+44+32+44+32+44+32), kMainScreenWidth, 44) WithTitle:nil imageString:@"icon_mima" PlaceText:@" 请输入新密码"];
-    self.loginView4.isPassWord = YES;
-    
+    if (self.changetype == KGGUserChangeBindPhoneType) {
+        
+    }else{
+     
+        self.loginView3 = [[KGGLoginView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220+44+32+44+33), kMainScreenWidth, 44) WithTitle:nil imageString:@"icon_mima" PlaceText:@" 请输入新密码"];
+        self.loginView3.isPassWord = YES;
+        
+        self.loginView4 = [[KGGLoginView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220+44+32+44+32+44+32), kMainScreenWidth, 44) WithTitle:nil imageString:@"icon_mima" PlaceText:@" 请输入新密码"];
+        self.loginView4.isPassWord = YES;
+        [self.view addSubview:self.loginView3];
+        [self.view addSubview:self.loginView4];
+    }
     [self.view addSubview:self.loginView1];
     [self.view addSubview:self.loginView2];
-    [self.view addSubview:self.loginView3];
-    [self.view addSubview:self.loginView4];
+    
     
     
     UIButton *loginButton = [[UIButton alloc]init];
@@ -133,12 +137,23 @@
     [loginButton setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
     loginButton.titleLabel.font = KGGLightFont(18);
     [self.view addSubview:loginButton];
-    [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(weakself.view.mas_centerX);
-        make.top.equalTo(weakself.loginView4.mas_bottom).offset(15);
-        make.width.equalTo(@(kMainScreenWidth-60));
-        make.height.equalTo(@(KGGLoginButtonHeight));
-    }];
+    
+    if (self.changetype == KGGUserChangeBindPhoneType) {
+        [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(weakself.view.mas_centerX);
+            make.top.equalTo(weakself.loginView2.mas_bottom).offset(15);
+            make.width.equalTo(@(kMainScreenWidth-60));
+            make.height.equalTo(@(KGGLoginButtonHeight));
+        }];
+    }else{
+        [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(weakself.view.mas_centerX);
+            make.top.equalTo(weakself.loginView4.mas_bottom).offset(15);
+            make.width.equalTo(@(kMainScreenWidth-60));
+            make.height.equalTo(@(KGGLoginButtonHeight));
+        }];
+    }
+
 }
 
 
@@ -227,30 +242,35 @@
         return;
     }
     
-    NSString *pwd1 = self.loginView3.loginTextField.text;
-    if (!pwd1.length){
-        [self.view showHint:@"请填写密码"];
-        return;
-    }
+    NSString *pwd1;
+    if (self.changetype == KGGUserChangeBindPhoneType) {
     
-    NSString *pwd2 = self.loginView4.loginTextField.text;
-    if (!pwd2.length){
-        [self.view showHint:@"请填写确认密码"];
-        return;
+    }else{
+        pwd1 = self.loginView3.loginTextField.text;
+        if (!pwd1.length){
+            [self.view showHint:@"请填写密码"];
+            return;
+        }
+        
+        NSString *pwd2 = self.loginView4.loginTextField.text;
+        if (!pwd2.length){
+            [self.view showHint:@"请填写确认密码"];
+            return;
+        }
+        
+        if (pwd1.length < KGGPasswordMinLength && pwd2.length < KGGPasswordMaxLength){
+            [self.view showHint:[NSString stringWithFormat:@"密码不能小于%zd位",KGGPasswordMinLength]];
+            return;
+        }
+        
+        // 1.对用户密码是否相等
+        BOOL isSame = [pwd1 isEqualToString:pwd2];
+        if (!isSame){ // 不相等
+            [self.view showHint:@"请检查密码是否一样"];
+            return;
+        }
     }
-    
-    if (pwd1.length < KGGPasswordMinLength && pwd2.length < KGGPasswordMaxLength){
-        [self.view showHint:[NSString stringWithFormat:@"密码不能小于%zd位",KGGPasswordMinLength]];
-        return;
-    }
-    
-    // 1.对用户密码是否相等
-    BOOL isSame = [pwd1 isEqualToString:pwd2];
-    if (!isSame){ // 不相等
-        [self.view showHint:@"请检查密码是否一样"];
-        return;
-    }
-    
+
     // 1.对用户输入的手机号进行正则匹配
     BOOL isMatch = [cellphone isPhoneNumer];
     // 2.对不同的匹配结果做处理
@@ -270,7 +290,8 @@
         [KGGLoginRequestManager updataUserPhoneNum:phone Code:code completion:^(KGGResponseObj *responseObj) {
             if (responseObj.code == KGGSuccessCode) {
                 KGGLog(@"修改电话成功");
-                [self updataPassWord:passWord Code:code];
+                [KGGNotificationCenter postNotificationName:KGGUserLoginNotifacation object:nil];
+                [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             }
             
         } aboveView:self.view inCaller:self];

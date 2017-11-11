@@ -26,6 +26,13 @@
  */
 + (void)creatVIPMessageVIPType:(NSString *)type completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
+/**
+ 更新用户VIP的信息
+ @param type 参数
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)updataUserVIPMessageVIPType:(NSString *)type completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 
 @end

@@ -41,8 +41,8 @@ extern NSString *const KGGConnectionStatusOffLine;
 extern NSString * const KGGShowAlertNotifacation;
 /** 隐藏红点的通知 */
 extern NSString * const KGGHidenAlertNotifacation;
-
-
+/** 用户输入车辆数改变车费 */
+extern NSString * const KGGInputCarNumNotifacation;
 /** 通用的间距值 */
 extern CGFloat const KGGMargin;
 /** 通用的小间距值 */

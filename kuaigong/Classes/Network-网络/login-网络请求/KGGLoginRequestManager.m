@@ -246,9 +246,7 @@
             userObj.userInfo.token = userObj.token;
             [[KGGUserManager shareUserManager]loginWithCurrentUser:userObj.userInfo];
             [KGGLoginVIPRequestManager loginWithRefeVIPcompletion:^(KGGResponseObj *responseObj) {
-
                 completionHandler(userObj);
-
             } aboveView:view inCaller:self];
         }
     } aboveView:view inCaller:caller];

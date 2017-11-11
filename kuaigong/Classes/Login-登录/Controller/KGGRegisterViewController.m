@@ -78,7 +78,6 @@
         make.width.equalTo(@(kMainScreenWidth-60));
         make.height.equalTo(@(KGGLoginButtonHeight));
     }];
- 
 }
 
 

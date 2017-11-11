@@ -20,6 +20,7 @@
 #import "KGGWorkTypeModel.h"
 #import "KGGEditPublishViewController.h"
 #import "KGGPayRequestManager.h"
+#import "KGGLoginVIPRequestManager.h"
 
 @interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource,KGGUseWorkerHeaderViewDelegate>
 
@@ -270,7 +271,7 @@
 - (void)creatVIPMessage:(NSString *)money
 {
     NSString *type;
-    if ([money isEqualToString:@"99"]) {
+    if ([money isEqualToString:@"399"]) {
         type = @"ONE_MONTHS";
     }else{
         type = @"ONE_YEAR";
@@ -291,16 +292,26 @@
     sheetVC.tradeType = @"USERVIP";
     sheetVC.itemId = orderNo;
     sheetVC.moneyString = [NSString stringWithFormat:@"会员费: ¥%@",money];
-    //    __weak typeof(self) weakSelf = self;
+        __weak typeof(self) weakSelf = self;
     sheetVC.callPaySuccessBlock = ^(NSString *code){
         if ([code isEqualToString:@"200"]) {
             KGGLog(@"付费成功");
+            [weakSelf changeUserVIP];
         }
     };
     sheetVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:sheetVC animated:YES completion:nil];
 }
 
+#pragma mark - 更新用户VIP身份
+- (void)changeUserVIP
+{
+    [KGGLoginVIPRequestManager  loginWithRefeVIPcompletion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            [self.view showHint:@"已成为会员可以发单"];
+        }
+    } aboveView:self.view inCaller:self];
+}
 
 #pragma mark - 是VIP老板 发单成功
 - (void)creatOrderMessage
@@ -333,20 +344,16 @@
     time = [NSString getWorkBeginTime:time];
     payTime = [NSString payTime:time WorkTime:self.daysNum PayTime:payTime];
     
-    
-    
     time = [NSString PublishWorkTimeStamp:time];
     payTime = [NSString PublishWorkTimeStamp:payTime];
     //备注
     self.clickString = [NSString stringWithFormat:@"%@%@",self.headerView.headerTextView.text,self.clickString];
     
     KGGLog(@"开始时间:%@ 支付时间:%@",time,payTime);
-
    self.orderUrl = [self.headerView.imageArray componentsJoinedByString:@","];
-    
 
     KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString OrderUrl:self.orderUrl WorkStartTime:time PayTime:payTime Longitude:self.longitudeMap Latitude:self.latitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:self.workType.whenLong Contacts:name ContactsPhone:contactsPhone];
-    
+
     KGGLog(@"工种类型:%@",self.workType.type);
     
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {

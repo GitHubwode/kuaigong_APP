@@ -15,6 +15,11 @@ typedef NS_ENUM(NSUInteger, KGGSearchOrderRequestType) {
     KGGSearchOrderRequestMyDoingType,//获取我的已接订单
 };
 
+typedef NS_ENUM(NSUInteger, KGGUserStatusType) {
+    KGGUserStatusBOSSType = 1, //发单方取消已经被接单的身份
+    KGGUserStatusWORKERType,  //接单方取消接单的身份
+};
+
 @interface KGGSearchOrderRequestManager : KGGHTTPSessionManager
 
 /**
@@ -35,6 +40,15 @@ typedef NS_ENUM(NSUInteger, KGGSearchOrderRequestType) {
  
  */
 + (void)searchOrderListType:(KGGSearchOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
+/**
+ 取消订单  接单方接单取消订单 发布方接单取消订单
+ @param userType 接口类型
+ @param orderId 订单ID
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)cancelOrderMessageUserType:(KGGUserStatusType)userType OrderId:(NSString *)orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 
 @end

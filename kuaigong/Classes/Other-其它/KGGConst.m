@@ -19,6 +19,7 @@ NSString * const KGGBasicURL = @"http://192.168.50.40:8080";
 
 //#endif
 
+
 /** 保存用户的类型 */
 NSString * const KGGUserType = @"KGGUserType";
 /** Itnues上的地址 */
@@ -98,6 +99,8 @@ NSString * const KGGApplyRechargeSuccessNotifacation = @"KGGApplyRechargeSuccess
 NSString * const KGGSubmitStageInfoNotifacation = @"KGGSubmitStageInfoNotifacation";
 /** 用户申请信物付费成功的通知 */
 NSString * const KGGApplyKeepsakeSuccessNotifacation = @"KGGApplyKeepsakeSuccessNotifacation";
+/** 用户输入车辆数改变车费 */
+NSString * const KGGInputCarNumNotifacation = @"KGGInputCarNumNotifacation";
 //微信
 NSString *const KGGWeiXinPayURLScheme = @"wx8dd9d756d12032a3";
 //微信Secret
