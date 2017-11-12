@@ -8,6 +8,7 @@
 
 #import "KGGRongCloudModel.h"
 #import <RongIMKit/RongIMKit.h>
+#import "KGGLoginRequestManager.h"
 
 @implementation KGGRongCloudModel
 
@@ -22,6 +23,13 @@
 
 + (void)kgg_initRongCloudLogin
 {
+    
+    [KGGLoginRequestManager setupUserRongTokencompletion:^(KGGResponseObj *responseObj) {
+        
+    } aboveView:nil inCaller:self];
+    
+    
+    
     [[RCIM sharedRCIM]connectWithToken:@"" success:^(NSString *userId) {
         KGGLog(@"融云登录成功");
     } error:^(RCConnectErrorCode status) {

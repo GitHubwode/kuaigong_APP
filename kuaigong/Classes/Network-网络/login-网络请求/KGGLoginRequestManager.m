@@ -9,6 +9,7 @@
 #import "KGGLoginRequestManager.h"
 #import "KGGUserManager.h"
 #import "KGGLoginVIPRequestManager.h"
+#import "KGGRongCloudModel.h"
 
 @implementation KGGLoginRequestManager
 
@@ -87,6 +88,8 @@
             [KGGLoginVIPRequestManager loginWithRefeVIPcompletion:^(KGGResponseObj *responseObj) {
                 
                 completionHandler(userInfo);
+                [KGGRongCloudModel kgg_initRongCloudLogin];
+                [KGGNotificationCenter postNotificationName:KGGUserLoginNotifacation object:nil];
                 
             } aboveView:view inCaller:self];
             
@@ -346,7 +349,34 @@
         }
         
     } aboveView:view inCaller:caller];
-    
+}
+
+/**
+ 获取融云链接的Token
+ 
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param view HUD要添加的地方
+ @param caller 方法调用者
+ */
+
++ (void)setupUserRongTokencompletion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/chat/getRongToken");
+    [self postFormDataWithUrl:url form:nil completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) {
+            return ;
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+            return ;
+        }else{
+            KGGLog(@"获取融云Token:%@",responseObj);
+            if (completionHandler) {
+                completionHandler(responseObj);
+            }
+        }
+        
+    } aboveView:view inCaller:caller];
 }
 
 

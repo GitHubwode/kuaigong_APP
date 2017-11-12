@@ -98,7 +98,7 @@
     }];
     
     if (type == 1) {
-        [self.cancelButton setTitle:@"取消订单" forState:UIControlStateNormal];
+        [self.cancelButton setTitle:@"修改订单" forState:UIControlStateNormal];
         self.messageLabel.text = @"如果工作已完成,请支付工资";
         [self.sureButton setTitle:@"支付订单" forState:UIControlStateNormal];
     }

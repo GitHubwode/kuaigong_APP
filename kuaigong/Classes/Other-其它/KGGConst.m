@@ -19,7 +19,6 @@ NSString * const KGGBasicURL = @"http://192.168.50.40:8080";
 
 //#endif
 
-
 /** 保存用户的类型 */
 NSString * const KGGUserType = @"KGGUserType";
 /** Itnues上的地址 */

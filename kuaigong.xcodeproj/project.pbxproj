@@ -184,6 +184,8 @@
 		357F5E0C1FB56C8500252C4D /* KGGShareMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0A1FB56C8500252C4D /* KGGShareMessageViewController.m */; };
 		357F5E0D1FB56C8500252C4D /* KGGShareMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */; };
 		357F5E101FB5C14500252C4D /* KGGSearchUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0F1FB5C14500252C4D /* KGGSearchUserModel.m */; };
+		357F5E131FB81CD500252C4D /* KGGCompanyChooseField.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */; };
+		357F5E161FB8230F00252C4D /* KGGCompanyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E151FB8230F00252C4D /* KGGCompanyView.m */; };
 		358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381801F8B12E2002A17C5 /* KGGUserObj.m */; };
 		358381841F8B1622002A17C5 /* KGGUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381831F8B1622002A17C5 /* KGGUserManager.m */; };
 		358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */; };
@@ -629,6 +631,10 @@
 		357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGShareMessageViewController.xib; sourceTree = "<group>"; };
 		357F5E0E1FB5C14500252C4D /* KGGSearchUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGSearchUserModel.h; sourceTree = "<group>"; };
 		357F5E0F1FB5C14500252C4D /* KGGSearchUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGSearchUserModel.m; sourceTree = "<group>"; };
+		357F5E111FB81CD500252C4D /* KGGCompanyChooseField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCompanyChooseField.h; sourceTree = "<group>"; };
+		357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCompanyChooseField.m; sourceTree = "<group>"; };
+		357F5E141FB8230F00252C4D /* KGGCompanyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCompanyView.h; sourceTree = "<group>"; };
+		357F5E151FB8230F00252C4D /* KGGCompanyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCompanyView.m; sourceTree = "<group>"; };
 		3583817F1F8B12E2002A17C5 /* KGGUserObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserObj.h; sourceTree = "<group>"; };
 		358381801F8B12E2002A17C5 /* KGGUserObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGUserObj.m; sourceTree = "<group>"; };
 		358381821F8B1622002A17C5 /* KGGUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserManager.h; sourceTree = "<group>"; };
@@ -970,6 +976,8 @@
 			children = (
 				185C86791F4541C300356ECD /* KGGLoginView.h */,
 				185C867A1F4541C300356ECD /* KGGLoginView.m */,
+				357F5E141FB8230F00252C4D /* KGGCompanyView.h */,
+				357F5E151FB8230F00252C4D /* KGGCompanyView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1387,6 +1395,8 @@
 				3505C7F51F9637E80085D688 /* KGGOrderCorrectViewCell.xib */,
 				35C72C4F1F9EFF3300A82336 /* KGGWorkTimeChooseField.h */,
 				35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */,
+				357F5E111FB81CD500252C4D /* KGGCompanyChooseField.h */,
+				357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2582,6 +2592,7 @@
 				35FF5CA71F6A7DEE00E1A50B /* KGGPaySheetViewCell.m in Sources */,
 				3576912D1FB05E0A00803D9A /* KGGRoutePlanningController.mm in Sources */,
 				35CBD3D31FA326A4007E88AD /* KGGLeftTableController.m in Sources */,
+				357F5E161FB8230F00252C4D /* KGGCompanyView.m in Sources */,
 				18F5BA6E1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.m in Sources */,
 				35961AC91FA603AC00A52B9E /* KGGShowFeedApiItem.m in Sources */,
 				350360521F594B6F00FB0EDD /* KGGSexField.m in Sources */,
@@ -2640,6 +2651,7 @@
 				189D212F1F42FE170004F1EB /* UIView+WebCacheOperation.m in Sources */,
 				188F2D551F500FA40023F4BE /* KGGMeWorkViewCell.m in Sources */,
 				358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */,
+				357F5E131FB81CD500252C4D /* KGGCompanyChooseField.m in Sources */,
 				35F830711F62887800204989 /* KGGFillBankInfoViewController.m in Sources */,
 				35F73AB71F78E3A0000CD1D6 /* KGGLocationTextFieldSubClass.m in Sources */,
 				35CBD3C31FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m in Sources */,

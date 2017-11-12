@@ -28,6 +28,20 @@
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self reatViewFootView];
+//    [self addRequest];
+}
+
+#pragma mark - 添加数据
+- (void)addRequest
+{
+    KGGCenterModel *model = [[KGGCenterModel alloc]init];
+    model.title = @"";
+    model.subTitle = @"";
+    [self.datasource addObject:model];
+    
+    
+    
+    
 }
 
 - (void)reatViewFootView
@@ -67,7 +81,13 @@
 {
     KGGCenterModel *model = self.datasource[indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    if (indexPath.row == 0 || indexPath.row == 1) {
+     
+        UIWebView *callWebView = [[UIWebView alloc]init];
+        NSURL *telUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",model.subTitle]];
+        [callWebView loadRequest:[NSURLRequest requestWithURL:telUrl]];
+        [self.view addSubview:callWebView];
+    }
 }
 
 #pragma mark  - 懒加载

@@ -27,6 +27,7 @@
 #import "KGGCollectTotalController.h"
 #import "KGGCollectMessageController.h"
 #import "KGGShareMessageViewController.h"
+#import "KGGLocationHelper.h"
 
 
 static CGFloat const itemHeight = 168.f;
@@ -48,6 +49,9 @@ static CGFloat const topHeight = 37.f;
 @property (nonatomic, strong) KGGCarFeeModel *feeModel;
 @property (nonatomic ,strong) MenuView   * menu;
 @property (nonatomic, strong) KGGLeftTableController *leftView;
+@property (nonatomic, strong) KGGLocationHelper *locationHelper;
+@property (nonatomic, strong) NSMutableArray *imageArray;
+@property (nonatomic, strong) NSString *cityName;
 /** 车辆数 */
 @property (nonatomic,assign) int  carNum;
 
@@ -68,9 +72,9 @@ static CGFloat const topHeight = 37.f;
     self.navigationItem.title = @"快工邦";
     self.view.backgroundColor = KGGViewBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    [self setupUserAddress];
     //创建tarBarItem
     [self setupNavi];
-    [self setupRequest];
     //获取车费
     [self setupCarFee];
     self.tableView.tableFooterView = self.footView;
@@ -85,6 +89,20 @@ static CGFloat const topHeight = 37.f;
     self.leftView = leftView;
     leftView.customDelegate = self;
     self.menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:leftView isShowCoverView:YES];
+}
+
+#pragma mark - 获取用户的地址
+- (void)setupUserAddress
+{
+    weakSelf(self);
+    self.cityName = @"杭州总";
+    [self.locationHelper getUserNearbyPois:^(BMKReverseGeoCodeResult *result) {
+        [weakself.locationHelper clearLocationDelegate];
+        [weakself.locationHelper clearGeoCodeSearchDelegate];
+        self.cityName = result.addressDetail.city;
+        KGGLog(@" 城市%@",result.addressDetail.city);
+        [weakself setupRequest];
+    }];
 }
 
 #pragma mark - 侧栏的代理
@@ -143,7 +161,7 @@ static CGFloat const topHeight = 37.f;
         [titleArray addObject:model.name];
     }
 
-    self.headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight+topHeight)) HeaderViewSlideTitle:titleArray];
+    self.headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight+topHeight)) HeaderViewSlideTitle:titleArray ImageArray:self.imageArray City:self.cityName];
     self.headerView.headerDelegate = self;
     self.tableView.tableHeaderView = self.headerView;
 }
@@ -433,6 +451,22 @@ static CGFloat const topHeight = 37.f;
         _workDatasource = [NSMutableArray array];
     }
     return _workDatasource;
+}
+
+- (KGGLocationHelper *)locationHelper
+{
+    if (!_locationHelper) {
+        _locationHelper = [[KGGLocationHelper alloc]init];
+    }
+    return _locationHelper;
+}
+
+- (NSMutableArray *)imageArray
+{
+    if (!_imageArray) {
+        _imageArray = [NSMutableArray arrayWithObjects:@"pic_banner1",@"pic_banner2",@"pic_banner3",@"pic_banner4",@"pic_banner5", nil];
+    }
+    return _imageArray;
 }
 
 - (void)didReceiveMemoryWarning {

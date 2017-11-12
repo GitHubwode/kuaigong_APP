@@ -11,11 +11,14 @@
 #import "KGGLoginRequestManager.h"
 #import "KGGLoginParam.h"
 #import "KGGLoginViewController.h"
+#import "KGGCompanyView.h"
 
-@interface KGGConfirmPasswordViewController ()
+@interface KGGConfirmPasswordViewController ()<KGGCompanyViewDelegate>
 @property (nonatomic, strong) KGGLoginView *loginView1;
 @property (nonatomic, strong) KGGLoginView *loginView2;
 @property (nonatomic, strong) UIButton *completeButton;
+@property (nonatomic, strong) KGGCompanyView *companyView;
+@property (nonatomic, copy) NSString *companyCode;
 @end
 
 @implementation KGGConfirmPasswordViewController
@@ -28,8 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = UIColorHex(0xffffff);
+    self.companyCode = @"Hangzhou001";
     // 设置点击空白区域键盘收回
     [self setupForDismissKeyboard];
     [self creatNaviUI];
@@ -61,6 +64,9 @@
     [self.view addSubview:self.loginView1];
     [self.view addSubview:self.loginView2];
     
+    self.companyView = [[KGGCompanyView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220+44+32+44+32), kMainScreenWidth, 44) WithTitle:@"隶属公司:" imageString:nil PlaceText:@"请选择隶属公司"];
+    self.companyView.companyDelegate = self;
+    [self.view addSubview:self.companyView];
     
     UIButton *loginButton = [[UIButton alloc]init];
     [loginButton addTarget:self action:@selector(loginButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,7 +77,7 @@
     [self.view addSubview:loginButton];
     [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakself.view.mas_centerX);
-        make.top.equalTo(weakself.loginView2.mas_bottom).offset(15);
+        make.top.equalTo(weakself.companyView.mas_bottom).offset(15);
         make.width.equalTo(@(kMainScreenWidth-60));
         make.height.equalTo(@(KGGLoginButtonHeight));
     }];
@@ -111,8 +117,6 @@
         make.width.equalTo(@70);
         make.height.equalTo(@12);
     }];
-
-    
 }
 
 
@@ -146,10 +150,17 @@
 #pragma mark - 按钮的点击事件
 - (void)kgg_dissmissViewController
 {
-//    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
+
+#pragma mark - 公司选择
+- (void)textFieldCompanyName:(NSString *)name
+{
+    KGGLog(@"%@",name);
+//    NSArray *array = [name componentsSeparatedByString:@"-"]; //从字符A中分隔成2个元素的数组
+    self.companyCode = name;
+}
+
 
 - (void)loginButton:(UIButton *)sender
 {
@@ -180,7 +191,7 @@
     
     weakSelf(self);
     
-    KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:[NSUserDefaults objectForKey:KGGUserType] Code:self.smsCode];
+    KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:[NSUserDefaults objectForKey:KGGUserType] Code:self.smsCode InvitationCode:self.companyCode];
     [KGGLoginRequestManager registerWithParam:param completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) {
             [MBProgressHUD showSuYaError:KGGHttpNerworkErrorTip toView:weakself.view];
@@ -194,7 +205,6 @@
         }
         
     } aboveView:self.view inCaller:self];
-
 }
 
 - (void)kgg_userAgreenMessage

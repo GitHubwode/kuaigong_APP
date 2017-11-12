@@ -11,7 +11,9 @@
 #import "KGGRouteTableView.h"
 #import "UIImage+Rotate.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
-
+#import "KGGCenterViewController.h"
+#import "LCActionSheet.h"
+#import "KGGActionSheetController.h"
 
 #define  routeHeight  334
 #define  routeWidth  kMainScreenWidth-30
@@ -53,15 +55,6 @@
 @end
 
 @implementation KGGRoutePlanningController
-
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-////    [_mapView viewWillAppear];
-////    _mapView.delegate = self;
-////    _locService.delegate = self;
-//    _routesearch.delegate = self;
-//}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -429,13 +422,62 @@
         KGGLog(@"聊天");
     }else if (buttonTag.tag == 10000){
         KGGLog(@"联系我们");
+        KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]initWithNibName:NSStringFromClass([KGGCenterViewController class]) bundle:nil];
+        [self.navigationController pushViewController:centerVC animated:YES];
     }else if (buttonTag.tag == 10001){
         KGGLog(@"取消订单");
+        [self PublishAlterOrderOrSearchCancelOrder];
     }else if (buttonTag.tag == 10002){
+        if (self.planType == KGGRoutePlanningBOSSType) {
+            [self publishCancelOrder];
+        }
         KGGLog(@"更多");
     }else if (buttonTag.tag == 10003){
         KGGLog(@"确认出工");
+        [self PublishPayOrderOrSearchSureGo];
     }
+}
+
+#pragma mark - 发布者支付订单  接单者确认出工
+- (void)PublishPayOrderOrSearchSureGo
+{
+    if (self.planType == KGGRoutePlanningBOSSType) {
+        KGGLog(@"发布者支付订单");
+        KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
+        sheetVC.moneyString = [NSString stringWithFormat:@"工资: ¥%.2f",self.orderDetails.totalAmount];
+        sheetVC.itemId = self.orderDetails.orderNo;
+        sheetVC.tradeType = @"ORDER";
+        //    __weak typeof(self) weakSelf = self;
+        sheetVC.callPaySuccessBlock = ^(NSString *code){
+            if ([code isEqualToString:@"200"]) {
+                KGGLog(@"付费成功");
+            }
+        };
+        sheetVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [self presentViewController:sheetVC animated:YES completion:nil];
+    }else{
+        KGGLog(@"接单者确认出工");
+    }
+}
+
+#pragma mark - 发布者修改订单 接单者取消订单
+- (void)PublishAlterOrderOrSearchCancelOrder
+{
+    if (self.planType == KGGRoutePlanningBOSSType) {
+        KGGLog(@"发布者修改订单");
+    }else{
+        KGGLog(@"接单者取消订单");
+    }
+}
+
+#pragma mark - 发布单的更多
+- (void)publishCancelOrder
+{
+    NSArray *otherTitles = @[@"取消订单"];
+    LCActionSheet *actionSheet = [[LCActionSheet alloc]initWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
+        KGGLog(@"发布单的取消订单");
+    } otherButtonTitleArray:otherTitles];
+    [actionSheet show];
 }
 
 #pragma mark - 地图的懒加载

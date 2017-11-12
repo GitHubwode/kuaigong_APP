@@ -17,52 +17,53 @@ static CGFloat const itemHeight = 168.f;
 @property (nonatomic, strong) KGGSlideMenu *slideMenu;
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *imageArray;
+@property (nonatomic, strong) NSString *cityName;
 
 @end
 
 @implementation KGGPublishHomeHeaderView
 
-- (void)creatPublishHeaderView
+- (void)creatPublishHeaderViewTitle:(NSString *)title
 {
-//    weakSelf(self);
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight))];
-    imageView.userInteractionEnabled = YES;
-    imageView.backgroundColor = KGGGoldenThemeColor;
-    imageView.image = [UIImage imageNamed:@"pic"];
-    [self addSubview:imageView];
-//    imageView.hidden = YES;
+    if ([title isEqualToString:@"杭州市"]) {
+        title = @"杭州总公司";
+    }else{
+        title = [title stringByReplacingOccurrencesOfString:@"市" withString:@"公司"];
+    }
+    
+    
+    weakSelf(self);
     UIButton *button = [self creatButtonSelectImage:@"icon_nine" ImageString:@"icon_nine" Tag:100];
-    [imageView addSubview:button];
+    [self addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(imageView.mas_right).offset(-15);
-        make.bottom.equalTo(imageView.mas_bottom).offset(-20);
+        make.right.equalTo(weakself.mas_right).offset(-15);
+        make.bottom.equalTo(weakself.mas_bottom).offset(KGGAdaptedHeight(-47));
         make.width.equalTo(@(40));
         make.height.equalTo(@(40));
     }];
     
-    
-//    CGFloat buttonWidth = (kMainScreenWidth-20)/3;
-//    CGFloat buttonHeight = (KGGAdaptedHeight(itemHeight)-15)/2;
-//
-//    for (int i =0 ; i<3; i++) {
-//        UIButton *button =[self creatButtonSelectImage:[NSString stringWithFormat:@"icon_Publish_home_press_%d",i+1] ImageString:[NSString stringWithFormat:@"icon_Publish_home_%d",i+1] Tag:100+i];
-//            button.frame = CGRectMake(5+(buttonWidth+5)*i, 5, buttonWidth, buttonHeight);
-//        [imageView addSubview:button];
-//    }
-//    for (int i =3 ; i<6; i++) {
-//        UIButton *button =[self creatButtonSelectImage:[NSString stringWithFormat:@"icon_Publish_home_press_%d",i+1] ImageString:[NSString stringWithFormat:@"icon_Publish_home_%d",i+1] Tag:100+i];
-//        button.frame = CGRectMake(5+(buttonWidth+5)*(i-3), 5+(buttonHeight+5), buttonWidth, buttonHeight);
-//        [imageView addSubview:button];
-//    }
+    UILabel *label = [UILabel new];
+    label.text = title;
+    label.textColor = UIColorHex(0xffffff);
+    label.font = KGGFont(15);
+    label.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakself.mas_top).offset(5);
+        make.left.equalTo(weakself.mas_left).offset(14);
+    }];
+
 }
 
-- (instancetype)initWithFrame:(CGRect)frame HeaderViewSlideTitle:(NSArray *)titleArray;
+- (instancetype)initWithFrame:(CGRect)frame HeaderViewSlideTitle:(NSArray *)titleArray ImageArray:(NSArray *)imageArray City:(NSString *)city;
 {
     self = [super initWithFrame:frame];
     if (self) {
         _titleArray = titleArray;
-         [self setupHomeView];
-        [self creatPublishHeaderView];
+        _imageArray = imageArray;
+        _cityName = city;
+        [self setupHomeView];
+        [self creatPublishHeaderViewTitle:city];
     }
     return self;
 }
@@ -70,8 +71,8 @@ static CGFloat const itemHeight = 168.f;
 #pragma mark - 设计页面
 - (void)setupHomeView
 {
-//    self.headSDCycleView.frame = CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight));
-//    [self addSubview:self.headSDCycleView];
+    self.headSDCycleView.frame = CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight));
+    [self addSubview:self.headSDCycleView];
     self.slideMenu.frame = CGRectMake(0, KGGAdaptedHeight(itemHeight), kMainScreenWidth, KGGAdaptedHeight(37));
     [self addSubview:self.slideMenu];
 }
@@ -105,15 +106,15 @@ static CGFloat const itemHeight = 168.f;
 
 
 #pragma mark - 懒加载
-//-(SDCycleScrollView *)headSDCycleView{
-//    if (!_headSDCycleView) {
-//        _headSDCycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"image_loading_25_16"]];
-//        _headSDCycleView.currentPageDotImage = [UIImage imageNamed:@"point_xuan"];
-//        _headSDCycleView.pageDotImage = [UIImage imageNamed:@"point"];
-//        _headSDCycleView.imageURLStringsGroup = _imageArray;
-//    }
-//    return _headSDCycleView;
-//}
+-(SDCycleScrollView *)headSDCycleView{
+    if (!_headSDCycleView) {
+        _headSDCycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"image_loading_25_16"]];
+        _headSDCycleView.currentPageDotImage = [UIImage imageNamed:@"point_xuan"];
+        _headSDCycleView.pageDotImage = [UIImage imageNamed:@"point"];
+        _headSDCycleView.imageURLStringsGroup = _imageArray;
+    }
+    return _headSDCycleView;
+}
 
 - (KGGSlideMenu *)slideMenu
 {
