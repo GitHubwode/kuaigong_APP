@@ -39,7 +39,7 @@ typedef NS_ENUM(NSUInteger, KGGUserStatusType) {
  @param caller 方法调用者
  
  */
-+ (void)searchOrderListType:(KGGSearchOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)searchOrderListType:(KGGSearchOrderRequestType)type Page:(NSUInteger )page Longitude:(CGFloat )longitude Latitude:(CGFloat )latitude completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 /**
  取消订单  接单方接单取消订单 发布方接单取消订单
@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, KGGUserStatusType) {
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)cancelOrderMessageUserType:(KGGUserStatusType)userType OrderId:(NSString *)orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)cancelOrderMessageUserOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 
 @end

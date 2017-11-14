@@ -108,7 +108,7 @@
         make.height.equalTo(@(KGGOnePixelHeight));
     }];
 
-    self.totalLabel = [self creatRouteTitlltie:@"2100¥" TitleFont:KGGMediumFont(15)];
+    self.totalLabel = [self creatRouteTitlltie:@"¥" TitleFont:KGGMediumFont(15)];
     self.totalLabel.textColor = KGGGoldenThemeColor;
     [self addSubview:self.totalLabel];
     [self.totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {

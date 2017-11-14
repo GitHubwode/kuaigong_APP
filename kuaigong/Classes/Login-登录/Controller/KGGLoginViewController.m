@@ -199,9 +199,9 @@
         make.height.equalTo(@16);
     }];
     
-    if (![KGGUMSocialHelper isWXAppInstalled]) {
+//    if (![KGGUMSocialHelper isWXAppInstalled]) {
         weachatButton.hidden = YES;
-    }
+//    }
 }
 
 #pragma mark - 按钮的点击事件

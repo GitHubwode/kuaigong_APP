@@ -30,6 +30,9 @@ typedef NS_ENUM(NSUInteger, KGGErrorCode) {
     KGGFailureCode,
     KGGNoPayCode = 268, //未付款的状态
     KGGBindingWeChatSuccess = 612,//绑定微信成功
+    KGGNotCancelOrder = 616, //距离开工还有5小时不能取消
+    KGGCancelOrderPay = 614,//需要支付取消订单的手续费
+    KGGCancelReceivedOrderPay = 615,//接单两个小时可以取消
 };
 
 @interface KGGResponseObj : NSObject

@@ -12,12 +12,16 @@
 #import "KGGOrderDetailsModel.h"
 #import "KGGPublishOrderViewCell.h"
 #import "KGGRoutePlanningController.h"
+#import "KGGLocationHelper.h"
 
 @interface KGGMyWorkViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *orderTableView;
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, assign) NSUInteger pageNum;
+@property (nonatomic, assign) CGFloat acceptLatitude;
+@property (nonatomic, assign) CGFloat acceptLongitude;
+@property (nonatomic, strong) KGGLocationHelper *locationHelper;
 
 @end
 
@@ -38,17 +42,48 @@
 - (void)doneRefreshMessage
 {
     self.pageNum = 1;
-    [self kgg_loadData:YES];
+    if (!self.acceptLongitude) {
+         [self setupUserPositionRefresh:YES];
+    }else{
+        [self setupUserLocation:self.acceptLongitude Latitude:self.acceptLatitude Refresh:YES];
+    }
+
 }
 
 - (void)doneLoadAddMoreMessage
 {
-    [self kgg_loadData:NO];
+    if (!self.acceptLongitude) {
+        [self setupUserPositionRefresh:NO];
+    }else{
+        [self setupUserLocation:self.acceptLongitude Latitude:self.acceptLatitude Refresh:NO];
+    }
 }
 
-- (void)kgg_loadData:(BOOL)refresh{
-    
-    [KGGSearchOrderRequestManager searchOrderListType:self.requestType Page:self.pageNum UserId:0 Order:0 completion:^(NSArray<KGGOrderDetailsModel *> *response) {
+#pragma mark - 添加经纬度
+- (void)setupUserPositionRefresh:(BOOL)refresh
+{
+    KGGLog(@"有电话 可以接单");
+    KGGLog(@"接单的确认按钮");
+    __block CGFloat longitude;
+    __block CGFloat latitude;
+    weakSelf(self);
+    [self.locationHelper getUserCurrentLocation:^(CLLocation *location) {
+        
+        [weakself.locationHelper clearLocationDelegate];
+        weakself.locationHelper = nil;
+        
+        CLLocationCoordinate2D coordinate = location.coordinate;
+        longitude = coordinate.longitude;
+        latitude = coordinate.latitude;
+        self.acceptLatitude = coordinate.latitude;
+        self.acceptLongitude = coordinate.longitude;
+        [weakself setupUserLocation:longitude Latitude:latitude Refresh:refresh];
+    }];
+}
+
+- (void)setupUserLocation:(CGFloat)longitude Latitude:(CGFloat)latitude Refresh:(BOOL)refresh
+{
+    [KGGSearchOrderRequestManager searchOrderListType:self.requestType Page:self.pageNum Longitude:longitude Latitude:latitude  completion:^(NSArray<KGGOrderDetailsModel *> *response) {
         
         if (!response) {
             if (refresh) {
@@ -76,8 +111,8 @@
         }
         
     } aboveView:self.view inCaller:self];
+    
 }
-
 
 #pragma mark - UITableViewDelegate  UITableViewDatasource
 
@@ -104,6 +139,9 @@
         KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
         routeVC.orderDetails = model;
         routeVC.planType = KGGRoutePlanningWORKERType;
+        routeVC.callCancelOrderBlock = ^(NSString *code) {
+            [self doneRefreshMessage];
+        };
         [self.navigationController pushViewController:routeVC animated:YES];
     }else{
         KGGWorkDetailsViewController *workVC = [[KGGWorkDetailsViewController alloc]initWithNibName:NSStringFromClass([KGGWorkDetailsViewController class]) bundle:[NSBundle mainBundle]];
@@ -133,6 +171,13 @@
         _datasource = [NSMutableArray array];
     }
     return _datasource;
+}
+
+- (KGGLocationHelper *)locationHelper{
+    if (!_locationHelper) {
+        _locationHelper = [[KGGLocationHelper alloc] init];
+    }
+    return _locationHelper;
 }
 
 - (void)dealloc

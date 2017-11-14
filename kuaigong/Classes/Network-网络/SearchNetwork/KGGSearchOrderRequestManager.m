@@ -39,7 +39,7 @@
  @param caller 方法调用者
  
  */
-+ (void)searchOrderListType:(KGGSearchOrderRequestType)type Page:(NSUInteger )page UserId:(NSUInteger )userId Order:(NSUInteger )orderId completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)searchOrderListType:(KGGSearchOrderRequestType)type Page:(NSUInteger )page Longitude:(CGFloat )longitude Latitude:(CGFloat )latitude completion:(void(^)(NSArray<KGGOrderDetailsModel *>*response))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
     NSString *url;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
@@ -47,6 +47,8 @@
         case KGGSearchOrderRequestMyDoingType: // 我未完成的订单
             url = KGGURL(@"/api/order/getMyAcceptUnComplete");
             dic[@"page"] = @(page);
+//            dic[@""] = @(longitude);
+//            dic[@""] = @(latitude);
             break;
         case KGGSearchOrderRequestCompleteType: // 我已完成的订单
             url = KGGURL(@"/api/order/getMyAcceptComplete");
@@ -81,22 +83,20 @@
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)cancelOrderMessageUserType:(KGGUserStatusType)userType OrderId:(NSString *)orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)cancelOrderMessageUserOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
     NSString *url = KGGURL(@"/api/order/postAcceptedCancel");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-    switch (userType) {
-        case KGGUserStatusBOSSType:
-            
-            break;
-        case KGGUserStatusWORKERType:
-            
-            break;
-        default:
-            break;
-    }
+    dic[@"id"] = @(orderId);
     
     [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            
+        }else{
+            if (completionHandler) {
+                completionHandler(responseObj);
+            }
+        }
         
     } aboveView:view inCaller:caller];
     

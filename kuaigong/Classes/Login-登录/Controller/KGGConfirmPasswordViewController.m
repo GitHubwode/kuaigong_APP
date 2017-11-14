@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColorHex(0xffffff);
-    self.companyCode = @"Hangzhou001";
+    self.companyCode = @"杭州001";
     // 设置点击空白区域键盘收回
     [self setupForDismissKeyboard];
     [self creatNaviUI];

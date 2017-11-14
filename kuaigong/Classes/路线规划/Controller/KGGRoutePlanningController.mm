@@ -14,6 +14,8 @@
 #import "KGGCenterViewController.h"
 #import "LCActionSheet.h"
 #import "KGGActionSheetController.h"
+#import "KGGSearchOrderRequestManager.h"
+#import "KGGCancelOrderPayView.h"
 
 #define  routeHeight  334
 #define  routeWidth  kMainScreenWidth-30
@@ -51,6 +53,7 @@
 @property (nonatomic, strong) BMKLocationService *locService;
 @property (nonatomic, strong) BMKRouteSearch *routesearch;
 @property (nonatomic, assign) CLLocationCoordinate2D userPt;
+@property (nonatomic, strong) KGGCancelOrderPayView *payView;
 
 @end
 
@@ -422,7 +425,7 @@
         KGGLog(@"聊天");
     }else if (buttonTag.tag == 10000){
         KGGLog(@"联系我们");
-        KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]initWithNibName:NSStringFromClass([KGGCenterViewController class]) bundle:nil];
+        KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]init];
         [self.navigationController pushViewController:centerVC animated:YES];
     }else if (buttonTag.tag == 10001){
         KGGLog(@"取消订单");
@@ -463,11 +466,56 @@
 #pragma mark - 发布者修改订单 接单者取消订单
 - (void)PublishAlterOrderOrSearchCancelOrder
 {
-    if (self.planType == KGGRoutePlanningBOSSType) {
-        KGGLog(@"发布者修改订单");
-    }else{
-        KGGLog(@"接单者取消订单");
-    }
+    [self sheetCancelOrderPayView];
+//    [KGGSearchOrderRequestManager cancelOrderMessageUserOrderId:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
+//
+//        if (responseObj.code == KGGCancelReceivedOrderPay) {
+//            [self.view showHint:@"取消订单成功"];
+//            if (self.callCancelOrderBlock) {
+//                self.callCancelOrderBlock(@"200");
+//            }
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }else if (responseObj.code == KGGCancelOrderPay){
+//            KGGLog(@"需要支付取消订单的费用");
+//            [self sheetCancelOrderPayView];
+//        }else if (responseObj.code == KGGNotCancelOrder){
+//            [self.view showHint:@"距离开工时间太短不能取消"];
+//        }
+//
+//    } aboveView:self.view inCaller:self];
+}
+
+
+#pragma mark - 弹出支付告知窗口
+- (void)sheetCancelOrderPayView
+{
+    weakSelf(self);
+    self.payView = [KGGCancelOrderPayView kgg_alertPromptApplyForViewKGGApplyButtonClick:^{
+        KGGLog(@"确定支付");
+        [weakself jumpPayView];
+    } KGGUnderstandButtonClick:^{
+        KGGLog(@"取消");
+    }];
+}
+
+- (void)jumpPayView
+{
+    KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
+    sheetVC.moneyString = [NSString stringWithFormat:@"赔偿金额"];
+    sheetVC.itemId = self.orderDetails.orderNo;
+    sheetVC.tradeType = @"OVERTIMEPAY";
+    //                __weak typeof(self) weakSelf = self;
+    sheetVC.callPaySuccessBlock = ^(NSString *code){
+        if ([code isEqualToString:@"200"]) {
+            KGGLog(@"付费成功");
+            if (self.callCancelOrderBlock) {
+                self.callCancelOrderBlock(code);
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    };
+    sheetVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self presentViewController:sheetVC animated:YES completion:nil];
 }
 
 #pragma mark - 发布单的更多
@@ -476,6 +524,7 @@
     NSArray *otherTitles = @[@"取消订单"];
     LCActionSheet *actionSheet = [[LCActionSheet alloc]initWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
         KGGLog(@"发布单的取消订单");
+        [self PublishAlterOrderOrSearchCancelOrder];
     } otherButtonTitleArray:otherTitles];
     [actionSheet show];
 }

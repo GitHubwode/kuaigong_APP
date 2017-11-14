@@ -25,18 +25,23 @@
 {
     
     [KGGLoginRequestManager setupUserRongTokencompletion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            
+        }else if (responseObj.code != KGGSuccessCode){
+        }
+        KGGLog(@"%@",responseObj);
         
     } aboveView:nil inCaller:self];
     
     
     
-    [[RCIM sharedRCIM]connectWithToken:@"" success:^(NSString *userId) {
-        KGGLog(@"融云登录成功");
-    } error:^(RCConnectErrorCode status) {
-        KGGLog(@"融云登录失败");
-    } tokenIncorrect:^{
-        KGGLog(@"token过期");
-    }];
+//    [[RCIM sharedRCIM]connectWithToken:@"" success:^(NSString *userId) {
+//        KGGLog(@"融云登录成功");
+//    } error:^(RCConnectErrorCode status) {
+//        KGGLog(@"融云登录失败");
+//    } tokenIncorrect:^{
+//        KGGLog(@"token过期");
+//    }];
 }
 
 @end

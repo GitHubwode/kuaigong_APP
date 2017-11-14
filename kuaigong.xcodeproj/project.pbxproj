@@ -186,6 +186,7 @@
 		357F5E101FB5C14500252C4D /* KGGSearchUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0F1FB5C14500252C4D /* KGGSearchUserModel.m */; };
 		357F5E131FB81CD500252C4D /* KGGCompanyChooseField.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */; };
 		357F5E161FB8230F00252C4D /* KGGCompanyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E151FB8230F00252C4D /* KGGCompanyView.m */; };
+		357F5E191FBA9A6C00252C4D /* KGGCancelOrderPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E181FBA9A6C00252C4D /* KGGCancelOrderPayView.m */; };
 		358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381801F8B12E2002A17C5 /* KGGUserObj.m */; };
 		358381841F8B1622002A17C5 /* KGGUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381831F8B1622002A17C5 /* KGGUserManager.m */; };
 		358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */; };
@@ -635,6 +636,8 @@
 		357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCompanyChooseField.m; sourceTree = "<group>"; };
 		357F5E141FB8230F00252C4D /* KGGCompanyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCompanyView.h; sourceTree = "<group>"; };
 		357F5E151FB8230F00252C4D /* KGGCompanyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCompanyView.m; sourceTree = "<group>"; };
+		357F5E171FBA9A6C00252C4D /* KGGCancelOrderPayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCancelOrderPayView.h; sourceTree = "<group>"; };
+		357F5E181FBA9A6C00252C4D /* KGGCancelOrderPayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCancelOrderPayView.m; sourceTree = "<group>"; };
 		3583817F1F8B12E2002A17C5 /* KGGUserObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserObj.h; sourceTree = "<group>"; };
 		358381801F8B12E2002A17C5 /* KGGUserObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGUserObj.m; sourceTree = "<group>"; };
 		358381821F8B1622002A17C5 /* KGGUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGUserManager.h; sourceTree = "<group>"; };
@@ -1397,6 +1400,8 @@
 				35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */,
 				357F5E111FB81CD500252C4D /* KGGCompanyChooseField.h */,
 				357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */,
+				357F5E171FBA9A6C00252C4D /* KGGCancelOrderPayView.h */,
+				357F5E181FBA9A6C00252C4D /* KGGCancelOrderPayView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2613,6 +2618,7 @@
 				35961B0B1FA86B9C00A52B9E /* KGGCenterViewController.m in Sources */,
 				35DF9E321FB19AA700AAA429 /* KGGRouteModel.m in Sources */,
 				35961B151FA86E7F00A52B9E /* KGGCenterModel.m in Sources */,
+				357F5E191FBA9A6C00252C4D /* KGGCancelOrderPayView.m in Sources */,
 				189D21561F43E44C0004F1EB /* NSBundle+KGGExtension.m in Sources */,
 				354885DC1FA066AB00636435 /* KGGPublishHomeRequestManager.m in Sources */,
 				3505C86C1F976A5E0085D688 /* PKPlayerView.m in Sources */,

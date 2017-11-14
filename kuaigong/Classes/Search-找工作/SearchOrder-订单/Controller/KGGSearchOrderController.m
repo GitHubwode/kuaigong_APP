@@ -14,6 +14,7 @@
 #import "KGGRoutePlanningController.h"
 #import "KGGLocationHelper.h"
 #import "KGGForgetPasswordViewController.h"
+#import "KGGCenterViewController.h"
 
 @interface KGGSearchOrderController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -90,6 +91,12 @@
 - (void)setupUserLocationParam:(NSMutableDictionary *)param
 {
     [KGGSearchOrderRequestManager searchReciveParam:param completion:^(KGGResponseObj *responseObj) {
+        
+        if (responseObj.code == 614) {
+            KGGLog(@"联系我们");
+            KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]init];
+            [self.navigationController pushViewController:centerVC animated:YES];
+        }
         if (responseObj.code == KGGSuccessCode) {
             [self.view showHint:@"接单成功,请按时出单"];
             [self.orderButton setTitle:@"已接单" forState:UIControlStateNormal];
@@ -105,6 +112,9 @@
     KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
     routeVC.orderDetails = self.orderDetails;
     routeVC.planType = KGGRoutePlanningWORKERType;
+//    routeVC.callCancelOrderBlock = ^(NSString *code) {
+////        [self ]
+////    }
     [self.navigationController pushViewController:routeVC animated:YES];
     
 }

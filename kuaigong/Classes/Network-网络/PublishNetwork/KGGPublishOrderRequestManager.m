@@ -110,8 +110,8 @@
         case KGGOrderRequestAllUndoType: // 全部未完成的订单
             url = KGGURL(@"/api/order/getAllOrder");
             dic[@"page"] = @(page);
-            dic[@"acceptLongitude"] = @(longitude);
-            dic[@"acceptLatitude"] = @(latitude);
+//            dic[@"acceptLongitude"] = @(longitude);
+//            dic[@"acceptLatitude"] = @(latitude);
             break;
         case KGGOrderRequestCompleteType: // 我已完成的订单
             url = KGGURL(@"/api/order/getComplete");
@@ -132,15 +132,16 @@
     [self requestWithURL:url httpMethod:GETHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
         NSArray *responseDatasource;
         if (!responseObj) {
-            
+//            return ;
         }else if (responseObj.code != KGGSuccessCode){
             [view showHint:responseObj.message];
+//            return;
         }else{
             NSArray *recordList = [responseObj.data objectForKey:@"recordList"];
             responseDatasource = [KGGOrderDetailsModel mj_objectArrayWithKeyValuesArray:recordList];
-            if (completionHandler) {
-                completionHandler(responseDatasource);
-            }
+        }
+        if (completionHandler) {
+            completionHandler(responseDatasource);
         }
         
         KGGLog(@"responseDatasource:%@",responseDatasource);
