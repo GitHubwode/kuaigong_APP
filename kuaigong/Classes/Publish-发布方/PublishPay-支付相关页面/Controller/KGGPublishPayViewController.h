@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "KGGPublishOrderRequestManager.h"
 
+typedef void(^CancelOrderBlock)();
+
 @class KGGOrderDetailsModel;
 @interface KGGPublishPayViewController : UIViewController
-
+@property (nonatomic, copy) CancelOrderBlock backBlock;
 @property (nonatomic, assign) KGGOrderRequestType requestType;
 @property (nonatomic, strong) KGGOrderDetailsModel *detailsModel;
 

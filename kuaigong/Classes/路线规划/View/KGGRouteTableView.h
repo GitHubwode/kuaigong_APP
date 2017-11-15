@@ -23,4 +23,7 @@
 @property (nonatomic, weak)id<KGGRouteTableViewDelegate>routeDelegate;
 @property (nonatomic, strong) UITableView *tableView;
 
+#pragma mark - 获取数据
+- (void)setupRequestOrderModel:(KGGOrderDetailsModel *)orderModel;
+
 @end

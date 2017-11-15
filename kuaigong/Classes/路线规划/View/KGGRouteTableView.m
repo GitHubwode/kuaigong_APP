@@ -45,6 +45,15 @@
     return self;
 }
 
+#pragma mark - 获取数据
+- (void)setupRequestOrderModel:(KGGOrderDetailsModel *)orderModel
+{
+    self.orderModel = orderModel;
+    [self.datasource removeAllObjects];
+    [self creatMessageDatasource];
+    [self routeHeaderView];
+}
+
 #pragma mark - 创建模型
 - (void)creatMessageDatasource
 {
@@ -62,6 +71,7 @@
     model2.title = @"用工时间:";
     model2.subTitle = self.orderModel.workStartTime;
     [self.datasource addObject:model2];
+    [self.tableView reloadData];
 }
 
 #pragma mark - 给headerView赋值

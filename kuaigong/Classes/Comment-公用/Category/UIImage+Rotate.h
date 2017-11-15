@@ -12,4 +12,9 @@
 
 - (UIImage*)imageRotatedByDegrees:(CGFloat)degrees;
 
+/**
+ *  返回圆形图片
+ */
+- (nullable UIImage  *)circleImage;
+
 @end

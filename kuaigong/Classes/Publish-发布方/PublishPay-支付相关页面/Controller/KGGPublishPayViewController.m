@@ -218,6 +218,10 @@
 {
     [KGGPublishOrderRequestManager publishCancelOrderId:self.detailsModel.orderId completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
+            
+            if (self.backBlock) {
+                self.backBlock();
+            }
             [self.navigationController popViewControllerAnimated:YES];
         }
     } aboveView:self.view inCaller:self];

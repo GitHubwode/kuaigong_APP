@@ -8,14 +8,11 @@
 
 #import "KGGStartWorkTimeViewCell.h"
 #import "KGGCustomInfoItem.h"
-#import "HcdDateTimePickerView.h"
-
 
 static NSString *startWorkTimeViewCell = @"KGGStartWorkTimeViewIdentifier";
 
 @interface KGGStartWorkTimeViewCell()<KGGWorkTimeChooseFieldDelegate>
 
-@property (nonatomic, strong) HcdDateTimePickerView * dateTimePickerView;
 
 @property (weak, nonatomic) IBOutlet UIButton *timeButton;
 

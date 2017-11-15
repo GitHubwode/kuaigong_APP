@@ -15,6 +15,7 @@
 #import "KGGLocationHelper.h"
 #import "KGGForgetPasswordViewController.h"
 #import "KGGCenterViewController.h"
+#import "KGGLoginViewController.h"
 
 @interface KGGSearchOrderController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -46,6 +47,10 @@
 #pragma mark - buttonAction
 - (void)snh_sureOrderButtonClick:(UIButton *)sender
 {
+    if (![KGGUserManager shareUserManager].logined) {
+         [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+        return;
+    }
     
     if ([KGGUserManager shareUserManager].currentUser.phone.length == 0) {
         [self.view showHint:@"你没有绑定电话"];
@@ -92,10 +97,13 @@
 {
     [KGGSearchOrderRequestManager searchReciveParam:param completion:^(KGGResponseObj *responseObj) {
         
-        if (responseObj.code == 614) {
+        if (responseObj.code == 617) {
             KGGLog(@"联系我们");
-            KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]init];
-            [self.navigationController pushViewController:centerVC animated:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]init];
+                [self.navigationController pushViewController:centerVC animated:YES];
+            });
+            [self.view showHint:responseObj.message];
         }
         if (responseObj.code == KGGSuccessCode) {
             [self.view showHint:@"接单成功,请按时出单"];
@@ -168,12 +176,10 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-KGGLoginButtonHeight-64) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-KGGLoginButtonHeight-64) style:UITableViewStylePlain];
         [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGSearchOrderViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGSearchOrderViewCell searchOrderIdentifier]];
         _tableView.delegate = self;
-        _tableView.dataSource = self;
-//        _tableView.rowHeight = 542.f;
-        
+        _tableView.dataSource = self;        
     }
     return _tableView;
 }

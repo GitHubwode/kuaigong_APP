@@ -10,6 +10,7 @@
 #import "KGGPublishOrderViewCell.h"
 #import "KGGPublishPayViewController.h"
 #import "KGGRoutePlanningController.h"
+#import "KGGPublishPostedViewController.h"
 
 @interface KGGUndoneOrderController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -30,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
+    self.automaticallyAdjustsScrollViewInsets = YES;
     [self.view addSubview:self.orderTableView];
     self.orderTableView.mj_header = [KGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(doneRefreshMessage)];
     self.orderTableView.mj_footer = [KGGRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(doneLoadAddMoreMessage)];
@@ -114,10 +116,24 @@
     KGGOrderDetailsModel *model = self.datasource[indexPath.row];
     
     if (self.requestType == KGGOrderRequestNotCompleteType) {
-        KGGPublishPayViewController *payVC = [[KGGPublishPayViewController alloc]initWithNibName:NSStringFromClass([KGGPublishPayViewController class]) bundle:[NSBundle mainBundle]];
-        payVC.requestType = self.requestType;
-        payVC.detailsModel = model;
-        [self.navigationController pushViewController:payVC animated:YES];
+//        KGGPublishPayViewController *payVC = [[KGGPublishPayViewController alloc]initWithNibName:NSStringFromClass([KGGPublishPayViewController class]) bundle:[NSBundle mainBundle]];
+//        payVC.requestType = self.requestType;
+//        payVC.detailsModel = model;
+//        payVC.backBlock = ^{
+//            [self doneRefreshMessage];
+//        };
+//        [self.navigationController pushViewController:payVC animated:YES];
+        
+        KGGPublishPostedViewController *postVC = [[KGGPublishPostedViewController alloc]init];
+        postVC.detailsModel = model;
+        postVC.backBlock = ^{
+            [self doneRefreshMessage];
+        };
+        [self.navigationController pushViewController:postVC animated:YES];
+        
+        
+        
+        
     }else{
         KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
         routeVC.orderDetails = model;
@@ -132,7 +148,7 @@
 - (UITableView *)orderTableView
 {
     if (!_orderTableView) {
-        _orderTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStyleGrouped];
+        _orderTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStylePlain];
         _orderTableView.backgroundColor = UIColorHex(0xd9d9d9);
         [_orderTableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGPublishOrderViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGPublishOrderViewCell publishOrderIdentifier]];
         _orderTableView.rowHeight = 95.f;

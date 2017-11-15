@@ -16,6 +16,8 @@
 #import "KGGActionSheetController.h"
 #import "KGGSearchOrderRequestManager.h"
 #import "KGGCancelOrderPayView.h"
+#import "KGGOrderCorrectViewController.h"
+#import "KGGPublishOrderRequestManager.h"
 
 #define  routeHeight  334
 #define  routeWidth  kMainScreenWidth-30
@@ -70,6 +72,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.planType == KGGRoutePlanningBOSSType) {
+        self.navigationItem.title = @"路线";
+
+    }else{
+        self.navigationItem.title = @"路线";
+
+    }
     self.view.backgroundColor = KGGViewBackgroundColor;
     self.fd_interactivePopDisabled = YES;//禁止右滑
     [self loadMapView];
@@ -429,7 +438,20 @@
         [self.navigationController pushViewController:centerVC animated:YES];
     }else if (buttonTag.tag == 10001){
         KGGLog(@"取消订单");
-        [self PublishAlterOrderOrSearchCancelOrder];
+    
+        if (self.planType == KGGRoutePlanningBOSSType) {
+            KGGOrderCorrectViewController *orderVC = [[KGGOrderCorrectViewController alloc]init];
+            orderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            orderVC.detailsModel = self.orderDetails;
+            orderVC.backBlock = ^(NSUInteger code) {
+                KGGLog(@"%lu刷新页面",(unsigned long)code);
+                [self changeOrderMessageRequest];
+            };
+            
+            [self presentViewController:orderVC animated:YES completion:nil];
+        }else{
+            [self PublishAlterOrderOrSearchCancelOrder];
+        }
     }else if (buttonTag.tag == 10002){
         if (self.planType == KGGRoutePlanningBOSSType) {
             [self publishCancelOrder];
@@ -437,12 +459,25 @@
         KGGLog(@"更多");
     }else if (buttonTag.tag == 10003){
         KGGLog(@"确认出工");
-        [self PublishPayOrderOrSearchSureGo];
+        [self PublishPayOrderOrSearchSureGoButton:buttonTag];
     }
 }
 
+#pragma mark - 修改订单网络请求
+- (void)changeOrderMessageRequest
+{
+    [KGGPublishOrderRequestManager publishOrderDetailsMessageOrder:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            self.orderDetails = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
+            [self.routeTableView setupRequestOrderModel:self.orderDetails];
+        }
+        
+    } aboveView:self.view inCaller:self];
+}
+
+
 #pragma mark - 发布者支付订单  接单者确认出工
-- (void)PublishPayOrderOrSearchSureGo
+- (void)PublishPayOrderOrSearchSureGoButton:(UIButton *)button
 {
     if (self.planType == KGGRoutePlanningBOSSType) {
         KGGLog(@"发布者支付订单");
@@ -454,11 +489,16 @@
         sheetVC.callPaySuccessBlock = ^(NSString *code){
             if ([code isEqualToString:@"200"]) {
                 KGGLog(@"付费成功");
+                if (self.callCancelOrderBlock) {
+                    self.callCancelOrderBlock(@"200");
+                }
             }
         };
         sheetVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         [self presentViewController:sheetVC animated:YES completion:nil];
     }else{
+        button.enabled = NO;
+        [button setTitle:@"已确认出工" forState:UIControlStateNormal];
         KGGLog(@"接单者确认出工");
     }
 }
@@ -466,23 +506,22 @@
 #pragma mark - 发布者修改订单 接单者取消订单
 - (void)PublishAlterOrderOrSearchCancelOrder
 {
-    [self sheetCancelOrderPayView];
-//    [KGGSearchOrderRequestManager cancelOrderMessageUserOrderId:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
-//
-//        if (responseObj.code == KGGCancelReceivedOrderPay) {
-//            [self.view showHint:@"取消订单成功"];
-//            if (self.callCancelOrderBlock) {
-//                self.callCancelOrderBlock(@"200");
-//            }
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }else if (responseObj.code == KGGCancelOrderPay){
-//            KGGLog(@"需要支付取消订单的费用");
-//            [self sheetCancelOrderPayView];
-//        }else if (responseObj.code == KGGNotCancelOrder){
-//            [self.view showHint:@"距离开工时间太短不能取消"];
-//        }
-//
-//    } aboveView:self.view inCaller:self];
+    [KGGSearchOrderRequestManager cancelOrderMessageUserOrderId:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
+
+        if (responseObj.code == KGGCancelReceivedOrderPay) {
+            [self.view showHint:@"取消订单成功"];
+            if (self.callCancelOrderBlock) {
+                self.callCancelOrderBlock(@"200");
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }else if (responseObj.code == KGGCancelOrderPay){
+            KGGLog(@"需要支付取消订单的费用");
+            [self sheetCancelOrderPayView];
+        }else if (responseObj.code == KGGNotCancelOrder){
+            [self.view showHint:@"距离开工时间太短不能取消"];
+        }
+
+    } aboveView:self.view inCaller:self];
 }
 
 

@@ -21,6 +21,7 @@
 #import "KGGEditPublishViewController.h"
 #import "KGGPayRequestManager.h"
 #import "KGGLoginVIPRequestManager.h"
+#import "KGGPublishPostedViewController.h"
 
 @interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource,KGGUseWorkerHeaderViewDelegate>
 
@@ -42,6 +43,7 @@
 @property (nonatomic,copy) NSString *clickString;
 /** 图片的url */
 @property (nonatomic,copy) NSString *orderUrl;
+@property (nonatomic, strong)UIButton *useButton;
 
 @end
 
@@ -55,6 +57,7 @@
 //    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.navigationItem.title = @"用工信息";
+    self.clickString = @"";
     self.headerView = [[KGGUseWorkerHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 360)];
     self.headerView.headerDelegate = self;
     self.tableView.tableHeaderView = self.headerView;
@@ -227,9 +230,9 @@
 - (void)kgg_addButton
 {
     weakSelf(self);
-    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"发布订单"];
-    [self.view addSubview:useButton];
-    [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.useButton = [self snh_creatButtonImage:@"bg_button" Title:@"发布订单"];
+    [self.view addSubview:self.useButton];
+    [self.useButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakself.view.mas_centerX);
         make.bottom.equalTo(weakself.view.mas_bottom);
         make.height.equalTo(@(KGGLoginButtonHeight));
@@ -347,6 +350,7 @@
     time = [NSString PublishWorkTimeStamp:time];
     payTime = [NSString PublishWorkTimeStamp:payTime];
     //备注
+    
     self.clickString = [NSString stringWithFormat:@"%@%@",self.headerView.headerTextView.text,self.clickString];
     
     KGGLog(@"开始时间:%@ 支付时间:%@",time,payTime);
@@ -359,10 +363,23 @@
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             KGGLog(@"创建订单成功");
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.useButton setTitle:@"已发布" forState:UIControlStateNormal];
+            self.useButton.enabled = NO;
+            KGGOrderDetailsModel *model = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
+            [self jumpPostedControllerModel:model];
         }
     } aboveView:self.view inCaller:self];
 }
+
+#pragma mark - 创建订单成功
+- (void)jumpPostedControllerModel:(KGGOrderDetailsModel *)detailsModel
+{
+    KGGPublishPostedViewController *postVC = [[KGGPublishPostedViewController alloc]init];
+    postVC.detailsModel = detailsModel;
+    postVC.type = 1;
+    [self.navigationController pushViewController:postVC animated:YES];
+}
+
 
 - (UITableView *)tableView
 {

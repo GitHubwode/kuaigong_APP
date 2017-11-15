@@ -464,7 +464,7 @@ static CGFloat const topHeight = 37.f;
 - (NSMutableArray *)imageArray
 {
     if (!_imageArray) {
-        _imageArray = [NSMutableArray arrayWithObjects:@"pic_banner1",@"pic_banner2",@"pic_banner3",@"pic_banner4",@"pic_banner5", nil];
+        _imageArray = [NSMutableArray arrayWithObjects:@"pic_banner1",@"pic_banner2",@"pic_banner3",@"pic_banner4",@"pic_banner5",@"pic_banner6", nil];
     }
     return _imageArray;
 }

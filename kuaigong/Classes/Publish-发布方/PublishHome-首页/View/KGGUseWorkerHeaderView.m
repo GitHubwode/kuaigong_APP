@@ -388,60 +388,60 @@
 - (void)buttonClick:(UIButton *)sender
 {
     sender.selected = !sender.selected;
-
+    NSString *totalString = @"";
         switch (sender.tag) {
             case 101:
                 if (sender.selected) {
-                    string1 = @"需要电动扳手";
+                    string1 = @"需要电动扳手, ";
                 }else{
                     string1 = @"";
                 }
                 break;
             case 102:
                 if (sender.selected) {
-                    string2 = @"需要电线";
+                    string2 = @"需要电线, ";
                 }else{
                     string2 = @"";
                 }
                 break;
             case 103:
                 if (sender.selected) {
-                    string3 = @"需要电钻";
+                    string3 = @"需要电钻, ";
                 }else{
                     string3 = @"";
                 }
                 break;
             case 104:
                 if (sender.selected) {
-                    string4 = @"需要吊线";
+                    string4 = @"需要吊线, ";
                 }else{
                     string4 = @"";
                 }
                 break;
             case 105:
                 if (sender.selected) {
-                    string5 = @"风雨无阻";
+                    string5 = @"风雨无阻, ";
                 }else{
                     string5 = @"";
                 }
                 break;
             case 106:
                 if (sender.selected) {
-                    string6 = @"不要女工";
+                    string6 = @"不要女工, ";
                 }else{
                     string6 = @"";
                 }
                 break;
             case 107:
                 if (sender.selected) {
-                    string7 = @"不要小工";
+                    string7 = @"不要小工, ";
                 }else{
                     string7 = @"";
                 }
                 break;
             case 108:
                 if (sender.selected) {
-                    string8 = @"需要手提锯";
+                    string8 = @"需要手提锯, ";
                 }else{
                     string8 = @"";
                 }
@@ -452,7 +452,7 @@
         }
 
     
-    NSString *totalString = [NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@, %@, %@,",string1,string2,string3,string4,string5,string6,string7,string8];
+     totalString = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@",string1,string2,string3,string4,string5,string6,string7,string8];
     KGGLog(@"totalString:%@",totalString);
     
     if ([self.headerDelegate respondsToSelector:@selector(kgg_userworkHeaderOrderRemarkMessage:)]) {

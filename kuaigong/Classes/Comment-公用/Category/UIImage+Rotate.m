@@ -32,6 +32,51 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
+/**
+ *  返回圆形图片
+ */
+- (nullable UIImage  *)circleImage
+{
+    // 开启图形上下文
+    UIGraphicsBeginImageContext(self.size);
+    
+    // 上下文
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    // 添加一个圆
+    CGFloat w = self.size.width;
+    CGFloat h = self.size.height;
+    
+    CGFloat xPos = 0.f;
+    CGFloat yPos = 0.f;
+    CGFloat wh = 0.f;
+    if (w > h) {
+        // 横向长图
+        xPos = (w - h) * 0.5f;
+        wh = h;
+    }else{
+        // 纵向长图或正方形的图
+        yPos = (h - w) * 0.5f;
+        wh = w;
+    }
+    
+    CGRect rect = CGRectMake(xPos, yPos, wh, wh);
+    CGContextAddEllipseInRect(ctx, rect);
+    
+    // 裁剪
+    CGContextClip(ctx);
+    
+    // 绘制图片
+    [self drawInRect:rect];
+    
+    // 获得图片
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 关闭图形上下文
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 
 
 @end

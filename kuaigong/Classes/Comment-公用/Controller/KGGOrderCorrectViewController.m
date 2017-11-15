@@ -264,9 +264,9 @@
 {
     if (!_VIPButton) {
         _VIPButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_VIPButton setImage:[UIImage imageNamed:@"icon-vip"] forState:UIControlStateNormal];
+        [_VIPButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         //        _VIPButton.enabled = NO;
-        [_VIPButton setTitle:@" 用户" forState:UIControlStateNormal];
+        [_VIPButton setTitle:@"修改订单" forState:UIControlStateNormal];
         [_VIPButton setTitleColor:UIColorHex(0x333333) forState:UIControlStateNormal];
         _VIPButton.titleLabel.font = KGGFont(24);
         

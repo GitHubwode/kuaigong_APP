@@ -28,12 +28,7 @@ static NSString *const orderCorrectCell = @"OrderCorrectViewCell";
     self.correctTextField.text = correntModel.subTitle;
     
 }
-//- (void)setPublishModel:(KGGHomePublishModel *)publishModel
-//{
-//    _publishModel = publishModel;
-//    self.orderTypeLabel.text = publishModel.title;
-//    self.correctTextField.placeholder = publishModel.placeholder;
-//}
+
 - (IBAction)orderAddButtonClick:(UIButton *)sender {
     KGGLog(@"加人数");
     int num =  [self.correctTextField.text intValue];

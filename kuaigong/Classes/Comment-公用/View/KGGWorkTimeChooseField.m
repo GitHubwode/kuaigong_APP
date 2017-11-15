@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSString *timeString;
 //月/天
 @property (nonatomic, copy) NSString *mouthString;
+@property (nonatomic, copy) NSString *mouthString1;
 
 //时
 @property (nonatomic, copy) NSString *hourString;
@@ -33,6 +34,9 @@
 //是否初始化
 /**  */
 @property (nonatomic,assign) BOOL  isInitial;
+
+/**  */
+@property (nonatomic,assign) NSUInteger  flag;
 
 @end
 
@@ -50,8 +54,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addMonthDatasource];
+        self.flag = 1;
         [self setup];
+        [self addMonthDatasource];
+
     }
     return self;
 }
@@ -59,8 +65,9 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self addMonthDatasource];
+    self.flag = 1;
     [self setup];
+     [self addMonthDatasource];
 }
 
 - (void)addMonthDatasource
@@ -72,16 +79,17 @@
     _mouth = (int)[dateComponent month];
     int day = (int)[dateComponent day];
     int hour = (int)[dateComponent hour];
-    NSLog(@"month is: %d月", _mouth);
-    NSLog(@"day is: %d日", day);
+    KGGLog(@"month is: %d月", _mouth);
+    KGGLog(@"day is: %d日", day);
+    KGGLog(@"小时:%d",hour);
     int endDay = [[NSString getMonthBeginAndEndWith:[NSString stringWithFormat:@"%d",_mouth]] intValue];
     KGGLog(@"%d",endDay);
-    for (int i = 0; i < 24; i++) {
+    for (int i = hour; i < 24; i++) {
         NSString *hourString = [NSString stringWithFormat:@"%d时",i+1];
         [self.hourArray addObject:hourString];
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+//    dispatch_async(dispatch_get_main_queue(), ^{
         for (int i = day; i<endDay+1; i++) {
             NSLog(@"天是%d",i);
             NSString *dayString1 = [NSString stringWithFormat:@"%d月%d日",_mouth,i];
@@ -97,14 +105,12 @@
                 [self.dayArray addObject:dayString];
             }
         }
-    });
+//    });
     
     //默认赋值
-    _mouthString = [self.dayArray1 firstObject];
-    _hourString =[self.hourArray firstObject];
-    _minutesString = [self.minutesArray firstObject];
-    
-    
+    self.mouthString1 = [self.dayArray1 firstObject];
+    self.hourString =[self.hourArray firstObject];
+    self.minutesString = [self.minutesArray firstObject];
 }
 
 
@@ -168,6 +174,9 @@
 
 - (void)ensureButtonAction{
     self.text = self.selectedText;
+    
+    KGGLog(@"选择日期%@",self.text);
+    
     if ([self.workDelegate respondsToSelector:@selector(workTimeChooseFieldEnsureButtonClick)]) {
         [self.workDelegate workTimeChooseFieldEnsureButtonClick];
     }
@@ -229,16 +238,39 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     KGGLog(@"component:%ld",(long)component);
-    _mouthString = [_dayArray1 firstObject];
-    if (component == 0) {
-        _mouthString = _dayArray1[row];
-    }else if (component == 1){
-        _hourString = _hourArray[row];
-    }else{
-        _minutesString = _minutesArray[row];
+    
+    if (self.flag == 1) {
+        _mouthString1 = [_dayArray1 firstObject];
     }
-    KGGLog(@"月份%@天数%@时%@",_mouthString,_hourString,_minutesString);
-    _selectedText = [NSString stringWithFormat:@"%@ %@%@",_mouthString,_hourString,_minutesString];
+    
+    if (component == 0) {
+        self.flag++;
+        [self setUpHours];
+        _mouthString1 = self.dayArray1[row];
+    }else if (component == 1){
+        _hourString = self.hourArray[row];
+    }else{
+       _minutesString = _minutesArray[row];
+    }
+    KGGLog(@"月份%@天数%@时%@",self.mouthString,self.hourString,self.minutesString);
+    self.selectedText = [NSString stringWithFormat:@"%@ %@%@",_mouthString1,_hourString,_minutesString];
+}
+
+#pragma mark - 获取当前月的天数
+- (void)setUpHours
+{
+    KGGLog(@"self.flag:%lu",(unsigned long)self.flag);
+    if (self.flag == 3 ) {
+        [self.hourArray removeAllObjects];
+        int endDay = [[NSString getMonthBeginAndEndWith:[NSString stringWithFormat:@"%d",self.mouth]] intValue];
+        KGGLog(@"%d",endDay);
+        for (int i = 0; i < 24; i++) {
+            NSString *hourString = [NSString stringWithFormat:@"%d时",i+1];
+            [self.hourArray addObject:hourString];
+        }
+        [self.pickerView reloadAllComponents];
+    }
+    
 }
 
 
@@ -274,6 +306,7 @@
     }
     return _dayArray1;
 }
+
 - (void)dealloc
 {
     KGGLogFunc

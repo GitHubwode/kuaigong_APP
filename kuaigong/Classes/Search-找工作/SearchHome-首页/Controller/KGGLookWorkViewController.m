@@ -118,20 +118,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KGGLog(@"订单详情");
-//    KGGOrderDetailsModel *model = self.datasource[indexPath.row];
-//    KGGSearchOrderController *orderVC = [[KGGSearchOrderController alloc]init];
-//    orderVC.orderDetails = model;
-//    [self.navigationController pushViewController:orderVC animated:YES];
-    
-    
-    self.payView = [KGGCancelOrderPayView kgg_alertPromptApplyForViewKGGApplyButtonClick:^{
-        KGGLog(@"确定支付");
-        
-    } KGGUnderstandButtonClick:^{
-        KGGLog(@"取消");
-    }];
-    
-    
+    KGGOrderDetailsModel *model = self.datasource[indexPath.row];
+    KGGSearchOrderController *orderVC = [[KGGSearchOrderController alloc]init];
+    orderVC.orderDetails = model;
+    [self.navigationController pushViewController:orderVC animated:YES];
 }
 
 

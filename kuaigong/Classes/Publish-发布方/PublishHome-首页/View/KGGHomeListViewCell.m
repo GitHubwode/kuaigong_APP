@@ -47,7 +47,6 @@ static NSString *const homeListViewCell = @"homeListViewCell";
         num++;
     }
     
-    
     self.homeTextField.text = [NSString stringWithFormat:@"%d",num];
     [self homePublishText:self.homeTextField.text];
 }
@@ -56,8 +55,12 @@ static NSString *const homeListViewCell = @"homeListViewCell";
     int num =  [self.homeTextField.text intValue];
     if (num == 0) return;
     if ([self.homeTextField.placeholder isEqualToString:@"请填写工价"]) {
-        if ([self.price isEqualToString: self.homeTextField.text]) return;
-        num=num-5;
+        if ([self.price isEqualToString: self.homeTextField.text]) {
+          return;
+        }else{
+            if ([self.homeTextField.text isEqualToString:@"1"]) return;
+            num=num-5;
+        }
     }else if([self.homeTextField.placeholder isEqualToString:@"用工人数"]){
         num--;
         self.param[@"peopleNum"] = @(num);

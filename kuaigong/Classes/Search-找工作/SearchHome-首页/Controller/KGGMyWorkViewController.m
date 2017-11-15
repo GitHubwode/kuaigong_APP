@@ -127,7 +127,11 @@
     KGGPublishOrderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGPublishOrderViewCell publishOrderIdentifier] forIndexPath:indexPath];
     cell.orderDetailsLabel.textColor = UIColorHex(0x666666);
     cell.orderDetailsLabel.text = model.orderDetails;
-    cell.statusImageView.image = [UIImage imageNamed:@"icon_finash"];
+    if (self.requestType == KGGSearchOrderRequestMyDoingType) {
+        cell.statusImageView.image = [UIImage imageNamed:@"icon_load"];
+    }else{
+        cell.statusImageView.image = [UIImage imageNamed:@"icon_finash"];
+    }
     return cell;
 }
 

@@ -110,8 +110,8 @@
         case KGGOrderRequestAllUndoType: // 全部未完成的订单
             url = KGGURL(@"/api/order/getAllOrder");
             dic[@"page"] = @(page);
-//            dic[@"acceptLongitude"] = @(longitude);
-//            dic[@"acceptLatitude"] = @(latitude);
+            dic[@"acceptLongitude"] = @(longitude);
+            dic[@"acceptLatitude"] = @(latitude);
             break;
         case KGGOrderRequestCompleteType: // 我已完成的订单
             url = KGGURL(@"/api/order/getComplete");

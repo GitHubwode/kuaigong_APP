@@ -15,9 +15,18 @@
 //
 //#else
 //NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
-NSString * const KGGBasicURL = @"http://192.168.50.40:8080";
+//NSString * const KGGBasicURL = @"http://192.168.50.40:8080";
+NSString * const KGGBasicURL = @"https://api.dev.zjkgwl.com";
+
 
 //#endif
+
+/** 正式环境储存后台分配的aesKey的key */
+//NSString * const KGGAesKey = @"USGzksAv^4yjMOsiiH#hN^KTS@ir%cg7MpOrA#xBAhHzSKUQXdtF^vRx&AkdRIdj";
+
+/** 测试环境环境储存后台分配的aesKey的key */
+NSString * const KGGAesKey = @"I0*!TwulnX0f1pyd#Kbw$2Pe4AUerBXlylQPl5^RBG0wITGBC#VN5fZZ8n@3D#I9";
+
 
 /** 保存用户的类型 */
 NSString * const KGGUserType = @"KGGUserType";
@@ -25,8 +34,6 @@ NSString * const KGGUserType = @"KGGUserType";
 NSString * const KGGAppItnuesURL = @"https://itunes.apple.com/app/id1299000005";
 /** 储存后台分配的deviceId的key */
 NSString * const KGGDeviceIdKey = @"KGGDeviceIdKey";
-/** 储存后台分配的aesKey的key */
-NSString * const KGGAesKey = @"USGzksAv^4yjMOsiiH#hN^KTS@ir%cg7MpOrA#xBAhHzSKUQXdtF^vRx&AkdRIdj";
 /** 推送的appkey */
 NSString * const KGGJPushAPPKey = @"dad3761a709164767b06958e";
 /** 百度地图的key */
