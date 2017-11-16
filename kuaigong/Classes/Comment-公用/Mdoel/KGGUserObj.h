@@ -46,6 +46,8 @@ typedef NS_ENUM(NSUInteger, UserGender) {
 @property (nonatomic, assign) BOOL isLocked;
 @property (nonatomic, assign) BOOL isDeleted;
 @property (nonatomic, copy) NSString *hidePhone;
+/** 是否注册用户 */
+@property (nonatomic,assign) BOOL  isRegister;
 
 
 @end
@@ -55,6 +57,7 @@ typedef NS_ENUM(NSUInteger, UserGender) {
 
 /** token */
 @property (nonatomic,copy) NSString *token;
+@property (nonatomic, copy) NSString *nowPlaceRegisterVip;
 
 @property (nonatomic, strong) KGGUserObj *userInfo;
 

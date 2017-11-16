@@ -121,7 +121,7 @@
                 <outlet property="startView" destination="uxn-mW-6vn" id="hcc-RA-vOm"/>
                 <outlet property="timeLabel" destination="YuF-B3-jdC" id="JbM-Xd-i7D"/>
             </connections>
-            <point key="canvasLocation" x="75" y="142.5"/>
+            <point key="canvasLocation" x="40" y="36"/>
         </tableViewCell>
     </objects>
     <resources>

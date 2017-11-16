@@ -412,8 +412,6 @@
     return nil ;
 }
 
-
-
 #pragma mark -KGGRouteTableViewDelegate
 - (void)routeRouteTableViewArrowButtonClick:(UIButton *)sender
 {

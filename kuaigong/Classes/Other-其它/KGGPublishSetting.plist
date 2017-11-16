@@ -12,14 +12,6 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>切换身份</string>
-		<key>subTitle</key>
-		<string></string>
-		<key>enabled</key>
-		<true/>
-	</dict>
-	<dict>
-		<key>title</key>
 		<string>收费标准</string>
 		<key>subTitle</key>
 		<string></string>

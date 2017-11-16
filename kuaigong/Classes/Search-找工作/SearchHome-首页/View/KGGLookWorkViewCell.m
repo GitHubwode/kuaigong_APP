@@ -31,6 +31,7 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     self.avatarImageView.layer.masksToBounds = YES;
     self.avatarImageView.layer.cornerRadius = 22.f;
     [self creatTableCell];
@@ -64,7 +65,8 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
     self.classNameLabel.text = detailsModel.workerType;
     self.peopleNumLabel.text = [NSString stringWithFormat:@"%lu人",(unsigned long)detailsModel.number];
     self.timeLabel.text = [NSString stringWithFormat:@"工作时间:%@",detailsModel.workStartTime];
-    self.moneyLabel.text = [NSString stringWithFormat:@"总价:%.f元",detailsModel.differentPrice];
+    self.moneyLabel.text = [NSString stringWithFormat:@"总价:%@元",detailsModel.differentPrice];
+    KGGLog(@"接单方显示价格%@",self.moneyLabel.text);
     self.nickNameLabel.text = detailsModel.contacts;
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:detailsModel.avatarUrl] placeholderImage:[UIImage imageNamed:@"icon_touxiang"]];
     self.distanceLabel.text = detailsModel.instance;

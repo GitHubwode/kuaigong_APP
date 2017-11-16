@@ -25,6 +25,7 @@
 - (void)mj_keyValuesDidFinishConvertingToObject{
     
     _remark = _remark.length == 0 ? @"没有特殊要求":_remark;
+    _remark = [_remark stringByReplacingOccurrencesOfString:@"null" withString:@""];
     
     switch (_type) {
         case 1:
@@ -58,10 +59,17 @@
 //    人数
     if (_fare == 0) {
        _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作%@小时 每天%.f元,无车费。",_workerType,(unsigned long)_number,(unsigned long)_days,_whenLong,_unitPrice];
+        _searchOrderDetails =[NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作%@小时 无车费。",_workerType,(unsigned long)_number,(unsigned long)_days,_whenLong];
     }else{
-        _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作%@小时 每天%.f元,车费每辆%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_whenLong,_unitPrice,_fare];
+        _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作%@小时 每天%.f元,车费%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_whenLong,_unitPrice,_fare];
+        
+        _searchOrderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作%@小时",_workerType,(unsigned long)_number,(unsigned long)_days,_whenLong];
+        
     }
-    _differentPrice = _totalAmount - _fare;
+    _differentPrice = [NSString stringWithFormat:@"%.f",(_totalAmount - _fee)];
+    
+    KGGLog(@"价钱 %f %f  %@",_totalAmount,_fee,_differentPrice);
+    
     //隐藏电话点好
     _hidePhone = [NSString numberSuitScanf:_contactsPhone];
     
@@ -83,7 +91,7 @@
  *  这个数组中的属性名将会被忽略：不进行字典和模型的转换
  */
 + (NSArray *)mj_ignoredPropertyNames{
-    return @[@"orderDetails", @"workerType",@"differentPrice",@"hidePhone",@"imageArray"];
+    return @[@"orderDetails", @"workerType",@"searchOrderDetails",@"differentPrice",@"hidePhone",@"imageArray"];
 }
 
 @end

@@ -83,6 +83,7 @@
         if (completionHandler) {
             KGGUserInfo *userInfo = [KGGUserInfo mj_objectWithKeyValues:responseObj.data];
             userInfo.userInfo.token = userInfo.token;
+            userInfo.userInfo.isRegister = [userInfo.nowPlaceRegisterVip isEqualToString:@"N"] ? NO : YES;
             [[KGGUserManager shareUserManager]loginWithCurrentUser:userInfo.userInfo];
             
             [KGGLoginVIPRequestManager loginWithRefeVIPcompletion:^(KGGResponseObj *responseObj) {
@@ -247,6 +248,7 @@
         if (completionHandler) {
             KGGUserInfo *userObj = [KGGUserInfo mj_objectWithKeyValues:responseObj.data];
             userObj.userInfo.token = userObj.token;
+            userObj.userInfo.isRegister = [userObj.nowPlaceRegisterVip isEqualToString:@"N"] ? NO : YES;
             [[KGGUserManager shareUserManager]loginWithCurrentUser:userObj.userInfo];
             [KGGLoginVIPRequestManager loginWithRefeVIPcompletion:^(KGGResponseObj *responseObj) {
                 completionHandler(userObj);

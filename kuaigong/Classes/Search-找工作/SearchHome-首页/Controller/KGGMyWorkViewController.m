@@ -126,7 +126,7 @@
     KGGOrderDetailsModel *model = self.datasource[indexPath.row];
     KGGPublishOrderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGPublishOrderViewCell publishOrderIdentifier] forIndexPath:indexPath];
     cell.orderDetailsLabel.textColor = UIColorHex(0x666666);
-    cell.orderDetailsLabel.text = model.orderDetails;
+    cell.orderDetailsLabel.text = model.searchOrderDetails;
     if (self.requestType == KGGSearchOrderRequestMyDoingType) {
         cell.statusImageView.image = [UIImage imageNamed:@"icon_load"];
     }else{

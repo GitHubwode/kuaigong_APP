@@ -12,6 +12,7 @@
 #import "KGGSearchOrderController.h"
 #import "KGGLocationHelper.h"
 #import "KGGCancelOrderPayView.h"
+#import "KGGLookWorkHeaderView.h"
 
 @interface KGGLookWorkViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -20,6 +21,7 @@
 @property (nonatomic, assign) NSUInteger pageNum;
 @property (nonatomic, strong) KGGLocationHelper *locationHelper;
 @property (nonatomic, strong) KGGCancelOrderPayView *payView;
+@property (nonatomic, strong) KGGLookWorkHeaderView *headerView;
 
 @end
 
@@ -28,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
+    self.tableView.tableHeaderView = self.headerView;
     self.tableView.mj_header = [KGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(RefreshNewMessag)];
     self.tableView.mj_footer = [KGGRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(LoadAddMoreMessage)];
     [self.tableView.mj_header beginRefreshing];
@@ -117,18 +120,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KGGLog(@"订单详情");
-    KGGOrderDetailsModel *model = self.datasource[indexPath.row];
-    KGGSearchOrderController *orderVC = [[KGGSearchOrderController alloc]init];
-    orderVC.orderDetails = model;
-    [self.navigationController pushViewController:orderVC animated:YES];
+    if (![KGGUserManager shareUserManager].currentUser.isRegister) {
+        [self.view showHint:@"非签约用户,请联系快工公司"];
+    }else{
+        KGGLog(@"订单详情");
+        KGGOrderDetailsModel *model = self.datasource[indexPath.row];
+        KGGSearchOrderController *orderVC = [[KGGSearchOrderController alloc]init];
+        orderVC.orderDetails = model;
+        [self.navigationController pushViewController:orderVC animated:YES];
+    }
 }
 
 
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(10, 0, kMainScreenWidth-20, kMainScreenHeight-64-50) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-50) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor clearColor];
         [_tableView registerNib:[UINib nibWithNibName:@"KGGLookWorkViewCell" bundle:nil] forCellReuseIdentifier:[KGGLookWorkViewCell lookWorkIdentifier]];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -152,6 +159,14 @@
         _locationHelper = [[KGGLocationHelper alloc] init];
     }
     return _locationHelper;
+}
+
+- (KGGLookWorkHeaderView *)headerView
+{
+    if (!_headerView) {
+        _headerView = [[KGGLookWorkHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 130)];
+    }
+    return _headerView;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -81,10 +81,13 @@
 
 //增加的参数
 @property (nonatomic, copy) NSString *orderDetails;
+//接单者的订单详情
+@property (nonatomic, copy) NSString *searchOrderDetails;
+
 /** 工作类型 木工 钢筋工 */
 @property (nonatomic, copy) NSString *workerType;
 /** 接单方显示的金额 */
-@property (nonatomic, assign) CGFloat differentPrice;
+@property (nonatomic, copy) NSString *differentPrice;
 /** 隐藏电话号码 */
 @property (nonatomic, copy) NSString *hidePhone;
 @property (nonatomic, strong) NSMutableArray *imageArray;

@@ -264,6 +264,8 @@
 		35CBD3C91FA2DD74007E88AD /* KGGLookforPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3C81FA2DD73007E88AD /* KGGLookforPWDViewController.m */; };
 		35CBD3CD1FA324B4007E88AD /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3CB1FA324B4007E88AD /* MenuView.m */; };
 		35CBD3D31FA326A4007E88AD /* KGGLeftTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */; };
+		35CF65E31FBD370A00B80BEA /* 用户协议.doc in Resources */ = {isa = PBXBuildFile; fileRef = 35CF65E21FBD370900B80BEA /* 用户协议.doc */; };
+		35CF65E61FBD736A00B80BEA /* KGGLookWorkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CF65E51FBD736A00B80BEA /* KGGLookWorkHeaderView.m */; };
 		35DF9E321FB19AA700AAA429 /* KGGRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */; };
 		35DF9E351FB317A800AAA429 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DF9E341FB317A800AAA429 /* UIImage+Rotate.m */; };
 		35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */; };
@@ -783,6 +785,9 @@
 		35CBD3CC1FA324B4007E88AD /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
 		35CBD3D11FA326A4007E88AD /* KGGLeftTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLeftTableController.h; sourceTree = "<group>"; };
 		35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLeftTableController.m; sourceTree = "<group>"; };
+		35CF65E21FBD370900B80BEA /* 用户协议.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "用户协议.doc"; sourceTree = "<group>"; };
+		35CF65E41FBD736A00B80BEA /* KGGLookWorkHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLookWorkHeaderView.h; sourceTree = "<group>"; };
+		35CF65E51FBD736A00B80BEA /* KGGLookWorkHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLookWorkHeaderView.m; sourceTree = "<group>"; };
 		35DF9E301FB19AA700AAA429 /* KGGRouteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRouteModel.h; sourceTree = "<group>"; };
 		35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRouteModel.m; sourceTree = "<group>"; };
 		35DF9E331FB317A700AAA429 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
@@ -879,6 +884,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3543DBA31F5E99C300BE8B93 /* QuartzCore.framework in Frameworks */,
 				35AE116F1F8F838400BCD2BD /* libstdc++.6.0.9.tbd in Frameworks */,
 				35252EFC1F5E3B73001D09F4 /* CoreTelephony.framework in Frameworks */,
 				35AE116D1F8F836400BCD2BD /* libsqlite3.0.tbd in Frameworks */,
@@ -886,7 +892,6 @@
 				3543DB8B1F5E993300BE8B93 /* CoreGraphics.framework in Frameworks */,
 				35252EFE1F5E3B7A001D09F4 /* SystemConfiguration.framework in Frameworks */,
 				3543DBA11F5E99BB00BE8B93 /* OpenGLES.framework in Frameworks */,
-				3543DBA31F5E99C300BE8B93 /* QuartzCore.framework in Frameworks */,
 				3543DB8D1F5E993C00BE8B93 /* CoreLocation.framework in Frameworks */,
 				35AE116A1F8F81A500BCD2BD /* libcrypto.a in Frameworks */,
 				35AE116B1F8F81A500BCD2BD /* libssl.a in Frameworks */,
@@ -1095,6 +1100,8 @@
 				35BEB1621F725D7C0060298A /* KGGMyWorkViewCell.h */,
 				35BEB1631F725D7C0060298A /* KGGMyWorkViewCell.m */,
 				35BEB1641F725D7C0060298A /* KGGMyWorkViewCell.xib */,
+				35CF65E41FBD736A00B80BEA /* KGGLookWorkHeaderView.h */,
+				35CF65E51FBD736A00B80BEA /* KGGLookWorkHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1243,6 +1250,7 @@
 				359CD08E1F57F10A00DDFA62 /* KGGPublishPrivate.plist */,
 				35FD03781F5E7AD400558900 /* KGGPublishSetting.plist */,
 				359777F81FAC3DFE00336F60 /* KGCreatUserMessage.plist */,
+				35CF65E21FBD370900B80BEA /* 用户协议.doc */,
 			);
 			path = "Other-其它";
 			sourceTree = "<group>";
@@ -2483,6 +2491,7 @@
 				35193F4D1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.xib in Resources */,
 				350360571F59503900FB0EDD /* KGGSexChangeViewCell.xib in Resources */,
 				35961B101FA86BB000A52B9E /* KGGCenterViewCell.xib in Resources */,
+				35CF65E31FBD370A00B80BEA /* 用户协议.doc in Resources */,
 				18F5B97C1F4EBC7800E6ADC4 /* 启动页_1.png in Resources */,
 				185C86A91F46EADF00356ECD /* KGGLeftDrawer.plist in Resources */,
 				185C86D21F4ABB6500356ECD /* KGGNewFeatureViewController.xib in Resources */,
@@ -2656,6 +2665,7 @@
 				357F5E191FBA9A6C00252C4D /* KGGCancelOrderPayView.m in Sources */,
 				189D21561F43E44C0004F1EB /* NSBundle+KGGExtension.m in Sources */,
 				354885DC1FA066AB00636435 /* KGGPublishHomeRequestManager.m in Sources */,
+				35CF65E61FBD736A00B80BEA /* KGGLookWorkHeaderView.m in Sources */,
 				3505C86C1F976A5E0085D688 /* PKPlayerView.m in Sources */,
 				35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */,
 				189D21221F42FE170004F1EB /* NSData+ImageContentType.m in Sources */,

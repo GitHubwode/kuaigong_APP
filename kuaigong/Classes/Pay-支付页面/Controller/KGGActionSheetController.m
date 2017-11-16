@@ -195,13 +195,13 @@ static CGFloat itemHeight = 61.f;
 #pragma mark - 创建数据类型
 - (void)kgg_datasourceMessage
 {
-    KGGPayChooseModel *model1 = [[KGGPayChooseModel alloc]init];
-    model1.iconImage = @"icon_zfb_h";
-    model1.iconPressImage = @"con_zfb";
-    model1.title = @"支付宝支付";
-    model1.chooseImage = @"icon_c_h";
-    model1.choosePressImage = @"icon_c";
-    [self.datasource addObject:model1];
+//    KGGPayChooseModel *model1 = [[KGGPayChooseModel alloc]init];
+//    model1.iconImage = @"icon_zfb_h";
+//    model1.iconPressImage = @"con_zfb";
+//    model1.title = @"支付宝支付";
+//    model1.chooseImage = @"icon_c_h";
+//    model1.choosePressImage = @"icon_c";
+//    [self.datasource addObject:model1];
     
     KGGPayChooseModel *model2 = [[KGGPayChooseModel alloc]init];
     model2.iconImage = @"icon_wx_h";

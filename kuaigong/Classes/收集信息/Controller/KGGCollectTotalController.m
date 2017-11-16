@@ -10,6 +10,7 @@
 
 @interface KGGCollectTotalController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *navTitle;
 
 @end
 
@@ -17,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.imageName;
+    self.navTitle.text = self.imageName;
     if ([self.imageName isEqualToString:@"快工救援"]) {
         self.imageView.image = [UIImage imageNamed:@"publishHeader1"];
     }else{

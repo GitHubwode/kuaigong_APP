@@ -31,7 +31,6 @@ static NSString *KGGSearchOrderView = @"KGGSearchOrderViewCell";
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-
 }
 
 - (void)setOrderDetails:(KGGOrderDetailsModel *)orderDetails
@@ -39,7 +38,7 @@ static NSString *KGGSearchOrderView = @"KGGSearchOrderViewCell";
     _orderDetails = orderDetails;
     self.timeTitleLabel.text = orderDetails.workStartTime;
     self.addressLabel.text = orderDetails.address;
-    self.detailsLabel.text = orderDetails.orderDetails;
+    self.detailsLabel.text = orderDetails.searchOrderDetails;
     self.ramarkLabel.text = orderDetails.remark;
     
     if (!self.orderDetails.imageArray) {

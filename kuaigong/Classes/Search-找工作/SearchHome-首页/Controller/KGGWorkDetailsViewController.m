@@ -118,7 +118,7 @@
     self.nameLabel.text = self.searchOrderModel.contacts;
     self.phoneLabel.text = self.searchOrderModel.hidePhone;
     self.addressLabel.text = self.searchOrderModel.address;
-    self.orderDetailsLabel.text = self.searchOrderModel.orderDetails;
+    self.orderDetailsLabel.text = self.searchOrderModel.searchOrderDetails;
     self.remarkLabel.text = [NSString stringWithFormat:@"备注: %@",self.searchOrderModel.remark];
     self.orderNumLabel.text = [NSString stringWithFormat:@"订单编号: %@",self.searchOrderModel.orderNo];
     self.timeLabel.text = [NSString stringWithFormat:@"接单时间: %@",self.searchOrderModel.accpetTime];

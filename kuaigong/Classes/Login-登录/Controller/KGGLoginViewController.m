@@ -14,12 +14,16 @@
 #import "KGGLoginParam.h"
 #import "KGGLoginRequestManager.h"
 #import "KGGLookforPWDViewController.h"
+#import <QuickLook/QuickLook.h>
 
-@interface KGGLoginViewController ()<UITextFieldDelegate>
+
+@interface KGGLoginViewController ()<UITextFieldDelegate,QLPreviewControllerDataSource>
 
 @property (nonatomic, strong) KGGLoginView *loginView1;
 @property (nonatomic, strong) KGGLoginView *loginView2;
 @property (nonatomic, strong) UIButton *loginButton;
+@property (nonatomic, strong) QLPreviewController *qlpreviewController;
+
 
 @end
 
@@ -40,6 +44,24 @@
     [self setupUI];
     // 设置点击空白区域键盘收回
     [self setupForDismissKeyboard];
+    _qlpreviewController = [[QLPreviewController alloc] init];
+    _qlpreviewController.dataSource = self;
+}
+
+
+#pragma mark - qlpreViewdataSource
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
+    return 1;
+}
+//返回一个需要加载文件的URL
+- (id <QLPreviewItem>)previewController:(QLPreviewController *)controller
+                     previewItemAtIndex:(NSInteger)index {
+    
+    NSString *documentLocation = [[NSBundle mainBundle]
+                                  pathForResource:@"用户协议" ofType:@"doc"];
+    NSURL *myQLDocument = [NSURL fileURLWithPath:documentLocation];
+    
+    return myQLDocument;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -252,6 +274,7 @@
 - (void)kgg_userAgreenMessage
 {
     KGGLog(@"用户协议");
+    [self presentViewController:_qlpreviewController animated:YES completion:nil];
 }
 
 - (void)kgg_userRegistrationButton

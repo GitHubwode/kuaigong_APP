@@ -59,7 +59,11 @@
 {
     KGGRouteModel *model = [[KGGRouteModel alloc]init];
     model.title = @"订单详情:";
-    model.subTitle = self.orderModel.orderDetails;
+    if (self.identifyType == 1) {
+         model.subTitle = self.orderModel.orderDetails;
+    }else{
+        model.subTitle = self.orderModel.searchOrderDetails;
+    }
     [self.datasource addObject:model];
     
     KGGRouteModel *model1 = [[KGGRouteModel alloc]init];
@@ -79,7 +83,7 @@
     if (self.identifyType == 1 ) {
         [self setupAcceptUserMessage];
     }else{
-       [self.headerView routeHeaderViewAvatar:self.orderModel.avatarUrl Name:self.orderModel.contacts Phone:self.orderModel.contactsPhone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.differentPrice]];
+       [self.headerView routeHeaderViewAvatar:self.orderModel.avatarUrl Name:self.orderModel.contacts Phone:self.orderModel.contactsPhone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%@",self.orderModel.differentPrice]];
     }
 }
 
@@ -89,7 +93,7 @@
     [KGGPublishOrderRequestManager publishOrderAcceptId:self.orderModel.acceptUser completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             KGGSearchUserModel *userModel = [KGGSearchUserModel mj_objectWithKeyValues:responseObj.data];
-            [self.headerView routeHeaderViewAvatar:userModel.avatarUrl Name:userModel.nickname Phone:userModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.differentPrice]];
+            [self.headerView routeHeaderViewAvatar:userModel.avatarUrl Name:userModel.nickname Phone:userModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.totalAmount]];
         }
     } aboveView:nil inCaller:self];
 }

@@ -56,12 +56,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KGGLog(@"点击墨一行");
-    if (indexPath.row == 1) {
+    if (indexPath.row == 5) {
         KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] initWithNibName:NSStringFromClass([KGGNewFeatureViewController class]) bundle:[NSBundle mainBundle]];
         [self presentViewController:newFeatureVc animated:YES completion:nil];
-    }else if (indexPath.row == 2){
+    }else if (indexPath.row == 1){
         KGGLog(@"收费标准");
-    }else if (indexPath.row == 3){
+    }else if (indexPath.row == 2){
         KGGLog(@"忘记密码");
         KGGForgetPasswordViewController *forgrtVC = [[KGGForgetPasswordViewController alloc]init];
         forgrtVC.changetype = KGGUserChangePWDType;
@@ -112,7 +112,7 @@
 - (UITableView *)setTableView
 {
     if (!_setTableView) {
-        _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -37, kMainScreenWidth, 59*5+37) style:UITableViewStyleGrouped];
+        _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -37, kMainScreenWidth, 59*4+37) style:UITableViewStyleGrouped];
         _setTableView.scrollEnabled = NO;
         [_setTableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGMoreSettingViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGMoreSettingViewCell moreSettingIdentifier]];
         _setTableView.rowHeight = 59.f;

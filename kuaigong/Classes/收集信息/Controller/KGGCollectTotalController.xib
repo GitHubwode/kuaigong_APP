@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KGGCollectTotalController">
             <connections>
                 <outlet property="imageView" destination="k5w-1R-F3b" id="KdU-lj-mKR"/>
+                <outlet property="navTitle" destination="w4i-yG-nYy" id="K4o-z9-qDx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
