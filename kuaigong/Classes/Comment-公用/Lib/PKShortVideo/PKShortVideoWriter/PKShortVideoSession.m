@@ -94,7 +94,7 @@ typedef NS_ENUM(NSInteger, PKSessionStatus){
 - (void)prepareToRecord {
     @synchronized(self) {
         if (self.status != PKSessionStatusIdle){
-            NSLog(@"已经开始准备不需要再准备");
+            KGGLog(@"已经开始准备不需要再准备");
             return;
         }
         [self transitionToStatus:PKSessionStatusPreparingToRecord error:nil];
@@ -138,11 +138,11 @@ typedef NS_ENUM(NSInteger, PKSessionStatus){
             case PKSessionStatusFinishingRecordingPart1:
             case PKSessionStatusFinishingRecordingPart2:
             case PKSessionStatusFinished:
-                NSLog(@"还没有开始记录");
+                KGGLog(@"还没有开始记录");
                 return;
                 break;
             case PKSessionStatusFailed:
-                NSLog( @"记录失败" );
+                KGGLog( @"记录失败" );
                 break;
             case PKSessionStatusRecording:
                 shouldFinishRecording = YES;

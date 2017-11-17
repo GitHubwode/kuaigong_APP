@@ -69,11 +69,11 @@
             
             if (![yuvConversionProgram link]) {
                 NSString *progLog = [yuvConversionProgram programLog];
-                NSLog(@"Program link log: %@", progLog);
+                KGGLog(@"Program link log: %@", progLog);
                 NSString *fragLog = [yuvConversionProgram fragmentShaderLog];
-                NSLog(@"Fragment shader compile log: %@", fragLog);
+                KGGLog(@"Fragment shader compile log: %@", fragLog);
                 NSString *vertLog = [yuvConversionProgram vertexShaderLog];
-                NSLog(@"Vertex shader compile log: %@", vertLog);
+                KGGLog(@"Vertex shader compile log: %@", vertLog);
                 yuvConversionProgram = nil;
                 NSAssert(NO, @"Filter shader link failed");
             }
@@ -128,7 +128,7 @@
     }
     
     if ([self.reader startReading] == NO) {
-        NSLog(@"Error reading from file at Path: %@", self.videoPath);
+        KGGLog(@"Error reading from file at Path: %@", self.videoPath);
         return;
     }
     
@@ -329,7 +329,7 @@
             err = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault, [[GPUImageContext sharedImageProcessingContext] coreVideoTextureCache], movieFrame, NULL, GL_TEXTURE_2D, GL_LUMINANCE, bufferWidth, bufferHeight, GL_LUMINANCE, GL_UNSIGNED_BYTE, 0, &luminanceTextureRef);
         }
         if (err) {
-            NSLog(@"Error at CVOpenGLESTextureCacheCreateTextureFromImage %d", err);
+            KGGLog(@"Error at CVOpenGLESTextureCacheCreateTextureFromImage %d", err);
         }
         
         luminanceTexture = CVOpenGLESTextureGetName(luminanceTextureRef);
@@ -347,7 +347,7 @@
             err = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault, [[GPUImageContext sharedImageProcessingContext] coreVideoTextureCache], movieFrame, NULL, GL_TEXTURE_2D, GL_LUMINANCE_ALPHA, bufferWidth/2, bufferHeight/2, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, 1, &chrominanceTextureRef);
         }
         if (err) {
-            NSLog(@"Error at CVOpenGLESTextureCacheCreateTextureFromImage %d", err);
+            KGGLog(@"Error at CVOpenGLESTextureCacheCreateTextureFromImage %d", err);
         }
         
         chrominanceTexture = CVOpenGLESTextureGetName(chrominanceTextureRef);

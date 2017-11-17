@@ -132,7 +132,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"result = %d", (int)buttonIndex);
+    KGGLog(@"result = %d", (int)buttonIndex);
     if (1 == buttonIndex) {
         [self selectPhoto:YES];//相册
     }else if (0 == buttonIndex){
@@ -192,7 +192,7 @@
                 [self presentViewController:_imagePickerVc animated:YES completion:nil];
             });
         } else {
-            NSLog(@"模拟器中无法打开照相机,请在真机中使用");
+            KGGLog(@"模拟器中无法打开照相机,请在真机中使用");
         }
     }
 }

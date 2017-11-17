@@ -15,7 +15,7 @@
     if (launchOptions) {
         NSDictionary *remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         
-        NSString *uri = remoteNotification[@"uri"];
+//        NSString *uri = remoteNotification[@"uri"];
         
         
         

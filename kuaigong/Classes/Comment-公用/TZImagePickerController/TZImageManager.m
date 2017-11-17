@@ -590,7 +590,7 @@ static CGFloat TZScreenScale;
                 if (success && completion) {
                     completion(nil);
                 } else if (error) {
-                    NSLog(@"保存照片出错:%@",error.localizedDescription);
+                    KGGLog(@"保存照片出错:%@",error.localizedDescription);
                     if (completion) {
                         completion(error);
                     }
@@ -603,7 +603,7 @@ static CGFloat TZScreenScale;
         [self.assetLibrary writeImageToSavedPhotosAlbum:image.CGImage orientation:[self orientationFromImage:image] completionBlock:^(NSURL *assetURL, NSError *error) {
 #pragma clang diagnostic pop
             if (error) {
-                NSLog(@"保存图片失败:%@",error.localizedDescription);
+                KGGLog(@"保存图片失败:%@",error.localizedDescription);
                 if (completion) {
                     completion(error);
                 }

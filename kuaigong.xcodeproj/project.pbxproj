@@ -152,6 +152,8 @@
 		35252F0A1F5E3BB0001D09F4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252F091F5E3BB0001D09F4 /* UserNotifications.framework */; };
 		35252F0C1F5E3BBE001D09F4 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252F0B1F5E3BBE001D09F4 /* libresolv.tbd */; };
 		352687241FB43ECA002CB92C /* KGGLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 352687231FB43ECA002CB92C /* KGGLocationHelper.m */; };
+		35412CBF1FBD8B8F004A233E /* banner9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35412CBE1FBD8B8F004A233E /* banner9.jpg */; };
+		35412CC11FBEB3C3004A233E /* boss.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35412CC01FBEB3C3004A233E /* boss.caf */; };
 		3543DB7E1F5E902900BE8B93 /* NSObject+swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */; };
 		3543DB811F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 3543DB801F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m */; };
 		3543DB831F5E990800BE8B93 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3543DB821F5E990800BE8B93 /* AssetsLibrary.framework */; };
@@ -598,6 +600,8 @@
 		35252F0B1F5E3BBE001D09F4 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		352687221FB43ECA002CB92C /* KGGLocationHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLocationHelper.h; sourceTree = "<group>"; };
 		352687231FB43ECA002CB92C /* KGGLocationHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLocationHelper.m; sourceTree = "<group>"; };
+		35412CBE1FBD8B8F004A233E /* banner9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner9.jpg; sourceTree = "<group>"; };
+		35412CC01FBEB3C3004A233E /* boss.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boss.caf; sourceTree = "<group>"; };
 		3543DB7C1F5E902900BE8B93 /* NSObject+swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+swizzle.h"; sourceTree = "<group>"; };
 		3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+swizzle.m"; sourceTree = "<group>"; };
 		3543DB7F1F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+KGGRongCloud.h"; sourceTree = "<group>"; };
@@ -1012,6 +1016,7 @@
 		185C86761F45401000356ECD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				35412CBE1FBD8B8F004A233E /* banner9.jpg */,
 				18F5B97B1F4EBC7800E6ADC4 /* 启动页_1.png */,
 			);
 			path = images;
@@ -1243,6 +1248,7 @@
 				189D20EB1F42F3520004F1EB /* kuaigong.pch */,
 				185C86701F452F2500356ECD /* KGGConst.h */,
 				185C86711F452F2500356ECD /* KGGConst.m */,
+				35412CC01FBEB3C3004A233E /* boss.caf */,
 				35961B111FA86E5D00A52B9E /* KGGCenter.plist */,
 				35081F641FA08115001AF418 /* KGGPublishMessage.plist */,
 				185C86A81F46EADF00356ECD /* KGGLeftDrawer.plist */,
@@ -2463,6 +2469,7 @@
 			files = (
 				189D20B71F42EAAD0004F1EB /* LaunchScreen.storyboard in Resources */,
 				35F830451F60E4B000204989 /* KGGPublishPayViewController.xib in Resources */,
+				35412CC11FBEB3C3004A233E /* boss.caf in Resources */,
 				359CD08F1F57F10A00DDFA62 /* KGGPublishPrivate.plist in Resources */,
 				18F5BA6A1F4ED24F00E6ADC4 /* KGGOrderDetailsViewCell.xib in Resources */,
 				18F5BA771F4ED24F00E6ADC4 /* KGGLeftDrawerCell.xib in Resources */,
@@ -2482,6 +2489,7 @@
 				188F2D441F4ED50E0023F4BE /* KGGLookWorkViewCell.xib in Resources */,
 				3505C7F71F9637E80085D688 /* KGGOrderCorrectViewCell.xib in Resources */,
 				18F5BA6F1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib in Resources */,
+				35412CBF1FBD8B8F004A233E /* banner9.jpg in Resources */,
 				35F73AAB1F78AE9F000CD1D6 /* KGGSearchOrderViewCell.xib in Resources */,
 				35961B201FA8811500A52B9E /* KGGRegardKGViewController.xib in Resources */,
 				35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */,

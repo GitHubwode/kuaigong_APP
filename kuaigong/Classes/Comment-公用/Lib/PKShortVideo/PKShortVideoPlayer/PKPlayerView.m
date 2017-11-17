@@ -105,12 +105,12 @@
         NSError *error = nil;
         AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&error];
         if (keyStatus == AVKeyValueStatusFailed) {
-            NSLog(@"加载失败");
+            KGGLog(@"加载失败");
             return;
         }
     }
     if (!asset.playable) {
-        NSLog(@"不能播放");
+        KGGLog(@"不能播放");
         return;
     }
     self.playerItem = [AVPlayerItem playerItemWithAsset:asset];

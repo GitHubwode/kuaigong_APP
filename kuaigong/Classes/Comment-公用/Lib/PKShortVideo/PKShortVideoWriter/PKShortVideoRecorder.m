@@ -105,7 +105,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 
 - (void)startRecording {
     if (TARGET_IPHONE_SIMULATOR) {
-        NSLog(@"录制视频不支持模拟器");
+        KGGLog(@"录制视频不支持模拟器");
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"录制视频不支持模拟器" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
@@ -115,7 +115,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
     @synchronized(self) {
         if (self.recordingStatus != PKRecordingStatusIdle) {
-            NSLog(@"已经在录制了");
+            KGGLog(@"已经在录制了");
             return;
         }   
         [self transitionToRecordingStatus:PKRecordingStatusStartingRecording error:nil];
@@ -408,10 +408,10 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
     
     if (![self addDefaultCameraInputToCaptureSession:captureSession]){
-        NSLog(@"加载摄像头失败");
+        KGGLog(@"加载摄像头失败");
     }
     if (![self addDefaultMicInputToCaptureSession:captureSession]){
-        NSLog(@"加载麦克风失败");
+        KGGLog(@"加载麦克风失败");
     }
     
     return captureSession;
@@ -422,7 +422,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     AVCaptureDeviceInput *cameraDeviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo] error:&error];
     
     if (error) {
-        NSLog(@"配置摄像头输入错误: %@", [error localizedDescription]);
+        KGGLog(@"配置摄像头输入错误: %@", [error localizedDescription]);
         return NO;
     } else {
         BOOL success = [self addInput:cameraDeviceInput toCaptureSession:captureSession];
@@ -435,7 +435,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     NSError *error;
     AVCaptureDeviceInput *micDeviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio] error:&error];
     if (error){
-        NSLog(@"配置麦克风输入错误: %@", [error localizedDescription]);
+        KGGLog(@"配置麦克风输入错误: %@", [error localizedDescription]);
         return NO;
     } else {
         BOOL success = [self addInput:micDeviceInput toCaptureSession:captureSession];
@@ -448,7 +448,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
         [captureSession addInput:input];
         return YES;
     } else {
-        NSLog(@"不能添加输入: %@", [input description]);
+        KGGLog(@"不能添加输入: %@", [input description]);
     }
     return NO;
 }
@@ -459,7 +459,7 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
         [captureSession addOutput:output];
         return YES;
     } else {
-        NSLog(@"不能添加输出 %@", [output description]);
+        KGGLog(@"不能添加输出 %@", [output description]);
     }
     return NO;
 }

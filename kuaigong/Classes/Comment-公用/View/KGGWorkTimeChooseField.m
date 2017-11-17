@@ -83,7 +83,7 @@
     KGGLog(@"day is: %d日", day);
     KGGLog(@"小时:%d",hour);
     int endDay = [[NSString getMonthBeginAndEndWith:[NSString stringWithFormat:@"%d",_mouth]] intValue];
-    KGGLog(@"%d",endDay);
+//    KGGLog(@"%d",endDay);
     for (int i = hour; i < 24; i++) {
         NSString *hourString = [NSString stringWithFormat:@"%d时",i+1];
         [self.hourArray addObject:hourString];
@@ -91,7 +91,7 @@
     
 //    dispatch_async(dispatch_get_main_queue(), ^{
         for (int i = day; i<endDay+1; i++) {
-            NSLog(@"天是%d",i);
+//            KGGLog(@"天是%d",i);
             NSString *dayString1 = [NSString stringWithFormat:@"%d月%d日",_mouth,i];
             [self.dayArray1 addObject:dayString1];
             if (i==day) {
@@ -175,7 +175,7 @@
 - (void)ensureButtonAction{
     self.text = self.selectedText;
     
-    KGGLog(@"选择日期%@",self.text);
+//    KGGLog(@"选择日期%@",self.text);
     
     if ([self.workDelegate respondsToSelector:@selector(workTimeChooseFieldEnsureButtonClick)]) {
         [self.workDelegate workTimeChooseFieldEnsureButtonClick];

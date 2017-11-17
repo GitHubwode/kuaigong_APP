@@ -540,7 +540,7 @@ static CGSize AssetGridThumbnailSize;
             }
             [self presentViewController:_imagePickerVc animated:YES completion:nil];
         } else {
-            NSLog(@"模拟器中无法打开照相机,请在真机中使用");
+            KGGLog(@"模拟器中无法打开照相机,请在真机中使用");
         }
     }
 }

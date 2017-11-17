@@ -15,9 +15,8 @@
 //
 //#else
 //NSString * const KGGBasicURL = @"https://api.zjkgwl.com";
-NSString * const KGGBasicURL = @"http://192.168.50.40:8080";
-//NSString * const KGGBasicURL = @"https://api.dev.zjkgwl.com";
-
+//NSString * const KGGBasicURL = @"http://192.168.50.40:8080";
+NSString * const KGGBasicURL = @"https://api.dev.zjkgwl.com";
 //#endif
 
 /** 正式环境储存后台分配的aesKey的key */

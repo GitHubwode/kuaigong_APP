@@ -41,7 +41,7 @@ typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length,
                             type:GL_VERTEX_SHADER 
                           string:vShaderString])
         {
-            NSLog(@"Failed to compile vertex shader");
+            KGGLog(@"Failed to compile vertex shader");
         }
         
         // Create and compile fragment shader
@@ -49,7 +49,7 @@ typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length,
                             type:GL_FRAGMENT_SHADER 
                           string:fShaderString])
         {
-            NSLog(@"Failed to compile fragment shader");
+            KGGLog(@"Failed to compile fragment shader");
         }
         
         glAttachShader(program, vertShader);
@@ -102,7 +102,7 @@ typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length,
       (GLchar *)[shaderString UTF8String];
     if (!source)
     {
-        NSLog(@"Failed to load vertex shader");
+        KGGLog(@"Failed to load vertex shader");
         return NO;
     }
     

@@ -391,10 +391,10 @@
     drivingRouteSearchOption.to = end;
     BOOL flag = [_routesearch drivingSearch:drivingRouteSearchOption];
     if(flag){
-        NSLog(@"car检索发送成功");
+        KGGLog(@"car检索发送成功");
     }
     else{
-        NSLog(@"car检索发送失败");
+        KGGLog(@"car检索发送失败");
     }
 }
 
