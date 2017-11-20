@@ -140,6 +140,11 @@
 		35193F4C1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35193F4A1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.m */; };
 		35193F4D1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35193F4B1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.xib */; };
 		35193F501FBC1E0F005D9E1A /* KGGPostedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35193F4F1FBC1E0F005D9E1A /* KGGPostedModel.m */; };
+		3523668A1FC2809600C50098 /* cancelOrder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 352366881FC2809600C50098 /* cancelOrder.mp3 */; };
+		3523668B1FC2809600C50098 /* Order.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 352366891FC2809600C50098 /* Order.mp3 */; };
+		3523668F1FC29F1A00C50098 /* KGGPrivateMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3523668E1FC29F1A00C50098 /* KGGPrivateMessageViewController.m */; };
+		352366921FC2A9BD00C50098 /* KGGConversionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352366901FC2A9BD00C50098 /* KGGConversionListViewController.m */; };
+		352366951FC2B5C800C50098 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 352366931FC2B5C800C50098 /* UIBarButtonItem+Badge.m */; };
 		35252EF81F5E3B5C001D09F4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */; };
 		35252EFA1F5E3B64001D09F4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */; };
 		35252EFC1F5E3B73001D09F4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */; };
@@ -153,7 +158,6 @@
 		35252F0C1F5E3BBE001D09F4 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252F0B1F5E3BBE001D09F4 /* libresolv.tbd */; };
 		352687241FB43ECA002CB92C /* KGGLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 352687231FB43ECA002CB92C /* KGGLocationHelper.m */; };
 		35412CBF1FBD8B8F004A233E /* banner9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35412CBE1FBD8B8F004A233E /* banner9.jpg */; };
-		35412CC11FBEB3C3004A233E /* boss.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35412CC01FBEB3C3004A233E /* boss.caf */; };
 		3543DB7E1F5E902900BE8B93 /* NSObject+swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */; };
 		3543DB811F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 3543DB801F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m */; };
 		3543DB831F5E990800BE8B93 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3543DB821F5E990800BE8B93 /* AssetsLibrary.framework */; };
@@ -587,6 +591,14 @@
 		35193F4B1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGPublishPostedMessageViewCell.xib; sourceTree = "<group>"; };
 		35193F4E1FBC1E0F005D9E1A /* KGGPostedModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPostedModel.h; sourceTree = "<group>"; };
 		35193F4F1FBC1E0F005D9E1A /* KGGPostedModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPostedModel.m; sourceTree = "<group>"; };
+		352366881FC2809600C50098 /* cancelOrder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cancelOrder.mp3; sourceTree = "<group>"; };
+		352366891FC2809600C50098 /* Order.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Order.mp3; sourceTree = "<group>"; };
+		3523668D1FC29F1A00C50098 /* KGGPrivateMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPrivateMessageViewController.h; sourceTree = "<group>"; };
+		3523668E1FC29F1A00C50098 /* KGGPrivateMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPrivateMessageViewController.m; sourceTree = "<group>"; };
+		352366901FC2A9BD00C50098 /* KGGConversionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGConversionListViewController.m; sourceTree = "<group>"; };
+		352366911FC2A9BD00C50098 /* KGGConversionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGConversionListViewController.h; sourceTree = "<group>"; };
+		352366931FC2B5C800C50098 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
+		352366941FC2B5C800C50098 /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
 		35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -601,7 +613,6 @@
 		352687221FB43ECA002CB92C /* KGGLocationHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLocationHelper.h; sourceTree = "<group>"; };
 		352687231FB43ECA002CB92C /* KGGLocationHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLocationHelper.m; sourceTree = "<group>"; };
 		35412CBE1FBD8B8F004A233E /* banner9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner9.jpg; sourceTree = "<group>"; };
-		35412CC01FBEB3C3004A233E /* boss.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boss.caf; sourceTree = "<group>"; };
 		3543DB7C1F5E902900BE8B93 /* NSObject+swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+swizzle.h"; sourceTree = "<group>"; };
 		3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+swizzle.m"; sourceTree = "<group>"; };
 		3543DB7F1F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+KGGRongCloud.h"; sourceTree = "<group>"; };
@@ -802,8 +813,6 @@
 		35E8B6C61F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPublishOrderRequestManager.m; sourceTree = "<group>"; };
 		35E8B6C81F8DC39600DCA0EB /* KGGPublishOrderParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishOrderParam.h; sourceTree = "<group>"; };
 		35E8B6C91F8DC39600DCA0EB /* KGGPublishOrderParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPublishOrderParam.m; sourceTree = "<group>"; };
-		35F73A831F7898C4000CD1D6 /* KGGConversionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGConversionListViewController.m; sourceTree = "<group>"; };
-		35F73A841F7898C7000CD1D6 /* KGGConversionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGConversionListViewController.h; sourceTree = "<group>"; };
 		35F73AA41F78AD1F000CD1D6 /* KGGSearchOrderController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGSearchOrderController.h; sourceTree = "<group>"; };
 		35F73AA51F78AD1F000CD1D6 /* KGGSearchOrderController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGSearchOrderController.m; sourceTree = "<group>"; };
 		35F73AA71F78AE9F000CD1D6 /* KGGSearchOrderViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGSearchOrderViewCell.h; sourceTree = "<group>"; };
@@ -888,36 +897,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3543DBA31F5E99C300BE8B93 /* QuartzCore.framework in Frameworks */,
-				35AE116F1F8F838400BCD2BD /* libstdc++.6.0.9.tbd in Frameworks */,
-				35252EFC1F5E3B73001D09F4 /* CoreTelephony.framework in Frameworks */,
-				35AE116D1F8F836400BCD2BD /* libsqlite3.0.tbd in Frameworks */,
-				35252F041F5E3B8F001D09F4 /* Security.framework in Frameworks */,
-				3543DB8B1F5E993300BE8B93 /* CoreGraphics.framework in Frameworks */,
-				35252EFE1F5E3B7A001D09F4 /* SystemConfiguration.framework in Frameworks */,
-				3543DBA11F5E99BB00BE8B93 /* OpenGLES.framework in Frameworks */,
-				3543DB8D1F5E993C00BE8B93 /* CoreLocation.framework in Frameworks */,
-				35AE116A1F8F81A500BCD2BD /* libcrypto.a in Frameworks */,
-				35AE116B1F8F81A500BCD2BD /* libssl.a in Frameworks */,
-				35252F061F5E3B9C001D09F4 /* libz.tbd in Frameworks */,
-				3543DB951F5E996700BE8B93 /* libc++.tbd in Frameworks */,
-				3543DB991F5E998200BE8B93 /* libsqlite3.tbd in Frameworks */,
-				35252F0C1F5E3BBE001D09F4 /* libresolv.tbd in Frameworks */,
 				3543DBA71F5E99E500BE8B93 /* SafariServices.framework in Frameworks */,
 				3543DBA51F5E99DE00BE8B93 /* Photos.framework in Frameworks */,
 				35252F021F5E3B88001D09F4 /* UIKit.framework in Frameworks */,
+				35252EFE1F5E3B7A001D09F4 /* SystemConfiguration.framework in Frameworks */,
+				3543DBA31F5E99C300BE8B93 /* QuartzCore.framework in Frameworks */,
+				3543DBA11F5E99BB00BE8B93 /* OpenGLES.framework in Frameworks */,
 				3543DB9F1F5E99B200BE8B93 /* MapKit.framework in Frameworks */,
+				35252F061F5E3B9C001D09F4 /* libz.tbd in Frameworks */,
 				3543DB9D1F5E99A100BE8B93 /* libxml2.tbd in Frameworks */,
 				3543DB9B1F5E999500BE8B93 /* libstdc++.tbd in Frameworks */,
+				3543DB991F5E998200BE8B93 /* libsqlite3.tbd in Frameworks */,
 				3543DB971F5E997400BE8B93 /* libc++abi.tbd in Frameworks */,
+				3543DB951F5E996700BE8B93 /* libc++.tbd in Frameworks */,
 				3543DB931F5E995C00BE8B93 /* ImageIO.framework in Frameworks */,
 				3543DB911F5E995500BE8B93 /* CoreVideo.framework in Frameworks */,
+				35252EFC1F5E3B73001D09F4 /* CoreTelephony.framework in Frameworks */,
 				3543DB8F1F5E994400BE8B93 /* CoreMedia.framework in Frameworks */,
+				3543DB8D1F5E993C00BE8B93 /* CoreLocation.framework in Frameworks */,
+				3543DB8B1F5E993300BE8B93 /* CoreGraphics.framework in Frameworks */,
 				3543DB891F5E992A00BE8B93 /* CoreAudio.framework in Frameworks */,
 				35252EF81F5E3B5C001D09F4 /* CFNetwork.framework in Frameworks */,
 				3543DB871F5E991700BE8B93 /* AVFoundation.framework in Frameworks */,
 				3543DB851F5E991000BE8B93 /* AudioToolbox.framework in Frameworks */,
 				3543DB831F5E990800BE8B93 /* AssetsLibrary.framework in Frameworks */,
+				35AE116F1F8F838400BCD2BD /* libstdc++.6.0.9.tbd in Frameworks */,
+				35AE116D1F8F836400BCD2BD /* libsqlite3.0.tbd in Frameworks */,
+				35252F041F5E3B8F001D09F4 /* Security.framework in Frameworks */,
+				35AE116A1F8F81A500BCD2BD /* libcrypto.a in Frameworks */,
+				35AE116B1F8F81A500BCD2BD /* libssl.a in Frameworks */,
+				35252F0C1F5E3BBE001D09F4 /* libresolv.tbd in Frameworks */,
 				35252F0A1F5E3BB0001D09F4 /* UserNotifications.framework in Frameworks */,
 				35252F081F5E3BA5001D09F4 /* AdSupport.framework in Frameworks */,
 				35252F001F5E3B81001D09F4 /* Foundation.framework in Frameworks */,
@@ -1053,7 +1062,6 @@
 			isa = PBXGroup;
 			children = (
 				188F2D2B1F4ED50E0023F4BE /* SearchHome-首页 */,
-				35F73A921F78A9B0000CD1D6 /* SearchMessage-信息 */,
 				35F73A971F78AA3C000CD1D6 /* SearchOrder-订单 */,
 			);
 			path = "Search-找工作";
@@ -1248,7 +1256,6 @@
 				189D20EB1F42F3520004F1EB /* kuaigong.pch */,
 				185C86701F452F2500356ECD /* KGGConst.h */,
 				185C86711F452F2500356ECD /* KGGConst.m */,
-				35412CC01FBEB3C3004A233E /* boss.caf */,
 				35961B111FA86E5D00A52B9E /* KGGCenter.plist */,
 				35081F641FA08115001AF418 /* KGGPublishMessage.plist */,
 				185C86A81F46EADF00356ECD /* KGGLeftDrawer.plist */,
@@ -1256,6 +1263,8 @@
 				359CD08E1F57F10A00DDFA62 /* KGGPublishPrivate.plist */,
 				35FD03781F5E7AD400558900 /* KGGPublishSetting.plist */,
 				359777F81FAC3DFE00336F60 /* KGCreatUserMessage.plist */,
+				352366881FC2809600C50098 /* cancelOrder.mp3 */,
+				352366891FC2809600C50098 /* Order.mp3 */,
 				35CF65E21FBD370900B80BEA /* 用户协议.doc */,
 			);
 			path = "Other-其它";
@@ -1358,6 +1367,8 @@
 		189D21341F43032F0004F1EB /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				352366941FC2B5C800C50098 /* UIBarButtonItem+Badge.h */,
+				352366931FC2B5C800C50098 /* UIBarButtonItem+Badge.m */,
 				189D213D1F43DE910004F1EB /* UIColor+KGGExtension.h */,
 				189D213E1F43DE910004F1EB /* UIColor+KGGExtension.m */,
 				189D21401F43DF8A0004F1EB /* NSString+KGGExtension.h */,
@@ -1442,7 +1453,6 @@
 		18F5BA151F4ED24F00E6ADC4 /* Publish-发布方 */ = {
 			isa = PBXGroup;
 			children = (
-				35F73A7F1F789512000CD1D6 /* PublishMessage-消息 */,
 				35F8303D1F60E48E00204989 /* PublishPay-支付相关页面 */,
 				18F5BA161F4ED24F00E6ADC4 /* PublishHome-首页 */,
 				18F5BA3B1F4ED24F00E6ADC4 /* PublishLeftView-侧栏 */,
@@ -1732,6 +1742,17 @@
 			path = PKShortVideoWriter;
 			sourceTree = "<group>";
 		};
+		3523668C1FC29EEA00C50098 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				352366911FC2A9BD00C50098 /* KGGConversionListViewController.h */,
+				352366901FC2A9BD00C50098 /* KGGConversionListViewController.m */,
+				3523668D1FC29F1A00C50098 /* KGGPrivateMessageViewController.h */,
+				3523668E1FC29F1A00C50098 /* KGGPrivateMessageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		356AE9B71FAB2CA6004E417B /* 收集信息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1976,39 +1997,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		35F73A7F1F789512000CD1D6 /* PublishMessage-消息 */ = {
-			isa = PBXGroup;
-			children = (
-				35F73A801F789512000CD1D6 /* Controller */,
-				35F73A811F789512000CD1D6 /* Model */,
-				35F73A821F789512000CD1D6 /* View */,
-			);
-			path = "PublishMessage-消息";
-			sourceTree = "<group>";
-		};
-		35F73A801F789512000CD1D6 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				35F73A841F7898C7000CD1D6 /* KGGConversionListViewController.h */,
-				35F73A831F7898C4000CD1D6 /* KGGConversionListViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		35F73A811F789512000CD1D6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		35F73A821F789512000CD1D6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		35F73A851F789ED4000CD1D6 /* Mdoel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2073,37 +2061,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		35F73A921F78A9B0000CD1D6 /* SearchMessage-信息 */ = {
-			isa = PBXGroup;
-			children = (
-				35F73A931F78A9B0000CD1D6 /* Controller */,
-				35F73A941F78A9B0000CD1D6 /* Model */,
-				35F73A951F78A9B0000CD1D6 /* View */,
-			);
-			path = "SearchMessage-信息";
-			sourceTree = "<group>";
-		};
-		35F73A931F78A9B0000CD1D6 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		35F73A941F78A9B0000CD1D6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		35F73A951F78A9B0000CD1D6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		35F73A971F78AA3C000CD1D6 /* SearchOrder-订单 */ = {
@@ -2328,6 +2285,7 @@
 		35F8308D1F67C8F100204989 /* Chat-聊天 */ = {
 			isa = PBXGroup;
 			children = (
+				3523668C1FC29EEA00C50098 /* Controller */,
 				35F8308E1F67C91300204989 /* KGGRongCloudModel.h */,
 				35F8308F1F67C91300204989 /* KGGRongCloudModel.m */,
 			);
@@ -2469,7 +2427,6 @@
 			files = (
 				189D20B71F42EAAD0004F1EB /* LaunchScreen.storyboard in Resources */,
 				35F830451F60E4B000204989 /* KGGPublishPayViewController.xib in Resources */,
-				35412CC11FBEB3C3004A233E /* boss.caf in Resources */,
 				359CD08F1F57F10A00DDFA62 /* KGGPublishPrivate.plist in Resources */,
 				18F5BA6A1F4ED24F00E6ADC4 /* KGGOrderDetailsViewCell.xib in Resources */,
 				18F5BA771F4ED24F00E6ADC4 /* KGGLeftDrawerCell.xib in Resources */,
@@ -2491,6 +2448,7 @@
 				18F5BA6F1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib in Resources */,
 				35412CBF1FBD8B8F004A233E /* banner9.jpg in Resources */,
 				35F73AAB1F78AE9F000CD1D6 /* KGGSearchOrderViewCell.xib in Resources */,
+				3523668B1FC2809600C50098 /* Order.mp3 in Resources */,
 				35961B201FA8811500A52B9E /* KGGRegardKGViewController.xib in Resources */,
 				35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */,
 				185C87191F4D782800356ECD /* KGCreatAddress.plist in Resources */,
@@ -2509,6 +2467,7 @@
 				3505C8661F976A5E0085D688 /* PK_Play@2x.png in Resources */,
 				188F2D561F500FA40023F4BE /* KGGMeWorkViewCell.xib in Resources */,
 				35BEB1661F725D7C0060298A /* KGGMyWorkViewCell.xib in Resources */,
+				3523668A1FC2809600C50098 /* cancelOrder.mp3 in Resources */,
 				35961ACE1FA6BA8000A52B9E /* SNHPublishToolBar.xib in Resources */,
 				35961B121FA86E5D00A52B9E /* KGGCenter.plist in Resources */,
 				359CD08A1F57DCB400DDFA62 /* KGGPersonMessageCell.xib in Resources */,
@@ -2732,6 +2691,7 @@
 				189D212A1F42FE170004F1EB /* UIButton+WebCache.m in Sources */,
 				189D21291F42FE170004F1EB /* SDWebImagePrefetcher.m in Sources */,
 				35F830511F61177E00204989 /* CYPasswordInputView.m in Sources */,
+				352366921FC2A9BD00C50098 /* KGGConversionListViewController.m in Sources */,
 				35F73ABA1F78EC40000CD1D6 /* KGGAMapBaseViewController.m in Sources */,
 				35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */,
 				35961AF81FA6CB7200A52B9E /* SDBrowserImageView.m in Sources */,
@@ -2750,6 +2710,7 @@
 				189D212D1F42FE170004F1EB /* UIImageView+HighlightedWebCache.m in Sources */,
 				189D212C1F42FE170004F1EB /* UIImage+MultiFormat.m in Sources */,
 				359777F71FAC3D2400336F60 /* KGGCollectMessageController.m in Sources */,
+				352366951FC2B5C800C50098 /* UIBarButtonItem+Badge.m in Sources */,
 				35BEB1651F725D7C0060298A /* KGGMyWorkViewCell.m in Sources */,
 				18F5BA7A1F4ED24F00E6ADC4 /* KGGOrderRecordController.m in Sources */,
 				350360561F59503900FB0EDD /* KGGSexChangeViewCell.m in Sources */,
@@ -2808,6 +2769,7 @@
 				3505C85F1F976A5E0085D688 /* UIImage+PKShortVideoPlayer.m in Sources */,
 				35961B1F1FA8811500A52B9E /* KGGRegardKGViewController.m in Sources */,
 				35961AC01FA5FF5300A52B9E /* LxGridViewFlowLayout.m in Sources */,
+				3523668F1FC29F1A00C50098 /* KGGPrivateMessageViewController.m in Sources */,
 				35F830901F67C91300204989 /* KGGRongCloudModel.m in Sources */,
 				18F5BA671F4ED24F00E6ADC4 /* KGGHomeListViewCell.m in Sources */,
 				358644691F91FD52007D3A79 /* UIView+ErrorView.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "KGGConversionListViewController.h"
+#import "KGGPrivateMessageViewController.h"
 
 @interface KGGConversionListViewController ()
 
@@ -16,10 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"信息中心";
+    self.isShowNetworkIndicatorView = YES;
+    self.conversationListTableView.backgroundColor = KGGViewBackgroundColor;
+    self.conversationListTableView.tableFooterView = [UIView new];
+    self.emptyConversationView = [UIView new];
     
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
-                                        @(ConversationType_DISCUSSION),
-                                        @(ConversationType_GROUP),
                                         @(ConversationType_SYSTEM)]];
     //设置需要将那些类型的会话在会话列表中聚合显示
     [self setCollectionConversationType:@[@(ConversationType_PRIVATE),
@@ -28,11 +32,29 @@
 
 - (void)onSelectedTableRow:(RCConversationModelType)conversationModelType conversationModel:(RCConversationModel *)model atIndexPath:(NSIndexPath *)indexPath
 {
-    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
-    conversationVC.conversationType = model.conversationType;
+    KGGPrivateMessageViewController *conversationVC = [[KGGPrivateMessageViewController alloc]init];
+    conversationVC.conversationType = ConversationType_PRIVATE;
     conversationVC.targetId = model.targetId;
-    conversationVC.title = @"想显示的会话标题";
+    conversationVC.title = model.conversationTitle;
     [self.navigationController pushViewController:conversationVC animated:YES];
+}
+
+//左滑删除
+- (void)rcConversationListTableView:(UITableView *)tableView
+                 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+                  forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //可以从数据库删除数据
+    RCConversationModel *model = self.conversationListDataSource[indexPath.row];
+    [[RCIMClient sharedRCIMClient] removeConversation:ConversationType_SYSTEM
+                                             targetId:model.targetId];
+    [self.conversationListDataSource removeObjectAtIndex:indexPath.row];
+    [self.conversationListTableView reloadData];
+}
+
+//高度
+- (CGFloat)rcConversationListTableView:(UITableView *)tableView
+               heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 67.0f;
 }
 
 - (void)didReceiveMemoryWarning {

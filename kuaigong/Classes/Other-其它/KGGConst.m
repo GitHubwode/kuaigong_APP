@@ -25,6 +25,12 @@ NSString * const KGGBasicURL = @"https://api.dev.zjkgwl.com";
 /** 测试环境环境储存后台分配的aesKey的key */
 NSString * const KGGAesKey = @"I0*!TwulnX0f1pyd#Kbw$2Pe4AUerBXlylQPl5^RBG0wITGBC#VN5fZZ8n@3D#I9";
 
+/** 测试 融云的appkey */
+NSString *const KGGRongCloudAppKey = @"pvxdm17jpicmr";
+/** 正式 融云的appkey */
+//NSString *const KGGRongCloudAppKey = @"uwd1c0sxuvrc1";
+
+
 /** 保存用户的类型 */
 NSString * const KGGUserType = @"KGGUserType";
 /** Itnues上的地址 */
@@ -35,8 +41,6 @@ NSString * const KGGDeviceIdKey = @"KGGDeviceIdKey";
 NSString * const KGGJPushAPPKey = @"dad3761a709164767b06958e";
 /** 百度地图的key */
 NSString *const KGGAMApKey = @"0f36c68b1fd0ac66da53bf33d7b12797";
-/** 测试 融云的appkey */
-NSString *const KGGRongCloudAppKey = @"pvxdm17jpicmr";
 //设备在别处登录
 NSString *const KGGConnectionStatusOffLine = @"KGG_KICKED_OFFLINE_BY_OTHER_CLIENT";
 /** 显示红点的通知 */

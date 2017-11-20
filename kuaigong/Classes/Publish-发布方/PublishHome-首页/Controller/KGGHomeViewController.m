@@ -28,7 +28,9 @@
 #import "KGGCollectMessageController.h"
 #import "KGGShareMessageViewController.h"
 #import "KGGLocationHelper.h"
-
+//聊天列表和单聊
+#import "KGGConversionListViewController.h"
+#import "KGGPrivateMessageViewController.h"
 
 static CGFloat const itemHeight = 168.f;
 static CGFloat const topHeight = 37.f;
@@ -323,6 +325,15 @@ static CGFloat const topHeight = 37.f;
     BOOL login = [KGGUserManager shareUserManager].logined;
     if (login) {
         KGGLog(@"已登录");
+//        KGGConversionListViewController *listVC = [[KGGConversionListViewController alloc]init];
+//        [self.navigationController pushViewController:listVC animated:YES];
+        
+        KGGPrivateMessageViewController *conversationVC = [[KGGPrivateMessageViewController alloc]init];
+        conversationVC.conversationType = ConversationType_PRIVATE;
+        conversationVC.targetId = @"8";
+        conversationVC.title = @"游客001";
+        [self.navigationController pushViewController:conversationVC animated:YES];
+        
     }else{
         [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
     }
@@ -436,6 +447,12 @@ static CGFloat const topHeight = 37.f;
 - (void)setupNavi
 {
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_xiaoxi" highImage:@"icon_xiaoxi2" target:self action:@selector(kgg_homeUserMessage)];
+    self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+    self.navigationItem.rightBarButtonItem.badgeFont = KGGFont(0);
+    self.navigationItem.rightBarButtonItem.badgeMinSize = 2.f;
+    self.navigationItem.rightBarButtonItem.badgeOriginX = 12.f;
+    self.navigationItem.rightBarButtonItem.badgeOriginY = 1.f;
+    self.navigationItem.rightBarButtonItem.badgeBGColor = UIColorHex(0xffd200);
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_wode" highImage:@"icon_wode2" target:self action:@selector(kgg_homeMessage)];
 }
 

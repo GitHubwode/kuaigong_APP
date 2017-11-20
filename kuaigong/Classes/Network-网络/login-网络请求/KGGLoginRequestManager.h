@@ -129,4 +129,6 @@
 
 + (void)setupUserRongTokencompletion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
++ (void)logout;
+
 @end

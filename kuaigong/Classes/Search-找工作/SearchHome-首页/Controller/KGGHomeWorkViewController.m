@@ -12,6 +12,8 @@
 #import "KGGLookWorkViewController.h"
 #import "KGGMeWorkViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "KGGConversionListViewController.h"
+#import "KGGPrivateMessageViewController.h"
 
 //测试接单
 #import "KGGSearchOrderController.h"
@@ -126,6 +128,12 @@
 - (void)setupNavi
 {
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_xiaoxi" highImage:@"icon_xiaoxi2" target:self action:@selector(kgg_homeUserMessage)];
+    self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+    self.navigationItem.rightBarButtonItem.badgeFont = KGGFont(0);
+    self.navigationItem.rightBarButtonItem.badgeMinSize = 2.f;
+    self.navigationItem.rightBarButtonItem.badgeOriginX = 12.f;
+    self.navigationItem.rightBarButtonItem.badgeOriginY = 1.f;
+    self.navigationItem.rightBarButtonItem.badgeBGColor = UIColorHex(0xffd200);
 }
 
 #pragma mark - SUNSlideSwitchViewDelegate
@@ -145,7 +153,15 @@
 - (void)kgg_homeUserMessage
 {
     KGGLog(@"导航栏右边的按钮");
-   
+    
+//    KGGConversionListViewController *listVC = [[KGGConversionListViewController alloc]init];
+//    [self.navigationController pushViewController:listVC animated:YES];
+    
+    KGGPrivateMessageViewController *conversationVC = [[KGGPrivateMessageViewController alloc]init];
+    conversationVC.conversationType = ConversationType_PRIVATE;
+    conversationVC.targetId = @"8";
+    conversationVC.title = @"游客5122";
+    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
 - (void)kgg_homelocation

@@ -294,8 +294,7 @@
 {
     [KGGLoginRequestManager loginOutWithcompletion:^(KGGResponseObj *responseObj) {
         
-        [[KGGUserManager shareUserManager] logout];
-        [KGGNotificationCenter postNotificationName:KGGUserLogoutNotifacation object:nil];
+        [KGGLoginRequestManager logout];
         [self.navigationController popViewControllerAnimated:YES];
     } aboveView:self.view inCaller:self];
 }

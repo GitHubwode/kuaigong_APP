@@ -26,6 +26,7 @@
 #import "KGGUserManager.h"
 #import "UIView+ErrorView.h"
 #import "KGGLocationHelper.h"
+#import "KGGRongCloudModel.h"
 
 #import "UIColor+KGGExtension.h"
 #import "NSString+KGGExtension.h"
@@ -41,6 +42,7 @@
 #import "UIColor+KGGExtension.h"
 #import "NSUserDefaults+KGGExtension.h"
 #import <YYLabel.h>
+#import "UIBarButtonItem+Badge.h"
 
 #import <UMMobClick/MobClick.h>
 

@@ -73,6 +73,7 @@
     [self removeAccount];
     _currentUser = nil;
     _logined = NO;
+    
 }
 
 /**

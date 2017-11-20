@@ -10,6 +10,8 @@
 #import "KGGUserManager.h"
 #import "KGGLoginVIPRequestManager.h"
 #import "KGGRongCloudModel.h"
+#import <RongIMKit/RongIMKit.h>
+
 
 @implementation KGGLoginRequestManager
 
@@ -379,6 +381,15 @@
         }
         
     } aboveView:view inCaller:caller];
+}
+
++ (void)logout{
+    // 清除内存和本地保存的用户信息
+    [[KGGUserManager shareUserManager] logout];
+    // 解除第三方的授权
+    [[RCIM sharedRCIM] disconnect:NO];
+    // 退出融云
+    [KGGNotificationCenter postNotificationName:KGGUserLogoutNotifacation object:nil];
 }
 
 

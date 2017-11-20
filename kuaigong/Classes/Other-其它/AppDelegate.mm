@@ -14,6 +14,7 @@
 #import "AppDelegate+KGGRongCloud.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 #import "WXApi.h"
+#import <RongIMKit/RongIMKit.h>
 
 
 //测试极光推送
@@ -84,8 +85,12 @@
     // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
     [JPUSHService setupWithOption:launchOptions appKey:KGGJPushAPPKey
                           channel:@"kg-channel"
-                 apsForProduction:YES
+                 apsForProduction:NO
             advertisingIdentifier:advertisingId];
+    
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        KGGLog(@"%@",registrationID);
+    }];
     //链接融云
     [self setUpRongCloud];
     
@@ -94,9 +99,16 @@
 
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    
+//    NSString *deviceToken
     /// Required - 注册 DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
+//    [RCIM sharedRCIM]
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    KGGLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
+    [[RCIMClient sharedRCIMClient]setDeviceToken:token];
+    KGGLog(@"%@",deviceToken);
+    
 }
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     //Optional
@@ -124,20 +136,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
     completionHandler();  // 系统要求执行这个方法
 }
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
     // Required, iOS 7 Support
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
     // Required,For systems with less than or equal to iOS6
     [JPUSHService handleRemoteNotification:userInfo];
 }
-
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
