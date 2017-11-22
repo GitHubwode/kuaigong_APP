@@ -216,14 +216,11 @@
             return ;
         }else if (responseObj.code != KGGSuccessCode){
             [view showHint:responseObj.message];
-//            return ;
         }
-//        else{
             KGGLog(@"注册:%@",responseObj);
             if (completionHandler) {
                 completionHandler(responseObj);
             }
-//        }
     } aboveView:view inCaller:caller];
 }
 
@@ -261,7 +258,6 @@
 
 /**
  更改用户登录密码
- 
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param view HUD要添加的地方
  @param caller 方法调用者
@@ -365,9 +361,9 @@
 
 + (void)setupUserRongTokencompletion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
-    NSString *url = KGGURL(@"/api/chat/getRongToken");
-    [self postFormDataWithUrl:url form:nil completion:^(KGGResponseObj *responseObj) {
-        
+    NSString *url = KGGURL(@"/api/rong/getToken");
+    
+    [self requestWithURL:url httpMethod:GETHttpMethod params:nil progress:nil completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) {
             return ;
         }else if (responseObj.code != KGGSuccessCode){

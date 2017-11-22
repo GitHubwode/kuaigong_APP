@@ -13,6 +13,7 @@
 #import "KGGLocationHelper.h"
 #import "KGGCancelOrderPayView.h"
 #import "KGGLookWorkHeaderView.h"
+#import "KGGLoginViewController.h"
 
 @interface KGGLookWorkViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -26,6 +27,12 @@
 @end
 
 @implementation KGGLookWorkViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self RefreshNewMessag];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -120,6 +127,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (![KGGUserManager shareUserManager].logined) {
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+        return;
+    }
     if (![KGGUserManager shareUserManager].currentUser.isRegister) {
         [self.view showHint:@"非签约用户,请联系快工公司"];
     }else{
@@ -130,7 +141,6 @@
         [self.navigationController pushViewController:orderVC animated:YES];
     }
 }
-
 
 - (UITableView *)tableView
 {

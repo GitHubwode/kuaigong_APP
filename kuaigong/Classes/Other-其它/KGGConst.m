@@ -30,7 +30,6 @@ NSString *const KGGRongCloudAppKey = @"pvxdm17jpicmr";
 /** 正式 融云的appkey */
 //NSString *const KGGRongCloudAppKey = @"uwd1c0sxuvrc1";
 
-
 /** 保存用户的类型 */
 NSString * const KGGUserType = @"KGGUserType";
 /** Itnues上的地址 */
@@ -43,6 +42,8 @@ NSString * const KGGJPushAPPKey = @"dad3761a709164767b06958e";
 NSString *const KGGAMApKey = @"0f36c68b1fd0ac66da53bf33d7b12797";
 //设备在别处登录
 NSString *const KGGConnectionStatusOffLine = @"KGG_KICKED_OFFLINE_BY_OTHER_CLIENT";
+//接收到消息 融云或者其他的
+NSString *const KGGRongYunReceiedNotifacation = @"KGGRongYunReceiedNotifacation";
 /** 显示红点的通知 */
 NSString * const KGGShowAlertNotifacation = @"KGGShowAlertNotifacation";
 /** 隐藏红点的通知 */

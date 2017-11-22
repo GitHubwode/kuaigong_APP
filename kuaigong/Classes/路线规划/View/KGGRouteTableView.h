@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class KGGOrderDetailsModel;
+@class KGGSearchUserModel;
 
 @protocol KGGRouteTableViewDelegate <NSObject>
 
@@ -25,5 +26,7 @@
 
 #pragma mark - 获取数据
 - (void)setupRequestOrderModel:(KGGOrderDetailsModel *)orderModel;
+- (void)setupRequestAcceptModel:(KGGSearchUserModel *)acceptModel;
+
 
 @end

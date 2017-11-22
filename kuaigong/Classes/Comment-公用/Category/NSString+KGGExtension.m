@@ -276,7 +276,7 @@
 {
     int dayTime = [workTime intValue] *24*3600;//工作时间的秒数
     int pay;
-    if ([payTime isEqualToString:@"工期结束立即支付"]) {
+    if ([payTime isEqualToString:@"帮工结束立即支付"]) {
 //        24 *3600
         pay = 86400;
     }else if ([payTime isEqualToString:@"延后7天支付"]){

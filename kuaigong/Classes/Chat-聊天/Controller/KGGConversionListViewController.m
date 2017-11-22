@@ -23,11 +23,9 @@
     self.conversationListTableView.tableFooterView = [UIView new];
     self.emptyConversationView = [UIView new];
     
-    [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
-                                        @(ConversationType_SYSTEM)]];
+    [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE)]];
     //设置需要将那些类型的会话在会话列表中聚合显示
-    [self setCollectionConversationType:@[@(ConversationType_PRIVATE),
-                                          @(ConversationType_SYSTEM)]];
+//    [self setCollectionConversationType:@[@(ConversationType_PRIVATE)]];
 }
 
 - (void)onSelectedTableRow:(RCConversationModelType)conversationModelType conversationModel:(RCConversationModel *)model atIndexPath:(NSIndexPath *)indexPath
@@ -37,6 +35,12 @@
     conversationVC.targetId = model.targetId;
     conversationVC.title = model.conversationTitle;
     [self.navigationController pushViewController:conversationVC animated:YES];
+    
+    dispatch_after(
+                   dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)),
+                   dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                       [self refreshConversationTableViewIfNeeded];
+                   });
 }
 
 //左滑删除
@@ -45,7 +49,7 @@
                   forRowAtIndexPath:(NSIndexPath *)indexPath {
     //可以从数据库删除数据
     RCConversationModel *model = self.conversationListDataSource[indexPath.row];
-    [[RCIMClient sharedRCIMClient] removeConversation:ConversationType_SYSTEM
+    [[RCIMClient sharedRCIMClient] removeConversation:ConversationType_PRIVATE
                                              targetId:model.targetId];
     [self.conversationListDataSource removeObjectAtIndex:indexPath.row];
     [self.conversationListTableView reloadData];

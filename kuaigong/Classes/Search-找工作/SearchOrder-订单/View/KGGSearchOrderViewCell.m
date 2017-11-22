@@ -39,7 +39,7 @@ static NSString *KGGSearchOrderView = @"KGGSearchOrderViewCell";
     self.timeTitleLabel.text = orderDetails.workStartTime;
     self.addressLabel.text = orderDetails.address;
     self.detailsLabel.text = orderDetails.searchOrderDetails;
-    self.ramarkLabel.text = orderDetails.remark;
+    self.ramarkLabel.text = [NSString stringWithFormat:@"%@\n支付时间:%@",orderDetails.remark,orderDetails.payTime];
     
     if (!self.orderDetails.imageArray) {
         [self.factoryView1 removeFromSuperview];

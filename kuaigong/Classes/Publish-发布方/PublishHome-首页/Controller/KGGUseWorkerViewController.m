@@ -322,6 +322,7 @@
     NSString *name;
     NSString *time;
     NSString *payTime;
+    NSString *lastPayTime;
     
     for (KGGCustomInfoItem *item in self.datasource) {
         KGGLog(@"%@",item.subtitle);
@@ -332,6 +333,7 @@
             time = item.subtitle;
         }else if ([item.title isEqualToString:@"支付时间:"] && item.subtitle.length != 0){
             payTime = item.subtitle;
+            lastPayTime = item.subtitle;
         }
     }
     
@@ -356,9 +358,10 @@
     KGGLog(@"开始时间:%@ 支付时间:%@",time,payTime);
    self.orderUrl = [self.headerView.imageArray componentsJoinedByString:@","];
 
-    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString OrderUrl:self.orderUrl WorkStartTime:time PayTime:payTime Longitude:self.longitudeMap Latitude:self.latitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:self.workType.whenLong Contacts:name ContactsPhone:contactsPhone];
+    KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString OrderUrl:self.orderUrl WorkStartTime:time PayTime:payTime LastPayTime:lastPayTime Longitude:self.longitudeMap Latitude:self.latitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:self.workType.whenLong Contacts:name ContactsPhone:contactsPhone];
 
     KGGLog(@"工种类型:%@",self.workType.type);
+    KGGLog(@"%@",param);
     
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {

@@ -25,6 +25,7 @@
                       OrderUrl:(NSString *)orderUrl
                  WorkStartTime:(NSString *)workStartTime
                        PayTime:(NSString *)payTime
+                   LastPayTime:(NSString *)lastPayTime
                      Longitude:(CGFloat )longitude
                       Latitude:(CGFloat )latitude
                        Address:(NSString *)address
@@ -46,6 +47,7 @@
         self.orderUrl = orderUrl;
         self.workStartTime = workStartTime;
         self.payTime = payTime;
+        self.lastPayTime = lastPayTime;
         self.longitude = longitude;
         self.latitude = latitude;
         self.address = address;
@@ -68,6 +70,7 @@
                        OrderUrl:(NSString *)orderUrl
                   WorkStartTime:(NSString *)workStartTime
                         PayTime:(NSString *)payTime
+                    LastPayTime:(NSString *)lastPayTime
                       Longitude:(CGFloat )longitude
                        Latitude:(CGFloat )latitude
                         Address:(NSString *)address
@@ -76,7 +79,7 @@
                        Contacts:(NSString *)contacts
                   ContactsPhone:(NSString *)contactsPhone
 {
-    return [[self alloc]initWithUserId:userid Name:name Type:type Number:number Days:days UnitPrice:unitPrice Fare:fare Remark:remark OrderUrl:orderUrl WorkStartTime:workStartTime PayTime:payTime Longitude:longitude Latitude:latitude Address:address AvatarUrl:avatarUrl WhenLong:whenLong Contacts:contacts ContactsPhone:contactsPhone];
+    return [[self alloc]initWithUserId:userid Name:name Type:type Number:number Days:days UnitPrice:unitPrice Fare:fare Remark:remark OrderUrl:orderUrl WorkStartTime:workStartTime PayTime:payTime LastPayTime:lastPayTime Longitude:longitude Latitude:latitude Address:address AvatarUrl:avatarUrl WhenLong:whenLong Contacts:contacts ContactsPhone:contactsPhone];
 }
 
 @end

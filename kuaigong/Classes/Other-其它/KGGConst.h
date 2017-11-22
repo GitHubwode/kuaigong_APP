@@ -37,6 +37,8 @@ extern NSString * const KGGUserLoginNotifacation;
 extern NSString * const KGGUserLogoutNotifacation;
 //设备在别处登录
 extern NSString *const KGGConnectionStatusOffLine;
+//接收到消息 融云或者其他的
+extern NSString *const KGGRongYunReceiedNotifacation;
 /** 显示红点的通知 */
 extern NSString * const KGGShowAlertNotifacation;
 /** 隐藏红点的通知 */

@@ -79,6 +79,7 @@
     }
     _accpetTime = [NSString TimeStamp:_accpetTime];
     _workStartTime = [NSString OrderDetailsTimeStamp:_workStartTime];
+    _payTime = [NSString TimeStamp:_payTime];
     if (_orderUrl.length != 0) {
         _imageArray =[[_orderUrl componentsSeparatedByString:@","] mutableCopy];
     }

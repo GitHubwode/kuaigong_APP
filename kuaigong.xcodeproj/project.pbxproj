@@ -145,6 +145,7 @@
 		3523668F1FC29F1A00C50098 /* KGGPrivateMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3523668E1FC29F1A00C50098 /* KGGPrivateMessageViewController.m */; };
 		352366921FC2A9BD00C50098 /* KGGConversionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352366901FC2A9BD00C50098 /* KGGConversionListViewController.m */; };
 		352366951FC2B5C800C50098 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 352366931FC2B5C800C50098 /* UIBarButtonItem+Badge.m */; };
+		352366981FC56FE500C50098 /* KGGJPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 352366971FC56FE500C50098 /* KGGJPushManager.m */; };
 		35252EF81F5E3B5C001D09F4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */; };
 		35252EFA1F5E3B64001D09F4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */; };
 		35252EFC1F5E3B73001D09F4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */; };
@@ -307,7 +308,6 @@
 		35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35F830871F62AA5B00204989 /* KGGWithdrawViewController.xib */; };
 		35F8308C1F66897800204989 /* KGGInfoTextFiel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F8308B1F66897800204989 /* KGGInfoTextFiel.m */; };
 		35F830901F67C91300204989 /* KGGRongCloudModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F8308F1F67C91300204989 /* KGGRongCloudModel.m */; };
-		35F830991F68D71200204989 /* AppDelegate+KGGJPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F830981F68D71200204989 /* AppDelegate+KGGJPush.m */; };
 		35FD03791F5E7AD400558900 /* KGGPublishSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35FD03781F5E7AD400558900 /* KGGPublishSetting.plist */; };
 		35FD037D1F5E7C8100558900 /* KGGMoreSettingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FD037B1F5E7C8100558900 /* KGGMoreSettingViewCell.m */; };
 		35FD037E1F5E7C8100558900 /* KGGMoreSettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35FD037C1F5E7C8100558900 /* KGGMoreSettingViewCell.xib */; };
@@ -599,6 +599,8 @@
 		352366911FC2A9BD00C50098 /* KGGConversionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGConversionListViewController.h; sourceTree = "<group>"; };
 		352366931FC2B5C800C50098 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
 		352366941FC2B5C800C50098 /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
+		352366961FC56FE500C50098 /* KGGJPushManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGJPushManager.h; sourceTree = "<group>"; };
+		352366971FC56FE500C50098 /* KGGJPushManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGJPushManager.m; sourceTree = "<group>"; };
 		35252EF71F5E3B5C001D09F4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35252EF91F5E3B64001D09F4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		35252EFB1F5E3B73001D09F4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -865,8 +867,6 @@
 		35F8308B1F66897800204989 /* KGGInfoTextFiel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGInfoTextFiel.m; sourceTree = "<group>"; };
 		35F8308E1F67C91300204989 /* KGGRongCloudModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGRongCloudModel.h; sourceTree = "<group>"; };
 		35F8308F1F67C91300204989 /* KGGRongCloudModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGRongCloudModel.m; sourceTree = "<group>"; };
-		35F830971F68D71200204989 /* AppDelegate+KGGJPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+KGGJPush.h"; sourceTree = "<group>"; };
-		35F830981F68D71200204989 /* AppDelegate+KGGJPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+KGGJPush.m"; sourceTree = "<group>"; };
 		35FD03781F5E7AD400558900 /* KGGPublishSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KGGPublishSetting.plist; sourceTree = "<group>"; };
 		35FD037A1F5E7C8100558900 /* KGGMoreSettingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGMoreSettingViewCell.h; sourceTree = "<group>"; };
 		35FD037B1F5E7C8100558900 /* KGGMoreSettingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGMoreSettingViewCell.m; sourceTree = "<group>"; };
@@ -1247,8 +1247,6 @@
 				189D21521F43E36D0004F1EB /* AppDelegate+KGGGuide.m */,
 				3543DB7F1F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.h */,
 				3543DB801F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m */,
-				35F830971F68D71200204989 /* AppDelegate+KGGJPush.h */,
-				35F830981F68D71200204989 /* AppDelegate+KGGJPush.m */,
 				3545BB831F6FD65B008122B8 /* AppDelegate+KGGUMSocial.h */,
 				3545BB841F6FD65B008122B8 /* AppDelegate+KGGUMSocial.m */,
 				189D20B31F42EAAD0004F1EB /* Assets.xcassets */,
@@ -2004,6 +2002,8 @@
 				358381801F8B12E2002A17C5 /* KGGUserObj.m */,
 				3505C7FB1F9652E60085D688 /* KGGOrderCorrectModel.h */,
 				3505C7FC1F9652E60085D688 /* KGGOrderCorrectModel.m */,
+				352366961FC56FE500C50098 /* KGGJPushManager.h */,
+				352366971FC56FE500C50098 /* KGGJPushManager.m */,
 			);
 			path = Mdoel;
 			sourceTree = "<group>";
@@ -2621,6 +2621,7 @@
 				35961B041FA727EB00A52B9E /* SNHStartRateView.m in Sources */,
 				3505C80D1F9725980085D688 /* HcdDateTimePickerView.m in Sources */,
 				35961AED1FA6CB5D00A52B9E /* TZPhotoPreviewController.m in Sources */,
+				352366981FC56FE500C50098 /* KGGJPushManager.m in Sources */,
 				3543DB7E1F5E902900BE8B93 /* NSObject+swizzle.m in Sources */,
 				189D21251F42FE170004F1EB /* SDWebImageDecoder.m in Sources */,
 				189D21281F42FE170004F1EB /* SDWebImageManager.m in Sources */,
@@ -2745,7 +2746,6 @@
 				35193F4C1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.m in Sources */,
 				189D211E1F42FE170004F1EB /* TAPageControl.m in Sources */,
 				35FF5CAB1F6A80F200E1A50B /* KGGActionSheetController.m in Sources */,
-				35F830991F68D71200204989 /* AppDelegate+KGGJPush.m in Sources */,
 				189D212B1F42FE170004F1EB /* UIImage+GIF.m in Sources */,
 				35961B0F1FA86BB000A52B9E /* KGGCenterViewCell.m in Sources */,
 				35BEB16F1F73C1F30060298A /* KGGWorkDetailsViewController.m in Sources */,

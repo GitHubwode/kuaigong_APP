@@ -27,6 +27,12 @@
 
 @implementation KGGMyWorkViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self doneRefreshMessage];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的工作";
@@ -128,7 +134,7 @@
     cell.orderDetailsLabel.textColor = UIColorHex(0x666666);
     cell.orderDetailsLabel.text = model.searchOrderDetails;
     if (self.requestType == KGGSearchOrderRequestMyDoingType) {
-        cell.statusImageView.image = [UIImage imageNamed:@"icon_load"];
+        cell.statusImageView.image = [UIImage imageNamed:@"icon_nof"];
     }else{
         cell.statusImageView.image = [UIImage imageNamed:@"icon_finash"];
     }

@@ -78,6 +78,8 @@
 @property (nonatomic,copy) NSString *acceptLongitude;
 /** 两地距离 */
 @property (nonatomic,copy) NSString *instance;
+/** 支付时间 */
+@property (nonatomic,copy) NSString *lastPayTime;
 
 //增加的参数
 @property (nonatomic, copy) NSString *orderDetails;

@@ -21,6 +21,7 @@
 @property (nonatomic, strong) KGGRouteHeaderView *headerView;
 @property (nonatomic, strong) KGGRouteFooterView *footerView;
 @property (nonatomic, strong) KGGOrderDetailsModel *orderModel;
+//@property (nonatomic, strong) KGGSearchUserModel *acceptModel;
 /** 身份类型  BOSS or WORKER */
 /**  */
 @property (nonatomic,assign) NSUInteger  identifyType;
@@ -28,7 +29,7 @@
 @end
 @implementation KGGRouteTableView
 
-- (instancetype)initWithFrame:(CGRect)frame OrderModel:(KGGOrderDetailsModel *)orderModel IdentifiyType:(NSUInteger )identifyType
+- (instancetype)initWithFrame:(CGRect)frame OrderModel:(KGGOrderDetailsModel *)orderModel IdentifiyType:(NSUInteger)identifyType
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -54,6 +55,11 @@
     [self routeHeaderView];
 }
 
+- (void)setupRequestAcceptModel:(KGGSearchUserModel *)acceptModel
+{
+    [self.headerView routeHeaderViewAvatar:acceptModel.avatarUrl Name:acceptModel.nickname Phone:acceptModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.totalAmount]];
+}
+
 #pragma mark - 创建模型
 - (void)creatMessageDatasource
 {
@@ -76,27 +82,35 @@
     model2.subTitle = self.orderModel.workStartTime;
     [self.datasource addObject:model2];
     [self.tableView reloadData];
+    
+    KGGRouteModel *model3 = [[KGGRouteModel alloc]init];
+    model3.title = @"支付时间:";
+    model3.subTitle = self.orderModel.payTime;
+    [self.datasource addObject:model3];
+    [self.tableView reloadData];
+
 }
 
 #pragma mark - 给headerView赋值
 - (void)routeHeaderView{
     if (self.identifyType == 1 ) {
-        [self setupAcceptUserMessage];
+//        [self setupAcceptUserMessage];
+//        [self.headerView routeHeaderViewAvatar:self.acceptModel.avatarUrl Name:self.acceptModel.nickname Phone:self.acceptModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.totalAmount]];
     }else{
        [self.headerView routeHeaderViewAvatar:self.orderModel.avatarUrl Name:self.orderModel.contacts Phone:self.orderModel.contactsPhone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%@",self.orderModel.differentPrice]];
     }
 }
 
-#pragma mark -网络请求 获取接单方的用户信息
-- (void)setupAcceptUserMessage
-{
-    [KGGPublishOrderRequestManager publishOrderAcceptId:self.orderModel.acceptUser completion:^(KGGResponseObj *responseObj) {
-        if (responseObj.code == KGGSuccessCode) {
-            KGGSearchUserModel *userModel = [KGGSearchUserModel mj_objectWithKeyValues:responseObj.data];
-            [self.headerView routeHeaderViewAvatar:userModel.avatarUrl Name:userModel.nickname Phone:userModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.totalAmount]];
-        }
-    } aboveView:nil inCaller:self];
-}
+//#pragma mark -网络请求 获取接单方的用户信息
+//- (void)setupAcceptUserMessage
+//{
+//    [KGGPublishOrderRequestManager publishOrderAcceptId:self.orderModel.acceptUser completion:^(KGGResponseObj *responseObj) {
+//        if (responseObj.code == KGGSuccessCode) {
+//            KGGSearchUserModel *userModel = [KGGSearchUserModel mj_objectWithKeyValues:responseObj.data];
+//            [self.headerView routeHeaderViewAvatar:userModel.avatarUrl Name:userModel.nickname Phone:userModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.totalAmount]];
+//        }
+//    } aboveView:nil inCaller:self];
+//}
 
 #pragma mark -KGGRouteHeaderViewDelegate
 - (void)routeHeaderViewButtonClickTag:(UIButton *)buttonTag
@@ -142,7 +156,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2) {
+    if (indexPath.row == 2 || indexPath.row == 3) {
         return 25.f;
     }else{
         return 50;

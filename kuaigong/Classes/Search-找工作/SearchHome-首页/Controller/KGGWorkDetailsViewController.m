@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIView *factoryView;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UILabel *payLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 
 /** 电话号码 */
 @property (nonatomic,copy) NSString *phoneCall;
@@ -123,6 +125,8 @@
     self.orderNumLabel.text = [NSString stringWithFormat:@"订单编号: %@",self.searchOrderModel.orderNo];
     self.timeLabel.text = [NSString stringWithFormat:@"接单时间: %@",self.searchOrderModel.accpetTime];
     self.phoneCall = [NSString stringWithFormat:@"tel:%@",self.searchOrderModel.contactsPhone];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%@ ¥",self.searchOrderModel.differentPrice];
+    self.payLabel.text = [NSString stringWithFormat:@"支付时间:%@",self.searchOrderModel.payTime];
 }
 
 - (IBAction)callPhoneButtonClick:(UIButton *)sender {

@@ -22,6 +22,12 @@
 
 @implementation KGGDoneOrderController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self doneRefreshMessage];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;

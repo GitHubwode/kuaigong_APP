@@ -25,7 +25,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    KGGLog(@"我的我我弟弟爱打打");
+    [self doneRefreshMessage];
 }
 
 - (void)viewDidLoad {
@@ -104,9 +104,9 @@
     KGGPublishOrderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGPublishOrderViewCell publishOrderIdentifier] forIndexPath:indexPath];
     cell.orderDetailsLabel.text = model.orderDetails;
     if (self.requestType == KGGOrderRequestMyDoingType) {
-        cell.statusImageView.image = [UIImage imageNamed:@"icon_load"];
-    }else{
         cell.statusImageView.image = [UIImage imageNamed:@"icon_nof"];
+    }else{
+        cell.statusImageView.image = [UIImage imageNamed:@"icon_load"];
     }
     return cell;
 }

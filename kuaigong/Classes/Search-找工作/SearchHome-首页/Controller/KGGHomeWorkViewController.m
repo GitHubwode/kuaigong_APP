@@ -14,6 +14,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "KGGConversionListViewController.h"
 #import "KGGPrivateMessageViewController.h"
+#import "KGGLoginViewController.h"
+#import "KGGLoginRequestManager.h"
 
 //测试接单
 #import "KGGSearchOrderController.h"
@@ -48,7 +50,31 @@
     [self kgg_hostLiveLocation];
     [self setupChildViewControllers];
     [self setUpSlideSwitchView];
+    
+    [KGGNotificationCenter addObserver:self selector:@selector(accountOfflineNotification:) name:KGGConnectionStatusOffLine object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(showBadge:) name:KGGShowAlertNotifacation object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(hidenBadge:) name:KGGHidenAlertNotifacation object:nil];
+}
 
+- (void)showBadge:(NSNotification *)noti
+{
+    self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+    
+}
+
+- (void)hidenBadge:(NSNotification *)noti
+{
+    self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+}
+
+- (void)accountOfflineNotification:(NSNotification *)noti{
+    
+    [KGGLoginRequestManager logout];
+    KGGLoginViewController *login = [[KGGLoginViewController alloc]init];
+    login.offline = 1;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:login] animated:YES completion:nil];
+    });
 }
 
 #pragma mark - 定位
@@ -127,12 +153,16 @@
 #pragma mark - 创建item
 - (void)setupNavi
 {
+    int count = [[RCIMClient sharedRCIMClient]
+                 getTotalUnreadCount];
+    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_xiaoxi" highImage:@"icon_xiaoxi2" target:self action:@selector(kgg_homeUserMessage)];
-    self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+    self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%d",count];
     self.navigationItem.rightBarButtonItem.badgeFont = KGGFont(0);
     self.navigationItem.rightBarButtonItem.badgeMinSize = 2.f;
     self.navigationItem.rightBarButtonItem.badgeOriginX = 12.f;
     self.navigationItem.rightBarButtonItem.badgeOriginY = 1.f;
+    self.navigationItem.rightBarButtonItem.shouldHideBadgeAtZero = YES;
     self.navigationItem.rightBarButtonItem.badgeBGColor = UIColorHex(0xffd200);
 }
 
@@ -153,15 +183,15 @@
 - (void)kgg_homeUserMessage
 {
     KGGLog(@"导航栏右边的按钮");
-    
-//    KGGConversionListViewController *listVC = [[KGGConversionListViewController alloc]init];
-//    [self.navigationController pushViewController:listVC animated:YES];
-    
-    KGGPrivateMessageViewController *conversationVC = [[KGGPrivateMessageViewController alloc]init];
-    conversationVC.conversationType = ConversationType_PRIVATE;
-    conversationVC.targetId = @"8";
-    conversationVC.title = @"游客5122";
-    [self.navigationController pushViewController:conversationVC animated:YES];
+    BOOL login = [KGGUserManager shareUserManager].logined;
+    if (login) {
+        KGGLog(@"已登录");
+        self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+        KGGConversionListViewController *listVC = [[KGGConversionListViewController alloc]init];
+        [self.navigationController pushViewController:listVC animated:YES];
+    }else{
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+    }
 }
 
 - (void)kgg_homelocation

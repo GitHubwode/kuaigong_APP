@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface KGGLoginViewController : UIViewController
+@property (nonatomic, assign) NSUInteger offline;
 
 @end

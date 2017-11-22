@@ -18,8 +18,10 @@
 #import "KGGCancelOrderPayView.h"
 #import "KGGOrderCorrectViewController.h"
 #import "KGGPublishOrderRequestManager.h"
+#import "KGGPrivateMessageViewController.h"
+#import "KGGSearchUserModel.h"
 
-#define  routeHeight  334
+#define  routeHeight  359
 #define  routeWidth  kMainScreenWidth-30
 #define  routeTableViewCellHeight 125
 
@@ -56,6 +58,7 @@
 @property (nonatomic, strong) BMKRouteSearch *routesearch;
 @property (nonatomic, assign) CLLocationCoordinate2D userPt;
 @property (nonatomic, strong) KGGCancelOrderPayView *payView;
+@property (nonatomic, strong) KGGSearchUserModel *acceptModel;
 
 @end
 
@@ -73,18 +76,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.planType == KGGRoutePlanningBOSSType) {
-        self.navigationItem.title = @"路线";
-
-    }else{
-        self.navigationItem.title = @"路线";
-
+        [self setupAcceptMessage];
     }
+    self.navigationItem.title = @"路线";
     self.view.backgroundColor = KGGViewBackgroundColor;
     self.fd_interactivePopDisabled = YES;//禁止右滑
     [self loadMapView];
     [self getUserLocation];
     [self searchRoute];
+   
 }
+
+#pragma mark - 获取接单者的详细信息
+- (void)setupAcceptMessage
+{
+    [KGGPublishOrderRequestManager publishOrderAcceptId:self.orderDetails.acceptUser completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            self.acceptModel = [KGGSearchUserModel mj_objectWithKeyValues:responseObj.data];
+            [self.routeTableView setupRequestAcceptModel:self.acceptModel];
+        }
+    } aboveView:nil inCaller:self];
+}
+
 
 #pragma mark -- 加载地图
 - (void)loadMapView
@@ -416,7 +429,7 @@
 - (void)routeRouteTableViewArrowButtonClick:(UIButton *)sender
 {
     if (!sender.selected) {
-        self.routeTableView.frame = CGRectMake(15, self.view.xc_height-routeHeight-10+routeTableViewCellHeight, routeWidth, routeHeight-routeTableViewCellHeight);
+        self.routeTableView.frame = CGRectMake(15, self.view.xc_height-routeHeight-10+routeTableViewCellHeight+25, routeWidth, routeHeight-routeTableViewCellHeight-25);
     }else{
         self.routeTableView.frame = CGRectMake(15, self.view.xc_height-routeHeight-10, routeWidth, routeHeight);
     }
@@ -430,6 +443,7 @@
         KGGLog(@"打电话")
     }else if (buttonTag.tag == 1002){
         KGGLog(@"聊天");
+        [self creatChatMessage];
     }else if (buttonTag.tag == 10000){
         KGGLog(@"联系我们");
         KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]init];
@@ -461,6 +475,25 @@
     }
 }
 
+#pragma mark - 创建聊天
+- (void)creatChatMessage
+{
+    NSString *userId;
+    NSString *name;
+    if (self.planType == KGGRoutePlanningWORKERType) {
+        userId = [NSString stringWithFormat:@"%lu",(unsigned long)self.orderDetails.userId];
+        name = self.orderDetails.contacts;
+    }else{
+        userId = [NSString stringWithFormat:@"%lu",(unsigned long)self.orderDetails.acceptUser];
+        name = self.acceptModel.nickname;
+    }
+    KGGPrivateMessageViewController *chatVC = [[KGGPrivateMessageViewController alloc]init];
+    chatVC.conversationType = ConversationType_PRIVATE;
+    chatVC.targetId = userId;
+    chatVC.title = name;
+    [self.navigationController pushViewController:chatVC animated:YES];
+}
+
 #pragma mark - 修改订单网络请求
 - (void)changeOrderMessageRequest
 {
@@ -479,14 +512,16 @@
 {
     if (self.planType == KGGRoutePlanningBOSSType) {
         KGGLog(@"发布者支付订单");
+//        button.enabled = NO;
         KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
         sheetVC.moneyString = [NSString stringWithFormat:@"工资: ¥%.2f",self.orderDetails.totalAmount];
         sheetVC.itemId = self.orderDetails.orderNo;
         sheetVC.tradeType = @"ORDER";
-        //    __weak typeof(self) weakSelf = self;
         sheetVC.callPaySuccessBlock = ^(NSString *code){
             if ([code isEqualToString:@"200"]) {
                 KGGLog(@"付费成功");
+                button.enabled = NO;
+                [button setTitle:@"支付成功" forState:UIControlStateNormal];
                 if (self.callCancelOrderBlock) {
                     self.callCancelOrderBlock(@"200");
                 }

@@ -28,6 +28,7 @@
 #import "KGGCollectMessageController.h"
 #import "KGGShareMessageViewController.h"
 #import "KGGLocationHelper.h"
+#import "KGGLoginRequestManager.h"
 //聊天列表和单聊
 #import "KGGConversionListViewController.h"
 #import "KGGPrivateMessageViewController.h"
@@ -85,6 +86,10 @@ static CGFloat const topHeight = 37.f;
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(kggPeopleNumChange:) name:KGGInputCarNumNotifacation object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(accountOfflineNotification:) name:KGGConnectionStatusOffLine object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(showBadge:) name:KGGShowAlertNotifacation object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(hidenBadge:) name:KGGHidenAlertNotifacation object:nil];
+    
     [self kgg_addButton];
     
     KGGLeftTableController *leftView = [[KGGLeftTableController alloc]initWithFrame:CGRectMake(0, 0, KGGAdaptedWidth(kMainScreenWidth*0.68), kMainScreenHeight)];
@@ -92,6 +97,26 @@ static CGFloat const topHeight = 37.f;
     leftView.customDelegate = self;
     self.menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:leftView isShowCoverView:YES];
 }
+
+- (void)accountOfflineNotification:(NSNotification *)noti
+{
+    [KGGLoginRequestManager logout];
+    KGGLoginViewController *login = [[KGGLoginViewController alloc]init];
+    login.offline = 1;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:login] animated:YES completion:nil];
+    });
+}
+- (void)showBadge:(NSNotification *)noti
+{
+    self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+}
+
+- (void)hidenBadge:(NSNotification *)noti
+{
+    self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+}
+
 
 #pragma mark - 获取用户的地址
 - (void)setupUserAddress
@@ -325,14 +350,9 @@ static CGFloat const topHeight = 37.f;
     BOOL login = [KGGUserManager shareUserManager].logined;
     if (login) {
         KGGLog(@"已登录");
-//        KGGConversionListViewController *listVC = [[KGGConversionListViewController alloc]init];
-//        [self.navigationController pushViewController:listVC animated:YES];
-        
-        KGGPrivateMessageViewController *conversationVC = [[KGGPrivateMessageViewController alloc]init];
-        conversationVC.conversationType = ConversationType_PRIVATE;
-        conversationVC.targetId = @"8";
-        conversationVC.title = @"游客001";
-        [self.navigationController pushViewController:conversationVC animated:YES];
+        self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+        KGGConversionListViewController *listVC = [[KGGConversionListViewController alloc]init];
+        [self.navigationController pushViewController:listVC animated:YES];
         
     }else{
         [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
@@ -446,12 +466,16 @@ static CGFloat const topHeight = 37.f;
 #pragma mark - 创建item
 - (void)setupNavi
 {
+    int count = [[RCIMClient sharedRCIMClient]
+                 getTotalUnreadCount];
+    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_xiaoxi" highImage:@"icon_xiaoxi2" target:self action:@selector(kgg_homeUserMessage)];
-    self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+    self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%d",count];
     self.navigationItem.rightBarButtonItem.badgeFont = KGGFont(0);
     self.navigationItem.rightBarButtonItem.badgeMinSize = 2.f;
     self.navigationItem.rightBarButtonItem.badgeOriginX = 12.f;
     self.navigationItem.rightBarButtonItem.badgeOriginY = 1.f;
+    self.navigationItem.rightBarButtonItem.shouldHideBadgeAtZero = YES;
     self.navigationItem.rightBarButtonItem.badgeBGColor = UIColorHex(0xffd200);
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_wode" highImage:@"icon_wode2" target:self action:@selector(kgg_homeMessage)];
 }

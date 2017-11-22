@@ -22,6 +22,7 @@
 @property (nonatomic, strong) KGGLoginView *loginView1;
 @property (nonatomic, strong) KGGLoginView *loginView2;
 @property (nonatomic, strong) UIButton *loginButton;
+@property (nonatomic, strong) UIButton *jumpButton;
 @property (nonatomic, strong) QLPreviewController *qlpreviewController;
 
 
@@ -34,6 +35,18 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=YES;
     self.tabBarController.tabBar.hidden = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    
+    if (1 == _offline) {
+        self.jumpButton.hidden = YES;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"你的账号已在另一台设备上登录，如果这不是你的操作，你的密码可能已经泄露。可以修改密码。" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)viewDidLoad {
@@ -88,6 +101,7 @@
     [self.view addSubview:label];
     
     UIButton *jumpButton = [[UIButton alloc]init];
+    self.jumpButton = jumpButton;
     [jumpButton setTitle:@"跳过" forState:UIControlStateNormal];
     [jumpButton addTarget:self action:@selector(kgg_dissmissViewController) forControlEvents:UIControlEventTouchUpInside];
     [jumpButton setTitleColor:UIColorHex(0x737373) forState:UIControlStateNormal];

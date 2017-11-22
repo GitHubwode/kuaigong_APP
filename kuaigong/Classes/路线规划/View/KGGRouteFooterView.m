@@ -28,14 +28,6 @@
     }
     return self;
 }
-//- (instancetype)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        [self creatFooterViewUI];
-//    }
-//    return self;
-//}
 
 - (void)creatFooterViewUIType:(NSUInteger )type
 {
@@ -142,7 +134,7 @@
         _sureButton.layer.masksToBounds = YES;
         _sureButton.layer.cornerRadius = 5.f;
         _sureButton.titleLabel.font = KGGFont(12);
-        [_sureButton setTitle:@"确认出工" forState:UIControlStateNormal];
+        [_sureButton setTitle:@"确认干活" forState:UIControlStateNormal];
         [_sureButton setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
         [_sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }

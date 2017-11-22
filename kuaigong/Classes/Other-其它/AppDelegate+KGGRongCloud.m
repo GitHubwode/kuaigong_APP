@@ -10,42 +10,35 @@
 #import "KGGRongCloudModel.h"
 #import <RongIMKit/RongIMKit.h>
 
+@interface AppDelegate()<RCIMReceiveMessageDelegate, RCIMConnectionStatusDelegate>
+
+
+@end
+
 @implementation AppDelegate (KGGRongCloud)
 
 - (void)setUpRongCloud{
     
     [KGGRongCloudModel kgg_initRongCloudAppkey];
     [KGGRongCloudModel kgg_initRongCloudLogin];
-    
-    [KGGNotificationCenter addObserver:self selector:@selector(accountOfflineNotification:) name:KGGConnectionStatusOffLine object:nil];
-    // 连接融云的通知
-    [KGGNotificationCenter addObserver:self selector:@selector(updateBadgeValueForTabBarItem) name:KGGConnectRongCloudSuccess object:nil];
-    // 退出登录的通知
-    [KGGNotificationCenter addObserver:self selector:@selector(logoutNoti) name:KGGUserLogoutNotifacation object:nil];
+    [[RCIM sharedRCIM] setReceiveMessageDelegate:self];
+    [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
 }
 
-- (void)accountOfflineNotification:(NSNotification *)noti{
-    
-//    [SNHLoginRequestManager logout];
-//    
-//    NSString *obj = noti.object;
-//    
-//    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-//    UINavigationController *nav = (UINavigationController *)tabBarController.selectedViewController;
-//    
-//    [nav popToRootViewControllerAnimated:YES];
-//    
-//    UIViewController *currentVC = nav.visibleViewController;
-//    SNHLoginViewController *login = [[SNHLoginViewController alloc]init];
-//    if (obj.length) {
-//        login.offline = 2;
-//    }else{
-//        login.offline = 1;
-//    }
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [currentVC presentViewController:[[SNHNavigationController alloc]initWithRootViewController:login] animated:YES completion:nil];
-//    });
-    
+- (void)onRCIMReceiveMessage:(RCMessage *)message
+                        left:(int)left
+{
+    // 收到消息的通知
+//    [KGGNotificationCenter postNotificationName:KGGRongYunReceiedNotifacation object:nil userInfo:nil];
+    [self updateBadgeValueForTabBarItem];
+    KGGLog(@"融云接收到消息通知");
+}
+
+- (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status
+{
+    if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
+        [KGGNotificationCenter postNotificationName:KGGConnectionStatusOffLine object:nil userInfo:nil];
+    }
 }
 
 - (void)updateBadgeValueForTabBarItem {
@@ -54,9 +47,9 @@
         int count = [[RCIMClient sharedRCIMClient]
                      getTotalUnreadCount];
         if (count > 0) {
-            [KGGNotificationCenter postNotificationName:KGGShowAlertNotifacation object:@"1"];
+            [KGGNotificationCenter postNotificationName:KGGShowAlertNotifacation object:nil];
         } else {
-            [KGGNotificationCenter postNotificationName:KGGHidenAlertNotifacation object:@"1"];
+            [KGGNotificationCenter postNotificationName:KGGHidenAlertNotifacation object:nil];
         }
     });
 }
