@@ -30,4 +30,9 @@
 //处理推送信息
 - (void)cdm_handleRemoteNotification:(NSDictionary *)remoteInfo;
 
+//注册别名
+- (void)cmd_registerAliasPhone:(NSString *)phone;
+//注册标签
+- (void)cmd_registerTags:(NSSet *)tags;
+
 @end

@@ -28,6 +28,13 @@
 
 @implementation KGGSearchOrderController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGSearchOrderController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGSearchOrderController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
@@ -121,8 +128,8 @@
     routeVC.orderDetails = self.orderDetails;
     routeVC.planType = KGGRoutePlanningWORKERType;
 //    routeVC.callCancelOrderBlock = ^(NSString *code) {
-////        [self ]
-////    }
+//        [self ]
+//    }
     [self.navigationController pushViewController:routeVC animated:YES];
     
 }

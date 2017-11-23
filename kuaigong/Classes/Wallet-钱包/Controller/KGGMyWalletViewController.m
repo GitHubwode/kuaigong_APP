@@ -23,6 +23,15 @@
     [super viewDidLoad];
     self.navigationItem.title = @"我的钱包";
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGMyWalletViewController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGMyWalletViewController"];
+}
+
+
 - (IBAction)tiXianToBankCardClick:(UIButton *)sender {
     KGGLog(@"提现到银行卡");
     KGGAddBankCarController *addVC = [[KGGAddBankCarController alloc]initWithNibName:NSStringFromClass([KGGAddBankCarController class]) bundle:[NSBundle mainBundle]];

@@ -27,6 +27,7 @@
 #import "UIView+ErrorView.h"
 #import "KGGLocationHelper.h"
 #import "KGGRongCloudModel.h"
+#import "JANALYTICSService.h"
 
 #import "UIColor+KGGExtension.h"
 #import "NSString+KGGExtension.h"

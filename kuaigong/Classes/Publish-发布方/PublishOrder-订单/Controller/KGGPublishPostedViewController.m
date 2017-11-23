@@ -28,6 +28,13 @@
 
 @implementation KGGPublishPostedViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGPublishPostedViewController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGPublishPostedViewController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"派单中";

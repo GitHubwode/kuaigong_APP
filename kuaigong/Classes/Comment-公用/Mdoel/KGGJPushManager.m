@@ -9,6 +9,7 @@
 #import "KGGJPushManager.h"
 #import "JPUSHService.h"
 #import <RongIMKit/RongIMKit.h>
+#import "JANALYTICSService.h"
 
 // iOS10注册APNs所需头文件
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
@@ -38,6 +39,12 @@
            apsForProduction:(BOOL)isProduction
       advertisingIdentifier:(NSString *)advertisingId
 {
+    
+    JANALYTICSLaunchConfig *config = [[JANALYTICSLaunchConfig alloc]init];
+    config.appKey = appKey;
+    config.channel = channel;
+    [JANALYTICSService setupWithConfig:config];
+    [JANALYTICSService crashLogON];
     
     if([[UIDevice currentDevice].systemVersion floatValue] >= 10.0){
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
@@ -104,6 +111,7 @@
 - (void)cdm_handleRemoteNotification:(NSDictionary *)remoteInfo
 {
     [JPUSHService handleRemoteNotification:remoteInfo];
+    KGGLog(@"%@",remoteInfo);
     [self cdm_setBadge:0];
 }
 
@@ -117,7 +125,6 @@
         [self cdm_handleRemoteNotification:userInfo];
     }
     completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
-    
 }
 
 // iOS 10 Support
@@ -129,6 +136,27 @@
         [self cdm_handleRemoteNotification:userInfo];
     }
     completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound);  // 系统要求执行这个方法
+}
+
+//注册别名
+- (void)cmd_registerAliasPhone:(NSString *)phone
+{
+    [JPUSHService setAlias:phone completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        if (iResCode == 0) {
+            KGGLog(@"设置别名%ld %@",(long)iResCode,iAlias);
+        }
+        
+    } seq:200];
+}
+
+//注册标签
+- (void)cmd_registerTags:(NSSet *)tags
+{
+    [JPUSHService setTags:tags completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+        if (iResCode == 0) {
+            KGGLog(@"设置别名%ld %@",(long)iResCode,iTags);
+        }
+    } seq:200];
 }
 
 @end

@@ -29,7 +29,6 @@
                         left:(int)left
 {
     // 收到消息的通知
-//    [KGGNotificationCenter postNotificationName:KGGRongYunReceiedNotifacation object:nil userInfo:nil];
     [self updateBadgeValueForTabBarItem];
     KGGLog(@"融云接收到消息通知");
 }

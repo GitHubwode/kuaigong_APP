@@ -28,6 +28,13 @@
     [self doneRefreshMessage];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGDoneOrderController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGDoneOrderController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;

@@ -22,7 +22,7 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     dic[@"orderNo"] = orderId;
     dic[@"tradeType"] = tradeType;
-    dic[@"payChannel"] = @"WEIXIN";
+    dic[@"payChannel"] = payChannel;
     [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
         if (!responseObj){
             

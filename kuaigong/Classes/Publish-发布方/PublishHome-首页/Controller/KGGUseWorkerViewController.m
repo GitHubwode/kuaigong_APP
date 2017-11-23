@@ -49,6 +49,14 @@
 
 @implementation KGGUseWorkerViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGUseWorkerViewController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGUseWorkerViewController"];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
@@ -97,7 +105,7 @@
             self.peopleNum = publishModel.subtitle;
         }else if ([publishModel.title isEqualToString:@"用工天数"]){
             self.daysNum = publishModel.subtitle;
-        }else if([publishModel.title isEqualToString:@"价格/天"]){
+        }else if([publishModel.title isEqualToString:@"底价/天"]){
             self.peoplePrice = publishModel.subtitle;
         }
     }
@@ -244,7 +252,6 @@
 - (void)snh_sureMessageButtonClick:(UIButton *)sender
 {
     KGGLog(@"确认发布");
-    
     BOOL isVIP = [KGGUserManager shareUserManager].currentUser.hasVIP;
     NSUInteger vipEndTime = [[KGGUserManager shareUserManager].currentUser.vipEndTime integerValue];
     NSUInteger nowTime = [[NSString publishSetUpNowTime] integerValue];

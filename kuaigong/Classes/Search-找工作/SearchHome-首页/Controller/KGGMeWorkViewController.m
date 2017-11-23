@@ -29,6 +29,13 @@
 
 @implementation KGGMeWorkViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGMeWorkViewController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGMeWorkViewController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableHeaderView = self.headerView;

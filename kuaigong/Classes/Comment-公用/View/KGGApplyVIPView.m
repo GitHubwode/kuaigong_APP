@@ -42,6 +42,13 @@
     return applyView;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGApplyVIPView"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGApplyVIPView"];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -243,8 +250,7 @@
 #pragma mark - ButtonClick
 - (void)kgg_nowReButtonClick:(UIButton *)sender
 {
-    KGGLog(@"立即充值");
-    
+    KGGLog(@"立即充值");    
     [self dismissSheetView];
     if (self.apply_Button) {
         self.apply_Button(self.moneyString);

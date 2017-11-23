@@ -16,6 +16,13 @@
 
 @implementation KGGShareMessageViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGShareMessageViewController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGShareMessageViewController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.view.backgroundColor = [UIColor colorWithRed:204 green:204 blue:204 alpha:10];

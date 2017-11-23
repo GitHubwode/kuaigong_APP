@@ -26,6 +26,13 @@
     [self setUpSlideSwitchView];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGMyWorkBaseViewController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGMyWorkBaseViewController"];
+}
+
 - (void)setupChildViewControllers
 {
     KGGMyWorkViewController *workingVC = [[KGGMyWorkViewController alloc]init];

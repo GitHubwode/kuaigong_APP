@@ -15,6 +15,14 @@
 
 @implementation KGGConversionListViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGConversionListViewController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGConversionListViewController"];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"信息中心";
@@ -22,7 +30,7 @@
     self.conversationListTableView.backgroundColor = KGGViewBackgroundColor;
     self.conversationListTableView.tableFooterView = [UIView new];
     self.emptyConversationView = [UIView new];
-    
+    [self refreshConversationTableViewIfNeeded];
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE)]];
     //设置需要将那些类型的会话在会话列表中聚合显示
 //    [self setCollectionConversationType:@[@(ConversationType_PRIVATE)]];

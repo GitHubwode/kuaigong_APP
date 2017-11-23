@@ -13,6 +13,7 @@
 #import "TZImageManager.h"
 #import "KGGLoginRequestManager.h"
 #import "KGGPersonNameEditController.h"
+#import <RongIMKit/RongIMKit.h>
 
 
 @interface KGGPersonalMessageController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,KGGSexChangeViewCellDelegate>
@@ -103,6 +104,7 @@
         KGGPersonNameEditController *deitVC = [[KGGPersonNameEditController alloc]initWithInfoItem:model currentUser:nil];
         deitVC.completionHandler = ^(){
             [self userMessage];
+            [self changeUserMessage];
             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             if (self.editInfoSuccessBlock) {
                 self.editInfoSuccessBlock();
@@ -220,13 +222,23 @@
         if (responseObj.code == KGGSuccessCode) {
             KGGLog(@"%@",responseObj);
             [self userMessage];
+            [self changeUserMessage];
             [self.perTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
             if (self.editInfoSuccessBlock) {
                 self.editInfoSuccessBlock();
             }
         }
     } aboveView:self.view inCaller:self];
-    
+}
+
+#pragma mark - 更新用户的头像和昵称
+- (void)changeUserMessage
+{
+    RCUserInfo *userInfo = [[RCUserInfo alloc]init];
+    userInfo.name = [KGGUserManager shareUserManager].currentUser.nickname;
+    userInfo.userId = [KGGUserManager shareUserManager].currentUser.userId;
+    userInfo.portraitUri = [KGGUserManager shareUserManager].currentUser.avatarUrl;
+    [[RCIM sharedRCIM] refreshUserInfoCache:userInfo withUserId:userInfo.userId];
 }
 
 

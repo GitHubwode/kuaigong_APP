@@ -38,7 +38,7 @@ static NSString *KGGSearchOrderView = @"KGGSearchOrderViewCell";
     _orderDetails = orderDetails;
     self.timeTitleLabel.text = orderDetails.workStartTime;
     self.addressLabel.text = orderDetails.address;
-    self.detailsLabel.text = orderDetails.searchOrderDetails;
+    self.detailsLabel.text = [NSString stringWithFormat:@"%@\n总价:%@元",orderDetails.searchOrderDetails,orderDetails.differentPrice];
     self.ramarkLabel.text = [NSString stringWithFormat:@"%@\n支付时间:%@",orderDetails.remark,orderDetails.payTime];
     
     if (!self.orderDetails.imageArray) {

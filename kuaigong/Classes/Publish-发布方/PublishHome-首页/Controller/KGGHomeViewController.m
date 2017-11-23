@@ -69,6 +69,12 @@ static CGFloat const topHeight = 37.f;
     self.tabBarController.tabBar.hidden = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGHomeViewController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGHomeViewController"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -271,7 +277,7 @@ static CGFloat const topHeight = 37.f;
     if (sender.tag == 1000) {
         BOOL isJump = NO;
         for ( KGGHomePublishModel *publishModel in self.datasource) {
-            if (![publishModel.title isEqualToString:@"价格/天"]) {
+            if (![publishModel.title isEqualToString:@"底价/天"]) {
                 if (publishModel.subtitle.length==0 || publishModel.subtitle == nil || [publishModel.subtitle isEqualToString:@"0"]){
                     [self.view showHint:@"用工信息不能为空"];
                     isJump = NO;
@@ -468,7 +474,7 @@ static CGFloat const topHeight = 37.f;
 {
     int count = [[RCIMClient sharedRCIMClient]
                  getTotalUnreadCount];
-    
+    count = count > 0 ? count : 0;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_xiaoxi" highImage:@"icon_xiaoxi2" target:self action:@selector(kgg_homeUserMessage)];
     self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%d",count];
     self.navigationItem.rightBarButtonItem.badgeFont = KGGFont(0);

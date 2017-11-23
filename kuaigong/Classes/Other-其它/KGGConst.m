@@ -48,7 +48,6 @@ NSString *const KGGRongYunReceiedNotifacation = @"KGGRongYunReceiedNotifacation"
 NSString * const KGGShowAlertNotifacation = @"KGGShowAlertNotifacation";
 /** 隐藏红点的通知 */
 NSString * const KGGHidenAlertNotifacation = @"KGGHidenAlertNotifacation";
-
 /** 手机号码最大长度 */
 NSUInteger const KGGCellphoneMaxLength = 11;
 /** 验证码最大长度 */
@@ -114,12 +113,12 @@ NSString *const KGGWeiXinPayURLScheme = @"wx8dd9d756d12032a3";
 //微信Secret
 NSString *const KGGWeiXinAppSecret = @"da1f19a8e4a507845dbb7dd441ccdef2";
 //支付宝
-NSString *const KGGAliPayURLScheme = @"";
+NSString *const KGGAliPayURLScheme = @"sn2088821472320245";
 //友盟
 NSString *const KGGUMSocialAppKey = @"582199e0b27b0a5d6c001e64";
 
 //支付宝
-NSString *const SNHPayBlackNotification = @"payBackInformation";
+NSString *const KGGPayBlackNotification = @"payBackInformation";
 //微信
 NSString *const SNHPayWeiXinNotification = @"weixinInfomation";
 //支付成功

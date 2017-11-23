@@ -28,6 +28,13 @@
     [self doneRefreshMessage];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGUndoneOrderController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGUndoneOrderController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
@@ -116,23 +123,12 @@
     KGGOrderDetailsModel *model = self.datasource[indexPath.row];
     
     if (self.requestType == KGGOrderRequestNotCompleteType) {
-//        KGGPublishPayViewController *payVC = [[KGGPublishPayViewController alloc]initWithNibName:NSStringFromClass([KGGPublishPayViewController class]) bundle:[NSBundle mainBundle]];
-//        payVC.requestType = self.requestType;
-//        payVC.detailsModel = model;
-//        payVC.backBlock = ^{
-//            [self doneRefreshMessage];
-//        };
-//        [self.navigationController pushViewController:payVC animated:YES];
-        
         KGGPublishPostedViewController *postVC = [[KGGPublishPostedViewController alloc]init];
         postVC.detailsModel = model;
         postVC.backBlock = ^{
             [self doneRefreshMessage];
         };
         [self.navigationController pushViewController:postVC animated:YES];
-        
-        
-        
         
     }else{
         KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];

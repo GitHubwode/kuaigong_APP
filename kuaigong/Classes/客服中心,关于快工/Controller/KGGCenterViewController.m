@@ -38,10 +38,7 @@
     model.title = @"";
     model.subTitle = @"";
     [self.datasource addObject:model];
-    
-    
-    
-    
+
 }
 
 - (void)reatViewFootView

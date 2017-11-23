@@ -14,17 +14,10 @@
 #import "AppDelegate+KGGRongCloud.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 #import "WXApi.h"
+#import <AlipaySDK/AlipaySDK.h>
 #import <RongIMKit/RongIMKit.h>
 #import "KGGJPushManager.h"
 
-////测试极光推送
-//// 引入JPush功能所需头文件
-//#import "JPUSHService.h"
-//// iOS10注册APNs所需头文件
-//#ifdef NSFoundationVersionNumber_iOS_9_x_Max
-//#import <UserNotifications/UserNotifications.h>
-//#endif
-//// 如果需要使用idfa功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
 
 
@@ -74,18 +67,7 @@
         KGGLog(@"%@",registerID);
     }];
     [[KGGJPushManager shareJPushManager] cdm_setBadge:0];
-    
-//
-////     Required
-////     如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
-//    [JPUSHService setupWithOption:launchOptions appKey:KGGJPushAPPKey
-//                          channel:@"kg-channel"
-//                 apsForProduction:NO
-//            advertisingIdentifier:advertisingId];
-//
-//    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
-//        KGGLog(@"%@",registrationID);
-//    }];
+
     //链接融云
     [self setUpRongCloud];
     
@@ -211,10 +193,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     KGGLog(@"url:%@",url);
     
-//    [[AlipaySDK defaultService]processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-//        SNHLog(@"resultDic:%@",resultDic);
-//        [SNHNotificationCenter postNotificationName:SNHPayBlackNotification object:self userInfo:resultDic];
-//    }];
+    [[AlipaySDK defaultService]processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+        KGGLog(@"resultDic:%@",resultDic);
+        [KGGNotificationCenter postNotificationName:KGGPayBlackNotification object:self userInfo:resultDic];
+    }];
 }
 
 #pragma mark - 授权跳转回调结果
@@ -225,26 +207,26 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 //    }];
 //    
 //    //     授权跳转支付宝钱包进行支付，处理支付结果
-//    [[AlipaySDK defaultService] processAuth_V2Result:url standbyCallback:^(NSDictionary *resultDic) {
-//        
-//        SNHLog(@"result = %@",resultDic);
-//        
-//        SNHLog(@"%@",resultDic[@"memo"]);
-//        
-//        // 解析 auth code
-//        NSString *result = resultDic[@"result"];
-//        NSString *authCode = nil;
-//        if (result.length>0) {
-//            NSArray *resultArr = [result componentsSeparatedByString:@"&"];
-//            for (NSString *subResult in resultArr) {
-//                if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
-//                    authCode = [subResult substringFromIndex:10];
-//                    break;
-//                }
-//            }
-//        }
-//        SNHLog(@"授权结果 authCode = %@", authCode?:@"");
-//    }];
+    [[AlipaySDK defaultService] processAuth_V2Result:url standbyCallback:^(NSDictionary *resultDic) {
+        
+        KGGLog(@"result = %@",resultDic);
+        
+        KGGLog(@"%@",resultDic[@"memo"]);
+        
+        // 解析 auth code
+        NSString *result = resultDic[@"result"];
+        NSString *authCode = nil;
+        if (result.length>0) {
+            NSArray *resultArr = [result componentsSeparatedByString:@"&"];
+            for (NSString *subResult in resultArr) {
+                if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
+                    authCode = [subResult substringFromIndex:10];
+                    break;
+                }
+            }
+        }
+        KGGLog(@"授权结果 authCode = %@", authCode?:@"");
+    }];
 }
 
 @end

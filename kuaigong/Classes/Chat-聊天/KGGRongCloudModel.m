@@ -9,6 +9,8 @@
 #import "KGGRongCloudModel.h"
 #import <RongIMKit/RongIMKit.h>
 #import "KGGLoginRequestManager.h"
+#import "KGGJPushManager.h"
+
 
 @interface KGGRongCloudModel ()
 
@@ -18,21 +20,34 @@
 
 + (void)kgg_initRongCloudAppkey
 {
-        [[RCIM sharedRCIM]initWithAppKey:KGGRongCloudAppKey];
-        [RCIM sharedRCIM].disableMessageAlertSound = NO;
-        [RCIM sharedRCIM].enableTypingStatus = YES;
-        [RCIM sharedRCIM].enablePersistentUserInfoCache = YES;
-        [RCIM sharedRCIM].globalMessageAvatarStyle = RC_USER_AVATAR_CYCLE;
-        [RCIM sharedRCIM].globalConversationAvatarStyle = RC_USER_AVATAR_CYCLE;
+    [[RCIM sharedRCIM]initWithAppKey:KGGRongCloudAppKey];
+    [RCIM sharedRCIM].disableMessageAlertSound = NO;
+    [RCIM sharedRCIM].enableTypingStatus = YES;
+    [RCIM sharedRCIM].enablePersistentUserInfoCache = YES;
+    [RCIM sharedRCIM].globalMessageAvatarStyle = RC_USER_AVATAR_CYCLE;
+    [RCIM sharedRCIM].globalConversationAvatarStyle = RC_USER_AVATAR_CYCLE;
 }
 
 + (void)kgg_initRongCloudLogin
 {
+    NSString *identityString;
+    if ([KGGUserManager shareUserManager].logined) {
+        identityString = [KGGUserManager shareUserManager].currentUser.type;
+    }else{
+        identityString = @"WORKER";
+    }
+    
+    NSSet * set = [[NSSet alloc] initWithObjects:identityString, nil];
+
     [KGGLoginRequestManager setupUserRongTokencompletion:^(KGGResponseObj *responseObj) {
         
         if (!responseObj) {
             
         }else if ([responseObj.data isKindOfClass:[NSString  class]]){
+            
+            [[KGGJPushManager shareJPushManager] cmd_registerAliasPhone:[KGGUserManager shareUserManager].currentUser.phone];
+            //注册标签
+            [[KGGJPushManager shareJPushManager] cmd_registerTags:set];
             
             [[RCIMClient sharedRCIMClient]connectWithToken:responseObj.data success:^(NSString *userId) {
                 KGGLog(@"融云登录成功");

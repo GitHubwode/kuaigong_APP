@@ -82,7 +82,7 @@ extern NSString *const KGGAliPayURLScheme;
 extern NSString *const KGGUMSocialAppKey;
 
 //支付宝
-extern NSString *const SNHPayBlackNotification;
+extern NSString *const KGGPayBlackNotification;
 //微信
 extern NSString *const SNHPayWeiXinNotification;
 //支付成功

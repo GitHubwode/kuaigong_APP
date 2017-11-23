@@ -12,6 +12,7 @@
 #import "KGGPaychooseHeaderView.h"
 #import "KGGPayRequestManager.h"
 #import "WXApi.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 
 static CGFloat tableHeight = 280.f;
@@ -35,6 +36,13 @@ static CGFloat itemHeight = 61.f;
 
 @implementation KGGActionSheetController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGActionSheetController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGActionSheetController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -42,6 +50,8 @@ static CGFloat itemHeight = 61.f;
     [self kgg_datasourceMessage];
     [self kgg_choosePayViewUI];
     [KGGNotificationCenter addObserver:self selector:@selector(weixinPayResulTMessage:) name:SNHPayWeiXinNotification object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(payResultMessageDic:)name:KGGPayBlackNotification object:nil];
+
 }
 
 - (void)kgg_choosePayViewUI
@@ -99,10 +109,8 @@ static CGFloat itemHeight = 61.f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.indexPay = indexPath.row;
     self.payButton.selected = YES;
     [self.payButton setBackgroundColor:UIColorHex(0x43a437)];
-
     if (_selIndex == nil) {
         self.indexPay = indexPath.row;
     }else{
@@ -119,26 +127,38 @@ static CGFloat itemHeight = 61.f;
     KGGPaySheetViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.statusImageView.image = [UIImage imageNamed:model1.choosePressImage];
     cell.iconImageView.image = [UIImage imageNamed:model1.iconPressImage];
-    
+    self.indexPay = indexPath.row;
+    KGGLog(@"点击哪一行%ld",(long)self.indexPay);
 }
 
 - (void)kgg_imPayButtonClick:(UIButton *)sender
 {
+    
     KGGLog(@"立即支付");
     if (sender.selected == NO) {
         [self.view showHint:@"请选择支付方式"];
         return;
     }else{
-        [self.view showHint:@"跳转对应的支付页面"];
         KGGLog(@"%ld",(long)self.indexPay);
         NSString *payMode;
-        if (self.indexPay == 1) {
-            payMode = @"WEIXIN";
-        }else{
+        if (self.indexPay == 0) {
             payMode = @"ALIPAY";
+        }else{
+            payMode = @"WEIXIN";
         }
         [self setUpPayRequest:payMode];
     }
+    
+    JANALYTICSPurchaseEvent * event = [[JANALYTICSPurchaseEvent alloc] init];
+    event.success = NO;
+    event.price = [self.moneyString floatValue];
+    event.goodsName = self.tradeType;
+    event.goodsType = self.tradeType;
+    event.quantity = 1;
+    event.goodsID = self.itemId;
+    event.currency = JANALYTICSCurrencyCNY;
+    event.extra = @{@"isPublish":@(_isPublish)};
+    [JANALYTICSService eventRecord:event];
 }
 
 #pragma mark - 请求数据获取后台的签名
@@ -147,9 +167,22 @@ static CGFloat itemHeight = 61.f;
     [KGGPayRequestManager payOrderDetailsMessageOrder:self.itemId TradeType:self.tradeType PayChannel:payMode completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             KGGLog(@"%@",responseObj);
-            [self kgg_weixinPay:responseObj.data];
+            if (self.indexPay == 0) {
+                [self kgg_alipayOrder:[responseObj.data objectForKey:@"result"]];
+            }else{
+                [self kgg_weixinPay:responseObj.data];
+            }
         }
     } aboveView:self.view inCaller:self];
+}
+
+#pragma mark - 支付宝支付
+- (void)kgg_alipayOrder:(NSString *)order
+{
+    [[AlipaySDK defaultService]payOrder:order fromScheme:KGGAliPayURLScheme callback:^(NSDictionary *resultDic) {
+        
+        KGGLog(@"%@",[resultDic class]);
+    }];
 }
 
 #pragma mark - 微信支付
@@ -190,18 +223,38 @@ static CGFloat itemHeight = 61.f;
     }
 }
 
+#pragma mark - 支付成功的回调
+- (void)payResultMessageDic:(NSNotification *)notification
+{
+    NSDictionary *dic = notification.userInfo;
+    KGGLog(@"%@",dic);
+    NSInteger status = [dic[@"resultStatus"] intValue];
+    if (status == 9000) {
+        [self.view showHint:@"支付成功"];
+        NSString *code = @"200";
+        [KGGNotificationCenter postNotificationName:SNHPaySuccessNotification object:self userInfo:dic];
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.callPaySuccessBlock(code);
+        }];
+    }else if(status == 4000){
+        [self.view showHint:@"支付失败"];
+    }else if(status == 6001){
+        [self.view showHint:@"用户取消支付"];
+    }
+}
+
 
 
 #pragma mark - 创建数据类型
 - (void)kgg_datasourceMessage
 {
-//    KGGPayChooseModel *model1 = [[KGGPayChooseModel alloc]init];
-//    model1.iconImage = @"icon_zfb_h";
-//    model1.iconPressImage = @"con_zfb";
-//    model1.title = @"支付宝支付";
-//    model1.chooseImage = @"icon_c_h";
-//    model1.choosePressImage = @"icon_c";
-//    [self.datasource addObject:model1];
+    KGGPayChooseModel *model1 = [[KGGPayChooseModel alloc]init];
+    model1.iconImage = @"icon_zfb_h";
+    model1.iconPressImage = @"con_zfb";
+    model1.title = @"支付宝支付";
+    model1.chooseImage = @"icon_c_h";
+    model1.choosePressImage = @"icon_c";
+    [self.datasource addObject:model1];
     
     KGGPayChooseModel *model2 = [[KGGPayChooseModel alloc]init];
     model2.iconImage = @"icon_wx_h";

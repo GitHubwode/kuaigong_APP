@@ -250,6 +250,11 @@
 {
     KGGLog(@"登录按钮");
     
+    JANALYTICSLoginEvent * event = [[JANALYTICSLoginEvent alloc] init];
+    event.success = YES;
+    event.method = @"loginType";
+    [JANALYTICSService eventRecord:event];
+    
     NSString *cellphone = self.loginView1.loginTextField.text;
     if (!cellphone.length){
         [MBProgressHUD showMessag:@"请填写手机号码"];
@@ -293,6 +298,12 @@
 
 - (void)kgg_userRegistrationButton
 {
+    
+    JANALYTICSRegisterEvent * event = [[JANALYTICSRegisterEvent alloc] init];
+    event.success = YES;
+    event.method = @"registerType";
+    [JANALYTICSService eventRecord:event];
+    
     KGGLog(@"注册按钮");
     [self presentViewController:[[KGGNavigationController alloc] initWithRootViewController:[[KGGRegisterViewController alloc]init] ] animated:YES completion:nil];
 }

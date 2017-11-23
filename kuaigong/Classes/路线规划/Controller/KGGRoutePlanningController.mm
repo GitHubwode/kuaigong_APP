@@ -73,6 +73,13 @@
     _routesearch.delegate = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [JANALYTICSService startLogPageView:@"KGGRoutePlanningController"];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [JANALYTICSService stopLogPageView:@"KGGRoutePlanningController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.planType == KGGRoutePlanningBOSSType) {
