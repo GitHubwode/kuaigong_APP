@@ -141,7 +141,7 @@
 		35193F4D1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35193F4B1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.xib */; };
 		35193F501FBC1E0F005D9E1A /* KGGPostedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35193F4F1FBC1E0F005D9E1A /* KGGPostedModel.m */; };
 		3523668A1FC2809600C50098 /* cancelOrder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 352366881FC2809600C50098 /* cancelOrder.mp3 */; };
-		3523668B1FC2809600C50098 /* Order.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 352366891FC2809600C50098 /* Order.mp3 */; };
+		3523668B1FC2809600C50098 /* order.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 352366891FC2809600C50098 /* order.mp3 */; };
 		3523668F1FC29F1A00C50098 /* KGGPrivateMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3523668E1FC29F1A00C50098 /* KGGPrivateMessageViewController.m */; };
 		352366921FC2A9BD00C50098 /* KGGConversionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352366901FC2A9BD00C50098 /* KGGConversionListViewController.m */; };
 		352366951FC2B5C800C50098 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 352366931FC2B5C800C50098 /* UIBarButtonItem+Badge.m */; };
@@ -596,7 +596,7 @@
 		35193F4E1FBC1E0F005D9E1A /* KGGPostedModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPostedModel.h; sourceTree = "<group>"; };
 		35193F4F1FBC1E0F005D9E1A /* KGGPostedModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPostedModel.m; sourceTree = "<group>"; };
 		352366881FC2809600C50098 /* cancelOrder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cancelOrder.mp3; sourceTree = "<group>"; };
-		352366891FC2809600C50098 /* Order.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Order.mp3; sourceTree = "<group>"; };
+		352366891FC2809600C50098 /* order.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = order.mp3; sourceTree = "<group>"; };
 		3523668D1FC29F1A00C50098 /* KGGPrivateMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPrivateMessageViewController.h; sourceTree = "<group>"; };
 		3523668E1FC29F1A00C50098 /* KGGPrivateMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPrivateMessageViewController.m; sourceTree = "<group>"; };
 		352366901FC2A9BD00C50098 /* KGGConversionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGConversionListViewController.m; sourceTree = "<group>"; };
@@ -1279,7 +1279,7 @@
 				35FD03781F5E7AD400558900 /* KGGPublishSetting.plist */,
 				359777F81FAC3DFE00336F60 /* KGCreatUserMessage.plist */,
 				352366881FC2809600C50098 /* cancelOrder.mp3 */,
-				352366891FC2809600C50098 /* Order.mp3 */,
+				352366891FC2809600C50098 /* order.mp3 */,
 				35CF65E21FBD370900B80BEA /* 用户协议.doc */,
 			);
 			path = "Other-其它";
@@ -2486,7 +2486,7 @@
 				18F5BA6F1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib in Resources */,
 				35412CBF1FBD8B8F004A233E /* banner9.jpg in Resources */,
 				35F73AAB1F78AE9F000CD1D6 /* KGGSearchOrderViewCell.xib in Resources */,
-				3523668B1FC2809600C50098 /* Order.mp3 in Resources */,
+				3523668B1FC2809600C50098 /* order.mp3 in Resources */,
 				35961B201FA8811500A52B9E /* KGGRegardKGViewController.xib in Resources */,
 				35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */,
 				185C87191F4D782800356ECD /* KGCreatAddress.plist in Resources */,

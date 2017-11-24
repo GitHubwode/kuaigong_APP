@@ -16,6 +16,7 @@
 @interface KGGConfirmPasswordViewController ()<KGGCompanyViewDelegate>
 @property (nonatomic, strong) KGGLoginView *loginView1;
 @property (nonatomic, strong) KGGLoginView *loginView2;
+@property (nonatomic, strong) KGGLoginView *loginView3;
 @property (nonatomic, strong) UIButton *completeButton;
 @property (nonatomic, strong) KGGCompanyView *companyView;
 @property (nonatomic, copy) NSString *companyCode;
@@ -37,7 +38,37 @@
     [self setupForDismissKeyboard];
     [self creatNaviUI];
     [self creatUI];
+    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
+}
+
+#pragma mark - 键盘显示隐藏
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    //取出键盘最后的 frame
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
+    CGFloat height = keyboardFrame.origin.y;
+    //计算控制器 view 需要移动的距离
+    CGFloat textField_maxY = -30;
+    if ([self.loginView2.loginTextField isFirstResponder] || [self.loginView3.loginTextField isFirstResponder]) {
+        CGFloat space = textField_maxY+kMainScreenHeight;
+        //得出键盘输入框的间距
+        CGFloat transformY = height- space;
+        if (transformY < 0) {
+            CGRect frame = self.view.frame;
+            frame.origin.y = transformY;
+            self.view.frame = frame;
+        }
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    //恢复到默认y为0的状态，有时候要考虑导航栏要+64
+    CGRect frame = self.view.frame;
+    frame.origin.y = 0;
+    self.view.frame = frame;
 }
 
 #pragma mark - 设计页面
@@ -68,6 +99,14 @@
     self.companyView.companyDelegate = self;
     [self.view addSubview:self.companyView];
     
+    //记录推荐人的电话号码
+    self.loginView3 = [[KGGLoginView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220+44+32+44+32+44+32), kMainScreenWidth, 44) WithTitle:@"邀 请 码:" imageString:nil PlaceText:@"请输入推荐人手机号"];
+    
+    self.loginView3.isPhoneNum = YES;
+    self.loginView3.maxTextLength = KGGCellphoneMaxLength;
+    [self.view addSubview:self.loginView3];
+    
+    
     UIButton *loginButton = [[UIButton alloc]init];
     [loginButton addTarget:self action:@selector(loginButton:) forControlEvents:UIControlEventTouchUpInside];
     [loginButton setBackgroundImage:[UIImage imageNamed:@"but_kean"] forState:UIControlStateNormal];
@@ -77,7 +116,7 @@
     [self.view addSubview:loginButton];
     [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakself.view.mas_centerX);
-        make.top.equalTo(weakself.companyView.mas_bottom).offset(15);
+        make.top.equalTo(weakself.loginView3.mas_bottom).offset(15);
         make.width.equalTo(@(kMainScreenWidth-60));
         make.height.equalTo(@(KGGLoginButtonHeight));
     }];
@@ -157,14 +196,30 @@
 - (void)textFieldCompanyName:(NSString *)name
 {
     KGGLog(@"%@",name);
-//    NSArray *array = [name componentsSeparatedByString:@"-"]; //从字符A中分隔成2个元素的数组
     self.companyCode = name;
 }
-
 
 - (void)loginButton:(UIButton *)sender
 {
     KGGLog(@"完成按钮");
+    
+    NSString *phone = self.loginView3.loginTextField.text;
+    if (!phone.length) {
+        
+    }else{
+        // 1.对用户输入的手机号进行正则匹配
+        BOOL isSame = [phone isPhoneNumer];
+        // 2.对不同的匹配结果做处理
+        if (!isSame){ // 不是正规的手机号码
+            [MBProgressHUD showMessag:@"请输入正确格式的手机号码"];
+            return;
+        }
+    }
+//    if (!phone.length){
+//        [self.view showHint:@"请填写手机号码"];
+//        return;
+//    };
+
     NSString *cellphone = self.loginView1.loginTextField.text;
     if (!cellphone.length){
         [MBProgressHUD showMessag:@"请填写密码"];
@@ -191,7 +246,7 @@
     
     weakSelf(self);
     
-    KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:[NSUserDefaults objectForKey:KGGUserType] Code:self.smsCode InvitationCode:self.companyCode];
+    KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:[NSUserDefaults objectForKey:KGGUserType] Code:self.smsCode InvitationCode:self.companyCode PersonCode:self.loginView3.loginTextField.text];
     [KGGLoginRequestManager registerWithParam:param completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) {
             [MBProgressHUD showSuYaError:KGGHttpNerworkErrorTip toView:weakself.view];
@@ -210,6 +265,10 @@
 - (void)kgg_userAgreenMessage
 {
     KGGLog(@"用户协议");
+}
+- (void)dealloc{
+    [KGGNotificationCenter removeObserver:self];
+    KGGLogFunc
 }
 
 - (void)didReceiveMemoryWarning {

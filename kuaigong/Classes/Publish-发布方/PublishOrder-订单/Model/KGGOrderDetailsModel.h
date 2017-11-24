@@ -80,7 +80,8 @@
 @property (nonatomic,copy) NSString *instance;
 /** 支付时间 */
 @property (nonatomic,copy) NSString *lastPayTime;
-
+/** 接单者已结单是否出工 */
+@property (nonatomic, copy)NSString *isStart;
 //增加的参数
 @property (nonatomic, copy) NSString *orderDetails;
 //接单者的订单详情

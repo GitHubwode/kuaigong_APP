@@ -43,12 +43,20 @@ typedef NS_ENUM(NSUInteger, KGGUserStatusType) {
 
 /**
  取消订单  接单方接单取消订单 发布方接单取消订单
- @param userType 接口类型
  @param orderId 订单ID
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
 + (void)cancelOrderMessageUserOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
+/**
+ 工人方 确认出发
+ @param orderId 订单ID
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)workerSureGoOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
 
 
 @end

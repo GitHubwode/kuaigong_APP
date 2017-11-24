@@ -94,18 +94,6 @@
    
 }
 
-#pragma mark - 获取接单者的详细信息
-- (void)setupAcceptMessage
-{
-    [KGGPublishOrderRequestManager publishOrderAcceptId:self.orderDetails.acceptUser completion:^(KGGResponseObj *responseObj) {
-        if (responseObj.code == KGGSuccessCode) {
-            self.acceptModel = [KGGSearchUserModel mj_objectWithKeyValues:responseObj.data];
-            [self.routeTableView setupRequestAcceptModel:self.acceptModel];
-        }
-    } aboveView:nil inCaller:self];
-}
-
-
 #pragma mark -- 加载地图
 - (void)loadMapView
 {
@@ -513,13 +501,23 @@
     } aboveView:self.view inCaller:self];
 }
 
+#pragma mark - 获取接单者的详细信息
+- (void)setupAcceptMessage
+{
+    [KGGPublishOrderRequestManager publishOrderAcceptId:self.orderDetails.acceptUser completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            self.acceptModel = [KGGSearchUserModel mj_objectWithKeyValues:responseObj.data];
+            [self.routeTableView setupRequestAcceptModel:self.acceptModel];
+        }
+    } aboveView:nil inCaller:self];
+}
+
 
 #pragma mark - 发布者支付订单  接单者确认出工
 - (void)PublishPayOrderOrSearchSureGoButton:(UIButton *)button
 {
     if (self.planType == KGGRoutePlanningBOSSType) {
         KGGLog(@"发布者支付订单");
-//        button.enabled = NO;
         KGGActionSheetController *sheetVC = [[KGGActionSheetController alloc]init];
         sheetVC.moneyString = [NSString stringWithFormat:@"工资: ¥%.2f",self.orderDetails.totalAmount];
         sheetVC.itemId = self.orderDetails.orderNo;
@@ -537,9 +535,13 @@
         sheetVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         [self presentViewController:sheetVC animated:YES completion:nil];
     }else{
-        button.enabled = NO;
-        [button setTitle:@"已确认出工" forState:UIControlStateNormal];
         KGGLog(@"接单者确认出工");
+        [KGGSearchOrderRequestManager workerSureGoOrderId:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
+            if (responseObj.code == KGGSuccessCode) {
+                button.enabled = NO;
+                [button setTitle:@"已确认出工" forState:UIControlStateNormal];
+            }
+        } aboveView:self.view inCaller:self];
     }
 }
 

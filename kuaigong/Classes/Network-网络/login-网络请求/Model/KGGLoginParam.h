@@ -63,18 +63,21 @@
 @property (nonatomic, copy) NSString *type;//类型 boss or worker
 @property (nonatomic, copy) NSString *code;//验证码
 @property (nonatomic, copy) NSString * invitationCode; //公司名字
+@property (nonatomic, copy) NSString *personCode;//推荐人电话
 
 - (instancetype)initWithPhone:(NSString *)phone
                      password:(NSString *)password
                       Type:(NSString *)type
                          Code:(NSString *)code
-               InvitationCode:(NSString *)invitationCode;
+               InvitationCode:(NSString *)invitationCode
+                   PersonCode:(NSString *)personCode;
 
 + (instancetype)paramWithPhone:(NSString *)phone
                       password:(NSString *)password
                        Type:(NSString *)type
                           Code:(NSString *)code
-                InvitationCode:(NSString *)invitationCode;
+                InvitationCode:(NSString *)invitationCode
+                    PersonCode:(NSString *)personCode;
 
 @end
 

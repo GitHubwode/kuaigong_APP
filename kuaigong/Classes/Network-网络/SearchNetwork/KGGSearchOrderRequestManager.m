@@ -97,9 +97,30 @@
                 completionHandler(responseObj);
             }
         }
+    } aboveView:view inCaller:caller];
+}
+
+/**
+ 工人方 确认出发
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)workerSureGoOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/order/confirmStartWork");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"id"] = @(orderId);
+    [self requestWithURL:url httpMethod:GETHttpMethod params:dic progress:nil completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            [view showHint:KGGHttpNerworkErrorTip];
+            return ;
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
         
     } aboveView:view inCaller:caller];
-    
-    
 }
 @end

@@ -48,8 +48,8 @@ typedef NS_ENUM(NSUInteger, UserGender) {
 @property (nonatomic, copy) NSString *hidePhone;
 /** 是否注册用户 */
 @property (nonatomic,assign) BOOL  isRegister;
-
-
+/** 邀请人的手机号 */
+@property (nonatomic, copy) NSString *personCode;
 @end
 
 

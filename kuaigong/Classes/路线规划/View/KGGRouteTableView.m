@@ -21,7 +21,7 @@
 @property (nonatomic, strong) KGGRouteHeaderView *headerView;
 @property (nonatomic, strong) KGGRouteFooterView *footerView;
 @property (nonatomic, strong) KGGOrderDetailsModel *orderModel;
-//@property (nonatomic, strong) KGGSearchUserModel *acceptModel;
+@property (nonatomic, strong) KGGSearchUserModel *acceptModel;
 /** 身份类型  BOSS or WORKER */
 /**  */
 @property (nonatomic,assign) NSUInteger  identifyType;
@@ -46,7 +46,7 @@
     return self;
 }
 
-#pragma mark - 获取数据
+#pragma mark - 获取订单信息数据
 - (void)setupRequestOrderModel:(KGGOrderDetailsModel *)orderModel
 {
     self.orderModel = orderModel;
@@ -55,8 +55,10 @@
     [self routeHeaderView];
 }
 
+//获取接单者的用户信息
 - (void)setupRequestAcceptModel:(KGGSearchUserModel *)acceptModel
 {
+    self.acceptModel = acceptModel;
     [self.headerView routeHeaderViewAvatar:acceptModel.avatarUrl Name:acceptModel.nickname Phone:acceptModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.totalAmount]];
 }
 
@@ -93,24 +95,25 @@
 
 #pragma mark - 给headerView赋值
 - (void)routeHeaderView{
+    
+    NSString *moneyString;
+    NSString *nickName;
+    NSString *phone;
+    NSString *avatarUrl;
     if (self.identifyType == 1 ) {
-//        [self setupAcceptUserMessage];
-//        [self.headerView routeHeaderViewAvatar:self.acceptModel.avatarUrl Name:self.acceptModel.nickname Phone:self.acceptModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.totalAmount]];
+        moneyString = [NSString stringWithFormat:@"%.f",self.orderModel.totalAmount];
+        nickName = self.acceptModel.nickname;
+        phone = self.acceptModel.phone;
+        avatarUrl = self.acceptModel.avatarUrl;
     }else{
-       [self.headerView routeHeaderViewAvatar:self.orderModel.avatarUrl Name:self.orderModel.contacts Phone:self.orderModel.contactsPhone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%@",self.orderModel.differentPrice]];
+        moneyString = self.orderModel.differentPrice;
+        nickName = self.orderModel.contacts;
+        phone = self.orderModel.contactsPhone;
+        avatarUrl = self.orderModel.avatarUrl;
     }
+    [self.headerView routeHeaderViewAvatar:avatarUrl Name:nickName Phone:phone Address:self.orderModel.address TotalMoney:moneyString];
 }
 
-//#pragma mark -网络请求 获取接单方的用户信息
-//- (void)setupAcceptUserMessage
-//{
-//    [KGGPublishOrderRequestManager publishOrderAcceptId:self.orderModel.acceptUser completion:^(KGGResponseObj *responseObj) {
-//        if (responseObj.code == KGGSuccessCode) {
-//            KGGSearchUserModel *userModel = [KGGSearchUserModel mj_objectWithKeyValues:responseObj.data];
-//            [self.headerView routeHeaderViewAvatar:userModel.avatarUrl Name:userModel.nickname Phone:userModel.phone Address:self.orderModel.address TotalMoney:[NSString stringWithFormat:@"%.f",self.orderModel.totalAmount]];
-//        }
-//    } aboveView:nil inCaller:self];
-//}
 
 #pragma mark -KGGRouteHeaderViewDelegate
 - (void)routeHeaderViewButtonClickTag:(UIButton *)buttonTag
@@ -202,7 +205,7 @@
 - (KGGRouteFooterView *)footerView
 {
     if (!_footerView) {
-        _footerView = [[KGGRouteFooterView alloc]initWithFrame:CGRectMake(0, 0, self.xc_width, 103)IdentifyType:self.identifyType];
+        _footerView = [[KGGRouteFooterView alloc]initWithFrame:CGRectMake(0, 0, self.xc_width, 103)IdentifyType:self.identifyType IsSart:self.orderModel.isStart];
         _footerView.footerDelegate = self;
     }
     return _footerView;

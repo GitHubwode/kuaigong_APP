@@ -29,6 +29,7 @@
 #import "KGGShareMessageViewController.h"
 #import "KGGLocationHelper.h"
 #import "KGGLoginRequestManager.h"
+#import "AppDelegate+KGGRongCloud.h"
 //聊天列表和单聊
 #import "KGGConversionListViewController.h"
 #import "KGGPrivateMessageViewController.h"
@@ -67,6 +68,8 @@ static CGFloat const topHeight = 37.f;
 {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = YES;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app updateBadgeValueForTabBarItem];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -115,12 +118,16 @@ static CGFloat const topHeight = 37.f;
 }
 - (void)showBadge:(NSNotification *)noti
 {
-    self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+    });
 }
 
 - (void)hidenBadge:(NSNotification *)noti
 {
-    self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+    });
 }
 
 

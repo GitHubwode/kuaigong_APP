@@ -20,16 +20,16 @@
 
 @implementation KGGRouteFooterView
 
-- (instancetype)initWithFrame:(CGRect)frame IdentifyType:(NSUInteger)identifyType
+- (instancetype)initWithFrame:(CGRect)frame IdentifyType:(NSUInteger)identifyType IsSart:(NSString *)isStart
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self creatFooterViewUIType:identifyType];
+        [self creatFooterViewUIType:identifyType IsStart:isStart];
     }
     return self;
 }
 
-- (void)creatFooterViewUIType:(NSUInteger )type
+- (void)creatFooterViewUIType:(NSUInteger )type IsStart:(NSString *)isStart
 {
     weakSelf(self);
     CGFloat buttonWidth = (kMainScreenWidth-2-30)/3;
@@ -93,6 +93,11 @@
         [self.cancelButton setTitle:@"修改订单" forState:UIControlStateNormal];
         self.messageLabel.text = @"如果工作已完成,请支付工资";
         [self.sureButton setTitle:@"支付订单" forState:UIControlStateNormal];
+    }else{
+        if ([isStart isEqualToString:@"N"]) {
+            self.sureButton.enabled = NO;
+            [self.sureButton setTitle:@"已确认出工" forState:UIControlStateNormal];
+        }
     }
 }
 

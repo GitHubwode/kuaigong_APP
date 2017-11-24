@@ -56,7 +56,7 @@
 
 @implementation KGGRegisterParam
 
-- (instancetype)initWithPhone:(NSString *)phone password:(NSString *)password Type:(NSString *)type Code:(NSString *)code InvitationCode:(NSString *)invitationCode
+- (instancetype)initWithPhone:(NSString *)phone password:(NSString *)password Type:(NSString *)type Code:(NSString *)code InvitationCode:(NSString *)invitationCode PersonCode:(NSString *)personCode
 {
     self = [super init];
     if (self) {
@@ -65,13 +65,14 @@
         self.type = type;
         self.code = code;
         self.invitationCode = invitationCode;
+        self.personCode = personCode;
     }
     return self;
 }
 
-+ (instancetype)paramWithPhone:(NSString *)phone password:(NSString *)password Type:(NSString *)type Code:(NSString *)code InvitationCode:(NSString *)invitationCode
++ (instancetype)paramWithPhone:(NSString *)phone password:(NSString *)password Type:(NSString *)type Code:(NSString *)code InvitationCode:(NSString *)invitationCode PersonCode:(NSString *)personCode
 {
-    return [[self alloc]initWithPhone:phone password:password Type:type Code:code InvitationCode:invitationCode];
+    return [[self alloc]initWithPhone:phone password:password Type:type Code:code InvitationCode:invitationCode PersonCode:personCode];
 }
 
 

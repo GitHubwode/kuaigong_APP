@@ -17,6 +17,6 @@
 @interface KGGRouteFooterView : UIView
 
 @property (nonatomic, weak) id<KGGRouteFooterViewDelegate>footerDelegate;
-- (instancetype)initWithFrame:(CGRect)frame IdentifyType:(NSUInteger)identifyType;
+- (instancetype)initWithFrame:(CGRect)frame IdentifyType:(NSUInteger)identifyType IsSart:(NSString *)isStart;
 
 @end

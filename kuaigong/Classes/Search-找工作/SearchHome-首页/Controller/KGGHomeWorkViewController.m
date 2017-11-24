@@ -16,6 +16,7 @@
 #import "KGGPrivateMessageViewController.h"
 #import "KGGLoginViewController.h"
 #import "KGGLoginRequestManager.h"
+#import "AppDelegate+KGGRongCloud.h"
 
 //测试接单
 #import "KGGSearchOrderController.h"
@@ -37,6 +38,8 @@
 {
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = YES;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app updateBadgeValueForTabBarItem];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -48,7 +51,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = KGGViewBackgroundColor;
     self.navigationItem.title = @"快工";
     self.fd_interactivePopDisabled = YES;//禁止右滑
@@ -57,7 +59,6 @@
     [self kgg_hostLiveLocation];
     [self setupChildViewControllers];
     [self setUpSlideSwitchView];
-    
     [KGGNotificationCenter addObserver:self selector:@selector(accountOfflineNotification:) name:KGGConnectionStatusOffLine object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(showBadge:) name:KGGShowAlertNotifacation object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(hidenBadge:) name:KGGHidenAlertNotifacation object:nil];
@@ -65,13 +66,16 @@
 
 - (void)showBadge:(NSNotification *)noti
 {
-    self.navigationItem.rightBarButtonItem.badgeValue = @"1";
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+    });
 }
 
 - (void)hidenBadge:(NSNotification *)noti
 {
-    self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+    });
 }
 
 - (void)accountOfflineNotification:(NSNotification *)noti{

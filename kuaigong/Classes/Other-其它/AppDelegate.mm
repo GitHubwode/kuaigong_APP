@@ -56,7 +56,6 @@
     KGGLog(@"bundle id :%@",[[NSBundle mainBundle] bundleIdentifier]);
 
 //    // Optional
-//    // 获取IDFA
 //    // 如需使用IDFA功能请添加此代码并在初始化方法的advertisingIdentifier参数中填写对应值
     NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     
@@ -67,7 +66,6 @@
         KGGLog(@"%@",registerID);
     }];
     [[KGGJPushManager shareJPushManager] cdm_setBadge:0];
-
     //链接融云
     [self setUpRongCloud];
     

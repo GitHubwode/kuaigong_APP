@@ -81,7 +81,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.view endEditing:YES];
-    [KGGNotificationCenter removeObserver:self];
+//    [KGGNotificationCenter removeObserver:self];
 }
 
 - (void)dealloc{
