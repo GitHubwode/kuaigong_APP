@@ -46,7 +46,14 @@
     self.headerView.orderModel = self.detailsModel;
     [self.view addSubview:self.tableView];
     [self addDataMesssage];
+    [self PromptMessage];
 }
+
+#pragma mark - 提示信息
+- (void)PromptMessage{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提醒" message:@"浙江省发单百分之百接单,其他省份等待开放" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];}
 
 - (void)addDataMesssage
 {

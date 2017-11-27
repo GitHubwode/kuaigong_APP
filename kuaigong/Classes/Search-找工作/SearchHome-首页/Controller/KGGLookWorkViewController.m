@@ -14,8 +14,12 @@
 #import "KGGCancelOrderPayView.h"
 #import "KGGLookWorkHeaderView.h"
 #import "KGGLoginViewController.h"
+#import "KGGStationCycleScrollView.h"
+#import "KGGPostedModel.h"
 
-@interface KGGLookWorkViewController ()<UITableViewDelegate,UITableViewDataSource>
+static CGFloat kCycleScrollViewH = 50.f;
+
+@interface KGGLookWorkViewController ()<UITableViewDelegate,UITableViewDataSource,KGGStationCycleScrollViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *datasource;
@@ -23,6 +27,8 @@
 @property (nonatomic, strong) KGGLocationHelper *locationHelper;
 @property (nonatomic, strong) KGGCancelOrderPayView *payView;
 @property (nonatomic, strong) KGGLookWorkHeaderView *headerView;
+@property (nonatomic, strong) KGGStationCycleScrollView *cycleScrollView;
+@property (nonatomic, strong) NSMutableArray *messageDatasource;
 
 @end
 
@@ -41,6 +47,69 @@
     self.tableView.mj_header = [KGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(RefreshNewMessag)];
     self.tableView.mj_footer = [KGGRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(LoadAddMoreMessage)];
     [self.tableView.mj_header beginRefreshing];
+    
+    [self addDataMesssage];
+}
+
+- (void)addDataMesssage
+{
+    KGGPostedModel *model = [[KGGPostedModel alloc]init];
+    model.imageUrl = @"https://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/1as14jc2z4c8ktw009hyuh3ph5gv94f0.jpg";
+    model.name = @"李**";
+    model.phone = @"133****1243";
+    [self.messageDatasource addObject:model];
+    
+    
+    KGGPostedModel *model1 = [[KGGPostedModel alloc]init];
+    model1.imageUrl = @"https://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/1klngysvgo1doib5putajd5hpvwdeijo.jpg";
+    model1.name = @"张**";
+    model1.phone = @"136****3453";
+    [self.messageDatasource addObject:model1];
+    
+    KGGPostedModel *model2 = [[KGGPostedModel alloc]init];
+    model2.imageUrl = @"https://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/1kjvwbzcbh3n4irz1qx5igm73ozg0zi4.jpg";
+    model2.name = @"李**";
+    model2.phone = @"151****4094";
+    [self.messageDatasource addObject:model2];
+    
+    KGGPostedModel *model3 = [[KGGPostedModel alloc]init];
+    model3.imageUrl = @"https://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/1klngysvgo1doib5putajd5hpvwdeijo.jpg";
+    model3.name = @"王**";
+    model3.phone = @"152****1986";
+    [self.messageDatasource addObject:model3];
+    
+    KGGPostedModel *model4 = [[KGGPostedModel alloc]init];
+    model4.imageUrl = @"https://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/2s4zax3t0p1hehmhujc7wtv4e5xic7fa.jpg";
+    model4.name = @"刘**";
+    model4.phone = @"189****7620";
+    [self.messageDatasource addObject:model4];
+    
+    KGGPostedModel *model5 = [[KGGPostedModel alloc]init];
+    model5.imageUrl = @"https://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/369a3iq1j6r4v6716cgtkr1r0hnvhk1v.jpg";
+    model5.name = @"郑**";
+    model5.phone = @"131****0954";
+    [self.messageDatasource addObject:model5];
+    
+    KGGPostedModel *model6 = [[KGGPostedModel alloc]init];
+    model6.imageUrl = @"https://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/41i81srszo1rkburqhf3aw2y17syzaz1.jpg";
+    model6.name = @"王**";
+    model6.phone = @"150****1975";
+    [self.messageDatasource addObject:model6];
+    
+    KGGPostedModel *model7 = [[KGGPostedModel alloc]init];
+    model7.imageUrl = @"https://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/45x0g6skk5bnfbediomc9y1ldm3bp5pu.jpg";
+    model7.name = @"苗**";
+    model7.phone = @"139****0983";
+    [self.messageDatasource addObject:model7];
+    
+    KGGPostedModel *model8 = [[KGGPostedModel alloc]init];
+    model8.imageUrl = @"https://kuaigong0001.oss-cn-hangzhou.aliyuncs.com/kuaigong_help/avatar/4ci25wrlwtcdxdlt4szf0ntj8ccllxgk.jpg";
+    model8.name = @"秦**";
+    model8.phone = @"133****9740";
+    [self.messageDatasource addObject:model8];
+    
+    [self.headerView addSubview:self.cycleScrollView];
+    self.cycleScrollView.messageDatasource = self.messageDatasource;
 }
 
 #pragma mark - 请求数据
@@ -174,9 +243,24 @@
 - (KGGLookWorkHeaderView *)headerView
 {
     if (!_headerView) {
-        _headerView = [[KGGLookWorkHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 130)];
+        _headerView = [[KGGLookWorkHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 180)];
     }
     return _headerView;
+}
+
+- (KGGStationCycleScrollView *)cycleScrollView{
+    if (!_cycleScrollView) {
+        _cycleScrollView = [KGGStationCycleScrollView snh_cycleScrollViewWithFrame:CGRectMake(0, 130, kMainScreenWidth, kCycleScrollViewH) delegate:self type:StationCycleScrollViewType];
+    }
+    return _cycleScrollView;
+}
+
+- (NSMutableArray *)messageDatasource
+{
+    if (!_messageDatasource) {
+        _messageDatasource = [NSMutableArray array];
+    }
+    return _messageDatasource;
 }
 
 - (void)didReceiveMemoryWarning {

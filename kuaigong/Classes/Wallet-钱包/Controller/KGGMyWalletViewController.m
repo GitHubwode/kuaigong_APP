@@ -9,11 +9,13 @@
 #import "KGGMyWalletViewController.h"
 #import "KGGAddBankCarController.h"
 #import "KGGBillingDetailsViewController.h"
+#import "KGGWallectRequestManager.h"
 
 //测试
 #import "KGGWithdrawViewController.h"
 
 @interface KGGMyWalletViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 
 @end
 
@@ -22,6 +24,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的钱包";
+    NSString *requestType;
+    if ([[KGGUserManager shareUserManager].currentUser.type isEqualToString:@"BOSS"]) {
+        requestType = @"postContent";
+    }else{
+        requestType = @"acceptContent";
+    }
+    [self requestMessageUserType:requestType];
+}
+
+#pragma mark - 获取数据信息
+- (void)requestMessageUserType:(NSString *)userType
+{
+    [KGGWallectRequestManager myWalletOrderDetailsUserType:userType Page:1 completion:^(NSArray< KGGMyWalletOrderDetailsModel *>*response,NSString *totalMoeny) {
+        if (!response) {
+            
+        }else{
+            self.moneyLabel.text = [NSString stringWithFormat:@"%@",totalMoeny];
+        }
+    } aboveView:self.view inCaller:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -31,16 +52,13 @@
     [JANALYTICSService stopLogPageView:@"KGGMyWalletViewController"];
 }
 
-
 - (IBAction)tiXianToBankCardClick:(UIButton *)sender {
     KGGLog(@"提现到银行卡");
-    KGGAddBankCarController *addVC = [[KGGAddBankCarController alloc]initWithNibName:NSStringFromClass([KGGAddBankCarController class]) bundle:[NSBundle mainBundle]];
-    [self.navigationController pushViewController:addVC animated:YES];
+//    KGGAddBankCarController *addVC = [[KGGAddBankCarController alloc]initWithNibName:NSStringFromClass([KGGAddBankCarController class]) bundle:[NSBundle mainBundle]];
+//    [self.navigationController pushViewController:addVC animated:YES];
 
-    
-   // KGGWithdrawViewController *addVC = [[KGGWithdrawViewController alloc]initWithNibName:NSStringFromClass([KGGWithdrawViewController class]) bundle:[NSBundle mainBundle]];
-    //[self.navigationController pushViewController:addVC animated:YES];
-    
+    KGGWithdrawViewController *addVC = [[KGGWithdrawViewController alloc]initWithNibName:NSStringFromClass([KGGWithdrawViewController class]) bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 - (IBAction)billListDetailsClick:(UIButton *)sender {
     KGGLog(@"账单明细");

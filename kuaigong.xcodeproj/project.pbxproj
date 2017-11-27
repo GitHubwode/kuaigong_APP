@@ -22,8 +22,6 @@
 		185C868A1F46861A00356ECD /* KGGConfirmPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86891F46861A00356ECD /* KGGConfirmPasswordViewController.m */; };
 		185C86A91F46EADF00356ECD /* KGGLeftDrawer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 185C86A81F46EADF00356ECD /* KGGLeftDrawer.plist */; };
 		185C86BC1F4A9A5800356ECD /* SUNSlideSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86BB1F4A9A5800356ECD /* SUNSlideSwitchView.m */; };
-		185C86D11F4ABB6500356ECD /* KGGNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86CF1F4ABB6500356ECD /* KGGNewFeatureViewController.m */; };
-		185C86D21F4ABB6500356ECD /* KGGNewFeatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185C86D01F4ABB6500356ECD /* KGGNewFeatureViewController.xib */; };
 		185C86D51F4AC39000356ECD /* KGGTabBarWorkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86D41F4AC39000356ECD /* KGGTabBarWorkController.m */; };
 		185C86EE1F4BE93D00356ECD /* UITextField+KGGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86ED1F4BE93D00356ECD /* UITextField+KGGExtension.m */; };
 		185C86FC1F4C418800356ECD /* UIButton+KGGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86FB1F4C418800356ECD /* UIButton+KGGExtension.m */; };
@@ -275,8 +273,22 @@
 		35CBD3C91FA2DD74007E88AD /* KGGLookforPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3C81FA2DD73007E88AD /* KGGLookforPWDViewController.m */; };
 		35CBD3CD1FA324B4007E88AD /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3CB1FA324B4007E88AD /* MenuView.m */; };
 		35CBD3D31FA326A4007E88AD /* KGGLeftTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */; };
+		35CBD8241FCBD96A00FE1DFC /* KGGWallectRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD8231FCBD96A00FE1DFC /* KGGWallectRequestManager.m */; };
+		35CBD82A1FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD8291FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.m */; };
+		35CBD82D1FCC07A700FE1DFC /* KGGStationCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD82C1FCC07A700FE1DFC /* KGGStationCycleScrollView.m */; };
+		35CBD8311FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD82F1FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.m */; };
+		35CBD8321FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35CBD8301FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.xib */; };
 		35CF65E31FBD370A00B80BEA /* 用户协议.doc in Resources */ = {isa = PBXBuildFile; fileRef = 35CF65E21FBD370900B80BEA /* 用户协议.doc */; };
 		35CF65E61FBD736A00B80BEA /* KGGLookWorkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CF65E51FBD736A00B80BEA /* KGGLookWorkHeaderView.m */; };
+		35D7F21E1FCBAC9D0060E559 /* receive.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 35D7F21C1FCBAC9C0060E559 /* receive.mp3 */; };
+		35D7F21F1FCBAC9D0060E559 /* wage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 35D7F21D1FCBAC9C0060E559 /* wage.mp3 */; };
+		35D7F2221FCBB01A0060E559 /* KGGNewFeatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D7F2211FCBB01A0060E559 /* KGGNewFeatureCell.m */; };
+		35D7F2251FCBB93D0060E559 /* KGGNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D7F2241FCBB93D0060E559 /* KGGNewFeatureViewController.m */; };
+		35D7F22A1FCBBAC10060E559 /* guide1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35D7F2261FCBBAC00060E559 /* guide1.jpg */; };
+		35D7F22B1FCBBAC10060E559 /* guide2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35D7F2271FCBBAC00060E559 /* guide2.jpg */; };
+		35D7F22C1FCBBAC10060E559 /* guide3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35D7F2281FCBBAC00060E559 /* guide3.jpg */; };
+		35D7F22D1FCBBAC10060E559 /* guide4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35D7F2291FCBBAC10060E559 /* guide4.jpg */; };
+		35D7F22F1FCBBB2C0060E559 /* guide5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35D7F22E1FCBBB2C0060E559 /* guide5.jpg */; };
 		35DF9E321FB19AA700AAA429 /* KGGRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */; };
 		35DF9E351FB317A800AAA429 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DF9E341FB317A800AAA429 /* UIImage+Rotate.m */; };
 		35E8B6C31F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E8B6C21F8DBE5C00DCA0EB /* KGGOrderDetailsModel.m */; };
@@ -374,9 +386,6 @@
 		185C86A81F46EADF00356ECD /* KGGLeftDrawer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KGGLeftDrawer.plist; sourceTree = "<group>"; };
 		185C86BA1F4A9A5800356ECD /* SUNSlideSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUNSlideSwitchView.h; sourceTree = "<group>"; };
 		185C86BB1F4A9A5800356ECD /* SUNSlideSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUNSlideSwitchView.m; sourceTree = "<group>"; };
-		185C86CE1F4ABB6500356ECD /* KGGNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGNewFeatureViewController.h; sourceTree = "<group>"; };
-		185C86CF1F4ABB6500356ECD /* KGGNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGNewFeatureViewController.m; sourceTree = "<group>"; };
-		185C86D01F4ABB6500356ECD /* KGGNewFeatureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGNewFeatureViewController.xib; sourceTree = "<group>"; };
 		185C86D31F4AC39000356ECD /* KGGTabBarWorkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGTabBarWorkController.h; sourceTree = "<group>"; };
 		185C86D41F4AC39000356ECD /* KGGTabBarWorkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGTabBarWorkController.m; sourceTree = "<group>"; };
 		185C86EC1F4BE93D00356ECD /* UITextField+KGGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+KGGExtension.h"; sourceTree = "<group>"; };
@@ -813,9 +822,29 @@
 		35CBD3CC1FA324B4007E88AD /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
 		35CBD3D11FA326A4007E88AD /* KGGLeftTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLeftTableController.h; sourceTree = "<group>"; };
 		35CBD3D21FA326A4007E88AD /* KGGLeftTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLeftTableController.m; sourceTree = "<group>"; };
+		35CBD8221FCBD96A00FE1DFC /* KGGWallectRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGWallectRequestManager.h; sourceTree = "<group>"; };
+		35CBD8231FCBD96A00FE1DFC /* KGGWallectRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGWallectRequestManager.m; sourceTree = "<group>"; };
+		35CBD8281FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGMyWalletOrderDetailsModel.h; sourceTree = "<group>"; };
+		35CBD8291FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGMyWalletOrderDetailsModel.m; sourceTree = "<group>"; };
+		35CBD82B1FCC07A700FE1DFC /* KGGStationCycleScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGStationCycleScrollView.h; sourceTree = "<group>"; };
+		35CBD82C1FCC07A700FE1DFC /* KGGStationCycleScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGStationCycleScrollView.m; sourceTree = "<group>"; };
+		35CBD82E1FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLookWorkListCollectionCell.h; sourceTree = "<group>"; };
+		35CBD82F1FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLookWorkListCollectionCell.m; sourceTree = "<group>"; };
+		35CBD8301FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGLookWorkListCollectionCell.xib; sourceTree = "<group>"; };
 		35CF65E21FBD370900B80BEA /* 用户协议.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "用户协议.doc"; sourceTree = "<group>"; };
 		35CF65E41FBD736A00B80BEA /* KGGLookWorkHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLookWorkHeaderView.h; sourceTree = "<group>"; };
 		35CF65E51FBD736A00B80BEA /* KGGLookWorkHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLookWorkHeaderView.m; sourceTree = "<group>"; };
+		35D7F21C1FCBAC9C0060E559 /* receive.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = receive.mp3; sourceTree = "<group>"; };
+		35D7F21D1FCBAC9C0060E559 /* wage.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wage.mp3; sourceTree = "<group>"; };
+		35D7F2201FCBB01A0060E559 /* KGGNewFeatureCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGNewFeatureCell.h; sourceTree = "<group>"; };
+		35D7F2211FCBB01A0060E559 /* KGGNewFeatureCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGNewFeatureCell.m; sourceTree = "<group>"; };
+		35D7F2231FCBB93D0060E559 /* KGGNewFeatureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGNewFeatureViewController.h; sourceTree = "<group>"; };
+		35D7F2241FCBB93D0060E559 /* KGGNewFeatureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGNewFeatureViewController.m; sourceTree = "<group>"; };
+		35D7F2261FCBBAC00060E559 /* guide1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide1.jpg; sourceTree = "<group>"; };
+		35D7F2271FCBBAC00060E559 /* guide2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide2.jpg; sourceTree = "<group>"; };
+		35D7F2281FCBBAC00060E559 /* guide3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide3.jpg; sourceTree = "<group>"; };
+		35D7F2291FCBBAC10060E559 /* guide4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide4.jpg; sourceTree = "<group>"; };
+		35D7F22E1FCBBB2C0060E559 /* guide5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guide5.jpg; sourceTree = "<group>"; };
 		35DF9E301FB19AA700AAA429 /* KGGRouteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRouteModel.h; sourceTree = "<group>"; };
 		35DF9E311FB19AA700AAA429 /* KGGRouteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRouteModel.m; sourceTree = "<group>"; };
 		35DF9E331FB317A700AAA429 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
@@ -1041,6 +1070,11 @@
 		185C86761F45401000356ECD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				35D7F2261FCBBAC00060E559 /* guide1.jpg */,
+				35D7F2271FCBBAC00060E559 /* guide2.jpg */,
+				35D7F2281FCBBAC00060E559 /* guide3.jpg */,
+				35D7F2291FCBBAC10060E559 /* guide4.jpg */,
+				35D7F22E1FCBBB2C0060E559 /* guide5.jpg */,
 				35412CBE1FBD8B8F004A233E /* banner9.jpg */,
 				18F5B97B1F4EBC7800E6ADC4 /* 启动页_1.png */,
 			);
@@ -1067,9 +1101,10 @@
 		185C86CA1F4ABAD200356ECD /* 引导页 */ = {
 			isa = PBXGroup;
 			children = (
-				185C86CE1F4ABB6500356ECD /* KGGNewFeatureViewController.h */,
-				185C86CF1F4ABB6500356ECD /* KGGNewFeatureViewController.m */,
-				185C86D01F4ABB6500356ECD /* KGGNewFeatureViewController.xib */,
+				35D7F2231FCBB93D0060E559 /* KGGNewFeatureViewController.h */,
+				35D7F2241FCBB93D0060E559 /* KGGNewFeatureViewController.m */,
+				35D7F2201FCBB01A0060E559 /* KGGNewFeatureCell.h */,
+				35D7F2211FCBB01A0060E559 /* KGGNewFeatureCell.m */,
 			);
 			path = "引导页";
 			sourceTree = "<group>";
@@ -1242,6 +1277,7 @@
 		189D20E51F42EE900004F1EB /* Network-网络 */ = {
 			isa = PBXGroup;
 			children = (
+				35CBD8211FCBD94000FE1DFC /* Wallect钱包请求 */,
 				3592322A1FA9C4ED005C67EA /* PayRequest */,
 				35961AFB1FA7036A00A52B9E /* OSS-图片请求 */,
 				185C86731F4534E800356ECD /* KGGHTTPSessionManager.h */,
@@ -1280,6 +1316,8 @@
 				359777F81FAC3DFE00336F60 /* KGCreatUserMessage.plist */,
 				352366881FC2809600C50098 /* cancelOrder.mp3 */,
 				352366891FC2809600C50098 /* order.mp3 */,
+				35D7F21C1FCBAC9C0060E559 /* receive.mp3 */,
+				35D7F21D1FCBAC9C0060E559 /* wage.mp3 */,
 				35CF65E21FBD370900B80BEA /* 用户协议.doc */,
 			);
 			path = "Other-其它";
@@ -1436,6 +1474,8 @@
 				358381831F8B1622002A17C5 /* KGGUserManager.m */,
 				352687221FB43ECA002CB92C /* KGGLocationHelper.h */,
 				352687231FB43ECA002CB92C /* KGGLocationHelper.m */,
+				35CBD82B1FCC07A700FE1DFC /* KGGStationCycleScrollView.h */,
+				35CBD82C1FCC07A700FE1DFC /* KGGStationCycleScrollView.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1462,6 +1502,9 @@
 				357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */,
 				357F5E171FBA9A6C00252C4D /* KGGCancelOrderPayView.h */,
 				357F5E181FBA9A6C00252C4D /* KGGCancelOrderPayView.m */,
+				35CBD82E1FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.h */,
+				35CBD82F1FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.m */,
+				35CBD8301FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2024,6 +2067,15 @@
 			path = LeftMenu;
 			sourceTree = "<group>";
 		};
+		35CBD8211FCBD94000FE1DFC /* Wallect钱包请求 */ = {
+			isa = PBXGroup;
+			children = (
+				35CBD8221FCBD96A00FE1DFC /* KGGWallectRequestManager.h */,
+				35CBD8231FCBD96A00FE1DFC /* KGGWallectRequestManager.m */,
+			);
+			path = "Wallect钱包请求";
+			sourceTree = "<group>";
+		};
 		35E8B6C41F8DC32A00DCA0EB /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2261,6 +2313,8 @@
 		35F830571F61182900204989 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				35CBD8281FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.h */,
+				35CBD8291FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2480,6 +2534,7 @@
 				35F830661F6276B000204989 /* KGGAddBankCarController.xib in Resources */,
 				359777F91FAC3DFE00336F60 /* KGCreatUserMessage.plist in Resources */,
 				35FF5CA31F6A233500E1A50B /* KGGBillingDetailsViewCell.xib in Resources */,
+				35D7F21F1FCBAC9D0060E559 /* wage.mp3 in Resources */,
 				35081F651FA08115001AF418 /* KGGPublishMessage.plist in Resources */,
 				188F2D441F4ED50E0023F4BE /* KGGLookWorkViewCell.xib in Resources */,
 				3505C7F71F9637E80085D688 /* KGGOrderCorrectViewCell.xib in Resources */,
@@ -2487,9 +2542,12 @@
 				35412CBF1FBD8B8F004A233E /* banner9.jpg in Resources */,
 				35F73AAB1F78AE9F000CD1D6 /* KGGSearchOrderViewCell.xib in Resources */,
 				3523668B1FC2809600C50098 /* order.mp3 in Resources */,
+				35CBD8321FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.xib in Resources */,
+				35D7F22B1FCBBAC10060E559 /* guide2.jpg in Resources */,
 				35961B201FA8811500A52B9E /* KGGRegardKGViewController.xib in Resources */,
 				35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */,
 				185C87191F4D782800356ECD /* KGCreatAddress.plist in Resources */,
+				35D7F22C1FCBBAC10060E559 /* guide3.jpg in Resources */,
 				189D20B41F42EAAD0004F1EB /* Assets.xcassets in Resources */,
 				3505C8641F976A5E0085D688 /* PK_Camera_Turn@2x.png in Resources */,
 				35193F4D1FBC0C89005D9E1A /* KGGPublishPostedMessageViewCell.xib in Resources */,
@@ -2498,7 +2556,7 @@
 				35CF65E31FBD370A00B80BEA /* 用户协议.doc in Resources */,
 				18F5B97C1F4EBC7800E6ADC4 /* 启动页_1.png in Resources */,
 				185C86A91F46EADF00356ECD /* KGGLeftDrawer.plist in Resources */,
-				185C86D21F4ABB6500356ECD /* KGGNewFeatureViewController.xib in Resources */,
+				35D7F21E1FCBAC9D0060E559 /* receive.mp3 in Resources */,
 				188F2D4B1F4ED8440023F4BE /* KGGPublishOrderViewCell.xib in Resources */,
 				35F8307E1F628BCF00204989 /* SNHSecurityCodeViewController.xib in Resources */,
 				357691351FB0704F00803D9A /* KGGRouteViewCell.xib in Resources */,
@@ -2507,6 +2565,7 @@
 				35BEB1661F725D7C0060298A /* KGGMyWorkViewCell.xib in Resources */,
 				3523668A1FC2809600C50098 /* cancelOrder.mp3 in Resources */,
 				35961ACE1FA6BA8000A52B9E /* SNHPublishToolBar.xib in Resources */,
+				35D7F22F1FCBBB2C0060E559 /* guide5.jpg in Resources */,
 				35961B121FA86E5D00A52B9E /* KGGCenter.plist in Resources */,
 				35309F841FC6C7F4003B15A2 /* AlipaySDK.bundle in Resources */,
 				359CD08A1F57DCB400DDFA62 /* KGGPersonMessageCell.xib in Resources */,
@@ -2514,6 +2573,8 @@
 				3545BB7F1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.xib in Resources */,
 				35961AE91FA6CB5D00A52B9E /* TZImagePickerController.bundle in Resources */,
 				359777FE1FAC40B700336F60 /* KGGCollectViewCell.xib in Resources */,
+				35D7F22A1FCBBAC10060E559 /* guide1.jpg in Resources */,
+				35D7F22D1FCBBAC10060E559 /* guide4.jpg in Resources */,
 				35F8306E1F627BCE00204989 /* KGGCustomInfoCell.xib in Resources */,
 				35F830521F61177E00204989 /* CYPasswordView.bundle in Resources */,
 				35FF5CA81F6A7DEE00E1A50B /* KGGPaySheetViewCell.xib in Resources */,
@@ -2606,6 +2667,7 @@
 			files = (
 				3505C7F61F9637E80085D688 /* KGGOrderCorrectViewCell.m in Sources */,
 				35E8B6CA1F8DC39600DCA0EB /* KGGPublishOrderParam.m in Sources */,
+				35CBD82A1FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.m in Sources */,
 				188F2D5C1F540B8C0023F4BE /* KGGRefreshFooter.m in Sources */,
 				3505C86D1F976A5E0085D688 /* PKVideoDecoder.m in Sources */,
 				359232301FA9C615005C67EA /* KGGPayRequestManager.m in Sources */,
@@ -2633,6 +2695,7 @@
 				189D21331F4300100004F1EB /* KGGNavigationController.m in Sources */,
 				3543DB811F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m in Sources */,
 				357691381FB0722C00803D9A /* KGGRouteHeaderView.m in Sources */,
+				35CBD8311FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.m in Sources */,
 				18F5BA6D1F4ED24F00E6ADC4 /* KGGUseWorkerHeaderView.m in Sources */,
 				188F2D401F4ED50E0023F4BE /* KGGHomeWorkViewController.m in Sources */,
 				185C866C1F452D9100356ECD /* UIView+HUD.m in Sources */,
@@ -2725,10 +2788,12 @@
 				3505C86E1F976A5E0085D688 /* PKRecordShortVideoViewController.m in Sources */,
 				189D211F1F42FE170004F1EB /* SDCollectionViewCell.m in Sources */,
 				3545BB7E1F6FA5F6008122B8 /* KGGPayTimeChooseViewCell.m in Sources */,
+				35CBD82D1FCC07A700FE1DFC /* KGGStationCycleScrollView.m in Sources */,
 				185C86FC1F4C418800356ECD /* UIButton+KGGExtension.m in Sources */,
 				35961AE51FA6CB5D00A52B9E /* NSBundle+TZImagePicker.m in Sources */,
 				3505C7FA1F963D9B0085D688 /* KGGSearchOrderRequestManager.m in Sources */,
 				189D212A1F42FE170004F1EB /* UIButton+WebCache.m in Sources */,
+				35D7F2221FCBB01A0060E559 /* KGGNewFeatureCell.m in Sources */,
 				189D21291F42FE170004F1EB /* SDWebImagePrefetcher.m in Sources */,
 				35F830511F61177E00204989 /* CYPasswordInputView.m in Sources */,
 				352366921FC2A9BD00C50098 /* KGGConversionListViewController.m in Sources */,
@@ -2755,6 +2820,7 @@
 				18F5BA7A1F4ED24F00E6ADC4 /* KGGOrderRecordController.m in Sources */,
 				350360561F59503900FB0EDD /* KGGSexChangeViewCell.m in Sources */,
 				18F5BA691F4ED24F00E6ADC4 /* KGGOrderDetailsViewCell.m in Sources */,
+				35CBD8241FCBD96A00FE1DFC /* KGGWallectRequestManager.m in Sources */,
 				358381841F8B1622002A17C5 /* KGGUserManager.m in Sources */,
 				35F830541F61177E00204989 /* UIView+Extension.m in Sources */,
 				35F73AA61F78AD1F000CD1D6 /* KGGSearchOrderController.m in Sources */,
@@ -2769,6 +2835,7 @@
 				35FF5CA21F6A233500E1A50B /* KGGBillingDetailsViewCell.m in Sources */,
 				357691301FB06FC700803D9A /* KGGRouteTableView.m in Sources */,
 				3505C87D1F9876330085D688 /* KGGPersonNameEditController.m in Sources */,
+				35D7F2251FCBB93D0060E559 /* KGGNewFeatureViewController.m in Sources */,
 				35961AF91FA6CB7200A52B9E /* SDPhotoBrowser.m in Sources */,
 				3505C8601F976A5E0085D688 /* GLProgram.m in Sources */,
 				185C86D51F4AC39000356ECD /* KGGTabBarWorkController.m in Sources */,
@@ -2816,7 +2883,6 @@
 				18F5BA791F4ED24F00E6ADC4 /* KGGDoneOrderController.m in Sources */,
 				35961ABD1FA5FE6500A52B9E /* KGGEditPublishViewController.m in Sources */,
 				3505C8631F976A5E0085D688 /* GPUImageFramebufferCache.m in Sources */,
-				185C86D11F4ABB6500356ECD /* KGGNewFeatureViewController.m in Sources */,
 				18F5BA751F4ED24F00E6ADC4 /* KGGLeftDrawerModel.m in Sources */,
 				185C86871F46836700356ECD /* UIView+XCExtension.m in Sources */,
 				35FF5C9E1F6A230B00E1A50B /* KGGBillingDetailsViewController.m in Sources */,

@@ -13,5 +13,7 @@
 @property (nonatomic, copy)NSString *imageUrl;
 /**  */
 @property (nonatomic,copy) NSString *name;
+/** 电话 */
+@property (nonatomic,copy) NSString *phone;
 
 @end

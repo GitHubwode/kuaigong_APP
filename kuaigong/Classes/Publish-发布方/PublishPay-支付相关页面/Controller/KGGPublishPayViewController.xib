@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -200,14 +200,19 @@
                         <constraint firstAttribute="height" constant="100" id="OFQ-bl-xtB"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_yizhifu" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-uK-JFp">
+                    <rect key="frame" x="0.0" y="456" width="375" height="59"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="3tG-3N-ELW" firstAttribute="top" secondItem="PIf-bo-Rmv" secondAttribute="bottom" constant="15" id="0zj-70-3AE"/>
                 <constraint firstItem="0Am-bU-UOU" firstAttribute="centerY" secondItem="ATd-7l-cYA" secondAttribute="centerY" id="3kI-1e-SzA"/>
                 <constraint firstItem="ZQW-Qd-pBq" firstAttribute="top" secondItem="ATd-7l-cYA" secondAttribute="bottom" id="4IE-IC-dFD"/>
+                <constraint firstItem="YEb-uK-JFp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4QX-vP-yKQ"/>
                 <constraint firstItem="ZQW-Qd-pBq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="54p-L1-PNi"/>
                 <constraint firstItem="3tG-3N-ELW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="5gY-Ow-YVK"/>
+                <constraint firstItem="YEb-uK-JFp" firstAttribute="top" secondItem="Fwp-29-gDB" secondAttribute="bottom" id="6vR-do-GVC"/>
                 <constraint firstItem="PIf-bo-Rmv" firstAttribute="top" secondItem="If0-3I-aFc" secondAttribute="bottom" id="91z-68-Og5"/>
                 <constraint firstItem="AlI-HS-bsp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9M8-c0-ZdQ"/>
                 <constraint firstItem="ioP-0T-Rjq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AKH-Dp-hlR"/>
@@ -229,6 +234,7 @@
                 <constraint firstAttribute="trailing" secondItem="Fwp-29-gDB" secondAttribute="trailing" id="bEY-5h-yvY"/>
                 <constraint firstItem="ioP-0T-Rjq" firstAttribute="top" secondItem="T7B-lE-O09" secondAttribute="bottom" id="bq3-4G-VH8"/>
                 <constraint firstItem="ZDC-rC-T5W" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cCF-gF-DXC"/>
+                <constraint firstAttribute="trailing" secondItem="YEb-uK-JFp" secondAttribute="trailing" id="dWR-6H-1k3"/>
                 <constraint firstAttribute="trailing" secondItem="ioP-0T-Rjq" secondAttribute="trailing" id="fgQ-qD-CPC"/>
                 <constraint firstAttribute="trailing" secondItem="AlI-HS-bsp" secondAttribute="trailing" id="gLR-TW-AYR"/>
                 <constraint firstItem="ZDC-rC-T5W" firstAttribute="top" secondItem="iRf-au-S2T" secondAttribute="bottom" constant="6" id="id7-hR-Ws9"/>
@@ -251,5 +257,6 @@
     <resources>
         <image name="bg_button" width="187" height="49"/>
         <image name="bg_button_pre" width="187" height="49"/>
+        <image name="pic_yizhifu" width="373" height="59"/>
     </resources>
 </document>

@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KGGBillingDetailsViewCell : UITableViewCell
+@class KGGMyWalletOrderDetailsModel;
 
+@interface KGGBillingDetailsViewCell : UITableViewCell
+@property (nonatomic, strong) KGGMyWalletOrderDetailsModel *detailsModel;
 + (NSString *)billIdentifier;
 
 @end

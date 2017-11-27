@@ -25,7 +25,6 @@
     [self setupChildViewControllers];
 }
 
-
 /**
  *  设置所有UITabBarItem的文字属性
  */
@@ -41,7 +40,6 @@
     NSMutableDictionary *selectedAttrs = [NSMutableDictionary dictionary];
     selectedAttrs[NSForegroundColorAttributeName] = KGGGoldenThemeColor;
     [item setTitleTextAttributes:selectedAttrs forState:UIControlStateSelected];
-    
 }
 
 /**

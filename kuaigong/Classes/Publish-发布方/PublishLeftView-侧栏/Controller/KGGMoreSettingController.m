@@ -57,7 +57,7 @@
 {
     KGGLog(@"点击墨一行");
     if (indexPath.row == 5) {
-        KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] initWithNibName:NSStringFromClass([KGGNewFeatureViewController class]) bundle:[NSBundle mainBundle]];
+        KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] init];
         [self presentViewController:newFeatureVc animated:YES completion:nil];
     }else if (indexPath.row == 1){
         KGGLog(@"收费标准");

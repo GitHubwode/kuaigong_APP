@@ -1,5 +1,5 @@
 //
-//  KGGNewFeatureViewController.h
+//  KGGNewFeatureCell.h
 //  kuaigong
 //
 //  Created by Ding on 2017/11/27.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KGGNewFeatureViewController : UICollectionViewController
-
+@interface KGGNewFeatureCell : UICollectionViewCell
+@property (nonatomic, strong) UIImage *image;
 @end

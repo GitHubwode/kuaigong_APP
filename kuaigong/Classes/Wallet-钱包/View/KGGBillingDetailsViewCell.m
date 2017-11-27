@@ -7,7 +7,7 @@
 //
 
 #import "KGGBillingDetailsViewCell.h"
-
+#import "KGGMyWalletOrderDetailsModel.h"
 
 static NSString *billingDetailsViewCell = @"KGGBillingDetailsViewCell";
 
@@ -25,6 +25,14 @@ static NSString *billingDetailsViewCell = @"KGGBillingDetailsViewCell";
     [super awakeFromNib];
     // Initialization code
 }
+
+- (void)setDetailsModel:(KGGMyWalletOrderDetailsModel *)detailsModel
+{
+    self.timeLabel.text = detailsModel.workStartTime;
+    self.moneyLabel.text = [NSString stringWithFormat:@"+  %@",detailsModel.totalAmount];
+}
+
+
 
 + (NSString *)billIdentifier
 {
