@@ -89,7 +89,6 @@
         [self.hourArray addObject:hourString];
     }
     
-//    dispatch_async(dispatch_get_main_queue(), ^{
         for (int i = day; i<endDay+1; i++) {
 //            KGGLog(@"天是%d",i);
             NSString *dayString1 = [NSString stringWithFormat:@"%d月%d日",_mouth,i];
@@ -105,14 +104,26 @@
                 [self.dayArray addObject:dayString];
             }
         }
-//    });
+
+    if (self.dayArray.count<4) {
+        
+        if (_mouth == 12) {
+            _mouth = 1;
+        }else{
+            _mouth = _mouth+1;
+        }
+        for (int i =1; i < 10; i++) {
+            NSString *dayString1 = [NSString stringWithFormat:@"%d月%d日",_mouth,i];
+            [self.dayArray1 addObject:dayString1];
+            [self.dayArray addObject:dayString1];
+        }
+    }
     
     //默认赋值
     self.mouthString1 = [self.dayArray1 firstObject];
     self.hourString =[self.hourArray firstObject];
     self.minutesString = [self.minutesArray firstObject];
 }
-
 
 //初始化
 - (void)setup

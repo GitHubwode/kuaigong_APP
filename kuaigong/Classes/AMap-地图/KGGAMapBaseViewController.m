@@ -67,14 +67,14 @@
                 NSString *city = placemark.locality;
                 self.currentCity = city;
                 KGGLog(@"当前城市名称------%@",city);
-                //                BMKOfflineMap * _offlineMap = [[BMKOfflineMap alloc] init];
-                //                NSArray* records = [_offlineMap searchCity:city];
-                //                BMKOLSearchRecord* oneRecord = [records objectAtIndex:0];
-                //                //城市编码如:北京为131
-                //                NSInteger cityId = oneRecord.cityID;
-                //                KGGLog(@"当前城市编号-------->%zd",cityId);
-                //                找到了当前位置城市后就关闭服务
-                //                [self.service stopUserLocationService];
+//                BMKOfflineMap * _offlineMap = [[BMKOfflineMap alloc] init];
+//                NSArray* records = [_offlineMap searchCity:city];
+//                BMKOLSearchRecord* oneRecord = [records objectAtIndex:0];
+//                //城市编码如:北京为131
+//                NSInteger cityId = oneRecord.cityID;
+//                KGGLog(@"当前城市编号-------->%zd",cityId);
+//                找到了当前位置城市后就关闭服务
+//                [self.service stopUserLocationService];
             }
         }
     }];

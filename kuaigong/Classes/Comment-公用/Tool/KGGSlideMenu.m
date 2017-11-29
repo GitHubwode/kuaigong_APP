@@ -529,7 +529,8 @@ static NSString *textMaxX_Key;
 {
     if (_sepertateView == nil) {
         _sepertateView = [[UIView alloc]init];
-        _sepertateView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+//        _sepertateView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        _sepertateView.backgroundColor = KGGSeparatorColor;
     }
     return _sepertateView;
 }

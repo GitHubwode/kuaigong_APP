@@ -35,4 +35,13 @@
 //注册标签
 - (void)cmd_registerTags:(NSSet *)tags;
 
+//删除别名
+- (void)cmd_deleteAliasPhone:(NSString *)phone;
+//删除标签
+- (void)cmd_deleteTags:(NSSet *)tags;
+//停止推送
+- (void)cmd_stopJPush;
+//开启推送
+- (void)cmd_beginJPush;
+
 @end

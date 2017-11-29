@@ -13,6 +13,7 @@
 #import "KGGForgetPasswordViewController.h"
 #import "KGGLoginRequestManager.h"
 #import "KGGRegardKGViewController.h"
+#import "KGGJPushManager.h"
 
 @interface KGGMoreSettingController ()<UITableViewDelegate,UITableViewDataSource>
 /**  */
@@ -55,13 +56,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KGGLog(@"点击墨一行");
-    if (indexPath.row == 5) {
-        KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] init];
-        [self presentViewController:newFeatureVc animated:YES completion:nil];
+    if (indexPath.row == 0) {
+        
     }else if (indexPath.row == 1){
-        KGGLog(@"收费标准");
+        KGGNewFeatureViewController *newFeatureVc = [[KGGNewFeatureViewController alloc] init];
+        newFeatureVc.identifierType = 1;
+        [self presentViewController:newFeatureVc animated:YES completion:nil];
     }else if (indexPath.row == 2){
+        
+    }else if (indexPath.row == 3){
         KGGLog(@"忘记密码");
         KGGForgetPasswordViewController *forgrtVC = [[KGGForgetPasswordViewController alloc]init];
         forgrtVC.changetype = KGGUserChangePWDType;
@@ -69,7 +72,7 @@
             [self kgg_loginOut];
         };
         [self presentViewController:forgrtVC animated:YES completion:nil];
-    }else{
+    }else if (indexPath.row == 4){
         KGGLog(@"关于快工");
         KGGRegardKGViewController *regardVC = [[KGGRegardKGViewController alloc]initWithNibName:NSStringFromClass([KGGRegardKGViewController class]) bundle:[NSBundle mainBundle]];
         [self.navigationController pushViewController:regardVC animated:YES];
@@ -95,13 +98,21 @@
 #pragma mark - 退出登录网络请求
 - (void)kgg_loginOut
 {
+    NSString *identityString;
+    if ([KGGUserManager shareUserManager].logined) {
+        identityString = [KGGUserManager shareUserManager].currentUser.type;
+    }else{
+        identityString = @"WORKER";
+    }
+    
+    NSSet * set = [[NSSet alloc] initWithObjects:identityString, nil];
+    
     [KGGLoginRequestManager loginOutWithcompletion:^(KGGResponseObj *responseObj) {
-        
-//        [[KGGUserManager shareUserManager] logout];
         [KGGLoginRequestManager logout];
         [self.useButton removeFromSuperview];
-//        [KGGNotificationCenter postNotificationName:KGGUserLogoutNotifacation object:nil];
         [self.navigationController popViewControllerAnimated:YES];
+        [[KGGJPushManager shareJPushManager]cmd_deleteTags:set];
+        [[KGGJPushManager shareJPushManager]cmd_deleteAliasPhone:@"0"];
         
     } aboveView:self.view inCaller:self];
 }
@@ -113,7 +124,7 @@
 - (UITableView *)setTableView
 {
     if (!_setTableView) {
-        _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -37, kMainScreenWidth, 59*4+37) style:UITableViewStyleGrouped];
+        _setTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -37, kMainScreenWidth, 59*5+37) style:UITableViewStyleGrouped];
         _setTableView.scrollEnabled = NO;
         [_setTableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGMoreSettingViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGMoreSettingViewCell moreSettingIdentifier]];
         _setTableView.rowHeight = 59.f;

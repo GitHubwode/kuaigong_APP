@@ -34,8 +34,9 @@
 #import "KGGConversionListViewController.h"
 #import "KGGPrivateMessageViewController.h"
 
-static CGFloat const itemHeight = 168.f;
+static CGFloat const itemHeight = 120.f;
 static CGFloat const topHeight = 37.f;
+static CGFloat const middleHeight = 70.f;
 
 @interface KGGHomeViewController ()<KGGPublishHomeHeaderViewDelegate,KGGPublishHomeFootViewDelegate,UITableViewDataSource,UITableViewDelegate,HomeMenuViewDelegate>
 
@@ -101,7 +102,7 @@ static CGFloat const topHeight = 37.f;
     
     [self kgg_addButton];
     
-    KGGLeftTableController *leftView = [[KGGLeftTableController alloc]initWithFrame:CGRectMake(0, 0, KGGAdaptedWidth(kMainScreenWidth*0.68), kMainScreenHeight)];
+    KGGLeftTableController *leftView = [[KGGLeftTableController alloc]initWithFrame:CGRectMake(0, 0, KGGAdaptedWidth(kMainScreenWidth*0.62), kMainScreenHeight)];
     self.leftView = leftView;
     leftView.customDelegate = self;
     self.menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:leftView isShowCoverView:YES];
@@ -129,7 +130,6 @@ static CGFloat const topHeight = 37.f;
         self.navigationItem.rightBarButtonItem.badgeValue = @"0";
     });
 }
-
 
 #pragma mark - 获取用户的地址
 - (void)setupUserAddress
@@ -187,9 +187,8 @@ static CGFloat const topHeight = 37.f;
     [KGGPublishHomeRequestManager publishHomeWorkFeecompletion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             self.feeModel = [KGGCarFeeModel mj_objectWithKeyValues:responseObj.data];
-            self.footView.carLabel.text = [NSString stringWithFormat:@"每辆车车费:%d元",self.feeModel.itemValue];
+            self.footView.carLabel.text = [NSString stringWithFormat:@"%d元",self.feeModel.itemValue];
               }
-        
     } aboveView:nil inCaller:self];
 }
 
@@ -200,8 +199,7 @@ static CGFloat const topHeight = 37.f;
     for (KGGWorkTypeModel *model in self.workDatasource) {
         [titleArray addObject:model.name];
     }
-
-    self.headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight+topHeight)) HeaderViewSlideTitle:titleArray ImageArray:self.imageArray City:self.cityName];
+    self.headerView = [[KGGPublishHomeHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight+topHeight)+middleHeight) HeaderViewSlideTitle:titleArray ImageArray:self.imageArray City:self.cityName];
     self.headerView.headerDelegate = self;
     self.tableView.tableHeaderView = self.headerView;
 }
@@ -225,7 +223,6 @@ static CGFloat const topHeight = 37.f;
     orderButton.tag = 1001;
     [bgView addSubview:useButton];
     [bgView addSubview:orderButton];
-    
     [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(bgView.mas_centerY);
         make.leading.equalTo(bgView.mas_leading);
@@ -264,8 +261,7 @@ static CGFloat const topHeight = 37.f;
         self.carNum =ceil(peopleNum/7);
     }
     KGGLog(@"车辆为%d",self.carNum);
-    self.footView.carLabel.text = [NSString stringWithFormat:@"车费总计:%d元*%d车",self.feeModel.itemValue,self.carNum];
-    
+    self.footView.carLabel.text = [NSString stringWithFormat:@"%d元*%d辆",self.feeModel.itemValue,self.carNum];
 }
 
 #pragma mark - 底部按钮
@@ -280,7 +276,6 @@ static CGFloat const topHeight = 37.f;
 }
 - (void)jumpIWantToUse:(UIButton *)sender
 {
-    
     if (sender.tag == 1000) {
         BOOL isJump = NO;
         for ( KGGHomePublishModel *publishModel in self.datasource) {
@@ -336,6 +331,12 @@ static CGFloat const topHeight = 37.f;
     [self.tableView reloadData];
 }
 
+/** 中间 */
+- (void)KGG_CycleCollectionViewDidSelectItemAtIndex:(NSInteger)index
+{
+    KGGLog(@"中间:%ld",index);
+}
+
 #pragma mark - UITableViewFooterViewDelegate
 - (void)kgg_publishHomeFootViewLocationButtonClick
 {
@@ -386,6 +387,11 @@ static CGFloat const topHeight = 37.f;
     return KGGAdaptedHeight(10);
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1f;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.datasource.count;
@@ -431,7 +437,7 @@ static CGFloat const topHeight = 37.f;
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, self.view.xc_height-49) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor whiteColor];
         [_tableView registerNib:[UINib nibWithNibName:@"KGGHomeListViewCell" bundle:nil] forCellReuseIdentifier:[KGGHomeListViewCell homeListIdentifier]];
         _tableView.rowHeight = KGGAdaptedHeight(51);

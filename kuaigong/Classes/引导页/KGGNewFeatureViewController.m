@@ -11,11 +11,10 @@
 #import "KGGTabBarController.h"
 #import "KGGTabBarWorkController.h"
 
-
 @interface KGGNewFeatureViewController ()
-//@property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) UIButton *bossButton;
 @property (nonatomic, strong) UIButton *workerButton;
+@property (nonatomic, strong) NSMutableArray *datasource;
 @end
 
 @implementation KGGNewFeatureViewController
@@ -70,8 +69,14 @@ static NSString * const reuseIdentifier = @"NewFeatureCell";
         make.height.equalTo(@(59));
         make.bottom.equalTo(weakself.workerButton.mas_top).offset(-36);
     }];
-    // Register cell classes
-//    [self.collectionView registerClass:[KGGNewFeatureCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    
+    if (self.identifierType == 1) {
+        [self.datasource removeAllObjects];
+        [self.datasource addObject:@"guide5.jpg"];
+        self.workerButton.hidden = NO;
+        self.bossButton.hidden = NO;
+    }
+
 }
 
 // 设置CollectionView
@@ -95,16 +100,13 @@ static NSString * const reuseIdentifier = @"NewFeatureCell";
 
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return self.datasource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *imageName = self.datasource[indexPath.row];
     KGGNewFeatureCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     // 设置cell ImageView
-    NSString *imageName = [NSString stringWithFormat:@"guide%zd.jpg",indexPath.row + 1];
-    if (TwoScreen) {
-        imageName = [NSString stringWithFormat:@"guide%zd.jpg",indexPath.row + 1];
-    }
     cell.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageName ofType:nil]];
     return cell;
 }
@@ -176,6 +178,13 @@ static NSString * const reuseIdentifier = @"NewFeatureCell";
     return button;
 }
 
+- (NSMutableArray *)datasource
+{
+    if (!_datasource) {
+        _datasource = [NSMutableArray arrayWithObjects:@"guide1.jpg",@"guide2.jpg",@"guide3.jpg",@"guide4.jpg",@"guide5.jpg", nil];
+    }
+    return _datasource;
+}
 
 
 - (void)didReceiveMemoryWarning {

@@ -14,6 +14,8 @@
 - (void)KGG_SDCycleTabViewDidSelectItemAtIndex:(NSInteger )index;;
 /** top */
 - (void)KGG_SlideMenuDidSelectItemAtIndex:(NSInteger )index;
+/** 中间的分类入口 */
+- (void)KGG_CycleCollectionViewDidSelectItemAtIndex:(NSInteger )index;;
 
 @end
 

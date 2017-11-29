@@ -100,11 +100,6 @@
         make.width.equalTo(@40);
         make.height.equalTo(@40);
     }];
-    
-//    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, kMainScreenWidth, KGGOnePixelHeight)];
-//    lineView.backgroundColor = UIColorHex(0xb2b2b2);
-//    [view addSubview:lineView];
-    
 }
 
 #pragma mark - UITableViewDelegate UITableViewDatasource

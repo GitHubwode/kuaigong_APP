@@ -259,10 +259,12 @@
         if (vipEndTime > nowTime) {
             [self creatOrderMessage];
         }else{
-            [self jumpVIPView];
+//            [self jumpVIPView];
+            [self creatOrderMessage];
         }
     }else{
-        [self jumpVIPView];
+//        [self jumpVIPView];
+        [self creatOrderMessage];
     }
 }
 
@@ -377,6 +379,8 @@
             self.useButton.enabled = NO;
             KGGOrderDetailsModel *model = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
             [self jumpPostedControllerModel:model];
+        }else if (responseObj.code == 100){
+                    [self jumpVIPView];
         }
     } aboveView:self.view inCaller:self];
 }
@@ -389,7 +393,6 @@
     postVC.type = 1;
     [self.navigationController pushViewController:postVC animated:YES];
 }
-
 
 - (UITableView *)tableView
 {
@@ -437,6 +440,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 @end

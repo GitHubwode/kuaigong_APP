@@ -42,7 +42,6 @@
 //    [NSThread sleepForTimeInterval:1];
     mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    // LGBN4AOWr6jWp9rAY9bgixQ4RgenEfxU 
   BOOL success = [mapManager start:@"LGBN4AOWr6jWp9rAY9bgixQ4RgenEfxU"  generalDelegate:nil];
     if (success) {
         KGGLog(@"百度地图定位成功");
@@ -55,12 +54,10 @@
     
     KGGLog(@"bundle id :%@",[[NSBundle mainBundle] bundleIdentifier]);
 
-//    // Optional
 //    // 如需使用IDFA功能请添加此代码并在初始化方法的advertisingIdentifier参数中填写对应值
     NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     
     [[KGGJPushManager shareJPushManager]cdm_setupWithOption:launchOptions appKey:KGGJPushAPPKey channel:@"kg-channel" apsForProduction:NO advertisingIdentifier:advertisingId];
-    
     
     [[KGGJPushManager shareJPushManager] cdm_getRegisterIDCallBack:^(NSString *registerID) {
         KGGLog(@"%@",registerID);
@@ -68,7 +65,6 @@
     [[KGGJPushManager shareJPushManager] cdm_setBadge:0];
     //链接融云
     [self setUpRongCloud];
-    
     return YES;
 }
 

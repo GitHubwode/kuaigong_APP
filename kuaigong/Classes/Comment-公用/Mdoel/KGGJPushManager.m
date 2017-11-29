@@ -149,13 +149,34 @@
     } seq:200];
 }
 
+//删除别名
+- (void)cmd_deleteAliasPhone:(NSString *)phone
+{
+    [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        if (iResCode == 0) {
+            KGGLog(@"删除别名%ld %@",(long)iResCode,iAlias);
+        }
+    } seq:200];
+}
+
 //注册标签
 - (void)cmd_registerTags:(NSSet *)tags
 {
     [JPUSHService setTags:tags completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
         if (iResCode == 0) {
-            KGGLog(@"设置别名%ld %@",(long)iResCode,iTags);
+            KGGLog(@"设置标签%ld %@",(long)iResCode,iTags);
         }
+    } seq:200];
+}
+
+//删除标签
+- (void)cmd_deleteTags:(NSSet *)tags
+{
+    [JPUSHService deleteTags:tags completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+        if (iResCode == 0) {
+            KGGLog(@"删除标签%ld %@",(long)iResCode,iTags);
+        }
+        
     } seq:200];
 }
 

@@ -10,6 +10,7 @@
 
 @interface KGGMeWorkViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 + (NSString *)meWorkViewIdentifier;

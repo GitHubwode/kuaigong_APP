@@ -21,5 +21,6 @@
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, weak)id<KGGPublishPostedHeaderViewDelegate>postedDelegate;
 @property (nonatomic, strong) KGGOrderDetailsModel *orderModel;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end

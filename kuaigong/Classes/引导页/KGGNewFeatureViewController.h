@@ -10,4 +10,6 @@
 
 @interface KGGNewFeatureViewController : UICollectionViewController
 
+@property (nonatomic, assign)NSUInteger identifierType;
+
 @end

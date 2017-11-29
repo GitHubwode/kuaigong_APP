@@ -26,8 +26,6 @@
     [self postFormDataWithUrl:url form:[param mj_keyValues] completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) {
             
-        }else if (responseObj.code != KGGSuccessCode){
-            [view showHint:responseObj.message];
         }
         if (completionHandler) {
             completionHandler(responseObj);

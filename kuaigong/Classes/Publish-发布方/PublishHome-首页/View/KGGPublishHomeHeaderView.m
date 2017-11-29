@@ -9,12 +9,16 @@
 #import "KGGPublishHomeHeaderView.h"
 #import "SDCycleScrollView.h"
 #import "KGGSlideMenu.h"
+#import "KGGPublishHomeCycleView.h"
 
-static CGFloat const itemHeight = 168.f;
+static CGFloat const itemHeight = 120.f;
+static CGFloat const cycleHeight = 70.f;
+static CGFloat const slideMenuHeight = 37.f;
 
-@interface KGGPublishHomeHeaderView ()<SDCycleScrollViewDelegate,CKSlideMenuDelegate>
+@interface KGGPublishHomeHeaderView ()<SDCycleScrollViewDelegate,CKSlideMenuDelegate,KGGPublishHomeCycleViewDelegate>
 @property (nonatomic, strong) SDCycleScrollView  *headSDCycleView;
 @property (nonatomic, strong) KGGSlideMenu *slideMenu;
+@property (nonatomic, strong) KGGPublishHomeCycleView *cycleView;
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *imageArray;
 @property (nonatomic, strong) NSString *cityName;
@@ -34,6 +38,8 @@ static CGFloat const itemHeight = 168.f;
     
     weakSelf(self);
     UIButton *button = [self creatButtonSelectImage:@"icon_nine" ImageString:@"icon_nine" Tag:100];
+    button.hidden = YES;
+    button.enabled = NO;
     [self addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(weakself.mas_right).offset(-15);
@@ -73,7 +79,8 @@ static CGFloat const itemHeight = 168.f;
 {
     self.headSDCycleView.frame = CGRectMake(0, 0, kMainScreenWidth, KGGAdaptedHeight(itemHeight));
     [self addSubview:self.headSDCycleView];
-    self.slideMenu.frame = CGRectMake(0, KGGAdaptedHeight(itemHeight), kMainScreenWidth, KGGAdaptedHeight(37));
+    [self addSubview:self.cycleView];
+    self.slideMenu.frame = CGRectMake(0, KGGAdaptedHeight(itemHeight)+cycleHeight, kMainScreenWidth, KGGAdaptedHeight(slideMenuHeight));
     [self addSubview:self.slideMenu];
 }
 
@@ -83,6 +90,13 @@ static CGFloat const itemHeight = 168.f;
     KGGLog(@"---TOP点击了第%ld张图片", (long)index);
     if ([self.headerDelegate respondsToSelector:@selector(KGG_SlideMenuDidSelectItemAtIndex:)]) {
         [self.headerDelegate KGG_SlideMenuDidSelectItemAtIndex:index];
+    }
+}
+
+- (void)KGG_PublishHomeCycleViewDidSelectItemAtIndex:(NSInteger)index
+{
+    if ([self.headerDelegate respondsToSelector:@selector(KGG_CycleCollectionViewDidSelectItemAtIndex:)]) {
+        [self.headerDelegate KGG_CycleCollectionViewDidSelectItemAtIndex:index];
     }
 }
 
@@ -102,8 +116,6 @@ static CGFloat const itemHeight = 168.f;
 //{
 ////    KGGLog(@">>>>>> 滚动到第%ld张图", (long)index);
 //}
-
-
 
 #pragma mark - 懒加载
 -(SDCycleScrollView *)headSDCycleView{
@@ -129,6 +141,15 @@ static CGFloat const itemHeight = 168.f;
         _slideMenu.unselectedColor = KGGTimeTextColor;
     }
     return _slideMenu;
+}
+
+- (KGGPublishHomeCycleView *)cycleView
+{
+    if (!_cycleView) {
+        _cycleView = [[KGGPublishHomeCycleView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(itemHeight), kMainScreenWidth-30, cycleHeight)];
+        _cycleView.cycleDelegate = self;
+    }
+    return _cycleView;
 }
 
 #pragma mark - 按钮的点击事件

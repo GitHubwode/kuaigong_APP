@@ -11,11 +11,11 @@
 #import "KGGMeWorkViewCell.h"
 #import "KGGMoreSettingController.h"
 #import "KGGMyWalletViewController.h"
-//#import "KGGMyWorkViewController.h"
 #import "KGGMyWorkBaseViewController.h"
 #import "KGGLoginViewController.h"
 #import "KGGCenterViewController.h"
 #import "KGGPersonalMessageController.h"
+#import "KGGMeWorkModel.h"
 
 
 @interface KGGMeWorkViewController ()<UITableViewDelegate,UITableViewDataSource,KGGMeWorkHeaderViewDelegate>
@@ -43,6 +43,30 @@
     [self.headerView updataUserMessageLogin:[KGGUserManager shareUserManager].logined];
     [KGGNotificationCenter addObserver:self selector:@selector(loginSuccess) name:KGGUserLoginNotifacation object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(loginOutSuccess) name:KGGUserLogoutNotifacation object:nil];
+    [self addMessage];
+}
+
+- (void)addMessage
+{
+    KGGMeWorkModel *model1 = [[KGGMeWorkModel alloc]init];
+    model1.meName = @"钱包";
+    model1.iconString = @"icon_qianbao";
+    [self.datasource addObject:model1];
+    
+    KGGMeWorkModel *model2 = [[KGGMeWorkModel alloc]init];
+    model2.meName = @"我的工作";
+    model2.iconString = @"icon_work";
+    [self.datasource addObject:model2];
+    
+    KGGMeWorkModel *model3 = [[KGGMeWorkModel alloc]init];
+    model3.meName = @"客服中心";
+    model3.iconString = @"icon_dainhua";
+    [self.datasource addObject:model3];
+    
+    KGGMeWorkModel *model4 = [[KGGMeWorkModel alloc]init];
+    model4.meName = @"设置";
+    model4.iconString = @"icon_shezhi";
+    [self.datasource addObject:model4];
 }
 
 - (void)loginSuccess
@@ -67,8 +91,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    KGGMeWorkModel *model = self.datasource[indexPath.row];
     KGGMeWorkViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGMeWorkViewCell meWorkViewIdentifier] forIndexPath:indexPath];
-    cell.titleLabel.text = self.datasource[indexPath.row];
+    cell.titleLabel.text = model.meName;
+    cell.iconImageView.image = [UIImage imageNamed:model.iconString];
     return cell;
 }
 
@@ -169,8 +195,7 @@
 - (NSMutableArray *)datasource
 {
     if (!_datasource) {
-        _datasource = [NSMutableArray arrayWithObjects:@"钱包",@"我的工作",@"客服中心",@"设置", nil];
-//        _datasource = [NSMutableArray arrayWithObjects:@"我的工作",@"客服中心",@"设置", nil];
+        _datasource = [NSMutableArray array];
     }
     return _datasource;
 }

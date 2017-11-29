@@ -10,10 +10,10 @@
 #import "SDCycleScrollView.h"
 #import "TXScrollLabelView.h"
 
-
 @interface KGGPublishHomeFootView ()<SDCycleScrollViewDelegate,TXScrollLabelViewDelegate>
 //@property (nonatomic, strong) SDCycleScrollView *cycleTitleView;
 @property (strong, nonatomic) TXScrollLabelView *scrollLabelView;
+@property (nonatomic, strong) UILabel *carName;
 
 
 @end
@@ -33,11 +33,20 @@
 - (void)creatFootView
 {
     weakSelf(self);
+    [self addSubview:self.carName];
+    [self.carName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakself.mas_left).offset(30);
+        make.top.equalTo(weakself.mas_top);
+//        make.width.equalTo(@(100));
+        make.height.equalTo(@(KGGAdaptedHeight(32)));
+    }];
+    
     [self addSubview:self.carLabel];
     [self.carLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakself.mas_left);
-        make.top.equalTo(weakself.mas_top);
-        make.width.equalTo(@(kMainScreenWidth));
+//        make.left.equalTo(weakself.carName.mas_right).offset(15);
+        make.centerX.equalTo(weakself.mas_centerX);
+        make.centerY.equalTo(weakself.carName.mas_centerY);
+//        make.width.equalTo(@(100));
         make.height.equalTo(@(KGGAdaptedHeight(32)));
     }];
     
@@ -207,12 +216,24 @@
 {
     if (!_carLabel) {
         _carLabel = [UILabel new];
-        _carLabel.text = @"车费:10辆*210元";
+        _carLabel.text = @"1辆*300元";
         _carLabel.textAlignment = NSTextAlignmentCenter;
-        _carLabel.textColor = UIColorHex(0x333333);
-        _carLabel.font = KGGFont(14);
+        _carLabel.textColor = KGGGoldenThemeColor;
+        _carLabel.font = KGGFont(18);
     }
     return _carLabel;
+}
+
+- (UILabel *)carName
+{
+    if (!_carName) {
+        _carName = [UILabel new];
+        _carName.text = @"车费/天";
+        _carName.textAlignment = NSTextAlignmentLeft;
+        _carName.textColor = UIColorHex(0x333333);
+        _carName.font = KGGFont(14);
+    }
+    return _carName;
 }
 
 @end

@@ -132,18 +132,6 @@
 /** 金色的主题颜色 */
 #define SNHGoldenThemeColor UIColorHex(c49e77)
 
-
-
-
-
-
-
-
-
-
-
-
-
 /** 时间、地点文字颜色 */
 #define KGGTimeTextColor UIColorHex(999999)
 /** 提示文字颜色 */

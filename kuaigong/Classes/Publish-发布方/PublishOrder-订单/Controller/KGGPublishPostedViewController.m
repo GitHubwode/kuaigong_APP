@@ -42,6 +42,9 @@
     self.tableView.tableHeaderView = self.headerView;
     if (self.type == 1) {
         self.headerView.cancelButton.hidden = YES;
+    }else{
+        self.headerView.imageView.hidden = YES;
+        [self.headerView.imageView removeFromSuperview];
     }
     self.headerView.orderModel = self.detailsModel;
     [self.view addSubview:self.tableView];

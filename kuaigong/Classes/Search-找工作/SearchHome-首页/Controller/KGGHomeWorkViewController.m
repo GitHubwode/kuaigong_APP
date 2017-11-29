@@ -78,8 +78,8 @@
     });
 }
 
-- (void)accountOfflineNotification:(NSNotification *)noti{
-    
+- (void)accountOfflineNotification:(NSNotification *)noti
+{
     [KGGLoginRequestManager logout];
     KGGLoginViewController *login = [[KGGLoginViewController alloc]init];
     login.offline = 1;
@@ -129,8 +129,6 @@
         }
     }];
 }
-
-
 
 - (void)setupChildViewControllers
 {

@@ -10,6 +10,7 @@
 #import "KGGOrderDetailsModel.h"
 #import "UIImageView+WebCache.h"
 #import "SNHStartRateView.h"
+#import "UIImage+GIF.h"
 
 @interface KGGPublishPostedHeaderView ()<snhStartRateViewDelegate>
 
@@ -245,6 +246,15 @@
         make.width.equalTo(@(72));
         make.height.equalTo(@(29));
     }];
+    
+    [view7 addSubview:self.imageView];
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(view7.mas_centerY);
+        make.right.equalTo(view7.mas_right).equalTo(@(-23));
+        make.width.equalTo(@(72));
+        make.height.equalTo(@(29));
+    }];
+
 }
 
 #pragma 代理
@@ -291,6 +301,19 @@
         [_cancelButton addTarget:self action:@selector(cancelButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cancelButton;
+}
+
+- (UIImageView *)imageView
+{
+    if (!_imageView) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"hanmmer" ofType:@"gif"];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        UIImage *image = [UIImage sd_animatedGIFWithData:data];
+        _imageView = [[UIImageView alloc]init];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+        _imageView.image = image;
+    }
+    return _imageView;
 }
 
 - (UIImageView *)creatBageViewImage:(NSString *)image

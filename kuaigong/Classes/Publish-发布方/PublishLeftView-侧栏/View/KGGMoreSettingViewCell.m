@@ -31,6 +31,7 @@ static NSString *moreSettingViewCell = @"MoreSettingViewCell";
     BOOL isButtonOn = [switchButton isOn];
     if (isButtonOn) {
         KGGLog(@"开");
+        
     }else {
         KGGLog(@"关");
     }
