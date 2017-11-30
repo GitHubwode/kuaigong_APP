@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, strong) NSMutableArray *messageDatasource;
+@property (nonatomic, strong) NSMutableArray * result;
 
 
 @end
@@ -166,12 +167,15 @@
     model20.name = @"刘带班";
     [self.datasource addObject:model20];
     
-    //取出个随机数
-    for (int i =0; i<7; i++) {
-         int last = arc4random() % 20;
-        [self.messageDatasource addObject:self.datasource[last]];
+    NSMutableArray *tempArray = [[NSMutableArray alloc]initWithArray:self.datasource];
+    self.result = [NSMutableArray array];
+    int i;
+    int count = (int)self.datasource.count;
+    for (i = 0; i<count; i++) {
+        int index = arc4random() % (count - i);
+        [self.result addObject:[tempArray objectAtIndex:index]];
+        [tempArray removeObjectAtIndex:index];
     }
-
     [self.tableView reloadData];
 }
 
@@ -206,12 +210,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.messageDatasource.count;
+    return self.result.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KGGPostedModel *model = self.messageDatasource[indexPath.row];
+    KGGPostedModel *model = self.result[indexPath.row];
     if (indexPath.row == 0) {
         KGGPublishPostedMessageViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGPublishPostedMessageViewCell publishPostedMessageIdentifier] forIndexPath:indexPath];
         cell.titleLabel.text = model.name;

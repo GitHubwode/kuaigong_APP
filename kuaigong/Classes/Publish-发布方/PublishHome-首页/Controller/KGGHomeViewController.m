@@ -335,6 +335,48 @@ static CGFloat const middleHeight = 70.f;
 - (void)KGG_CycleCollectionViewDidSelectItemAtIndex:(NSInteger)index
 {
     KGGLog(@"中间:%ld",index);
+    if (index == 0) {
+        KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];
+        collVC.itemName = @"共享老板";
+        //    [self.navigationController pushViewController:collVC animated:YES];
+        [self presentViewController:collVC animated:YES completion:nil];
+    }else if (index == 1){
+        KGGLog(@"共享班组")
+        KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];
+        collVC.itemName = @"共享班组";
+        [self presentViewController:collVC animated:YES completion:nil];
+    }else if (index == 2){
+        
+    }else if (index == 3){
+        
+    }else if (index == 4){
+        
+    }else if (index == 5){
+        KGGLog(@"快工公益")
+        KGGCollectTotalController *totalVC = [[KGGCollectTotalController alloc]initWithNibName:NSStringFromClass([KGGCollectTotalController class]) bundle:nil];
+        totalVC.imageName = @"快工公益";
+        [self presentViewController:totalVC animated:YES completion:nil];
+    }else if (index == 6){
+        
+    }else if (index == 7){
+        KGGCollectTotalController *totalVC = [[KGGCollectTotalController alloc]initWithNibName:NSStringFromClass([KGGCollectTotalController class]) bundle:nil];
+        totalVC.imageName = @"快工救援";
+        [self presentViewController:totalVC animated:YES completion:nil];
+    }else if (index == 8){
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 #pragma mark - UITableViewFooterViewDelegate

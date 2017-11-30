@@ -64,8 +64,8 @@ static NSString *SNHHomeUserCycleScrollViewIdfy = @"SNHHomeUserCycleScrollViewId
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
     flowLayout.minimumLineSpacing = 0;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;//垂直滚动
+//    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _flowLayout = flowLayout;
-    
     UICollectionView *mainVIew = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:flowLayout];
     mainVIew.backgroundColor = [UIColor clearColor];
     mainVIew.pagingEnabled = YES;
