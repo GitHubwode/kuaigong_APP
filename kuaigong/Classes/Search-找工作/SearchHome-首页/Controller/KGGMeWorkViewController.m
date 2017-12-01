@@ -17,7 +17,6 @@
 #import "KGGPersonalMessageController.h"
 #import "KGGMeWorkModel.h"
 
-
 @interface KGGMeWorkViewController ()<UITableViewDelegate,UITableViewDataSource,KGGMeWorkHeaderViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -80,8 +79,6 @@
     KGGLog(@"退出登录");
     [self.headerView updataUserMessageLogin:[KGGUserManager shareUserManager].logined];
 }
-
-
 
 #pragma mark - UITableViewDelegate  UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -175,6 +172,7 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-50-64) style:UITableViewStylePlain];
         [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGMeWorkViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGMeWorkViewCell meWorkViewIdentifier]];
         _tableView.rowHeight = 59.f;
+        _tableView.showsVerticalScrollIndicator = NO;
         _tableView.backgroundColor = KGGViewBackgroundColor;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -186,7 +184,7 @@
 - (KGGMeWorkHeaderView *)headerView
 {
     if (!_headerView) {
-        _headerView = [[KGGMeWorkHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 200)];
+        _headerView = [[KGGMeWorkHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 270)];
         _headerView.delegate = self;
     }
     return _headerView;

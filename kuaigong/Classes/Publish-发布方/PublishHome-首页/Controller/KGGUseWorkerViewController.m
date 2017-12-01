@@ -12,6 +12,7 @@
 #import "KGGPayTimeChooseViewCell.h"
 #import "KGGStartWorkTimeViewCell.h"
 #import "KGGUseWorkerHeaderView.h"
+#import "KGGUseWorkerFooterView.h"
 #import "KGGActionSheetController.h"
 #import "KGGHomePublishModel.h"
 #import "KGGApplyVIPView.h"
@@ -23,11 +24,12 @@
 #import "KGGLoginVIPRequestManager.h"
 #import "KGGPublishPostedViewController.h"
 
-@interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource,KGGUseWorkerHeaderViewDelegate>
+@interface KGGUseWorkerViewController ()<UITableViewDelegate,UITableViewDataSource,KGGUseWorkerHeaderViewDelegate,KGGUseWorkerFooterViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) KGGUseWorkerHeaderView *headerView;
+@property (nonatomic, strong) KGGUseWorkerFooterView *footerView;
 @property (nonatomic, strong) KGGApplyVIPView *vipView;
 /** 用工人数 */
 @property (nonatomic, copy) NSString *peopleNum;
@@ -56,18 +58,18 @@
     [JANALYTICSService stopLogPageView:@"KGGUseWorkerViewController"];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
-    //增减通知
-//    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.navigationItem.title = @"用工信息";
     self.clickString = @"";
-    self.headerView = [[KGGUseWorkerHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 360)];
+    self.headerView = [[KGGUseWorkerHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 360-95-33)];
     self.headerView.headerDelegate = self;
+    
+//    self.footerView = [[KGGUseWorkerFooterView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 95)];
+//    self.footerView.footerDelegate = self;
+//    self.tableView.tableFooterView = self.footerView;
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self kgg_addButton];
@@ -76,7 +78,7 @@
 }
 
 #pragma mark - header的代理  备注 和选择图片
-- (void)kgg_userworkHeaderPhoneButtonClick
+- (void)kgg_userworkFooterPhoneButtonClick
 {
     KGGLog(@"选择照片");
     
@@ -85,7 +87,7 @@
         KGGLog(@"图片地址:%@",imageListArray);
         dispatch_async(dispatch_get_main_queue(), ^{
 //            [self.headerView setUpHeaderViewImageViewList:imageListArray];
-            self.headerView.imageArray = [imageListArray mutableCopy];
+            self.footerView.imageArray = [imageListArray mutableCopy];
         });
     };
     [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:publish] animated:YES completion:nil];
@@ -112,7 +114,7 @@
     
     self.carMoney = [NSString stringWithFormat:@"%d",self.catTotal];
     int allFee ;//总计费用
-   allFee = [self.peoplePrice intValue]*[self.daysNum intValue]*[self.peopleNum intValue]+[self.carMoney intValue]*[self.daysNum intValue];
+    allFee = [self.peoplePrice intValue]*[self.daysNum intValue]*[self.peopleNum intValue]+[self.carMoney intValue]*[self.daysNum intValue];
     
     self.headerView.orderTotalLabel.text = [NSString stringWithFormat:@"用工总价:%d元",allFee];
     
@@ -222,7 +224,7 @@
     }else if (indexPath.row == 2){
         [[cell workTextField] becomeFirstResponder];
     }else{
-     [[cell textField] becomeFirstResponder];
+        [[cell textField] becomeFirstResponder];
     }
 }
 
@@ -259,11 +261,11 @@
         if (vipEndTime > nowTime) {
             [self creatOrderMessage];
         }else{
-//            [self jumpVIPView];
+            //            [self jumpVIPView];
             [self creatOrderMessage];
         }
     }else{
-//        [self jumpVIPView];
+        //        [self jumpVIPView];
         [self creatOrderMessage];
     }
 }
@@ -304,7 +306,7 @@
     sheetVC.tradeType = @"USERVIP";
     sheetVC.itemId = orderNo;
     sheetVC.moneyString = [NSString stringWithFormat:@"会员费: ¥%@",money];
-        __weak typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     sheetVC.callPaySuccessBlock = ^(NSString *code){
         if ([code isEqualToString:@"200"]) {
             KGGLog(@"付费成功");
@@ -365,10 +367,10 @@
     self.clickString = [NSString stringWithFormat:@"%@%@",self.headerView.headerTextView.text,self.clickString];
     
     KGGLog(@"开始时间:%@ 支付时间:%@",time,payTime);
-   self.orderUrl = [self.headerView.imageArray componentsJoinedByString:@","];
-
+    self.orderUrl = [self.headerView.imageArray componentsJoinedByString:@","];
+    
     KGGPublishCreatParam *param = [[KGGPublishCreatParam alloc]initWithUserId:userId Name:name Type:self.workType.type Number:[self.peopleNum integerValue] Days:[self.daysNum integerValue] UnitPrice:[self.peoplePrice integerValue] Fare:carFare Remark:self.clickString OrderUrl:self.orderUrl WorkStartTime:time PayTime:payTime LastPayTime:payTime Longitude:self.longitudeMap Latitude:self.latitudeMap Address:self.address AvatarUrl:[KGGUserManager shareUserManager].currentUser.avatarUrl WhenLong:self.workType.whenLong Contacts:name ContactsPhone:contactsPhone];
-
+    
     KGGLog(@"工种类型:%@",self.workType.type);
     KGGLog(@"%@",param);
     
@@ -380,7 +382,7 @@
             KGGOrderDetailsModel *model = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
             [self jumpPostedControllerModel:model];
         }else if (responseObj.code == 100){
-                    [self jumpVIPView];
+            [self jumpVIPView];
         }
     } aboveView:self.view inCaller:self];
 }
@@ -440,4 +442,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 @end

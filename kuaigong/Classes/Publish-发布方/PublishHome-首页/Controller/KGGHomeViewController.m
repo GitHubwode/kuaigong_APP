@@ -30,6 +30,7 @@
 #import "KGGLocationHelper.h"
 #import "KGGLoginRequestManager.h"
 #import "AppDelegate+KGGRongCloud.h"
+#import "KGGWorkPackagesController.h"
 //聊天列表和单聊
 #import "KGGConversionListViewController.h"
 #import "KGGPrivateMessageViewController.h"
@@ -346,7 +347,8 @@ static CGFloat const middleHeight = 70.f;
         collVC.itemName = @"共享班组";
         [self presentViewController:collVC animated:YES completion:nil];
     }else if (index == 2){
-        
+        KGGWorkPackagesController *packVC = [[KGGWorkPackagesController alloc]init];
+        [self.navigationController pushViewController:packVC animated:YES];
     }else if (index == 3){
         
     }else if (index == 4){
@@ -365,18 +367,7 @@ static CGFloat const middleHeight = 70.f;
     }else if (index == 8){
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
 
 #pragma mark - UITableViewFooterViewDelegate

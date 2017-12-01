@@ -199,119 +199,99 @@
         make.top.equalTo(weakself.headerTextView.mas_top).offset(0);
     }];
     
-    UIView *photoView = [self sectionViewWithTitle:@"工地照片"];
-    [self addSubview:photoView];
-    [photoView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakself.headerTextView.mas_bottom).offset(15);
-        make.left.equalTo(weakself.mas_left);
-        make.width.equalTo(@(kMainScreenWidth));
-        make.height.equalTo(@(33));
-    }];
-    
-    self.bottomView = [UIView new];
-    [self addSubview:self.bottomView];
-    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(photoView.mas_bottom);
-        make.left.equalTo(weakself.mas_left);
-        make.right.equalTo(weakself.mas_right);
-        make.bottom.equalTo(weakself.mas_bottom);
-    }];
-    
-    
-    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.addButton = addButton;
-    [addButton setBackgroundImage:[UIImage imageNamed:@"icon_jia"] forState:UIControlStateNormal];
-    [addButton addTarget:self action:@selector(addButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.bottomView addSubview:addButton];
-    [addButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(weakself.bottomView.mas_centerX);
-        make.centerY.equalTo(weakself.bottomView.mas_centerY);
-        make.width.height.mas_equalTo(62);
-    }];
+//    UIView *photoView = [self sectionViewWithTitle:@"工地照片"];
+//    [self addSubview:photoView];
+//    [photoView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(weakself.headerTextView.mas_bottom).offset(15);
+//        make.left.equalTo(weakself.mas_left);
+//        make.width.equalTo(@(kMainScreenWidth));
+//        make.height.equalTo(@(33));
+//    }];
+//
+//    self.bottomView = [UIView new];
+//    [self addSubview:self.bottomView];
+//    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(photoView.mas_bottom);
+//        make.left.equalTo(weakself.mas_left);
+//        make.right.equalTo(weakself.mas_right);
+//        make.bottom.equalTo(weakself.mas_bottom);
+//    }];
+//    
+//    
+//    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.addButton = addButton;
+//    [addButton setBackgroundImage:[UIImage imageNamed:@"icon_jia"] forState:UIControlStateNormal];
+//    [addButton addTarget:self action:@selector(addButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.bottomView addSubview:addButton];
+//    [addButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(weakself.bottomView.mas_centerX);
+//        make.centerY.equalTo(weakself.bottomView.mas_centerY);
+//        make.width.height.mas_equalTo(62);
+//    }];
 }
 
-#pragma mark - 给工地照片赋值
-//- (void)setUpHeaderViewImageViewList:(NSArray *)array
+//#pragma mark - 给工地照片赋值
+// - (void)setImageArray:(NSMutableArray *)imageArray
 //{
-//    if (array.count!= 0) {
+//    _imageArray = imageArray;
+//    if (imageArray.count!= 0) {
 //        [self.addButton removeFromSuperview];
-//        CGFloat widthImage = (kMainScreenWidth-65)/array.count;
-//    for (int i =0; i<array.count; i++) {
-//        self.imageView = [self creatImageView];
-//        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
-//        [self.imageView addGestureRecognizer:recognizer];
-//        self.imageView.tag = 100+i;
-//        self.imageView.frame = CGRectMake(15+5*i+widthImage*i, 10, widthImage, 62);
-//        [self.bottomView addSubview:self.imageView];
-//        [self.imageView sd_setImageWithURL:[NSURL URLWithString:array[i]]];
-//
-//    }
-//
+//        CGFloat widthImage = (kMainScreenWidth-65)/imageArray.count;
+//        for (int i =0; i<imageArray.count; i++) {
+//            self.imageView = [self creatImageView];
+//            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
+//            [self.imageView addGestureRecognizer:recognizer];
+//            self.imageView.tag = 100+i;
+//            self.imageView.frame = CGRectMake(15+5*i+widthImage*i, 10, widthImage, 62);
+//            [self.bottomView addSubview:self.imageView];
+//            [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageArray[i]]];
+//        }
 //    }
 //}
 
 
- - (void)setImageArray:(NSMutableArray *)imageArray
-{
-    _imageArray = imageArray;
-    if (imageArray.count!= 0) {
-        [self.addButton removeFromSuperview];
-        CGFloat widthImage = (kMainScreenWidth-65)/imageArray.count;
-        for (int i =0; i<imageArray.count; i++) {
-            self.imageView = [self creatImageView];
-            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(snh_qrButtonClick:)];
-            [self.imageView addGestureRecognizer:recognizer];
-            self.imageView.tag = 100+i;
-            self.imageView.frame = CGRectMake(15+5*i+widthImage*i, 10, widthImage, 62);
-            [self.bottomView addSubview:self.imageView];
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageArray[i]]];
-        }
-    }
-}
-
-
-- (void)snh_qrButtonClick:(UITapGestureRecognizer *)reg
-{
-    KGGLog(@"二维码");
-    UIView *vi = reg.view;
-    SDPhotoBrowser *photoBrowser = [SDPhotoBrowser new];
-    photoBrowser.tag = 1000;
-    photoBrowser.delegate = self;
-    photoBrowser.currentImageIndex = vi.tag-100;
-    photoBrowser.imageCount = self.imageArray.count;
-    photoBrowser.sourceImagesContainerView = self.bottomView;
-    [photoBrowser show];
-}
+//- (void)snh_qrButtonClick:(UITapGestureRecognizer *)reg
+//{
+//    KGGLog(@"二维码");
+//    UIView *vi = reg.view;
+//    SDPhotoBrowser *photoBrowser = [SDPhotoBrowser new];
+//    photoBrowser.tag = 1000;
+//    photoBrowser.delegate = self;
+//    photoBrowser.currentImageIndex = vi.tag-100;
+//    photoBrowser.imageCount = self.imageArray.count;
+//    photoBrowser.sourceImagesContainerView = self.bottomView;
+//    [photoBrowser show];
+//}
 
 #pragma mark  SDPhotoBrowserDelegate
+//
+//// 返回临时占位图片（即原来的小图）
+//- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
+//{
+//    return [UIImage imageNamed:@""];
+//}
+//
+//
+//// 返回高质量图片的url
+//- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
+//{
+//
+//    NSString *imgUrl = self.imageArray[index];
+//    return [NSURL URLWithString:imgUrl];
+//}
+//
+//- (void )photoBrowserDidDissmissed:(SDPhotoBrowser *)browser{
+//    KGGLogFunc;
+//
+//}
 
-// 返回临时占位图片（即原来的小图）
-- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
-{
-    return [UIImage imageNamed:@""];
-}
-
-
-// 返回高质量图片的url
-- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
-{
-    
-    NSString *imgUrl = self.imageArray[index];
-    return [NSURL URLWithString:imgUrl];
-}
-
-- (void )photoBrowserDidDissmissed:(SDPhotoBrowser *)browser{
-    KGGLogFunc;
-    
-}
-
-- (UIImageView *)creatImageView
-{
-    UIImageView *imageView = [[UIImageView alloc]init];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.userInteractionEnabled = YES;
-    return imageView;
-}
+//- (UIImageView *)creatImageView
+//{
+//    UIImageView *imageView = [[UIImageView alloc]init];
+//    imageView.contentMode = UIViewContentModeScaleAspectFit;
+//    imageView.userInteractionEnabled = YES;
+//    return imageView;
+//}
 
 #pragma mark - UITextView
 
@@ -460,13 +440,6 @@
     }
 }
 
-- (void)addButtonClick:(UIButton *)sender
-{
-    KGGLog(@"添加照片");
-    if ([self.headerDelegate respondsToSelector:@selector(kgg_userworkHeaderPhoneButtonClick)]) {
-        [self.headerDelegate kgg_userworkHeaderPhoneButtonClick];
-    }
-}
 
 #pragma mark - lazyView
 

@@ -7,8 +7,12 @@
 //
 
 #import "KGGMeWorkHeaderView.h"
+#import "KGGPublishHomeCycleView.h"
 
-@interface KGGMeWorkHeaderView ()
+static CGFloat const itemHeight = 120.f;
+static CGFloat const cycleHeight = 70.f;
+
+@interface KGGMeWorkHeaderView ()<KGGPublishHomeCycleViewDelegate>
 
 @property (nonatomic, strong) UIView *avatarWraperView;
 @property (nonatomic, strong) UIImageView *avatarImageView;
@@ -16,6 +20,7 @@
 @property (nonatomic, strong) UILabel *phoneLabel;
 /** 登录/注册按钮 */
 @property (nonatomic, strong) UIButton *loginButton;
+@property (nonatomic, strong) KGGPublishHomeCycleView *cycleView;
 
 @end
 
@@ -80,7 +85,7 @@
 - (void)creatHeaderUI
 {
     weakSelf(self);
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.frame];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 200)];
     imageView.image = [UIImage imageNamed:@"icon_default_bg"];
     imageView.userInteractionEnabled = YES;
     imageView.contentMode = UIViewContentModeScaleToFill;
@@ -115,7 +120,7 @@
         make.bottom.equalTo(weakself.nickLabel.mas_bottom);
     }];
     
-    
+    [self addSubview:self.cycleView];
     
 //    if ([KGGUserManager shareUserManager].logined) {
 //        
@@ -169,6 +174,15 @@
         [self addSubview:_loginButton];
     }
     return _loginButton;
+}
+
+- (KGGPublishHomeCycleView *)cycleView
+{
+    if (!_cycleView) {
+        _cycleView = [[KGGPublishHomeCycleView alloc]initWithFrame:CGRectMake(0, 200, kMainScreenWidth-30, cycleHeight)];
+        _cycleView.cycleDelegate = self;
+    }
+    return _cycleView;
 }
 
 

@@ -11,7 +11,7 @@
 @protocol KGGUseWorkerHeaderViewDelegate <NSObject>
 
 - (void)kgg_userworkHeaderOrderRemarkMessage:(NSString *)message;
-- (void)kgg_userworkHeaderPhoneButtonClick;
+//- (void)kgg_userworkHeaderPhoneButtonClick;
 
 @end
 
