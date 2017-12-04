@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"banner9.jpg"]];
-        imageView.frame = CGRectMake(0, 0, self.xc_width, self.xc_height-50);
+        imageView.frame = CGRectMake(0, 0, self.xc_width, self.xc_height-44);
         [self addSubview:imageView];
     }
     return self;

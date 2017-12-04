@@ -32,6 +32,8 @@ NSString *const KGGRongCloudAppKey = @"pvxdm17jpicmr";
 
 /** 保存用户的类型 */
 NSString * const KGGUserType = @"KGGUserType";
+/** 存储用户是否上工 */
+NSString *const KGGJPushType = @"KGGJPushType";
 /** Itnues上的地址 */
 NSString * const KGGAppItnuesURL = @"https://itunes.apple.com/app/id1299000005";
 /** 储存后台分配的deviceId的key */

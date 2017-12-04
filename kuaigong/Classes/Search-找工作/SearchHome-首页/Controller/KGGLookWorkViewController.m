@@ -16,8 +16,10 @@
 #import "KGGLoginViewController.h"
 #import "KGGStationCycleScrollView.h"
 #import "KGGPostedModel.h"
+#import "KGGJPushManager.h"
 
-static CGFloat kCycleScrollViewH = 50.f;
+
+static CGFloat kCycleScrollViewH = 39.f;
 
 @interface KGGLookWorkViewController ()<UITableViewDelegate,UITableViewDataSource,KGGStationCycleScrollViewDelegate>
 
@@ -29,7 +31,8 @@ static CGFloat kCycleScrollViewH = 50.f;
 @property (nonatomic, strong) KGGLookWorkHeaderView *headerView;
 @property (nonatomic, strong) KGGStationCycleScrollView *cycleScrollView;
 @property (nonatomic, strong) NSMutableArray *messageDatasource;
-
+@property (nonatomic, strong) UIButton *JPButton;
+@property (nonatomic, strong) NSString *isJPush;
 @end
 
 @implementation KGGLookWorkViewController
@@ -110,6 +113,21 @@ static CGFloat kCycleScrollViewH = 50.f;
     
     [self.headerView addSubview:self.cycleScrollView];
     self.cycleScrollView.messageDatasource = self.messageDatasource;
+    [self.headerView addSubview:self.JPButton];
+    self.isJPush = [NSUserDefaults objectForKey:KGGJPushType];
+    if ([self.isJPush isEqualToString:@"YES"]) {
+        self.JPButton.selected = NO;
+    }else{
+        self.JPButton.selected = YES;
+    }
+    KGGLog(@"角色:%@",[NSUserDefaults objectForKey:KGGJPushType]);
+    weakSelf(self);
+    [self.JPButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(weakself.cycleScrollView.mas_bottom);
+        make.height.equalTo(@(kCycleScrollViewH-5));
+        make.left.equalTo(weakself.cycleScrollView.mas_right).offset(5);
+        make.right.equalTo(weakself.headerView.mas_right).offset(-5);
+    }];
 }
 
 #pragma mark - 请求数据
@@ -211,6 +229,31 @@ static CGFloat kCycleScrollViewH = 50.f;
     }
 }
 
+#pragma mark - 取消推送的点击按钮
+- (void)beginJPushButtonClick:(UIButton *)sender
+{
+    if (sender.selected) {
+        KGGLog(@"打开推送和");
+        self.isJPush = @"YES";
+        [[KGGJPushManager shareJPushManager]cmd_beginJPush];
+    }else{
+        KGGLog(@"取消推送和");
+        self.isJPush = @"NO";
+        [[KGGJPushManager shareJPushManager]cmd_stopJPush];
+    }
+    sender.selected = !sender.selected;
+    [self saveUserJPush];
+}
+
+#pragma mark - 存储用户是否接受通知的信息
+- (void)saveUserJPush
+{
+    [NSUserDefaults removeObjectForKey:KGGJPushType];
+    //首次存取角色
+    [NSUserDefaults setObject:self.isJPush forKey:KGGJPushType];
+    KGGLog(@"角色:%@",[NSUserDefaults objectForKey:KGGJPushType]);
+}
+
 - (UITableView *)tableView
 {
     if (!_tableView) {
@@ -243,16 +286,34 @@ static CGFloat kCycleScrollViewH = 50.f;
 - (KGGLookWorkHeaderView *)headerView
 {
     if (!_headerView) {
-        _headerView = [[KGGLookWorkHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 180)];
+        _headerView = [[KGGLookWorkHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 174)];
     }
     return _headerView;
 }
 
 - (KGGStationCycleScrollView *)cycleScrollView{
     if (!_cycleScrollView) {
-        _cycleScrollView = [KGGStationCycleScrollView snh_cycleScrollViewWithFrame:CGRectMake(0, 130, kMainScreenWidth, kCycleScrollViewH) delegate:self type:StationCycleScrollViewType];
+        _cycleScrollView = [KGGStationCycleScrollView snh_cycleScrollViewWithFrame:CGRectMake(0, 135, kMainScreenWidth-100, kCycleScrollViewH) delegate:self type:StationCycleScrollViewType];
     }
     return _cycleScrollView;
+}
+
+- (UIButton *)JPButton
+{
+    if (!_JPButton) {
+        _JPButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _JPButton.layer.masksToBounds = YES;
+        _JPButton.layer.cornerRadius = 10.f;
+        _JPButton.titleLabel.font = KGGFont(12);
+        [_JPButton setTitle:@"停止接单" forState:UIControlStateNormal];
+        [_JPButton setTitle:@"开始接单" forState:UIControlStateSelected];
+        [_JPButton setTitleColor:KGGGoldenThemeColor forState:UIControlStateNormal];
+        [_JPButton setTitleColor:UIColorHex(0xffffff) forState:UIControlStateSelected];
+        [_JPButton setBackgroundImage:[UIImage imageNamed:@"bg_00"] forState:UIControlStateNormal];
+        [_JPButton setBackgroundImage:[UIImage imageNamed:@"but_kean"] forState:UIControlStateSelected];
+        [_JPButton addTarget:self action:@selector(beginJPushButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _JPButton;
 }
 
 - (NSMutableArray *)messageDatasource

@@ -43,7 +43,7 @@
     doneOrderVC.requestType = KGGOrderRequestCompleteType;
     [self addChildViewController:doneOrderVC];
     
-    _titles = @[@"进行中",@"派单中",@"已完成"];
+    _titles = @[@"已接单",@"派单中",@"已完成"];
 }
 
 - (void)setUpSlideSwitchView

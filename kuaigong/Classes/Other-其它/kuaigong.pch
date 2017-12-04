@@ -131,6 +131,8 @@
 #define SNHTitleTextColor UIColorHex(363636)
 /** 金色的主题颜色 */
 #define SNHGoldenThemeColor UIColorHex(c49e77)
+/** 找工作方颜色 */
+#define KGGSearchTitleColor UIColorHex(ffe890)
 
 /** 时间、地点文字颜色 */
 #define KGGTimeTextColor UIColorHex(999999)

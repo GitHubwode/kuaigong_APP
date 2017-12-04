@@ -330,6 +330,7 @@
 #pragma mark - 是VIP老板 发单成功
 - (void)creatOrderMessage
 {
+    
     NSString *name;
     NSString *time;
     NSString *payTime;
@@ -374,17 +375,19 @@
     KGGLog(@"工种类型:%@",self.workType.type);
     KGGLog(@"%@",param);
     
+    [self.view showHint:@"正在上传信息..."];
+    self.useButton.enabled = NO;
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             KGGLog(@"创建订单成功");
+            [self.view hideHUD];
             [self.useButton setTitle:@"已发布" forState:UIControlStateNormal];
-            self.useButton.enabled = NO;
             KGGOrderDetailsModel *model = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
             [self jumpPostedControllerModel:model];
         }else if (responseObj.code == 100){
             [self jumpVIPView];
         }
-    } aboveView:self.view inCaller:self];
+    } aboveView:nil inCaller:self];
 }
 
 #pragma mark - 创建订单成功

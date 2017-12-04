@@ -99,9 +99,7 @@
 {
     [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
         if (resCode == 0) {
-            
             KGGLog(@"registrationID获取成功：%@",registrationID);
-            
             completionHandler(registrationID);
         }
     }];
@@ -180,4 +178,52 @@
     } seq:200];
 }
 
+//停止推送
+- (void)cmd_stopJPush
+{
+    NSString *identityString;
+    if ([KGGUserManager shareUserManager].logined) {
+        identityString = [KGGUserManager shareUserManager].currentUser.type;
+    }else{
+        identityString = @"WORKER";
+    }
+    NSSet * set = [[NSSet alloc] initWithObjects:identityString, nil];
+    [JPUSHService deleteTags:set completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+        if (iResCode == 0) {
+            KGGLog(@"删除标签%ld %@",(long)iResCode,iTags);
+        }
+        
+    } seq:200];
+    
+    [JPUSHService deleteAlias:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        if (iResCode == 0) {
+            KGGLog(@"删除别名%ld %@",(long)iResCode,iAlias);
+        }
+    } seq:200];
+    
+}
+//开启推送
+- (void)cmd_beginJPush
+{
+    NSString *identityString;
+    if ([KGGUserManager shareUserManager].logined) {
+        identityString = [KGGUserManager shareUserManager].currentUser.type;
+    }else{
+        identityString = @"WORKER";
+    }
+    NSSet * set = [[NSSet alloc] initWithObjects:identityString, nil];
+    [JPUSHService setTags:set completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+        if (iResCode == 0) {
+            KGGLog(@"设置标签%ld %@",(long)iResCode,iTags);
+        }
+    } seq:200];
+    
+    
+    [JPUSHService setAlias:[KGGUserManager shareUserManager].currentUser.phone completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        if (iResCode == 0) {
+            KGGLog(@"设置别名%ld %@",(long)iResCode,iAlias);
+        }
+        
+    } seq:200];
+}
 @end

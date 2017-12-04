@@ -43,7 +43,7 @@
     workedVC.requestType = KGGSearchOrderRequestCompleteType;
     [self addChildViewController:workedVC];
     
-    _titles = @[@"进行中",@"已完成"];
+    _titles = @[@"已接单",@"已完成"];
 }
 
 - (void)setUpSlideSwitchView

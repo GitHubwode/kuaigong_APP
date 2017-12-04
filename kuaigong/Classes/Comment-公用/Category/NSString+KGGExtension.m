@@ -70,7 +70,6 @@
     return [pred evaluateWithObject:self];
 }
 
-
 - (NSString *)stringByTrim {
     NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     return [self stringByTrimmingCharactersInSet:set];

@@ -104,20 +104,15 @@
     }else{
         identityString = @"WORKER";
     }
-    
     NSSet * set = [[NSSet alloc] initWithObjects:identityString, nil];
-    
     [KGGLoginRequestManager loginOutWithcompletion:^(KGGResponseObj *responseObj) {
         [KGGLoginRequestManager logout];
         [self.useButton removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];
         [[KGGJPushManager shareJPushManager]cmd_deleteTags:set];
         [[KGGJPushManager shareJPushManager]cmd_deleteAliasPhone:@"0"];
-        
     } aboveView:self.view inCaller:self];
 }
-
-
 
 #pragma mark-  懒加载
 

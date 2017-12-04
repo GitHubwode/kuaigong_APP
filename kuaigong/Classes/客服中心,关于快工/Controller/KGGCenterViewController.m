@@ -120,8 +120,6 @@
     return _headerView;
 }
 
-
-
 - (void)dealloc
 {
     KGGLogFunc

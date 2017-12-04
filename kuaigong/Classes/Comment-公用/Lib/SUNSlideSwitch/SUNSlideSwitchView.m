@@ -144,7 +144,6 @@
     [_shadowImageView setImage:_shadowImage];
     [_topScrollView addSubview:_shadowImageView];
     
-    
     for (int i = 0; i < [_viewArray count]; i++) {
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -159,12 +158,19 @@
             _shadowImageView.frame = CGRectMake(_widthOfButtonMargin, 0, buttonWidth - _widthOfButtonMargin * 2, _kHeightOfTopScrollView);
             button.selected = YES;
         }
+        KGGLog(@"%f",_shadowImageView.frame.size.width);
         [button setTitle:[self.slideSwitchViewDelegate slideSwitchView:self titleOfTab:i] forState:UIControlStateNormal];
         button.titleLabel.font = KGGLightFont(_kFontSizeOfTabButton);
         [button setTitleColor:self.tabItemNormalColor forState:UIControlStateNormal];
         [button setTitleColor:self.tabItemSelectedColor forState:UIControlStateSelected];
-        [button setBackgroundImage:self.tabItemNormalBackgroundImage forState:UIControlStateNormal];
-        [button setBackgroundImage:self.tabItemSelectedBackgroundImage forState:UIControlStateSelected];
+        if (self.self.tabItemSelectedBackgroundImage) {
+//            _shadowImageView.layer.masksToBounds = YES;
+//            _shadowImageView.layer.cornerRadius = 20.f;
+//            _shadowImageView.backgroundColor = UIColorHex(0xffe890);
+            _shadowImageView.image = [UIImage imageNamed:@"icon_yello_bg"];
+        }
+//        [button setBackgroundImage:self.tabItemNormalBackgroundImage forState:UIControlStateNormal];
+//        [button setBackgroundImage:self.tabItemSelectedBackgroundImage forState:UIControlStateSelected];
         [button addTarget:self action:@selector(selectNameButton:) forControlEvents:UIControlEventTouchUpInside];
         [_topScrollView addSubview:button];
     }

@@ -36,6 +36,8 @@
     }else{
         identityString = @"WORKER";
     }
+    NSString *isJPush;
+    isJPush = [NSUserDefaults objectForKey:KGGJPushType];
     
     NSSet * set = [[NSSet alloc] initWithObjects:identityString, nil];
 
@@ -45,10 +47,13 @@
             
         }else if ([responseObj.data isKindOfClass:[NSString  class]]){
             
-            [[KGGJPushManager shareJPushManager] cmd_registerAliasPhone:[KGGUserManager shareUserManager].currentUser.phone];
-            //注册标签
-            [[KGGJPushManager shareJPushManager] cmd_registerTags:set];
-            
+            if ([isJPush isEqualToString:@"NO"]) {
+            }else{
+                [[KGGJPushManager shareJPushManager] cmd_registerAliasPhone:[KGGUserManager shareUserManager].currentUser.phone];
+                //注册标签
+                [[KGGJPushManager shareJPushManager] cmd_registerTags:set];
+            }
+
             [[RCIMClient sharedRCIMClient]connectWithToken:responseObj.data success:^(NSString *userId) {
                 KGGLog(@"融云登录成功");
                 RCUserInfo *userInfo = [[RCUserInfo alloc]init];

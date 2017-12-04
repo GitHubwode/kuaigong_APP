@@ -91,7 +91,6 @@
     [self loadMapView];
     [self getUserLocation];
     [self searchRoute];
-   
 }
 
 #pragma mark -- 加载地图

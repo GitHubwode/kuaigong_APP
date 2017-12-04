@@ -52,7 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
-    self.navigationItem.title = @"快工";
+    self.navigationItem.title = @"快工邦";
     self.fd_interactivePopDisabled = YES;//禁止右滑
     //创建tarBarItem
     [self setupNavi];
@@ -139,21 +139,21 @@
     KGGMeWorkViewController *steelVC = [[KGGMeWorkViewController alloc]init];
     [self addChildViewController:steelVC];
     
-    _titles = @[@"发现工作",@"我"];
+    _titles = @[@"我要接单",@"我"];
 }
 
 - (void)setUpSlideSwitchView
 {
-    _slideSwitchView = [[SUNSlideSwitchView alloc]initWithFrame:self.view.bounds heightOfTopScrollView:50.f];
+    _slideSwitchView = [[SUNSlideSwitchView alloc]initWithFrame:self.view.bounds heightOfTopScrollView:40.f];
     _slideSwitchView.xc_height -= 64.f;
-    _slideSwitchView.widthOfButtonMargin = 40.f;
-    _slideSwitchView.bottomLineView.hidden = NO;
+    _slideSwitchView.widthOfButtonMargin = 20.f;
+    _slideSwitchView.bottomLineView.hidden = YES;
     _slideSwitchView.slideSwitchViewDelegate = self;
     _slideSwitchView.kFontSizeOfTabButton = 18.f;
     _slideSwitchView.topScrollView.backgroundColor = [UIColor whiteColor];
     _slideSwitchView.tabItemNormalColor = KGGTimeTextColor;
     _slideSwitchView.tabItemSelectedColor = KGGGoldenThemeColor;
-    _slideSwitchView.shadowImage = [UIImage imageNamed:@"chosebar"];
+    _slideSwitchView.tabItemSelectedBackgroundImage = [UIImage imageNamed:@"icon_yello_bg"];
     [_slideSwitchView buildUI];
     [self.view addSubview:_slideSwitchView];
 }
@@ -186,6 +186,16 @@
 
 - (NSString *)slideSwitchView:(SUNSlideSwitchView *)view titleOfTab:(NSUInteger)number{
     return _titles[number];
+}
+
+- (void)slideSwitchView:(SUNSlideSwitchView *)view didselectTab:(NSUInteger)number
+{
+    KGGLog(@"didselectTab %lu",(unsigned long)number);
+}
+
+- (void)slideSwitchView:(SUNSlideSwitchView *)view didscrollToTab:(NSUInteger)number
+{
+    KGGLog(@"didscrollTo %lu",(unsigned long)number);
 }
 
 #pragma mark - 导航栏按钮的点击事件
