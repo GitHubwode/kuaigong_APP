@@ -218,7 +218,7 @@
     KGGPostedModel *model = self.result[indexPath.row];
     if (indexPath.row == 0) {
         KGGPublishPostedMessageViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGPublishPostedMessageViewCell publishPostedMessageIdentifier] forIndexPath:indexPath];
-        cell.titleLabel.text = model.name;
+        cell.titleLabel.text = @"优秀班组";
         return cell;
     }else{
         KGGPublishPostedViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGPublishPostedViewCell publishPostedIdentifier] forIndexPath:indexPath];

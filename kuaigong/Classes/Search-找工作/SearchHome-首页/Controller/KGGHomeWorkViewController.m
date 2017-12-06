@@ -18,9 +18,6 @@
 #import "KGGLoginRequestManager.h"
 #import "AppDelegate+KGGRongCloud.h"
 
-//测试接单
-#import "KGGSearchOrderController.h"
-
 @interface KGGHomeWorkViewController ()<SUNSlideSwitchViewDelegate,CLLocationManagerDelegate>
 
 @property (nonatomic, strong) SUNSlideSwitchView *slideSwitchView;

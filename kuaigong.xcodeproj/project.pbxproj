@@ -254,6 +254,7 @@
 		359CD08A1F57DCB400DDFA62 /* KGGPersonMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359CD0881F57DCB400DDFA62 /* KGGPersonMessageCell.xib */; };
 		359CD08D1F57EAFC00DDFA62 /* KGGPublishPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 359CD08C1F57EAFC00DDFA62 /* KGGPublishPersonModel.m */; };
 		359CD08F1F57F10A00DDFA62 /* KGGPublishPrivate.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359CD08E1F57F10A00DDFA62 /* KGGPublishPrivate.plist */; };
+		35AC1DD21FD7983400A720B7 /* CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AC1DD11FD7983400A720B7 /* CountDown.m */; };
 		35AE111C1F8EFFAE00BCD2BD /* KGGApplyVIPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE111B1F8EFFAE00BCD2BD /* KGGApplyVIPView.m */; };
 		35AE116A1F8F81A500BCD2BD /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AE11681F8F81A500BCD2BD /* libcrypto.a */; };
 		35AE116B1F8F81A500BCD2BD /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AE11691F8F81A500BCD2BD /* libssl.a */; };
@@ -802,6 +803,8 @@
 		359CD08B1F57EAFC00DDFA62 /* KGGPublishPersonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGPublishPersonModel.h; sourceTree = "<group>"; };
 		359CD08C1F57EAFC00DDFA62 /* KGGPublishPersonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGPublishPersonModel.m; sourceTree = "<group>"; };
 		359CD08E1F57F10A00DDFA62 /* KGGPublishPrivate.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KGGPublishPrivate.plist; sourceTree = "<group>"; };
+		35AC1DD01FD7983300A720B7 /* CountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountDown.h; sourceTree = "<group>"; };
+		35AC1DD11FD7983400A720B7 /* CountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountDown.m; sourceTree = "<group>"; };
 		35AE111A1F8EFFAE00BCD2BD /* KGGApplyVIPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGApplyVIPView.h; sourceTree = "<group>"; };
 		35AE111B1F8EFFAE00BCD2BD /* KGGApplyVIPView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGApplyVIPView.m; sourceTree = "<group>"; };
 		35AE11681F8F81A500BCD2BD /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../Desktop/BaiduMap_IOSSDK_v3/thirdlibs/libcrypto.a; sourceTree = "<group>"; };
@@ -1355,6 +1358,7 @@
 		189D20EC1F42FE170004F1EB /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				35AC1DCF1FD7981900A720B7 /* CountDown */,
 				352366991FC6AA1600C50098 /* 极光统计 */,
 				35961AF01FA6CB7200A52B9E /* SDPhotoBrowser */,
 				35961ACF1FA6CB5D00A52B9E /* TZImagePickerController */,
@@ -2094,6 +2098,15 @@
 				35961B1A1FA87CE400A52B9E /* KGGCenterFooterView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		35AC1DCF1FD7981900A720B7 /* CountDown */ = {
+			isa = PBXGroup;
+			children = (
+				35AC1DD01FD7983300A720B7 /* CountDown.h */,
+				35AC1DD11FD7983400A720B7 /* CountDown.m */,
+			);
+			path = CountDown;
 			sourceTree = "<group>";
 		};
 		35CBD3CA1FA3249B007E88AD /* LeftMenu */ = {
@@ -2923,6 +2936,7 @@
 				35961AF91FA6CB7200A52B9E /* SDPhotoBrowser.m in Sources */,
 				3505C8601F976A5E0085D688 /* GLProgram.m in Sources */,
 				185C86D51F4AC39000356ECD /* KGGTabBarWorkController.m in Sources */,
+				35AC1DD21FD7983400A720B7 /* CountDown.m in Sources */,
 				3505C86A1F976A5E0085D688 /* PKFullScreenPlayerViewController.m in Sources */,
 				359232371FA9E055005C67EA /* UIView+TXFrame.m in Sources */,
 				3505C7FD1F9652E60085D688 /* KGGOrderCorrectModel.m in Sources */,

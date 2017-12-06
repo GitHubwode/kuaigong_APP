@@ -24,6 +24,7 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UIView *startView;
 @property (nonatomic, strong) SNHStartRateView *startRate;
+@property (weak, nonatomic) IBOutlet UIImageView *statusImageView;
 
 @end
 
@@ -70,6 +71,12 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
     self.nickNameLabel.text = detailsModel.contacts;
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:detailsModel.avatarUrl] placeholderImage:[UIImage imageNamed:@"icon_touxiang"]];
     self.distanceLabel.text = detailsModel.instance;
+    self.statusImageView.image = [UIImage imageNamed:detailsModel.statusImage];
+    if (detailsModel.status == 0) {
+        
+    }else{
+        self.backgroundColor = [UIColor lightGrayColor];
+    }
 }
 
 + (NSString *)lookWorkIdentifier

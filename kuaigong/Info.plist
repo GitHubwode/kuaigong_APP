@@ -76,6 +76,7 @@
 		<string>mqqbrowser</string>
 		<string>mttbrowser</string>
 		<string>alipay</string>
+        <string>baidumap</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

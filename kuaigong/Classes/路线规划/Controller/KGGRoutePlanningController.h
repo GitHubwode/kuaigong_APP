@@ -24,6 +24,4 @@ typedef NS_ENUM(NSUInteger, KGGRoutePlanningType) {
 /** 发布方接单详情Or接单方接单详情 */
 @property (nonatomic, assign) KGGRoutePlanningType planType;
 
-
-
 @end

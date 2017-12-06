@@ -31,7 +31,7 @@
 /** 维度 */
 @property (nonatomic,copy) NSString *latitude;
 /** 状态 */
-@property (nonatomic,assign) NSUInteger  status;
+@property (nonatomic,assign) NSUInteger status;
 /** 项目地址 */
 @property (nonatomic,copy) NSString *address;
 /** 项目时长 */
@@ -86,7 +86,7 @@
 @property (nonatomic, copy) NSString *orderDetails;
 //接单者的订单详情
 @property (nonatomic, copy) NSString *searchOrderDetails;
-
+@property (nonatomic, copy) NSString *statusImage;
 /** 工作类型 木工 钢筋工 */
 @property (nonatomic, copy) NSString *workerType;
 /** 接单方显示的金额 */

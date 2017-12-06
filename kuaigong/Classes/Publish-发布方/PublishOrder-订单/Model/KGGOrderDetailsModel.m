@@ -27,6 +27,12 @@
     _remark = _remark.length == 0 ? @"没有特殊要求":_remark;
     _remark = [_remark stringByReplacingOccurrencesOfString:@"null" withString:@""];
     
+    if (_status == 0) {
+        _statusImage = @"pic_daijie";
+    }else{
+        _statusImage = @"pic_yijie";
+    }
+    
     switch (_type) {
         case 1:
             _workerType = @"木工";
@@ -92,7 +98,7 @@
  *  这个数组中的属性名将会被忽略：不进行字典和模型的转换
  */
 + (NSArray *)mj_ignoredPropertyNames{
-    return @[@"orderDetails", @"workerType",@"searchOrderDetails",@"differentPrice",@"hidePhone",@"imageArray"];
+    return @[@"orderDetails", @"workerType",@"searchOrderDetails",@"statusImage",@"differentPrice",@"hidePhone",@"imageArray"];
 }
 
 @end

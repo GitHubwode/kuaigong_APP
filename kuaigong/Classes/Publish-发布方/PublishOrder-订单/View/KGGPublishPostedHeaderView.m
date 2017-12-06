@@ -11,6 +11,9 @@
 #import "UIImageView+WebCache.h"
 #import "SNHStartRateView.h"
 #import "UIImage+GIF.h"
+#import "CountDown.h"
+
+#define kDownTime 600
 
 @interface KGGPublishPostedHeaderView ()<snhStartRateViewDelegate>
 
@@ -23,7 +26,10 @@
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *moneylabel;
 @property (nonatomic, strong) SNHStartRateView *startRate;
-
+@property (nonatomic, strong) CountDown *timeDown;
+@property (nonatomic, strong) UILabel *downLabel;
+@property (nonatomic, copy) NSString *kggMinute;
+@property (nonatomic, copy) NSString *kggSecond;
 
 @end
 
@@ -37,6 +43,44 @@
         [self creatHeaderView];
     }
     return self;
+}
+
+#pragma mark - 倒计时的创建
+- (void)setupDownTime
+{
+    self.timeDown = [[CountDown alloc]init];
+    //获取当前时间戳
+    NSString *time = [NSString publishSetUpNowTime];
+    long long startTime = [time doubleValue];
+    long long endTime = [time doubleValue]+600000;
+    [self startLongLongStartStamp:startTime longlongFinishStamp:endTime];
+}
+
+-(void)startLongLongStartStamp:(long long)strtLL longlongFinishStamp:(long long)finishLL
+{
+    weakSelf(self);
+    [weakself.timeDown countDownWithStratTimeStamp:strtLL finishTimeStamp:finishLL completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
+        
+        if (day == 0 && hour == 0 && minute == 0 && second == 0) {
+            [weakself.timeDown destoryTimer];
+        }
+        [weakself refreshUIDay:day hour:hour minute:minute second:second];
+    }];
+}
+
+-(void)refreshUIDay:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second{
+    
+    if (minute<10) {
+        self.kggMinute = [NSString stringWithFormat:@"0%ld分",(long)minute];
+    }else{
+        self.kggMinute = [NSString stringWithFormat:@"%ld分",(long)minute];
+    }
+    if (second<10) {
+        self.kggSecond = [NSString stringWithFormat:@"0%ld秒",(long)second];
+    }else{
+        self.kggSecond = [NSString stringWithFormat:@"%ld秒",(long)second];
+    }
+    self.downLabel.text = [NSString stringWithFormat:@"%@%@",self.kggMinute,self.kggSecond];
 }
 
 - (void)setOrderModel:(KGGOrderDetailsModel *)orderModel
@@ -71,13 +115,23 @@
         make.left.equalTo(view1.mas_left).offset(20);
     }];
     UILabel *proLabel = [self creatHeaderViewTitleFont:KGGFont(14) Textcolor:UIColorHex(0x333333)];
-    proLabel.text = @"请耐心等待20-60分钟";
+    proLabel.text = @"请耐心等待5-10分钟";
     [view1 addSubview:proLabel];
     [proLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(imageView1.mas_centerY);
         make.left.equalTo(imageView1.mas_right).offset(20);
     }];
     
+    self.downLabel = [self creatHeaderViewTitleFont:KGGFont(14) Textcolor:UIColorHex(0x333333)];
+    [view1 addSubview:self.downLabel];
+    self.downLabel.layer.masksToBounds = YES;
+    self.downLabel.layer.cornerRadius = 10.f;
+    self.downLabel.backgroundColor = UIColorHex(0xffbf21);
+    [self.downLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(imageView1.mas_centerY);
+        make.right.equalTo(view1.mas_right).offset(-10);
+        make.height.equalTo(@(30));
+    }];
     //订单信息View
     UIView *view2 = [[UIView alloc]initWithFrame:CGRectMake(viewPadding, 72, viewWidth, 62)];
     view2.backgroundColor = [UIColor whiteColor];
@@ -254,7 +308,7 @@
         make.width.equalTo(@(72));
         make.height.equalTo(@(29));
     }];
-
+    [self setupDownTime];
 }
 
 #pragma 代理
@@ -320,6 +374,11 @@
 {
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:image]];
     return imageView;
+}
+
+- (void)dealloc
+{
+    KGGLogFunc
 }
 
 @end

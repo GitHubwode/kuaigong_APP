@@ -15,6 +15,8 @@ extern NSString * const KGGBasicURL;
 
 /** 保存用户的类型 */
 extern NSString * const KGGUserType;
+/** 百度APPID */
+extern NSString * const KGGBaiDuAPPID;
 /** 存储用户是否上工 */
 extern NSString *const KGGJPushType;
 /** Itnues上的地址 */

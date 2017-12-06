@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIButton *moreButton;
 @property (nonatomic, strong) UIButton *sureButton;
 @property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) UIButton *goButton;
 
 @end
 
@@ -89,11 +90,22 @@
         make.width.equalTo(@(KGGAdaptedWidth(115)));
     }];
     
+    
     if (type == 1) {
         [self.cancelButton setTitle:@"修改订单" forState:UIControlStateNormal];
         self.messageLabel.text = @"如果工作已完成,请支付工资";
         [self.sureButton setTitle:@"支付订单" forState:UIControlStateNormal];
     }else{
+        
+        [bottomView addSubview:self.goButton];
+        [self.goButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(bottomView.mas_centerY);
+            make.left.equalTo(bottomView.mas_left).offset(KGGAdaptedWidth(20));
+            make.height.equalTo(@(buttonHeight));
+            make.width.equalTo(@(KGGAdaptedWidth(115)));
+        }];
+        
+        [self.messageLabel removeFromSuperview];
         if ([isStart isEqualToString:@"N"]) {
             self.sureButton.enabled = NO;
             [self.sureButton setTitle:@"已确认出工" forState:UIControlStateNormal];
@@ -112,6 +124,14 @@
 - (void)sureButtonClick:(UIButton *)sender
 {
     KGGLog(@"确认出工");
+    if ([self.footerDelegate respondsToSelector:@selector(routeFooterViewGoButtonClickTag:)]) {
+        [self.footerDelegate routeFooterViewGoButtonClickTag:sender];
+    }
+}
+
+- (void)goButtonClick:(UIButton *)sender
+{
+    KGGLog(@"确认出发");
     if ([self.footerDelegate respondsToSelector:@selector(routeFooterViewGoButtonClickTag:)]) {
         [self.footerDelegate routeFooterViewGoButtonClickTag:sender];
     }
@@ -144,6 +164,22 @@
         [_sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sureButton;
+}
+
+- (UIButton *)goButton
+{
+    if (!_goButton) {
+        _goButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_goButton setBackgroundImage:[UIImage imageNamed:@"icon_go_btn"] forState:UIControlStateNormal];
+        _goButton.tag = 10004;
+        _goButton.layer.masksToBounds = YES;
+        _goButton.layer.cornerRadius = 5.f;
+//        _goButton.titleLabel.font = KGGFont(12);
+//        [_goButton setTitle:@"确认干活" forState:UIControlStateNormal];
+//        [_goButton setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
+        [_goButton addTarget:self action:@selector(goButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _goButton;
 }
 
 - (UILabel *)messageLabel

@@ -56,9 +56,13 @@
 @property (nonatomic, strong) BMKMapView *mapView;
 @property (nonatomic, strong) BMKLocationService *locService;
 @property (nonatomic, strong) BMKRouteSearch *routesearch;
+@property (nonatomic, strong) BMKGeoCodeSearch *geocodesearch;
 @property (nonatomic, assign) CLLocationCoordinate2D userPt;
 @property (nonatomic, strong) KGGCancelOrderPayView *payView;
 @property (nonatomic, strong) KGGSearchUserModel *acceptModel;
+@property (nonatomic, strong) NSString *addressDetails;//详细位置
+@property (nonatomic, assign) double longitudeAMap;
+@property (nonatomic, assign) double latitudeAMap;
 
 @end
 
@@ -128,9 +132,12 @@
 //处理位置坐标更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    //展示定位
     //发起反地理编码
     CLLocationCoordinate2D pt = (CLLocationCoordinate2D){userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude};
+
+    NSString *latitude = [NSString stringWithFormat:@"%f",userLocation.location.coordinate.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f",userLocation.location.coordinate.longitude];
+    [self reverseGeoCodeWithLatitude:latitude withLongitude:longitude];
 
     self.userPt = pt;
     [self driveBtnClick];
@@ -141,6 +148,29 @@
     an.tag = 10000;
     [_locService stopUserLocationService];//需要停止定位，否则创建大头针的时候会不断的添加
 }
+
+#pragma mark ----反向地理编码
+- (void)reverseGeoCodeWithLatitude:(NSString *)latitude withLongitude:(NSString *)longitude
+{
+    //发起反向地理编码检索
+    
+    CLLocationCoordinate2D coor;
+    coor.latitude = [latitude doubleValue];
+    coor.longitude = [longitude doubleValue];
+    
+    BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc] init];
+    reverseGeocodeSearchOption.reverseGeoPoint = coor;
+    BOOL flag = [self.geocodesearch reverseGeoCode:reverseGeocodeSearchOption];;
+    if (flag)
+    {
+        NSLog(@"反地理编码成功");//可注释
+    }
+    else
+    {
+        NSLog(@"反地理编码失败");//可注释
+    }
+}
+
 
 #pragma mark -- annotation添加标注
 - (BMKAnnotationView *)mapView:(BMKMapView *)view viewForAnnotation:(id <BMKAnnotation>)annotation
@@ -176,7 +206,6 @@
 - (void)searchRoute{
     _routesearch = [[BMKRouteSearch alloc]init];
     _routesearch.delegate = self;
-//    [self driveBtnClick];
 }
 
 - (BMKOverlayView*)mapView:(BMKMapView *)map viewForOverlay:(id<BMKOverlay>)overlay
@@ -193,8 +222,30 @@
 
 #pragma mark -- 事件
 
+//检索对象
+- (BMKGeoCodeSearch *)geocodesearch
+{
+    if (!_geocodesearch)
+    {
+        _geocodesearch = [[BMKGeoCodeSearch alloc] init];
+        _geocodesearch.delegate = self;
+    }
+    return _geocodesearch;
+}
+
+-(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    if (error == 0) {
+        self.addressDetails = result.address;
+        self.longitudeAMap = result.location.longitude;
+        self.latitudeAMap = result.location.latitude;
+        KGGLog(@"annotations:%@,longitude %f,latitude%f ",result.address,result.location.longitude,result.location.latitude);
+    }
+}
+
 - (void)onGetDrivingRouteResult:(BMKRouteSearch*)searcher result:(BMKDrivingRouteResult*)result errorCode:(BMKSearchErrorCode)error
 {
+    KGGLog(@"哈哈哈:%@",result.suggestAddrResult);
     NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
     [_mapView removeAnnotations:array];
     array = [NSArray arrayWithArray:_mapView.overlays];
@@ -466,6 +517,49 @@
     }else if (buttonTag.tag == 10003){
         KGGLog(@"确认出工");
         [self PublishPayOrderOrSearchSureGoButton:buttonTag];
+    }else if (buttonTag.tag == 10004){
+        KGGLog(@"确认出发导航");
+        [self kgg_baiduMapPoint];
+    }
+}
+
+#pragma mark - 设置起点和重点
+- (void)kgg_baiduMapPoint
+{
+    NSArray *otherTitles = @[@"自带导航",@"百度导航"];
+    LCActionSheet *actionSheet = [[LCActionSheet alloc]initWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
+        KGGLog(@"电脑的取消订单%ld",(long)buttonIndex);
+        
+        if (buttonIndex == 1) {
+            [self openIOSMapNav];
+        }else if (buttonIndex == 2){
+            [self opsenBaiduMap];
+        }
+        
+    } otherButtonTitleArray:otherTitles];
+    [actionSheet show];
+}
+
+- (void)openIOSMapNav
+{
+    KGGLog(@"系统地图");
+    CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake([self.orderDetails.latitude doubleValue], [self.orderDetails.longitude doubleValue]);
+    MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+    MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:endCoor addressDictionary:nil]];
+    toLocation.name = self.orderDetails.address;
+    [MKMapItem openMapsWithItems:@[currentLocation, toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey: [NSNumber numberWithBool:YES]}];
+}
+
+-(void)opsenBaiduMap
+{
+    NSString *urlString = [NSString stringWithFormat:@"baidumap://map/direction?origin=%f,%f&destination=%@,%@&mode=driving&region=",self.latitudeAMap,self.longitudeAMap,self.orderDetails.latitude,self.orderDetails.longitude];
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *mapUrl = [NSURL URLWithString:urlString];
+    if ([[UIApplication sharedApplication] canOpenURL:mapUrl]) {
+        [[UIApplication sharedApplication] openURL:mapUrl];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的手机没有安装百度地图" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
     }
 }
 

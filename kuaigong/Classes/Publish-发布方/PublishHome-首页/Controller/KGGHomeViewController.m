@@ -339,7 +339,6 @@ static CGFloat const middleHeight = 70.f;
     if (index == 0) {
         KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];
         collVC.itemName = @"共享老板";
-        //    [self.navigationController pushViewController:collVC animated:YES];
         [self presentViewController:collVC animated:YES completion:nil];
     }else if (index == 1){
         KGGLog(@"共享班组")
@@ -347,8 +346,8 @@ static CGFloat const middleHeight = 70.f;
         collVC.itemName = @"共享班组";
         [self presentViewController:collVC animated:YES completion:nil];
     }else if (index == 2){
-        KGGWorkPackagesController *packVC = [[KGGWorkPackagesController alloc]init];
-        [self.navigationController pushViewController:packVC animated:YES];
+//        KGGWorkPackagesController *packVC = [[KGGWorkPackagesController alloc]init];
+//        [self.navigationController pushViewController:packVC animated:YES];
     }else if (index == 3){
         
     }else if (index == 4){
@@ -505,7 +504,6 @@ static CGFloat const middleHeight = 70.f;
             frame.origin.y = transformY;
             self.view.frame = frame;
         }
-    
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification{
@@ -557,7 +555,7 @@ static CGFloat const middleHeight = 70.f;
 - (NSMutableArray *)imageArray
 {
     if (!_imageArray) {
-        _imageArray = [NSMutableArray arrayWithObjects:@"pic_banner1",@"pic_banner2",@"pic_banner3",@"pic_banner4",@"pic_banner5",@"pic_banner6", nil];
+        _imageArray = [NSMutableArray arrayWithObjects:@"pic_banner1",@"pic_banner2",@"pic_banner3",@"pic_banner4",@"pic_banner5",@"pic_banner6",@"pic_banner7", nil];
     }
     return _imageArray;
 }

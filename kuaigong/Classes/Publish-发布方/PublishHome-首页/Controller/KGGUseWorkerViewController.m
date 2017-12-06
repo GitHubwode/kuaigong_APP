@@ -375,7 +375,7 @@
     KGGLog(@"工种类型:%@",self.workType.type);
     KGGLog(@"%@",param);
     
-    [self.view showHint:@"正在上传信息..."];
+    [self.view showHint:@"正在发布订单..."];
     self.useButton.enabled = NO;
     [KGGPublishOrderRequestManager publishCreatOrderParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {

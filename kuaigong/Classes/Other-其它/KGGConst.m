@@ -30,6 +30,8 @@ NSString *const KGGRongCloudAppKey = @"pvxdm17jpicmr";
 /** 正式 融云的appkey */
 //NSString *const KGGRongCloudAppKey = @"uwd1c0sxuvrc1";
 
+/** 百度APPID */
+NSString * const KGGBaiDuAPPID = @"10196479";
 /** 保存用户的类型 */
 NSString * const KGGUserType = @"KGGUserType";
 /** 存储用户是否上工 */

@@ -109,7 +109,7 @@
 - (void)cdm_handleRemoteNotification:(NSDictionary *)remoteInfo
 {
     [JPUSHService handleRemoteNotification:remoteInfo];
-    KGGLog(@"%@",remoteInfo);
+    KGGLog(@"remoteInfo:%@",remoteInfo);
     [self cdm_setBadge:0];
 }
 
