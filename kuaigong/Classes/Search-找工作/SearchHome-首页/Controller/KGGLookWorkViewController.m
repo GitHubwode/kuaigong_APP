@@ -45,12 +45,11 @@ static CGFloat kCycleScrollViewH = 39.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.mj_header = [KGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(RefreshNewMessag)];
     self.tableView.mj_footer = [KGGRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(LoadAddMoreMessage)];
     [self.tableView.mj_header beginRefreshing];
-    
+    [self.view addSubview:self.tableView];
     [self addDataMesssage];
 }
 
@@ -180,10 +179,10 @@ static CGFloat kCycleScrollViewH = 39.f;
             [self.datasource addObjectsFromArray:response];
         }
         [self.tableView reloadData];
-        if (self.datasource.count < 10) {
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
-        }
-        
+//        if (self.datasource.count < 10) {
+//            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//        }
+//
         if (self.datasource.count == 0) {
             [self.tableView showBusinessErrorViewWithError:@"这里还没有内容" yOffset:100.f];
         }
@@ -220,6 +219,7 @@ static CGFloat kCycleScrollViewH = 39.f;
     }
     if (![KGGUserManager shareUserManager].currentUser.isRegister) {
         [self.view showHint:@"非签约用户,请联系快工公司"];
+        return;
     }else{
         KGGLog(@"订单详情");
         KGGOrderDetailsModel *model = self.datasource[indexPath.row];

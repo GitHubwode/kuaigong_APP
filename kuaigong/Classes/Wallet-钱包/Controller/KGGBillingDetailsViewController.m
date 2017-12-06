@@ -73,9 +73,9 @@
             [self.datasource addObjectsFromArray: response];
         }
         [self.billTableView reloadData];
-        if (self.datasource.count < 10) {
-            [self.billTableView.mj_footer endRefreshingWithNoMoreData];
-        }
+//        if (self.datasource.count < 10) {
+//            [self.billTableView.mj_footer endRefreshingWithNoMoreData];
+//        }
         
         if (self.datasource.count == 0) {
             [self.billTableView showBusinessErrorViewWithError:@"这里还没有内容" yOffset:100.f];

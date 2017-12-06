@@ -166,8 +166,8 @@
     self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%d",count];
     self.navigationItem.rightBarButtonItem.badgeFont = KGGFont(0);
     self.navigationItem.rightBarButtonItem.badgeMinSize = 2.f;
-    self.navigationItem.rightBarButtonItem.badgeOriginX = 12.f;
-    self.navigationItem.rightBarButtonItem.badgeOriginY = 1.f;
+    self.navigationItem.rightBarButtonItem.badgeOriginX = 27.f;
+    self.navigationItem.rightBarButtonItem.badgeOriginY = 3.f;
     self.navigationItem.rightBarButtonItem.shouldHideBadgeAtZero = YES;
     self.navigationItem.rightBarButtonItem.badgeBGColor = UIColorHex(0xffd200);
 }

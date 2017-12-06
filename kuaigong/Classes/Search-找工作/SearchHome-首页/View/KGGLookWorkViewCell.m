@@ -73,7 +73,7 @@ static NSString *const lookWorkViewCell = @"KGGLookWorkViewCell";
     self.distanceLabel.text = detailsModel.instance;
     self.statusImageView.image = [UIImage imageNamed:detailsModel.statusImage];
     if (detailsModel.status == 0) {
-        
+        self.backgroundColor = [UIColor whiteColor];
     }else{
         self.backgroundColor = [UIColor lightGrayColor];
     }

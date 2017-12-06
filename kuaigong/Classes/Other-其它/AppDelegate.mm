@@ -57,7 +57,7 @@
 //    // 如需使用IDFA功能请添加此代码并在初始化方法的advertisingIdentifier参数中填写对应值
     NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     
-    [[KGGJPushManager shareJPushManager]cdm_setupWithOption:launchOptions appKey:KGGJPushAPPKey channel:@"kg-channel" apsForProduction:NO advertisingIdentifier:advertisingId];
+    [[KGGJPushManager shareJPushManager]cdm_setupWithOption:launchOptions appKey:KGGJPushAPPKey channel:@"kg-channel" apsForProduction:YES advertisingIdentifier:advertisingId];
     
     [[KGGJPushManager shareJPushManager] cdm_getRegisterIDCallBack:^(NSString *registerID) {
         KGGLog(@"%@",registerID);
