@@ -335,6 +335,7 @@
 		35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35F830871F62AA5B00204989 /* KGGWithdrawViewController.xib */; };
 		35F8308C1F66897800204989 /* KGGInfoTextFiel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F8308B1F66897800204989 /* KGGInfoTextFiel.m */; };
 		35F830901F67C91300204989 /* KGGRongCloudModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F8308F1F67C91300204989 /* KGGRongCloudModel.m */; };
+		35F8DF2A1FD923ED00F6F424 /* KGGBirthdayField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F8DF291FD923ED00F6F424 /* KGGBirthdayField.m */; };
 		35FD03791F5E7AD400558900 /* KGGPublishSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35FD03781F5E7AD400558900 /* KGGPublishSetting.plist */; };
 		35FD037D1F5E7C8100558900 /* KGGMoreSettingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FD037B1F5E7C8100558900 /* KGGMoreSettingViewCell.m */; };
 		35FD037E1F5E7C8100558900 /* KGGMoreSettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35FD037C1F5E7C8100558900 /* KGGMoreSettingViewCell.xib */; };
@@ -937,6 +938,8 @@
 		35F8308B1F66897800204989 /* KGGInfoTextFiel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGInfoTextFiel.m; sourceTree = "<group>"; };
 		35F8308E1F67C91300204989 /* KGGRongCloudModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGRongCloudModel.h; sourceTree = "<group>"; };
 		35F8308F1F67C91300204989 /* KGGRongCloudModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGRongCloudModel.m; sourceTree = "<group>"; };
+		35F8DF281FD923ED00F6F424 /* KGGBirthdayField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGBirthdayField.h; sourceTree = "<group>"; };
+		35F8DF291FD923ED00F6F424 /* KGGBirthdayField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGBirthdayField.m; sourceTree = "<group>"; };
 		35FD03781F5E7AD400558900 /* KGGPublishSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KGGPublishSetting.plist; sourceTree = "<group>"; };
 		35FD037A1F5E7C8100558900 /* KGGMoreSettingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGMoreSettingViewCell.h; sourceTree = "<group>"; };
 		35FD037B1F5E7C8100558900 /* KGGMoreSettingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGMoreSettingViewCell.m; sourceTree = "<group>"; };
@@ -1516,12 +1519,19 @@
 		189D21381F43032F0004F1EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				35F8DF2B1FD9295000F6F424 /* 工龄Cell */,
+				35F8DF2F1FD9295000F6F424 /* 工种Cell */,
+				35F8DF2D1FD9295000F6F424 /* 籍贯Cell */,
+				35F8DF2E1FD9295000F6F424 /* 民族Cell */,
+				35F8DF2C1FD9295000F6F424 /* 团队规模Cell */,
 				188F2D571F540A470023F4BE /* KGGRefreshHeader.h */,
 				188F2D581F540A470023F4BE /* KGGRefreshHeader.m */,
 				188F2D5A1F540B8C0023F4BE /* KGGRefreshFooter.h */,
 				188F2D5B1F540B8C0023F4BE /* KGGRefreshFooter.m */,
 				350360501F594B6F00FB0EDD /* KGGSexField.h */,
 				350360511F594B6F00FB0EDD /* KGGSexField.m */,
+				35F8DF281FD923ED00F6F424 /* KGGBirthdayField.h */,
+				35F8DF291FD923ED00F6F424 /* KGGBirthdayField.m */,
 				3545BB781F6FA23F008122B8 /* KGGPayTimeChooseField.h */,
 				3545BB791F6FA23F008122B8 /* KGGPayTimeChooseField.m */,
 				35AE111A1F8EFFAE00BCD2BD /* KGGApplyVIPView.h */,
@@ -2473,6 +2483,41 @@
 			path = "Chat-聊天";
 			sourceTree = "<group>";
 		};
+		35F8DF2B1FD9295000F6F424 /* 工龄Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "工龄Cell";
+			sourceTree = "<group>";
+		};
+		35F8DF2C1FD9295000F6F424 /* 团队规模Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "团队规模Cell";
+			sourceTree = "<group>";
+		};
+		35F8DF2D1FD9295000F6F424 /* 籍贯Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "籍贯Cell";
+			sourceTree = "<group>";
+		};
+		35F8DF2E1FD9295000F6F424 /* 民族Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "民族Cell";
+			sourceTree = "<group>";
+		};
+		35F8DF2F1FD9295000F6F424 /* 工种Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "工种Cell";
+			sourceTree = "<group>";
+		};
 		EDA2F586264DFF646B7E29D0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2789,6 +2834,7 @@
 				3543DB811F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m in Sources */,
 				357691381FB0722C00803D9A /* KGGRouteHeaderView.m in Sources */,
 				35CBD8311FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.m in Sources */,
+				35F8DF2A1FD923ED00F6F424 /* KGGBirthdayField.m in Sources */,
 				18F5BA6D1F4ED24F00E6ADC4 /* KGGUseWorkerHeaderView.m in Sources */,
 				188F2D401F4ED50E0023F4BE /* KGGHomeWorkViewController.m in Sources */,
 				185C866C1F452D9100356ECD /* UIView+HUD.m in Sources */,
@@ -3138,6 +3184,7 @@
 				CODE_SIGN_ENTITLEMENTS = kuaigong/kuaigong.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = X8BDJ996M8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

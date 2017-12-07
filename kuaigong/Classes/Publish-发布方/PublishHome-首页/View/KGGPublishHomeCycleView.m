@@ -34,8 +34,8 @@
 - (void)addMessage
 {
     KGGPublishHomeCycleModel *model = [[KGGPublishHomeCycleModel alloc]init];
-    model.imageString = @"icon_btn_boss";
-    model.nameString = @"快臣老板";
+    model.imageString = @"icon_btn_shipin";
+    model.nameString = @"忆笑小视频";
     [self.datasource addObject:model];
     
     KGGPublishHomeCycleModel *model1 = [[KGGPublishHomeCycleModel alloc]init];

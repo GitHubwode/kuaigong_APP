@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZC-wV-VRy">
                         <rect key="frame" x="0.0" y="0.0" width="170" height="149"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_btn_boss" translatesAutoresizingMaskIntoConstraints="NO" id="lRK-9P-glN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_btn_shipin" translatesAutoresizingMaskIntoConstraints="NO" id="lRK-9P-glN">
                                 <rect key="frame" x="64" y="5" width="42" height="42"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="快臣老板" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXj-fN-uFm">
@@ -67,6 +67,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="icon_btn_boss" width="42" height="42"/>
+        <image name="icon_btn_shipin" width="42" height="42"/>
     </resources>
 </document>

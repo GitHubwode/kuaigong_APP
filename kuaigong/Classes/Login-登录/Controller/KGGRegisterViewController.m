@@ -92,6 +92,11 @@
     return @"REGISTER";
 }
 
+- (UIView *)hudView
+{
+    return self.view;
+}
+
 - (BOOL)textFieldShouldSendCode:(KGGLoginView *)textField
 {
     NSString *cellPhone = self.loginView1.loginTextField.text;
@@ -109,10 +114,6 @@
     }
     self.loginButton.enabled = YES;
     return YES;
-}
-
-- (UIView *)hudView{
-    return self.loginView1;
 }
 
 #pragma mark - 模拟导航栏

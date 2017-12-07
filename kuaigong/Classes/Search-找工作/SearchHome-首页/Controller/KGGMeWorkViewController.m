@@ -80,6 +80,15 @@
     [self.headerView updataUserMessageLogin:[KGGUserManager shareUserManager].logined];
 }
 
+/** 中间 */
+- (void)KGG_CycleCollectionViewMeWorkDidSelectItemAtIndex:(NSInteger)index
+{
+    KGGLog(@"找工作中间:%ld",index);
+    if (index == 0) {
+        
+    }
+}
+
 #pragma mark - UITableViewDelegate  UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

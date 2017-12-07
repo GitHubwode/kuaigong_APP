@@ -12,6 +12,8 @@
 @protocol KGGMeWorkHeaderViewDelegate <NSObject> ;
 
 - (void)kggMeWorkHeaderViewButtonClick;
+/** 中间的 */
+- (void)KGG_CycleCollectionViewMeWorkDidSelectItemAtIndex:(NSInteger)index;
 
 @end
 

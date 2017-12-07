@@ -605,7 +605,6 @@
     } aboveView:nil inCaller:self];
 }
 
-
 #pragma mark - 发布者支付订单  接单者确认出工
 - (void)PublishPayOrderOrSearchSureGoButton:(UIButton *)button
 {

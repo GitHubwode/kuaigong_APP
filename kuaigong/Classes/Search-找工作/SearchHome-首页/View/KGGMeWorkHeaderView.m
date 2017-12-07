@@ -133,6 +133,15 @@ static CGFloat const cycleHeight = 70.f;
 
 }
 
+#pragma mark - KGGSlideMenuDelegate
+- (void)KGG_PublishHomeCycleViewDidSelectItemAtIndex:(NSInteger )index
+{
+    KGGLog(@"---TOP点击了第%ld张图片", (long)index);
+    if ([self.delegate respondsToSelector:@selector(KGG_CycleCollectionViewMeWorkDidSelectItemAtIndex:)]) {
+        [self.delegate KGG_CycleCollectionViewMeWorkDidSelectItemAtIndex:index];
+    }
+}
+
 #pragma mark - lazy
 - (UIView *)avatarWraperView{
     if (!_avatarWraperView) {

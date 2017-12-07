@@ -103,6 +103,7 @@
     self.loginView3 = [[KGGLoginView alloc]initWithFrame:CGRectMake(0, KGGAdaptedHeight(220+44+32+44+32+44+32), kMainScreenWidth, 44) WithTitle:@"邀 请 码:" imageString:nil PlaceText:@"请输入推荐人手机号"];
     
     self.loginView3.isPhoneNum = YES;
+//    self.loginView3.loginTextField.text = NULL;
     self.loginView3.maxTextLength = KGGCellphoneMaxLength;
     [self.view addSubview:self.loginView3];
     
@@ -158,7 +159,6 @@
     }];
 }
 
-
 #pragma mark - 模拟导航栏
 - (void)creatNaviUI
 {
@@ -205,7 +205,7 @@
     
     NSString *phone = self.loginView3.loginTextField.text;
     if (!phone.length) {
-        
+//        phone = NULL;
     }else{
         // 1.对用户输入的手机号进行正则匹配
         BOOL isSame = [phone isPhoneNumer];
@@ -215,10 +215,6 @@
             return;
         }
     }
-//    if (!phone.length){
-//        [self.view showHint:@"请填写手机号码"];
-//        return;
-//    };
 
     NSString *cellphone = self.loginView1.loginTextField.text;
     if (!cellphone.length){
@@ -246,7 +242,7 @@
     
     weakSelf(self);
     
-    KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:[NSUserDefaults objectForKey:KGGUserType] Code:self.smsCode InvitationCode:self.companyCode PersonCode:self.loginView3.loginTextField.text];
+    KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:[NSUserDefaults objectForKey:KGGUserType] Code:self.smsCode InvitationCode:self.companyCode PersonCode:phone];
     [KGGLoginRequestManager registerWithParam:param completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) {
             [MBProgressHUD showSuYaError:KGGHttpNerworkErrorTip toView:weakself.view];

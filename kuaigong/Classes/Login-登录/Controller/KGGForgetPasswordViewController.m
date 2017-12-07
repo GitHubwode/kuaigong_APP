@@ -215,7 +215,7 @@
 }
 
 - (UIView *)hudView{
-    return self.loginView1;
+    return self.view;
 }
 
 

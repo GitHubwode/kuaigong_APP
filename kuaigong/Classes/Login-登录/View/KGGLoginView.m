@@ -151,7 +151,6 @@
         }else if (responseObj.code != KGGSuccessCode){
             [MBProgressHUD showMessag:responseObj.message toView:weakview];
         }else{
-            
             [sender startWithTime:60 title:@"获取验证码" subTitle:@"秒后重发" normalBackgroundColor:KGGGoldenThemeColor coundownBackgroundColor:UIColorHex(c3c3c3) completion:nil];
         }
 

@@ -111,7 +111,7 @@
 }
 
 - (UIView *)hudView{
-    return self.loginView1;
+    return self.view;
 }
 
 #pragma mark - 模拟导航栏
