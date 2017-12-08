@@ -74,7 +74,7 @@
     }
     _differentPrice = [NSString stringWithFormat:@"%.f",(_totalAmount - _fee)];
     
-    KGGLog(@"价钱 %f %f  %@",_totalAmount,_fee,_differentPrice);
+    KGGLog(@"价钱 %.f %.f  %@",_totalAmount,_fee,_differentPrice);
     
     //隐藏电话点好
     _hidePhone = [NSString numberSuitScanf:_contactsPhone];

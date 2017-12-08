@@ -337,9 +337,9 @@ static CGFloat const middleHeight = 70.f;
 {
     KGGLog(@"中间:%ld",index);
     if (index == 0) {
-        KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];
-        collVC.itemName = @"共享老板";
-        [self presentViewController:collVC animated:YES completion:nil];
+//        KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];
+//        collVC.itemName = @"共享老板";
+//        [self presentViewController:collVC animated:YES completion:nil];
     }else if (index == 1){
         KGGLog(@"共享班组")
         KGGCollectMessageController *collVC = [[KGGCollectMessageController alloc]init];

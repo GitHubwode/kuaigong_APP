@@ -93,7 +93,6 @@
 		18F5BA791F4ED24F00E6ADC4 /* KGGDoneOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA561F4ED24F00E6ADC4 /* KGGDoneOrderController.m */; };
 		18F5BA7A1F4ED24F00E6ADC4 /* KGGOrderRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA581F4ED24F00E6ADC4 /* KGGOrderRecordController.m */; };
 		18F5BA7B1F4ED24F00E6ADC4 /* KGGUndoneOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA5A1F4ED24F00E6ADC4 /* KGGUndoneOrderController.m */; };
-		350360521F594B6F00FB0EDD /* KGGSexField.m in Sources */ = {isa = PBXBuildFile; fileRef = 350360511F594B6F00FB0EDD /* KGGSexField.m */; };
 		350360561F59503900FB0EDD /* KGGSexChangeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 350360541F59503900FB0EDD /* KGGSexChangeViewCell.m */; };
 		350360571F59503900FB0EDD /* KGGSexChangeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350360551F59503900FB0EDD /* KGGSexChangeViewCell.xib */; };
 		3505C7F21F962DC90085D688 /* KGGOrderCorrectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7F11F962DC90085D688 /* KGGOrderCorrectViewController.m */; };
@@ -188,6 +187,9 @@
 		3545BB851F6FD65B008122B8 /* AppDelegate+KGGUMSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 3545BB841F6FD65B008122B8 /* AppDelegate+KGGUMSocial.m */; };
 		354885D91FA0351600636435 /* KGGWorkTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354885D81FA0351600636435 /* KGGWorkTypeModel.m */; };
 		354885DC1FA066AB00636435 /* KGGPublishHomeRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 354885DB1FA066AB00636435 /* KGGPublishHomeRequestManager.m */; };
+		35612F871FDA347700C9D103 /* KGGSexField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35612F861FDA347700C9D103 /* KGGSexField.m */; };
+		35612F8A1FDA348100C9D103 /* KGGBirthdayField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35612F881FDA348000C9D103 /* KGGBirthdayField.m */; };
+		35612F8D1FDA348900C9D103 /* KGGCompanyChooseField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35612F8B1FDA348900C9D103 /* KGGCompanyChooseField.m */; };
 		356AE9C31FAB35E5004E417B /* KGGCollectTotalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 356AE9C11FAB35E5004E417B /* KGGCollectTotalController.m */; };
 		356AE9C41FAB35E5004E417B /* KGGCollectTotalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 356AE9C21FAB35E5004E417B /* KGGCollectTotalController.xib */; };
 		3576912D1FB05E0A00803D9A /* KGGRoutePlanningController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3576912C1FB05E0A00803D9A /* KGGRoutePlanningController.mm */; };
@@ -199,7 +201,6 @@
 		357F5E0C1FB56C8500252C4D /* KGGShareMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0A1FB56C8500252C4D /* KGGShareMessageViewController.m */; };
 		357F5E0D1FB56C8500252C4D /* KGGShareMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */; };
 		357F5E101FB5C14500252C4D /* KGGSearchUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0F1FB5C14500252C4D /* KGGSearchUserModel.m */; };
-		357F5E131FB81CD500252C4D /* KGGCompanyChooseField.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */; };
 		357F5E161FB8230F00252C4D /* KGGCompanyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E151FB8230F00252C4D /* KGGCompanyView.m */; };
 		357F5E191FBA9A6C00252C4D /* KGGCancelOrderPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E181FBA9A6C00252C4D /* KGGCancelOrderPayView.m */; };
 		358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381801F8B12E2002A17C5 /* KGGUserObj.m */; };
@@ -335,7 +336,6 @@
 		35F830891F62AA5B00204989 /* KGGWithdrawViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35F830871F62AA5B00204989 /* KGGWithdrawViewController.xib */; };
 		35F8308C1F66897800204989 /* KGGInfoTextFiel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F8308B1F66897800204989 /* KGGInfoTextFiel.m */; };
 		35F830901F67C91300204989 /* KGGRongCloudModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F8308F1F67C91300204989 /* KGGRongCloudModel.m */; };
-		35F8DF2A1FD923ED00F6F424 /* KGGBirthdayField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F8DF291FD923ED00F6F424 /* KGGBirthdayField.m */; };
 		35FD03791F5E7AD400558900 /* KGGPublishSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35FD03781F5E7AD400558900 /* KGGPublishSetting.plist */; };
 		35FD037D1F5E7C8100558900 /* KGGMoreSettingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35FD037B1F5E7C8100558900 /* KGGMoreSettingViewCell.m */; };
 		35FD037E1F5E7C8100558900 /* KGGMoreSettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35FD037C1F5E7C8100558900 /* KGGMoreSettingViewCell.xib */; };
@@ -534,8 +534,6 @@
 		18F5BA581F4ED24F00E6ADC4 /* KGGOrderRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGOrderRecordController.m; sourceTree = "<group>"; };
 		18F5BA591F4ED24F00E6ADC4 /* KGGUndoneOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGUndoneOrderController.h; sourceTree = "<group>"; };
 		18F5BA5A1F4ED24F00E6ADC4 /* KGGUndoneOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGUndoneOrderController.m; sourceTree = "<group>"; };
-		350360501F594B6F00FB0EDD /* KGGSexField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGSexField.h; sourceTree = "<group>"; };
-		350360511F594B6F00FB0EDD /* KGGSexField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGSexField.m; sourceTree = "<group>"; };
 		350360531F59503900FB0EDD /* KGGSexChangeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGSexChangeViewCell.h; sourceTree = "<group>"; };
 		350360541F59503900FB0EDD /* KGGSexChangeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGSexChangeViewCell.m; sourceTree = "<group>"; };
 		350360551F59503900FB0EDD /* KGGSexChangeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGSexChangeViewCell.xib; sourceTree = "<group>"; };
@@ -683,6 +681,12 @@
 		354885D81FA0351600636435 /* KGGWorkTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGWorkTypeModel.m; sourceTree = "<group>"; };
 		354885DA1FA066AB00636435 /* KGGPublishHomeRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPublishHomeRequestManager.h; sourceTree = "<group>"; };
 		354885DB1FA066AB00636435 /* KGGPublishHomeRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPublishHomeRequestManager.m; sourceTree = "<group>"; };
+		35612F851FDA347700C9D103 /* KGGSexField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGSexField.h; sourceTree = "<group>"; };
+		35612F861FDA347700C9D103 /* KGGSexField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGSexField.m; sourceTree = "<group>"; };
+		35612F881FDA348000C9D103 /* KGGBirthdayField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGBirthdayField.m; sourceTree = "<group>"; };
+		35612F891FDA348100C9D103 /* KGGBirthdayField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGBirthdayField.h; sourceTree = "<group>"; };
+		35612F8B1FDA348900C9D103 /* KGGCompanyChooseField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGCompanyChooseField.m; sourceTree = "<group>"; };
+		35612F8C1FDA348900C9D103 /* KGGCompanyChooseField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGCompanyChooseField.h; sourceTree = "<group>"; };
 		356AE9C01FAB35E5004E417B /* KGGCollectTotalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCollectTotalController.h; sourceTree = "<group>"; };
 		356AE9C11FAB35E5004E417B /* KGGCollectTotalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCollectTotalController.m; sourceTree = "<group>"; };
 		356AE9C21FAB35E5004E417B /* KGGCollectTotalController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGCollectTotalController.xib; sourceTree = "<group>"; };
@@ -702,8 +706,6 @@
 		357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGShareMessageViewController.xib; sourceTree = "<group>"; };
 		357F5E0E1FB5C14500252C4D /* KGGSearchUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGSearchUserModel.h; sourceTree = "<group>"; };
 		357F5E0F1FB5C14500252C4D /* KGGSearchUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGSearchUserModel.m; sourceTree = "<group>"; };
-		357F5E111FB81CD500252C4D /* KGGCompanyChooseField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCompanyChooseField.h; sourceTree = "<group>"; };
-		357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCompanyChooseField.m; sourceTree = "<group>"; };
 		357F5E141FB8230F00252C4D /* KGGCompanyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCompanyView.h; sourceTree = "<group>"; };
 		357F5E151FB8230F00252C4D /* KGGCompanyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCompanyView.m; sourceTree = "<group>"; };
 		357F5E171FBA9A6C00252C4D /* KGGCancelOrderPayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCancelOrderPayView.h; sourceTree = "<group>"; };
@@ -938,8 +940,6 @@
 		35F8308B1F66897800204989 /* KGGInfoTextFiel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGInfoTextFiel.m; sourceTree = "<group>"; };
 		35F8308E1F67C91300204989 /* KGGRongCloudModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGRongCloudModel.h; sourceTree = "<group>"; };
 		35F8308F1F67C91300204989 /* KGGRongCloudModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGRongCloudModel.m; sourceTree = "<group>"; };
-		35F8DF281FD923ED00F6F424 /* KGGBirthdayField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGBirthdayField.h; sourceTree = "<group>"; };
-		35F8DF291FD923ED00F6F424 /* KGGBirthdayField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGBirthdayField.m; sourceTree = "<group>"; };
 		35FD03781F5E7AD400558900 /* KGGPublishSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KGGPublishSetting.plist; sourceTree = "<group>"; };
 		35FD037A1F5E7C8100558900 /* KGGMoreSettingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGMoreSettingViewCell.h; sourceTree = "<group>"; };
 		35FD037B1F5E7C8100558900 /* KGGMoreSettingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGMoreSettingViewCell.m; sourceTree = "<group>"; };
@@ -1519,6 +1519,9 @@
 		189D21381F43032F0004F1EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				35612F841FDA2E4C00C9D103 /* 性别Cell */,
+				35612F831FDA2E3200C9D103 /* 生日Cell */,
+				35612F821FDA2E2B00C9D103 /* 公司选择Cell */,
 				35F8DF2B1FD9295000F6F424 /* 工龄Cell */,
 				35F8DF2F1FD9295000F6F424 /* 工种Cell */,
 				35F8DF2D1FD9295000F6F424 /* 籍贯Cell */,
@@ -1528,10 +1531,6 @@
 				188F2D581F540A470023F4BE /* KGGRefreshHeader.m */,
 				188F2D5A1F540B8C0023F4BE /* KGGRefreshFooter.h */,
 				188F2D5B1F540B8C0023F4BE /* KGGRefreshFooter.m */,
-				350360501F594B6F00FB0EDD /* KGGSexField.h */,
-				350360511F594B6F00FB0EDD /* KGGSexField.m */,
-				35F8DF281FD923ED00F6F424 /* KGGBirthdayField.h */,
-				35F8DF291FD923ED00F6F424 /* KGGBirthdayField.m */,
 				3545BB781F6FA23F008122B8 /* KGGPayTimeChooseField.h */,
 				3545BB791F6FA23F008122B8 /* KGGPayTimeChooseField.m */,
 				35AE111A1F8EFFAE00BCD2BD /* KGGApplyVIPView.h */,
@@ -1541,8 +1540,6 @@
 				3505C7F51F9637E80085D688 /* KGGOrderCorrectViewCell.xib */,
 				35C72C4F1F9EFF3300A82336 /* KGGWorkTimeChooseField.h */,
 				35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */,
-				357F5E111FB81CD500252C4D /* KGGCompanyChooseField.h */,
-				357F5E121FB81CD500252C4D /* KGGCompanyChooseField.m */,
 				357F5E171FBA9A6C00252C4D /* KGGCancelOrderPayView.h */,
 				357F5E181FBA9A6C00252C4D /* KGGCancelOrderPayView.m */,
 				35CBD82E1FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.h */,
@@ -1883,6 +1880,33 @@
 			name = Alipay_SDK;
 			path = kuaigong/Classes/Alipay_SDK;
 			sourceTree = SOURCE_ROOT;
+		};
+		35612F821FDA2E2B00C9D103 /* 公司选择Cell */ = {
+			isa = PBXGroup;
+			children = (
+				35612F8C1FDA348900C9D103 /* KGGCompanyChooseField.h */,
+				35612F8B1FDA348900C9D103 /* KGGCompanyChooseField.m */,
+			);
+			path = "公司选择Cell";
+			sourceTree = "<group>";
+		};
+		35612F831FDA2E3200C9D103 /* 生日Cell */ = {
+			isa = PBXGroup;
+			children = (
+				35612F891FDA348100C9D103 /* KGGBirthdayField.h */,
+				35612F881FDA348000C9D103 /* KGGBirthdayField.m */,
+			);
+			path = "生日Cell";
+			sourceTree = "<group>";
+		};
+		35612F841FDA2E4C00C9D103 /* 性别Cell */ = {
+			isa = PBXGroup;
+			children = (
+				35612F851FDA347700C9D103 /* KGGSexField.h */,
+				35612F861FDA347700C9D103 /* KGGSexField.m */,
+			);
+			path = "性别Cell";
+			sourceTree = "<group>";
 		};
 		356AE9B71FAB2CA6004E417B /* 收集信息 */ = {
 			isa = PBXGroup;
@@ -2829,12 +2853,12 @@
 				35961AEF1FA6CB5D00A52B9E /* UIView+Layout.m in Sources */,
 				189D21591F43E49B0004F1EB /* NSUserDefaults+KGGExtension.m in Sources */,
 				35CBD8441FCEBDEB00FE1DFC /* KGGMeWorkModel.m in Sources */,
+				35612F871FDA347700C9D103 /* KGGSexField.m in Sources */,
 				185C86631F443B6C00356ECD /* KGGLoginViewController.m in Sources */,
 				189D21331F4300100004F1EB /* KGGNavigationController.m in Sources */,
 				3543DB811F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m in Sources */,
 				357691381FB0722C00803D9A /* KGGRouteHeaderView.m in Sources */,
 				35CBD8311FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.m in Sources */,
-				35F8DF2A1FD923ED00F6F424 /* KGGBirthdayField.m in Sources */,
 				18F5BA6D1F4ED24F00E6ADC4 /* KGGUseWorkerHeaderView.m in Sources */,
 				188F2D401F4ED50E0023F4BE /* KGGHomeWorkViewController.m in Sources */,
 				185C866C1F452D9100356ECD /* UIView+HUD.m in Sources */,
@@ -2854,7 +2878,6 @@
 				357F5E161FB8230F00252C4D /* KGGCompanyView.m in Sources */,
 				18F5BA6E1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.m in Sources */,
 				35961AC91FA603AC00A52B9E /* KGGShowFeedApiItem.m in Sources */,
-				350360521F594B6F00FB0EDD /* KGGSexField.m in Sources */,
 				35BEB1611F725BBA0060298A /* KGGMyWorkViewController.m in Sources */,
 				354885D91FA0351600636435 /* KGGWorkTypeModel.m in Sources */,
 				18F5BA631F4ED24F00E6ADC4 /* KGGUseWorkerViewController.m in Sources */,
@@ -2904,6 +2927,8 @@
 				359778011FAC51EC00336F60 /* KGGCollectFooterView.m in Sources */,
 				35961B011FA70F2C00A52B9E /* KGGOrderImageModel.m in Sources */,
 				3505C8671F976A5E0085D688 /* PKChatMessagePlayerView.m in Sources */,
+				35612F8D1FDA348900C9D103 /* KGGCompanyChooseField.m in Sources */,
+				35612F8A1FDA348100C9D103 /* KGGBirthdayField.m in Sources */,
 				185C868A1F46861A00356ECD /* KGGConfirmPasswordViewController.m in Sources */,
 				3576913B1FB0723C00803D9A /* KGGRouteFooterView.m in Sources */,
 				189D21451F43E11E0004F1EB /* KGGTabBarController.m in Sources */,
@@ -2915,7 +2940,6 @@
 				189D212F1F42FE170004F1EB /* UIView+WebCacheOperation.m in Sources */,
 				188F2D551F500FA40023F4BE /* KGGMeWorkViewCell.m in Sources */,
 				358381811F8B12E2002A17C5 /* KGGUserObj.m in Sources */,
-				357F5E131FB81CD500252C4D /* KGGCompanyChooseField.m in Sources */,
 				35F830711F62887800204989 /* KGGFillBankInfoViewController.m in Sources */,
 				35F73AB71F78E3A0000CD1D6 /* KGGLocationTextFieldSubClass.m in Sources */,
 				35CBD3C31FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m in Sources */,
