@@ -51,6 +51,20 @@ static CGFloat kCycleScrollViewH = 39.f;
     [self.tableView.mj_header beginRefreshing];
     [self.view addSubview:self.tableView];
     [self addDataMesssage];
+    
+    [KGGNotificationCenter addObserver:self selector:@selector(kggJumpController:) name:KGGRongYunReceiedNotifacation object:nil];
+}
+
+#pragma mark - 获取到通知的信息
+- (void)kggJumpController:(NSNotification *)notification
+{
+    KGGLog(@"通知的内容%@",notification);
+    KGGLog(@"%@",notification.userInfo);
+    
+    NSUInteger type = [[notification.userInfo objectForKey:@"type"] integerValue];
+    if (type == 502) {
+        [self RefreshNewMessag];
+    }
 }
 
 - (void)addDataMesssage
@@ -322,6 +336,11 @@ static CGFloat kCycleScrollViewH = 39.f;
         _messageDatasource = [NSMutableArray array];
     }
     return _messageDatasource;
+}
+
+- (void)dealloc
+{
+    [KGGNotificationCenter removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

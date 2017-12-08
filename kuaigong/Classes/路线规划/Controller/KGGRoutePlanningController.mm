@@ -63,6 +63,7 @@
 @property (nonatomic, strong) NSString *addressDetails;//详细位置
 @property (nonatomic, assign) double longitudeAMap;
 @property (nonatomic, assign) double latitudeAMap;
+@property (nonatomic, assign) CGFloat naviHeight;
 
 @end
 
@@ -86,6 +87,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.presentId == 1) {
+        [self setupNavi];
+    }
     if (self.planType == KGGRoutePlanningBOSSType) {
         [self setupAcceptMessage];
     }
@@ -95,6 +99,20 @@
     [self loadMapView];
     [self getUserLocation];
     [self searchRoute];
+}
+
+#pragma mark - oresent进来的创建导航栏
+- (void)setupNavi
+{
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"nav_back" highImage:@"nav_back" target:self action:@selector(kgg_homeUserMessage)];
+}
+
+- (void)kgg_homeUserMessage
+{
+    if (self.backBlock) {
+        self.backBlock();
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -- 加载地图

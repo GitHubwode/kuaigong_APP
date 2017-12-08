@@ -110,6 +110,7 @@
 {
     [JPUSHService handleRemoteNotification:remoteInfo];
     KGGLog(@"remoteInfo:%@",remoteInfo);
+    [KGGNotificationCenter postNotificationName:KGGRongYunReceiedNotifacation object:nil userInfo:remoteInfo];
     [self cdm_setBadge:0];
 }
 

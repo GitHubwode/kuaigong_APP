@@ -95,6 +95,7 @@
 		18F5BA7B1F4ED24F00E6ADC4 /* KGGUndoneOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5BA5A1F4ED24F00E6ADC4 /* KGGUndoneOrderController.m */; };
 		350360561F59503900FB0EDD /* KGGSexChangeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 350360541F59503900FB0EDD /* KGGSexChangeViewCell.m */; };
 		350360571F59503900FB0EDD /* KGGSexChangeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350360551F59503900FB0EDD /* KGGSexChangeViewCell.xib */; };
+		350579D21FDA88B000CC775E /* banner9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 350579D11FDA88B000CC775E /* banner9.jpg */; };
 		3505C7F21F962DC90085D688 /* KGGOrderCorrectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7F11F962DC90085D688 /* KGGOrderCorrectViewController.m */; };
 		3505C7F61F9637E80085D688 /* KGGOrderCorrectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3505C7F41F9637E80085D688 /* KGGOrderCorrectViewCell.m */; };
 		3505C7F71F9637E80085D688 /* KGGOrderCorrectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3505C7F51F9637E80085D688 /* KGGOrderCorrectViewCell.xib */; };
@@ -158,7 +159,6 @@
 		352687241FB43ECA002CB92C /* KGGLocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 352687231FB43ECA002CB92C /* KGGLocationHelper.m */; };
 		35309F841FC6C7F4003B15A2 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35309F821FC6C7F3003B15A2 /* AlipaySDK.bundle */; };
 		35309F851FC6C7F4003B15A2 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35309F831FC6C7F4003B15A2 /* AlipaySDK.framework */; };
-		35412CBF1FBD8B8F004A233E /* banner9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35412CBE1FBD8B8F004A233E /* banner9.jpg */; };
 		3543DB7E1F5E902900BE8B93 /* NSObject+swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */; };
 		3543DB811F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 3543DB801F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.m */; };
 		3543DB831F5E990800BE8B93 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3543DB821F5E990800BE8B93 /* AssetsLibrary.framework */; };
@@ -537,6 +537,7 @@
 		350360531F59503900FB0EDD /* KGGSexChangeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGSexChangeViewCell.h; sourceTree = "<group>"; };
 		350360541F59503900FB0EDD /* KGGSexChangeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGSexChangeViewCell.m; sourceTree = "<group>"; };
 		350360551F59503900FB0EDD /* KGGSexChangeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGGSexChangeViewCell.xib; sourceTree = "<group>"; };
+		350579D11FDA88B000CC775E /* banner9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner9.jpg; sourceTree = "<group>"; };
 		3505C7F01F962DC90085D688 /* KGGOrderCorrectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderCorrectViewController.h; sourceTree = "<group>"; };
 		3505C7F11F962DC90085D688 /* KGGOrderCorrectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGOrderCorrectViewController.m; sourceTree = "<group>"; };
 		3505C7F31F9637E80085D688 /* KGGOrderCorrectViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGOrderCorrectViewCell.h; sourceTree = "<group>"; };
@@ -644,7 +645,6 @@
 		35309F831FC6C7F4003B15A2 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		35309F861FC6C853003B15A2 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		35309F871FC6C879003B15A2 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		35412CBE1FBD8B8F004A233E /* banner9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner9.jpg; sourceTree = "<group>"; };
 		3543DB7C1F5E902900BE8B93 /* NSObject+swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+swizzle.h"; sourceTree = "<group>"; };
 		3543DB7D1F5E902900BE8B93 /* NSObject+swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+swizzle.m"; sourceTree = "<group>"; };
 		3543DB7F1F5E92E200BE8B93 /* AppDelegate+KGGRongCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+KGGRongCloud.h"; sourceTree = "<group>"; };
@@ -1103,12 +1103,12 @@
 		185C86761F45401000356ECD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				350579D11FDA88B000CC775E /* banner9.jpg */,
 				35CBD8531FD0F6BC00FE1DFC /* guide1.jpg */,
 				35CBD8541FD0F6BC00FE1DFC /* guide2.jpg */,
 				35D7F2281FCBBAC00060E559 /* guide3.jpg */,
 				35D7F2291FCBBAC10060E559 /* guide4.jpg */,
 				35D7F22E1FCBBB2C0060E559 /* guide5.jpg */,
-				35412CBE1FBD8B8F004A233E /* banner9.jpg */,
 				18F5B97B1F4EBC7800E6ADC4 /* 启动页_1.png */,
 				35CBD8351FCD321A00FE1DFC /* hanmmer.gif */,
 			);
@@ -2683,6 +2683,7 @@
 				3505C80C1F971FD10085D688 /* KGGStartWorkTimeViewCell.xib in Resources */,
 				357F5E0D1FB56C8500252C4D /* KGGShareMessageViewController.xib in Resources */,
 				35193F481FBBEFDC005D9E1A /* KGGPublishPostedViewCell.xib in Resources */,
+				350579D21FDA88B000CC775E /* banner9.jpg in Resources */,
 				35CBD8521FD0EFFC00FE1DFC /* KGGWorkPackagesViewCell.xib in Resources */,
 				35FD03791F5E7AD400558900 /* KGGPublishSetting.plist in Resources */,
 				18F5BA681F4ED24F00E6ADC4 /* KGGHomeListViewCell.xib in Resources */,
@@ -2699,7 +2700,6 @@
 				188F2D441F4ED50E0023F4BE /* KGGLookWorkViewCell.xib in Resources */,
 				3505C7F71F9637E80085D688 /* KGGOrderCorrectViewCell.xib in Resources */,
 				18F5BA6F1F4ED24F00E6ADC4 /* KGGUseWorkerViewCell.xib in Resources */,
-				35412CBF1FBD8B8F004A233E /* banner9.jpg in Resources */,
 				35F73AAB1F78AE9F000CD1D6 /* KGGSearchOrderViewCell.xib in Resources */,
 				3523668B1FC2809600C50098 /* order.mp3 in Resources */,
 				35CBD8321FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.xib in Resources */,

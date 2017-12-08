@@ -15,6 +15,7 @@
 #import "KGGPostedModel.h"
 #import "UIImageView+WebCache.h"
 #import "KGGPublishOrderRequestManager.h"
+#import "KGGRoutePlanningController.h"
 
 @interface KGGPublishPostedViewController ()<KGGPublishPostedHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -51,7 +52,41 @@
     [self.view addSubview:self.tableView];
     [self addDataMesssage];
     [self PromptMessage];
+    
+    [KGGNotificationCenter addObserver:self selector:@selector(kggJumpController:) name:KGGRongYunReceiedNotifacation object:nil];
 }
+
+#pragma mark - 获取到通知的信息
+- (void)kggJumpController:(NSNotification *)notification
+{
+    KGGLog(@"通知的内容%@",notification);
+    KGGLog(@"%@",notification.userInfo);
+    
+    NSUInteger type = [[notification.userInfo objectForKey:@"type"] integerValue];
+    if (type == 503) {
+        [self setupOrderDetails];
+    }
+}
+
+#pragma mark - 获取当前订单的详情
+- (void)setupOrderDetails
+{
+    [KGGPublishOrderRequestManager publishOrderDetailsMessageOrder:self.detailsModel.orderId completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            KGGOrderDetailsModel*Model = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
+            KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
+            routeVC.orderDetails = Model;
+            routeVC.planType = KGGRoutePlanningBOSSType;
+            routeVC.presentId = 1;
+            routeVC.backBlock = ^{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            };
+            [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:routeVC] animated:YES completion:nil];
+        }
+    } aboveView:self.view inCaller:self];
+}
+
+
 
 #pragma mark - 提示信息
 - (void)PromptMessage{
@@ -267,6 +302,7 @@
 - (void)dealloc
 {
     KGGLogFunc
+    [KGGNotificationCenter removeObserver:self];
 }
 
 - (NSMutableArray *)datasource
