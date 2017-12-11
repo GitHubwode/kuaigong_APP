@@ -159,34 +159,34 @@ static NSString *KGGAddBankCardHeaderIdfy = @"KGGAddBankCardHeaderIdfy";
 //    [self.view endEditing:YES];
 //    
     KGGCustomInfoItem *cardholderItem= self.dataArray.firstObject;
-//    if (!cardholderItem.subtitle.length) {
-//        [MBProgressHUD showMessag:cardholderItem.placeholder];
-//        return;
-//    }
-//    
-//    KGGCustomInfoItem *cardItem = self.dataArray[1];
-//    NSString *bankNum = [self bankNumToNormalNum:cardItem.subtitle];
-//    if (!bankNum || !bankNum.length) {
-//        [MBProgressHUD showMessag:cardItem.placeholder];
-//        return;
-//    }
-//    
-//    KGGLog(@"bankNum = %@",bankNum);
-//    
-//    if (![self checkCardNo:bankNum]) {
-//        [MBProgressHUD showMessag:@"格式不正确"];
-//        return;
-//    }
-//    
+    if (!cardholderItem.subtitle.length) {
+        [MBProgressHUD showMessag:cardholderItem.placeholder];
+        return;
+    }
+    
+    KGGCustomInfoItem *cardItem = self.dataArray[1];
+    NSString *bankNum = [self bankNumToNormalNum:cardItem.subtitle];
+    if (!bankNum || !bankNum.length) {
+        [MBProgressHUD showMessag:cardItem.placeholder];
+        return;
+    }
+    
+    KGGLog(@"bankNum = %@",bankNum);
+    
+    if (![self checkCardNo:bankNum]) {
+        [MBProgressHUD showMessag:@"格式不正确"];
+        return;
+    }
+    
     
 //    [SNHWalletRequestManager getBankInfoWithBankNum:bankNum completion:^(NSString *bankName) {
     
     NSString *bankName = @"中国银行";
-    NSString *bankNum = @"15026418284";
+    NSString *bankNums = @"15026418284";
         if (bankName.length) {
             
             KGGFillBankInfoViewController *bankInfo = [[KGGFillBankInfoViewController alloc]init];
-            bankInfo.bankInfo = bankName;
+            bankInfo.bankInfo = bankNums;
             [self.navigationController pushViewController:bankInfo animated:YES];
             [NSUserDefaults setObject:bankNum forKey:KGGBankNumKey];
             [NSUserDefaults setObject:cardholderItem.subtitle forKey:KGGCardholderKey];

@@ -22,9 +22,9 @@
 /** 滞纳金 */
 @property (nonatomic,copy) NSString *lateFee;
 /** 手续费 */
-@property (nonatomic,assign) double  fee;
+@property (nonatomic,assign) double fee;
 /** 总金额 */
-@property (nonatomic,copy) NSString *totalAmount;
+@property (nonatomic,assign) double totalAmount;
 /** 用工单价 */
 @property (nonatomic,assign) double  unitPrice;
 /** 用工人数 */
@@ -45,5 +45,8 @@
 @property (nonatomic, copy) NSString *orderDetails;
 //接单者的订单详情
 @property (nonatomic, copy) NSString *searchOrderDetails;
+
+/** 接单方显示的价格 */
+@property (nonatomic,copy) NSString *differentPrice;
 
 @end

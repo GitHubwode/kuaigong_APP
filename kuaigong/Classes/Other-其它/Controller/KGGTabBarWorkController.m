@@ -8,8 +8,10 @@
 
 #import "KGGTabBarWorkController.h"
 #import "KGGNavigationController.h"
-#import "KGGHomeWorkViewController.h"
-#import "KGGHomeViewController.h"
+#import "KGGLookWorkViewController.h"
+#import "KGGMyWorkBaseViewController.h"
+#import "KGGSmallVideoViewController.h"
+#import "KGGMeWorkViewController.h"
 
 @interface KGGTabBarWorkController ()
 
@@ -49,7 +51,13 @@
  */
 - (void)setupChildViewControllers{
     
-    [self setupOneChildViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGHomeWorkViewController alloc]init]] title:@"首页" image:@"icon_home_default" selectedImage:@"icon_home"];
+    [self setupOneChildViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLookWorkViewController alloc]init]] title:@"我要找活" image:@"icon_zhaohuo" selectedImage:@"icon_zhaohuo_press"];
+    
+    [self setupOneChildViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGMyWorkBaseViewController alloc]init]] title:@"我的工作" image:@"icon_work_default" selectedImage:@"icon_work_press"];
+    
+    [self setupOneChildViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGSmallVideoViewController alloc]init]] title:@"小视频" image:@"icon_shipin" selectedImage:@"icon_shipin_press"];
+    
+    [self setupOneChildViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGMeWorkViewController alloc]init]] title:@"我的" image:@"icon_wode_default" selectedImage:@"icon_wode_press"];
     
 }
 
@@ -70,8 +78,6 @@
     }
     [self addChildViewController:vc];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

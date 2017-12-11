@@ -27,7 +27,6 @@
 		185C86FC1F4C418800356ECD /* UIButton+KGGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86FB1F4C418800356ECD /* UIButton+KGGExtension.m */; };
 		185C86FF1F4D51A100356ECD /* KGGTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185C86FE1F4D51A100356ECD /* KGGTextView.m */; };
 		185C87191F4D782800356ECD /* KGCreatAddress.plist in Resources */ = {isa = PBXBuildFile; fileRef = 185C87181F4D782800356ECD /* KGCreatAddress.plist */; };
-		188F2D401F4ED50E0023F4BE /* KGGHomeWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F2D2E1F4ED50E0023F4BE /* KGGHomeWorkViewController.m */; };
 		188F2D411F4ED50E0023F4BE /* KGGLookWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F2D301F4ED50E0023F4BE /* KGGLookWorkViewController.m */; };
 		188F2D421F4ED50E0023F4BE /* KGGMeWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F2D321F4ED50E0023F4BE /* KGGMeWorkViewController.m */; };
 		188F2D431F4ED50E0023F4BE /* KGGLookWorkViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F2D361F4ED50E0023F4BE /* KGGLookWorkViewCell.m */; };
@@ -208,6 +207,7 @@
 		358381881F8B4AF7002A17C5 /* KGGLoginRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 358381871F8B4AF7002A17C5 /* KGGLoginRequestManager.m */; };
 		3583818C1F8B4B67002A17C5 /* KGGLoginParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 3583818B1F8B4B67002A17C5 /* KGGLoginParam.m */; };
 		358644691F91FD52007D3A79 /* UIView+ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 358644681F91FD51007D3A79 /* UIView+ErrorView.m */; };
+		358D29C51FDE2E5900000A78 /* KGGMyWalletCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 358D29C41FDE2E5900000A78 /* KGGMyWalletCardModel.m */; };
 		359232301FA9C615005C67EA /* KGGPayRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3592322F1FA9C615005C67EA /* KGGPayRequestManager.m */; };
 		359232361FA9E055005C67EA /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 359232321FA9E053005C67EA /* TXScrollLabelView.m */; };
 		359232371FA9E055005C67EA /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 359232331FA9E054005C67EA /* UIView+TXFrame.m */; };
@@ -250,6 +250,7 @@
 		359777FD1FAC40B700336F60 /* KGGCollectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 359777FB1FAC40B700336F60 /* KGGCollectViewCell.m */; };
 		359777FE1FAC40B700336F60 /* KGGCollectViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359777FC1FAC40B700336F60 /* KGGCollectViewCell.xib */; };
 		359778011FAC51EC00336F60 /* KGGCollectFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 359778001FAC51EC00336F60 /* KGGCollectFooterView.m */; };
+		359B355F1FDA91F000DB4310 /* KGGWorkAgeField.m in Sources */ = {isa = PBXBuildFile; fileRef = 359B355E1FDA91F000DB4310 /* KGGWorkAgeField.m */; };
 		359CD0851F56B14C00DDFA62 /* KGGPersonalMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359CD0841F56B14C00DDFA62 /* KGGPersonalMessageController.m */; };
 		359CD0891F57DCB400DDFA62 /* KGGPersonMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 359CD0871F57DCB400DDFA62 /* KGGPersonMessageCell.m */; };
 		359CD08A1F57DCB400DDFA62 /* KGGPersonMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359CD0881F57DCB400DDFA62 /* KGGPersonMessageCell.xib */; };
@@ -271,6 +272,7 @@
 		35BEB16F1F73C1F30060298A /* KGGWorkDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BEB16D1F73C1F30060298A /* KGGWorkDetailsViewController.m */; };
 		35BEB1701F73C1F30060298A /* KGGWorkDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35BEB16E1F73C1F30060298A /* KGGWorkDetailsViewController.xib */; };
 		35C72C511F9EFF3300A82336 /* KGGWorkTimeChooseField.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */; };
+		35C770031FDE7D100061747E /* KGGSmallVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C770021FDE7D100061747E /* KGGSmallVideoViewController.m */; };
 		35CBD3C31FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3C21FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m */; };
 		35CBD3C91FA2DD74007E88AD /* KGGLookforPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3C81FA2DD73007E88AD /* KGGLookforPWDViewController.m */; };
 		35CBD3CD1FA324B4007E88AD /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CBD3CB1FA324B4007E88AD /* MenuView.m */; };
@@ -407,8 +409,6 @@
 		185C86FD1F4D51A100356ECD /* KGGTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGTextView.h; sourceTree = "<group>"; };
 		185C86FE1F4D51A100356ECD /* KGGTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGTextView.m; sourceTree = "<group>"; };
 		185C87181F4D782800356ECD /* KGCreatAddress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KGCreatAddress.plist; sourceTree = "<group>"; };
-		188F2D2D1F4ED50E0023F4BE /* KGGHomeWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGHomeWorkViewController.h; sourceTree = "<group>"; };
-		188F2D2E1F4ED50E0023F4BE /* KGGHomeWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGHomeWorkViewController.m; sourceTree = "<group>"; };
 		188F2D2F1F4ED50E0023F4BE /* KGGLookWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGLookWorkViewController.h; sourceTree = "<group>"; };
 		188F2D301F4ED50E0023F4BE /* KGGLookWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGLookWorkViewController.m; sourceTree = "<group>"; };
 		188F2D311F4ED50E0023F4BE /* KGGMeWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGMeWorkViewController.h; sourceTree = "<group>"; };
@@ -720,6 +720,8 @@
 		3583818B1F8B4B67002A17C5 /* KGGLoginParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLoginParam.m; sourceTree = "<group>"; };
 		358644671F91FD51007D3A79 /* UIView+ErrorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ErrorView.h"; sourceTree = "<group>"; };
 		358644681F91FD51007D3A79 /* UIView+ErrorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ErrorView.m"; sourceTree = "<group>"; };
+		358D29C31FDE2E5900000A78 /* KGGMyWalletCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGMyWalletCardModel.h; sourceTree = "<group>"; };
+		358D29C41FDE2E5900000A78 /* KGGMyWalletCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGMyWalletCardModel.m; sourceTree = "<group>"; };
 		3592322E1FA9C615005C67EA /* KGGPayRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGPayRequestManager.h; sourceTree = "<group>"; };
 		3592322F1FA9C615005C67EA /* KGGPayRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGPayRequestManager.m; sourceTree = "<group>"; };
 		359232321FA9E053005C67EA /* TXScrollLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXScrollLabelView.m; sourceTree = "<group>"; };
@@ -798,6 +800,8 @@
 		359777FC1FAC40B700336F60 /* KGGCollectViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGCollectViewCell.xib; sourceTree = "<group>"; };
 		359777FF1FAC51EC00336F60 /* KGGCollectFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGCollectFooterView.h; sourceTree = "<group>"; };
 		359778001FAC51EC00336F60 /* KGGCollectFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGCollectFooterView.m; sourceTree = "<group>"; };
+		359B355D1FDA91F000DB4310 /* KGGWorkAgeField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGWorkAgeField.h; sourceTree = "<group>"; };
+		359B355E1FDA91F000DB4310 /* KGGWorkAgeField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGWorkAgeField.m; sourceTree = "<group>"; };
 		359CD0831F56B14C00DDFA62 /* KGGPersonalMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGPersonalMessageController.h; sourceTree = "<group>"; };
 		359CD0841F56B14C00DDFA62 /* KGGPersonalMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGPersonalMessageController.m; sourceTree = "<group>"; };
 		359CD0861F57DCB400DDFA62 /* KGGPersonMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGPersonMessageCell.h; sourceTree = "<group>"; };
@@ -830,6 +834,8 @@
 		35C5D9911F5D5A6400CF6BE8 /* kuaigong.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = kuaigong.entitlements; sourceTree = "<group>"; };
 		35C72C4F1F9EFF3300A82336 /* KGGWorkTimeChooseField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGWorkTimeChooseField.h; sourceTree = "<group>"; };
 		35C72C501F9EFF3300A82336 /* KGGWorkTimeChooseField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGWorkTimeChooseField.m; sourceTree = "<group>"; };
+		35C770011FDE7D100061747E /* KGGSmallVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGSmallVideoViewController.h; sourceTree = "<group>"; };
+		35C770021FDE7D100061747E /* KGGSmallVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGSmallVideoViewController.m; sourceTree = "<group>"; };
 		35CBD3C11FA1B4B1007E88AD /* KGGMyWorkBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGMyWorkBaseViewController.h; sourceTree = "<group>"; };
 		35CBD3C21FA1B4B1007E88AD /* KGGMyWorkBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGMyWorkBaseViewController.m; sourceTree = "<group>"; };
 		35CBD3C71FA2DD73007E88AD /* KGGLookforPWDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGLookforPWDViewController.h; sourceTree = "<group>"; };
@@ -1165,8 +1171,6 @@
 		188F2D2C1F4ED50E0023F4BE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				188F2D2D1F4ED50E0023F4BE /* KGGHomeWorkViewController.h */,
-				188F2D2E1F4ED50E0023F4BE /* KGGHomeWorkViewController.m */,
 				188F2D2F1F4ED50E0023F4BE /* KGGLookWorkViewController.h */,
 				188F2D301F4ED50E0023F4BE /* KGGLookWorkViewController.m */,
 				188F2D311F4ED50E0023F4BE /* KGGMeWorkViewController.h */,
@@ -1267,6 +1271,7 @@
 		189D20DA1F42EE900004F1EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				35C76FFD1FDE7C8B0061747E /* 小视频 */,
 				35CBD84A1FD0EA1B00FE1DFC /* 班组上传信息 */,
 				357691271FB05DDC00803D9A /* 路线规划 */,
 				356AE9B71FAB2CA6004E417B /* 收集信息 */,
@@ -2143,6 +2148,39 @@
 			path = CountDown;
 			sourceTree = "<group>";
 		};
+		35C76FFD1FDE7C8B0061747E /* 小视频 */ = {
+			isa = PBXGroup;
+			children = (
+				35C76FFE1FDE7C8B0061747E /* Controller */,
+				35C76FFF1FDE7C8B0061747E /* Model */,
+				35C770001FDE7C8B0061747E /* View */,
+			);
+			path = "小视频";
+			sourceTree = "<group>";
+		};
+		35C76FFE1FDE7C8B0061747E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				35C770011FDE7D100061747E /* KGGSmallVideoViewController.h */,
+				35C770021FDE7D100061747E /* KGGSmallVideoViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		35C76FFF1FDE7C8B0061747E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35C770001FDE7C8B0061747E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		35CBD3CA1FA3249B007E88AD /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -2438,6 +2476,8 @@
 			children = (
 				35CBD8281FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.h */,
 				35CBD8291FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.m */,
+				358D29C31FDE2E5900000A78 /* KGGMyWalletCardModel.h */,
+				358D29C41FDE2E5900000A78 /* KGGMyWalletCardModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2510,6 +2550,8 @@
 		35F8DF2B1FD9295000F6F424 /* 工龄Cell */ = {
 			isa = PBXGroup;
 			children = (
+				359B355D1FDA91F000DB4310 /* KGGWorkAgeField.h */,
+				359B355E1FDA91F000DB4310 /* KGGWorkAgeField.m */,
 			);
 			path = "工龄Cell";
 			sourceTree = "<group>";
@@ -2853,6 +2895,7 @@
 				35961AEF1FA6CB5D00A52B9E /* UIView+Layout.m in Sources */,
 				189D21591F43E49B0004F1EB /* NSUserDefaults+KGGExtension.m in Sources */,
 				35CBD8441FCEBDEB00FE1DFC /* KGGMeWorkModel.m in Sources */,
+				358D29C51FDE2E5900000A78 /* KGGMyWalletCardModel.m in Sources */,
 				35612F871FDA347700C9D103 /* KGGSexField.m in Sources */,
 				185C86631F443B6C00356ECD /* KGGLoginViewController.m in Sources */,
 				189D21331F4300100004F1EB /* KGGNavigationController.m in Sources */,
@@ -2860,7 +2903,6 @@
 				357691381FB0722C00803D9A /* KGGRouteHeaderView.m in Sources */,
 				35CBD8311FCC0D1F00FE1DFC /* KGGLookWorkListCollectionCell.m in Sources */,
 				18F5BA6D1F4ED24F00E6ADC4 /* KGGUseWorkerHeaderView.m in Sources */,
-				188F2D401F4ED50E0023F4BE /* KGGHomeWorkViewController.m in Sources */,
 				185C866C1F452D9100356ECD /* UIView+HUD.m in Sources */,
 				356AE9C31FAB35E5004E417B /* KGGCollectTotalController.m in Sources */,
 				3505C8681F976A5E0085D688 /* PKColorConversion.m in Sources */,
@@ -2899,6 +2941,7 @@
 				357F5E191FBA9A6C00252C4D /* KGGCancelOrderPayView.m in Sources */,
 				189D21561F43E44C0004F1EB /* NSBundle+KGGExtension.m in Sources */,
 				354885DC1FA066AB00636435 /* KGGPublishHomeRequestManager.m in Sources */,
+				359B355F1FDA91F000DB4310 /* KGGWorkAgeField.m in Sources */,
 				35CF65E61FBD736A00B80BEA /* KGGLookWorkHeaderView.m in Sources */,
 				3505C86C1F976A5E0085D688 /* PKPlayerView.m in Sources */,
 				35E8B6C71F8DC36100DCA0EB /* KGGPublishOrderRequestManager.m in Sources */,
@@ -2984,6 +3027,7 @@
 				352366951FC2B5C800C50098 /* UIBarButtonItem+Badge.m in Sources */,
 				35BEB1651F725D7C0060298A /* KGGMyWorkViewCell.m in Sources */,
 				18F5BA7A1F4ED24F00E6ADC4 /* KGGOrderRecordController.m in Sources */,
+				35C770031FDE7D100061747E /* KGGSmallVideoViewController.m in Sources */,
 				350360561F59503900FB0EDD /* KGGSexChangeViewCell.m in Sources */,
 				18F5BA691F4ED24F00E6ADC4 /* KGGOrderDetailsViewCell.m in Sources */,
 				35CBD8241FCBD96A00FE1DFC /* KGGWallectRequestManager.m in Sources */,

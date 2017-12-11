@@ -17,6 +17,9 @@
 #import "KGGStationCycleScrollView.h"
 #import "KGGPostedModel.h"
 #import "KGGJPushManager.h"
+#import "KGGConversionListViewController.h"
+#import "KGGLoginRequestManager.h"
+#import "AppDelegate+KGGRongCloud.h"
 
 
 static CGFloat kCycleScrollViewH = 39.f;
@@ -33,6 +36,8 @@ static CGFloat kCycleScrollViewH = 39.f;
 @property (nonatomic, strong) NSMutableArray *messageDatasource;
 @property (nonatomic, strong) UIButton *JPButton;
 @property (nonatomic, strong) NSString *isJPush;
+
+
 @end
 
 @implementation KGGLookWorkViewController
@@ -45,6 +50,10 @@ static CGFloat kCycleScrollViewH = 39.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = KGGViewBackgroundColor;
+    self.navigationItem.title = @"快工邦";
+    //创建tarBarItem
+    [self setupNavi];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.mj_header = [KGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(RefreshNewMessag)];
     self.tableView.mj_footer = [KGGRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(LoadAddMoreMessage)];
@@ -52,7 +61,61 @@ static CGFloat kCycleScrollViewH = 39.f;
     [self.view addSubview:self.tableView];
     [self addDataMesssage];
     
+    [self addNotificationMessage];
+}
+
+- (void)addNotificationMessage
+{
     [KGGNotificationCenter addObserver:self selector:@selector(kggJumpController:) name:KGGRongYunReceiedNotifacation object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(accountOfflineNotification:) name:KGGConnectionStatusOffLine object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(showBadge:) name:KGGShowAlertNotifacation object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(hidenBadge:) name:KGGHidenAlertNotifacation object:nil];
+}
+
+#pragma mark - 导航栏按钮的点击事件
+- (void)kgg_homeUserMessage
+{
+    KGGLog(@"导航栏右边的按钮");
+    BOOL login = [KGGUserManager shareUserManager].logined;
+    if (login) {
+        KGGLog(@"已登录");
+        self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+        KGGConversionListViewController *listVC = [[KGGConversionListViewController alloc]init];
+        [self.navigationController pushViewController:listVC animated:YES];
+    }else{
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+    }
+}
+
+- (void)kgg_homelocation
+{
+    KGGLog(@"导航栏左边的按钮");
+    //    [KGGSliderMenuTool showWithRootViewController:self contentViewController:[[KGGLeftTableController alloc] init]];
+}
+
+#pragma mark - 增加导航按钮
+- (void)showBadge:(NSNotification *)noti
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem.badgeValue = @"1";
+    });
+}
+
+- (void)hidenBadge:(NSNotification *)noti
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem.badgeValue = @"0";
+    });
+}
+
+- (void)accountOfflineNotification:(NSNotification *)noti
+{
+    [KGGLoginRequestManager logout];
+    KGGLoginViewController *login = [[KGGLoginViewController alloc]init];
+    login.offline = 1;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:login] animated:YES completion:nil];
+    });
 }
 
 #pragma mark - 获取到通知的信息
@@ -169,6 +232,14 @@ static CGFloat kCycleScrollViewH = 39.f;
         longitude = coordinate.longitude;
         latitude = coordinate.latitude;        
         [weakself setupUserLongitude:longitude Latitude:latitude Refresh:refresh];
+        
+        [self.locationHelper getUserNearbyPois:^(BMKReverseGeoCodeResult *result) {
+            
+            KGGLog(@"城市信息:%@ 地址设计:%@",result.addressDetail.city,result.address);
+            
+            self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTitle:result.addressDetail.city target:self action:@selector(kgg_homelocation)];
+
+        } location:location];
     }];
 }
 
@@ -193,10 +264,6 @@ static CGFloat kCycleScrollViewH = 39.f;
             [self.datasource addObjectsFromArray:response];
         }
         [self.tableView reloadData];
-//        if (self.datasource.count < 10) {
-//            [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//        }
-//
         if (self.datasource.count == 0) {
             [self.tableView showBusinessErrorViewWithError:@"这里还没有内容" yOffset:100.f];
         }
@@ -231,15 +298,17 @@ static CGFloat kCycleScrollViewH = 39.f;
         [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
         return;
     }
+    KGGOrderDetailsModel *model = self.datasource[indexPath.row];
     if (![KGGUserManager shareUserManager].currentUser.isRegister) {
         [self.view showHint:@"非签约用户,请联系快工公司"];
         return;
-    }else{
+    }else if (model.status == 0){
         KGGLog(@"订单详情");
-        KGGOrderDetailsModel *model = self.datasource[indexPath.row];
         KGGSearchOrderController *orderVC = [[KGGSearchOrderController alloc]init];
         orderVC.orderDetails = model;
         [self.navigationController pushViewController:orderVC animated:YES];
+    }else{
+        [self.view showHint:@"来晚了,此订单已接"];
     }
 }
 
@@ -271,7 +340,7 @@ static CGFloat kCycleScrollViewH = 39.f;
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64-50) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor clearColor];
         [_tableView registerNib:[UINib nibWithNibName:@"KGGLookWorkViewCell" bundle:nil] forCellReuseIdentifier:[KGGLookWorkViewCell lookWorkIdentifier]];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -336,6 +405,22 @@ static CGFloat kCycleScrollViewH = 39.f;
         _messageDatasource = [NSMutableArray array];
     }
     return _messageDatasource;
+}
+
+#pragma mark - 创建item
+- (void)setupNavi
+{
+    int count = [[RCIMClient sharedRCIMClient]
+                 getTotalUnreadCount];
+    count = count > 0 ? count : 0;
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:@"icon_xiaoxi" highImage:@"icon_xiaoxi2" target:self action:@selector(kgg_homeUserMessage)];
+    self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%d",count];
+    self.navigationItem.rightBarButtonItem.badgeFont = KGGFont(0);
+    self.navigationItem.rightBarButtonItem.badgeMinSize = 2.f;
+    self.navigationItem.rightBarButtonItem.badgeOriginX = 27.f;
+    self.navigationItem.rightBarButtonItem.badgeOriginY = 3.f;
+    self.navigationItem.rightBarButtonItem.shouldHideBadgeAtZero = YES;
+    self.navigationItem.rightBarButtonItem.badgeBGColor = UIColorHex(0xffd200);
 }
 
 - (void)dealloc

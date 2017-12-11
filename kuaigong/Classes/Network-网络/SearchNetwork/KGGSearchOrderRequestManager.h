@@ -13,6 +13,7 @@
 typedef NS_ENUM(NSUInteger, KGGSearchOrderRequestType) {
     KGGSearchOrderRequestCompleteType, // 我已完成的订单
     KGGSearchOrderRequestMyDoingType,//获取我的已接订单
+    KGGSearchOrderRequestNotPay,//已完成未支付
 };
 
 typedef NS_ENUM(NSUInteger, KGGUserStatusType) {

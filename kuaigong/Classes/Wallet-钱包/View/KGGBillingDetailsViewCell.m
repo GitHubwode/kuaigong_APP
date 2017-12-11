@@ -29,7 +29,7 @@ static NSString *billingDetailsViewCell = @"KGGBillingDetailsViewCell";
 - (void)setDetailsModel:(KGGMyWalletOrderDetailsModel *)detailsModel
 {
     self.timeLabel.text = detailsModel.workStartTime;
-    self.moneyLabel.text = [NSString stringWithFormat:@"+  %@",detailsModel.totalAmount];
+    self.moneyLabel.text = [NSString stringWithFormat:@"+  %@",detailsModel.differentPrice];
 }
 
 

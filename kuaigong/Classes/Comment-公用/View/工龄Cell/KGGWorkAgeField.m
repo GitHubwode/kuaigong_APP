@@ -1,27 +1,23 @@
 //
-//  KGGCompanyChooseField.m
+//  KGGWorkAgeField.m
 //  kuaigong
 //
-//  Created by Ding on 2017/11/12.
+//  Created by Ding on 2017/12/8.
 //  Copyright © 2017年 Ding. All rights reserved.
 //
 
-#import "KGGCompanyChooseField.h"
+#import "KGGWorkAgeField.h"
 
-@interface KGGCompanyChooseField ()<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface KGGWorkAgeField ()<UIPickerViewDelegate,UIPickerViewDataSource>
 
-@property (nonatomic, weak)UIPickerView *pickView;
-//是否初始化
-/** <#name#> */
-@property (nonatomic,assign) BOOL  isInitial;
-/**  */
-@property (nonatomic,strong)NSString *selectedText;
-
+@property (nonatomic, weak) UIPickerView *pickView;
+@property (nonatomic, strong) NSString *selectedText;
+@property (nonatomic, assign) BOOL isInitial;
 @property (nonatomic, strong) NSMutableArray *datasource;
 
 @end
 
-@implementation KGGCompanyChooseField
+@implementation KGGWorkAgeField
 
 - (void)initiaText
 {
@@ -36,7 +32,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setup];
-        
     }
     return self;
 }
@@ -47,11 +42,10 @@
     [self setup];
 }
 
-//初始化
 - (void)setup
 {
     self.borderStyle = UITextBorderStyleNone;
-    //创建pickerView
+    //创建pickView
     UIPickerView *pickerView = [[UIPickerView alloc]init];
     pickerView.backgroundColor = [UIColor whiteColor];
     _pickView = pickerView;
@@ -105,54 +99,15 @@
     
 }
 
-- (void)ensureButtonAction{
-    self.text = self.selectedText;
-    if ([self.companyDelegate respondsToSelector:@selector(companyChooseFieldFieldEnsureButtonClickText:)]) {
-        [self.companyDelegate companyChooseFieldFieldEnsureButtonClickText:self.text];
-    }
-    [self cancelButtonAction];
-}
-
-- (void)cancelButtonAction{
-    [self resignFirstResponder];
-}
-
-- (BOOL)becomeFirstResponder{
-    [self initiaText];
-    return [super becomeFirstResponder];
-}
-
-
-- (BOOL)canBecomeFirstResponder
+- (void)ensureButtonAction
 {
-    return YES;
+    
 }
 
-#pragma mark - 数据源方法
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return self.datasource.count;
-}
-
-// 返回每一行的标题
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return self.datasource[row];
-}
-
-
-// 选中某一行的时候调用
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    _selectedText = self.datasource[row];
-}
-
-#pragma mark - lazy
-
--(NSMutableArray *)datasource
+- (NSMutableArray *)datasource
 {
     if (!_datasource) {
-        _datasource = [NSMutableArray arrayWithObjects:@"杭州001",@"嘉兴002",@"温州003",@"金华004",@"重庆005", nil];
+        _datasource = [NSMutableArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30",@"31",@"32",@"33",@"34",@"35", nil];
     }
     return _datasource;
 }

@@ -14,7 +14,6 @@
 @interface KGGBillingDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *billTableView;
-@property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, assign) NSInteger pageNum;
 @property (nonatomic, strong) KGGMyWalletOrderDetailsModel *walletModel;
 /** 用户类型 */
@@ -38,7 +37,7 @@
     
     self.billTableView.mj_header = [KGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(RefreshNewMessag)];
     self.billTableView.mj_footer = [KGGRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(LoadAddMoreMessage)];
-    [self.billTableView.mj_header beginRefreshing];
+//    [self.billTableView.mj_header beginRefreshing];
 }
 
 -(void)RefreshNewMessag
@@ -54,7 +53,7 @@
 
 - (void)kgg_billingDetailsList:(BOOL)refresh
 {
-    [KGGWallectRequestManager myWalletOrderDetailsUserType:self.requestType Page:self.pageNum completion:^(NSArray < KGGMyWalletOrderDetailsModel *> *response,NSString *totalMoeny) {
+    [KGGWallectRequestManager myWalletOrderDetailsUserType:self.requestType Page:self.pageNum completion:^(NSArray < KGGMyWalletOrderDetailsModel *> *response,NSString *totalMoeny, NSString *drawAcount) {
         if (!response) {
             if (refresh) {
                 [self.billTableView.mj_header endRefreshing];
@@ -73,10 +72,6 @@
             [self.datasource addObjectsFromArray: response];
         }
         [self.billTableView reloadData];
-//        if (self.datasource.count < 10) {
-//            [self.billTableView.mj_footer endRefreshingWithNoMoreData];
-//        }
-        
         if (self.datasource.count == 0) {
             [self.billTableView showBusinessErrorViewWithError:@"这里还没有内容" yOffset:100.f];
         }

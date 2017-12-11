@@ -37,6 +37,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = KGGViewBackgroundColor;
+    self.navigationItem.title = @"我的";
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self.headerView updataUserMessageLogin:[KGGUserManager shareUserManager].logined];
@@ -178,7 +180,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-50-64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight-64) style:UITableViewStylePlain];
         [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGMeWorkViewCell class]) bundle:nil] forCellReuseIdentifier:[KGGMeWorkViewCell meWorkViewIdentifier]];
         _tableView.rowHeight = 59.f;
         _tableView.showsVerticalScrollIndicator = NO;

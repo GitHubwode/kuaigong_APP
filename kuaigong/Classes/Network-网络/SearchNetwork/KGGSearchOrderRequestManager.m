@@ -54,6 +54,9 @@
             url = KGGURL(@"/api/order/getMyAcceptComplete");
             dic[@"page"] = @(page);
             break;
+        case KGGSearchOrderRequestNotPay: //未支付
+            url = KGGURL(@"/api/order/getUnCompleteNoPay");
+            dic[@"page"] = @(page);
         default:
             break;
     }

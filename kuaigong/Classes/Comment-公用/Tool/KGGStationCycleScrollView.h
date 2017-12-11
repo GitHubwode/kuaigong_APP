@@ -16,6 +16,7 @@ typedef NS_ENUM(NSUInteger,CycleScrollViewType){
 @class KGGStationCycleScrollView;
 @protocol KGGStationCycleScrollViewDelegate <NSObject>
 
+@optional
 - (void)snh_cycleScrollView:(KGGStationCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSUInteger )index;
 @end
 

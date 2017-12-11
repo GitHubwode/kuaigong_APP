@@ -9,6 +9,8 @@
 #import "KGGHTTPSessionManager.h"
 
 @class KGGMyWalletOrderDetailsModel;
+@class KGGMyWalletCardModel;
+
 @interface KGGWallectRequestManager : KGGHTTPSessionManager
 
 /**
@@ -17,7 +19,7 @@
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)myWalletOrderDetailsUserType:(NSString *)userType Page:(NSUInteger )page completion:(void(^)(NSArray<KGGMyWalletOrderDetailsModel *> *response, NSString *totalMoeny))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)myWalletOrderDetailsUserType:(NSString *)userType Page:(NSUInteger )page completion:(void(^)(NSArray<KGGMyWalletOrderDetailsModel *> *response, NSString *totalMoeny, NSString *drawAcount ))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 /**
  添加银行卡
@@ -37,6 +39,13 @@
  @ caller 方法调用者
  */
 + (void)myWalletWithdrawDepositWithDrawAmount:(double)withDrawAmount completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
+
+/**
+ 查询是否绑定银行卡
+ 
+ */
++ (void)myWalletLookUpBandingCardCompletion:(void(^)(KGGMyWalletCardModel * cardModel))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
+
 @end
 
 

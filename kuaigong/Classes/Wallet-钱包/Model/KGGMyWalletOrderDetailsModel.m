@@ -59,9 +59,9 @@
         _orderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作%@小时 每天%.f元,车费%.f元。",_workerType,(unsigned long)_number,(unsigned long)_days,_whenLong,_unitPrice,_fare];
         
         _searchOrderDetails = [NSString stringWithFormat:@"订单详情:%@%lu人, 工作%lu天,每天工作%@小时",_workerType,(unsigned long)_number,(unsigned long)_days,_whenLong];
-        
     }
 
+    _differentPrice = [NSString stringWithFormat:@"%.2f",(_totalAmount - _fee)];
     
 }
 

@@ -8,6 +8,7 @@
 
 #import "KGGWallectRequestManager.h"
 #import "KGGMyWalletOrderDetailsModel.h"
+#import "KGGMyWalletCardModel.h"
 
 @implementation KGGWallectRequestManager
 
@@ -15,16 +16,17 @@
  获取收入明细
  @param page 页数
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
- @param caller 方法调用者
+ @param caller 方法调用者 POST /api/bank/totalCount
  */
-+ (void)myWalletOrderDetailsUserType:(NSString *)userType Page:(NSUInteger )page completion:(void(^)(NSArray <KGGMyWalletOrderDetailsModel*>*response,NSString *totalMoeny))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)myWalletOrderDetailsUserType:(NSString *)userType Page:(NSUInteger )page completion:(void(^)(NSArray <KGGMyWalletOrderDetailsModel*>*response,NSString *totalMoeny, NSString *drawAcount))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
-    NSString *url = KGGURL(@"/api/order/totalCount");
+    NSString *url = KGGURL(@"/api/bank/totalCount");
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"page"] = @(page);
     [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
         NSMutableArray *responseDatasource;
         NSString *totalCount;
+        NSString *drawAcount;
         if (!responseObj) {
             
         }else if (responseObj.code != KGGSuccessCode){
@@ -32,12 +34,13 @@
         }else{
             NSDictionary *walletModel = [responseObj.data objectForKey:userType];
             totalCount = [NSString stringWithFormat:@"%@",[walletModel objectForKey:@"acount"]];
+            drawAcount = [NSString stringWithFormat:@"%@",[walletModel objectForKey:@"drawAcount"]];
             NSDictionary *pageBean = [walletModel objectForKey:@"pageBean"];
             NSArray *recordList = [pageBean objectForKey:@"recordList"];
             responseDatasource = [KGGMyWalletOrderDetailsModel mj_objectArrayWithKeyValuesArray:recordList];
         }
         if (completionHandler) {
-            completionHandler(responseDatasource,totalCount);
+            completionHandler(responseDatasource,totalCount,drawAcount);
         }
         
     } aboveView:view inCaller:caller];
@@ -99,6 +102,30 @@
         
     } aboveView:view inCaller:caller];
     
+}
+
+/**
+ 查询是否绑定银行卡
+ 
+ */
++ (void)myWalletLookUpBandingCardCompletion:(void(^)(KGGMyWalletCardModel * cardModel))completionHandler aboveView:(UIView *)view idCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/bank/hasBankCard");
+    [self requestWithURL:url httpMethod:GETHttpMethod params:nil progress:nil completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) {
+            [view showHint:KGGHttpNerworkErrorTip];
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+            return ;
+        }
+        KGGLog(@"responseObj:%@",responseObj);
+        KGGMyWalletCardModel *model = [KGGMyWalletCardModel mj_objectWithKeyValues:responseObj.data];
+        if (completionHandler) {
+            completionHandler(model);
+        }
+        
+    } aboveView:view inCaller:caller];
 }
 
 @end

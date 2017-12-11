@@ -39,11 +39,15 @@
     workingVC.requestType = KGGSearchOrderRequestMyDoingType;
     [self addChildViewController:workingVC];
     
+    KGGMyWorkViewController *workVC = [[KGGMyWorkViewController alloc]init];
+    workVC.requestType = KGGSearchOrderRequestNotPay;
+    [self addChildViewController:workVC];
+    
     KGGMyWorkViewController *workedVC = [[KGGMyWorkViewController alloc]init];
     workedVC.requestType = KGGSearchOrderRequestCompleteType;
     [self addChildViewController:workedVC];
     
-    _titles = @[@"已接单",@"已完成"];
+    _titles = @[@"已接单",@"未支付",@"已支付"];
 }
 
 - (void)setUpSlideSwitchView
