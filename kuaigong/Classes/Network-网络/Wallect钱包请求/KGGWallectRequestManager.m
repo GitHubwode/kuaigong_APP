@@ -55,22 +55,19 @@
  @ param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @ caller 方法调用者
  */
-+ (void)myWalletAddBankCardRealName:(NSString *)realName IdCard:(NSString *)idCard BankPhone:(NSString *)bankPhone BankCardNo:(NSString *)bankCardNo completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller
++ (void)myWalletAddBankCardWithParam:(NSMutableDictionary *)param completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
 {
-    NSString *url = KGGURL(@"/api/order/bankCount");
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"realName"] = realName;
-    dic[@"idCard"] = idCard;
-    dic[@"bankPhone"] = bankPhone;
-    dic[@"bankCardNo"] = bankCardNo;
-    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
-        
+    NSString *url = KGGURL(@"/api/bank/bankCount");
+    [self postFormDataWithUrl:url form:param completion:^(KGGResponseObj *responseObj) {
+
+        KGGLog(@"%@",responseObj);
         if (!responseObj) {
             [view showHint:KGGHttpNerworkErrorTip];
         }else if (responseObj.code != KGGSuccessCode){
             [view showHint:responseObj.message];
             return ;
         }
+        [KGGNotificationCenter postNotificationName:KGGAddBankCardSuccessNotifacation object:nil];
         if (completionHandler) {
             completionHandler(responseObj);
         }
@@ -83,18 +80,18 @@
  @ param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @ caller 方法调用者
  */
-+ (void)myWalletWithdrawDepositWithDrawAmount:(double)withDrawAmount completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller
++ (void)myWalletWithdrawDepositWithDrawAmount:(double)withDrawAmount PassWord:(NSString *)password completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller
 {
-    NSString *url = KGGURL(@"/api/order/withDraw");
+    NSString *url = KGGURL(@"/api/bank/withDraw");
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"withDrawAmount"] = @(withDrawAmount);
+    dic[@"password"] = password;
     [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
         
         if (!responseObj) {
             [view showHint:KGGHttpNerworkErrorTip];
         }else if (responseObj.code != KGGSuccessCode){
             [view showHint:responseObj.message];
-            return ;
         }
         if (completionHandler) {
             completionHandler(responseObj);
@@ -126,6 +123,49 @@
         }
         
     } aboveView:view inCaller:caller];
+}
+
+/**
+ 查询银行卡所属银行
+ */
++ (void)myWalletInquireBankCarNameCarNum:(NSString *)carNum completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/bank/getBankNameByNo");
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"bankCardNo"] = carNum;
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) {
+            [view showHint:KGGHttpNerworkErrorTip];
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
+    } aboveView:view inCaller:caller];
+}
+
+/**
+ 删除银行卡
+ */
++ (void)myWalletDeleteBankCardCompletion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/bank/delBankCard");
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"aaa"] = @"aaa";
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) {
+            [view showHint:KGGHttpNerworkErrorTip];
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
+        
+    } aboveView:view inCaller:self];
 }
 
 @end

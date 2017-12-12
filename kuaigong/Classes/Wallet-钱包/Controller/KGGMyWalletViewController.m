@@ -37,6 +37,13 @@
     [self requestMessageUserType:requestType];
     
     [self setupCardMessage];
+    
+    [KGGNotificationCenter addObserver:self selector:@selector(addBankCard) name:KGGAddBankCardSuccessNotifacation object:nil];
+}
+
+- (void)addBankCard
+{
+    [self setupCardMessage];
 }
 
 #pragma mark - 获取本用户银行卡信息
@@ -60,6 +67,10 @@
             totalMoeny = [totalMoeny isEqualToString:@"(null)"] ? @"您没有干活":totalMoeny;
             [self.datasource addObjectsFromArray:response];
             self.moneyLabel.text = [NSString stringWithFormat:@"%@",totalMoeny];
+            [NSUserDefaults setObject:totalMoeny forKey:KGGBalanceMoneyKey];
+            [NSUserDefaults setObject:drawAcount forKey:KGGDrawBalanceMoneyKey];
+            KGGLog(@"%@-%@",[NSUserDefaults objectForKey:KGGBalanceMoneyKey],[NSUserDefaults objectForKey:KGGDrawBalanceMoneyKey])
+            
         }
     } aboveView:self.view inCaller:self];
 }
@@ -76,6 +87,10 @@
     
     if (self.cardModel.isBink) {
         KGGWithdrawViewController *drawVC = [[KGGWithdrawViewController alloc]initWithNibName:NSStringFromClass([KGGWithdrawViewController class]) bundle:[NSBundle mainBundle]];
+        drawVC.cardModel = self.cardModel;
+        drawVC.removeBlock = ^{
+            [self setupCardMessage];
+        };
         [self.navigationController pushViewController:drawVC animated:YES];
     }else{
         KGGAddBankCarController *addVC = [[KGGAddBankCarController alloc]initWithNibName:NSStringFromClass([KGGAddBankCarController class]) bundle:[NSBundle mainBundle]];
@@ -105,16 +120,9 @@
 - (void)dealloc
 {
     KGGLogFunc
+    [KGGNotificationCenter removeObserver:self];
+    [NSUserDefaults removeObjectForKey:KGGBalanceMoneyKey];
+    [NSUserDefaults removeObjectForKey:KGGDrawBalanceMoneyKey];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

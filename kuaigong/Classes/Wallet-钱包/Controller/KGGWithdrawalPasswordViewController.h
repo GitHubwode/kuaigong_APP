@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSString *cellphone;
 
+@property (nonatomic, strong) NSString *codeNum;
+
 @end

@@ -99,6 +99,10 @@ NSString * const KGGBankNumKey = @"KGGBankNumKey";
 NSString * const KGGCardholderKey = @"KGGCardholderKey";
 /** 开户行 */
 NSString * const KGGBankOfDepositKey = @"KGGBankOfDepositKey";
+/** 绑定银行卡时 总金额 */
+NSString * const KGGBalanceMoneyKey = @"KGGBalanceMoneyKey";
+/** 绑定银行卡 可提现金额 */
+NSString * const KGGDrawBalanceMoneyKey = @"KGGDrawBalanceMoneyKey";
 
 /** 用户添加银行卡成功的通知 */
 NSString * const KGGAddBankCardSuccessNotifacation = @"KGGAddBankCardSuccessNotifacation";

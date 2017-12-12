@@ -10,6 +10,8 @@
 #import "LCActionSheet.h"
 #import "CYPasswordView.h"
 #import "SNHSecurityCodeViewController.h"
+#import "KGGMyWalletCardModel.h"
+#import "KGGWallectRequestManager.h"
 
 
 @interface KGGWithdrawViewController ()<UITextFieldDelegate>
@@ -30,20 +32,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"提现";
-    self.messageLabel.text = [NSString stringWithFormat:@"7天之内收取1％手续费,当前可提现金额为4800"];
+    [self setupMessage];
     [self addNativationItemRightButton];
-    self.tiXianButton.enabled = NO;
     
-    [KGGNotificationCenter addObserver:self selector:@selector(textFieldTextDidChange) name:UITextFieldTextDidChangeNotification object:nil];
+//    [KGGNotificationCenter addObserver:self selector:@selector(textFieldTextDidChange) name:UITextFieldTextDidChangeNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(forgetPWD) name:CYPasswordViewForgetPWDButtonClickNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(cancelInputPWD) name:CYPasswordViewCancleButtonClickNotification object:nil];
-    
+}
+
+#pragma mark - 设置显示
+- (void)setupMessage
+{
+    self.messageLabel.text = [NSString stringWithFormat:@"30天之内收取6％手续费,当前总金额为%@",self.cardModel.bankAccountDO.balance];
+    self.moneyTextField.text = self.cardModel.bankAccountDO.drawBalance;
+    self.bankNameLabel.text = self.cardModel.bankAccountDO.bankName;
+    self.bankNumLabel.text = self.cardModel.bankAccountDO.hideBankNum;
+//
+//    CGFloat drawMoney = [self.cardModel.bankAccountDO.drawBalance floatValue];
+//    if (drawMoney > 1000.f) {
+//         self.tiXianButton.enabled = YES;
+//    }else{
+//         self.tiXianButton.enabled = NO;
+//    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.moneyTextField becomeFirstResponder];
+//    [self.moneyTextField becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -77,42 +93,42 @@
     
     
     SNHSecurityCodeViewController *code = [[SNHSecurityCodeViewController alloc]init];
-//    code.cellphone = self.wallet.mobile;
+    code.cellphone = self.cardModel.bankAccountDO.bankPhone;
     [self.navigationController pushViewController:code animated:YES];
 
 }
 
-- (void)textFieldTextDidChange
-{
-    CGFloat balance = 100000;
-    self.tiXianButton.enabled = self.moneyTextField.text.length;
-    CGFloat money = [self.moneyTextField.text doubleValue];
-    if (money  > balance) {
-        self.messageLabel.text = @"金额超过可用余额";
-        self.messageLabel.textColor = UIColorHex(e24444);
-        self.tiXianButton.enabled = NO;
-    }else if (money < 200.f && money > 0.f){
-        
-        self.messageLabel.text = @"提现金额不能低于200";
-        self.messageLabel.textColor = UIColorHex(e24444);
-        self.tiXianButton.enabled = NO;
-        
-    }else{
-        self.messageLabel.textColor = KGGTimeTextColor;
-        
-        if (money > 0.f) {
-            
-            CGFloat m = money * balance;
-            if (m < 2) {
-                m = 2.f;
-            }
-            self.messageLabel.text = [NSString stringWithFormat:@"佣金%.2f元",m];
-        }else{
-            self.messageLabel.text = [NSString stringWithFormat:@"可用余额¥%.2f",balance];
-            self.tiXianButton.enabled = NO;
-        }
-    }
-}
+//- (void)textFieldTextDidChange
+//{
+//    CGFloat balance = [self.cardModel.bankAccountDO.balance floatValue];
+//    self.tiXianButton.enabled = self.moneyTextField.text.length;
+//    CGFloat money = [self.moneyTextField.text doubleValue];
+//    if (money  > balance) {
+//        self.messageLabel.text = @"金额超过可用余额";
+//        self.messageLabel.textColor = UIColorHex(e24444);
+//        self.tiXianButton.enabled = NO;
+//    }else if (money < 1000.f && money > 0.f){
+//
+//        self.messageLabel.text = @"提现金额不能低于1000";
+//        self.messageLabel.textColor = UIColorHex(e24444);
+//        self.tiXianButton.enabled = NO;
+//
+//    }else{
+//        self.messageLabel.textColor = KGGTimeTextColor;
+//
+//        if (money > 0.f) {
+//
+//            CGFloat m = money * balance;
+//            if (m < 2) {
+//                m = 2.f;
+//            }
+//            self.messageLabel.text = [NSString stringWithFormat:@"佣金%.2f元",m];
+//        }else{
+//            self.messageLabel.text = [NSString stringWithFormat:@"可用余额¥%.2f",balance];
+//            self.tiXianButton.enabled = NO;
+//        }
+//    }
+//}
 
 
 - (void)cancelInputPWD{
@@ -125,63 +141,55 @@
 - (IBAction)withdrawButtonClick:(UIButton *)sender {
     KGGLog(@"提现按钮");
     
-    [self.moneyTextField resignFirstResponder];
+//    [self.moneyTextField resignFirstResponder];
     
     CGFloat money = [self.moneyTextField.text doubleValue];
     
-    if (money < 200.f) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"提现金额不能低于200" preferredStyle:UIAlertControllerStyleAlert];
+    if (money < 1000.f) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"提现金额不能低于1000" preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
-    CGFloat m = money * 100;
-    if (m < 2) {
-        m = 2.f;
-    }
+//    CGFloat m = money * 100;
+//    if (m < 2) {
+//        m = 2.f;
+//    }
     
-    self.passwordView.subtitle = [NSString stringWithFormat:@"到账资金%.2f,本次佣金%.2f",money - m,m];
+    self.passwordView.subtitle = [NSString stringWithFormat:@"到账资金%.2f,本次佣金%.2f",money,money];
     [self.passwordView showInView:self.view.window];
     weakSelf(self);
     self.passwordView.finish = ^(NSString *password) {
         
         [weakself.passwordView hide];
         [weakself cancelInputPWD];
-        NSMutableDictionary *param = [NSMutableDictionary dictionary];
-        param[@"userId"] = @"123";
-        param[@"password"] = [password base64_encode];
-        param[@"amount"] = [NSString stringWithFormat:@"%.2f",money];
         
         [weakself.view.window showHUD];
         
-//        [SNHWalletRequestManager applyWithdrawWithParam:param completion:^(SNHResponseObj *responseObj) {
-//            
-//            [weakself.view.window hideHUD];
-//            if (!responseObj) {
-//                [weakself.view showHint:SNHHttpNerworkErrorTip];
-//            }else if (SNHSuccessCode != responseObj.code){
-//                
-//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:responseObj.message preferredStyle:UIAlertControllerStyleAlert];
-//                [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil]];
-//                [weakself presentViewController:alert animated:YES completion:nil];
-//                
-//            }else{
-//                
-//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:responseObj.message preferredStyle:UIAlertControllerStyleAlert];
-//                [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                    [weakself dismiss];
-//                }]];
-//                
-//                [weakself presentViewController:alert animated:YES completion:nil];
-//                
-//                [SNHNotificationCenter postNotificationName:SNHApplyWithdrawSuccessNotifacation object:nil];
-//                
-//            }
-//            
-//        } aboveView:nil inCaller:weakself];
-    };
+        [KGGWallectRequestManager myWalletWithdrawDepositWithDrawAmount:money PassWord:password completion:^(KGGResponseObj *responseObj) {
+            [weakself.view.window hideHUD];
+            if (!responseObj) {
+                [weakself.view showHint:KGGHttpNerworkErrorTip];
+            }else if (responseObj.code != KGGSuccessCode){
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:responseObj.message preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil]];
+                [weakself presentViewController:alert animated:YES completion:nil];
+            }else{
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:responseObj.message preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [weakself dismiss];
+                }]];
+                [weakself presentViewController:alert animated:YES completion:nil];                
+            }
 
+        } aboveView:nil idCaller:weakself];
+    };
+}
+
+- (void)dismiss{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)adminiorButtonClick
@@ -191,23 +199,17 @@
         LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
             
             if (buttonIndex) {
-//                [SNHWalletRequestManager removeBankCardWithUserId:[SNHUserManager sharedUserManager].currentUser.userId completion:^(SNHResponseObj *responseObj) {
-//                    
-//                    
-//                    if (responseObj) {
-//                        
-//                        
-//                        _bankInfo = nil;
-//                        self.tableView.rowHeight = SNHItemHeight;
-//                        self.manageButton.hidden = !_bankInfo;
-//                        [self.tableView reloadData];
-//                        
-//                        if (self.removeCompletionHandler) {
-//                            self.removeCompletionHandler();
-//                        }
-//                    }
-//                    
-//                } aboveView:self.view inCaller:self];
+                
+                [KGGWallectRequestManager myWalletDeleteBankCardCompletion:^(KGGResponseObj *responseObj) {
+                    if (responseObj.code == KGGSuccessCode) {
+                        
+                        if (self.removeBlock) {
+                            self.removeBlock();
+                        }
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    
+                } aboveView:self.view idCaller:self];
             }
             
         } otherButtonTitles:@"删除银行卡", nil];

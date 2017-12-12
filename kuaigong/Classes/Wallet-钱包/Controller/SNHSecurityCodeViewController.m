@@ -9,8 +9,9 @@
 #import "SNHSecurityCodeViewController.h"
 #import "UITextField+KGGExtension.h"
 #import "UIButton+Countdown.h"
-//#import "SNHWalletRequestManager.h"
 #import "KGGWithdrawalPasswordViewController.h"
+#import "KGGLoginParam.h"
+#import "KGGLoginRequestManager.h"
 
 @interface SNHSecurityCodeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *alertTextLabel;
@@ -48,23 +49,29 @@
 - (IBAction)sencodeButtonAction:(UIButton *)sender{
     
     
-//    [self.view showHUD];
+    [self.view showHUD];
+    
+    long time1 = [[NSString publishSetUpNowTime] longLongValue];
+    NSString *codeType = @"DRAW_BANK_PWD";
+    NSString *sig = [NSString stringWithFormat:@"%@%@%ld%@",self.cellphone,codeType,time1,KGGAesKey];
+    NSString *sig1 = [sig md5String];
+    
+    KGGSMSCodeParam *param = [[KGGSMSCodeParam alloc]initWithPhone:self.cellphone Type:codeType Timestamp:time1 Signature:sig1];
+    
     weakSelf(self);
     
-    
-//    [SNHWalletRequestManager sendVerificationCodeToCellphone:_cellphone completion:^(SNHResponseObj *responseObj) {
-    
-//        [weakself.view hideHUD];
+    [KGGLoginRequestManager sendVerificationCodeToCellParam:param completion:^(KGGResponseObj *responseObj) {
+        [self.view hideHUD];
         
-//        if (!responseObj) {
-//            [MBProgressHUD showSuYaError:SNHHttpNerworkErrorTip toView:weakself.view];
-//        }else if (responseObj.code != SNHSuccessCode){
-//            [MBProgressHUD showSuYaError:responseObj.message toView:weakself.view];
-//        }else{
+        if (!responseObj) {
+            [self.view showHint:KGGHttpNerworkErrorTip];
+        }else if (responseObj.code != KGGSuccessCode){
+            [self.view showHint:responseObj.message];
+        }else{
             [weakself startCountDown];
-//        }
-    
-//    } inCaller:self];
+        }
+        
+    } inCaller:self];
 }
 
 - (void)startCountDown{
@@ -107,11 +114,15 @@
     
     [self.view endEditing:YES];
     
-//    if (!self.codeTextField.text.length) {
-//        [MBProgressHUD showMessag:@"请填写验证码"];
-//        return;
-//    }
+    if (!self.codeTextField.text.length) {
+        [MBProgressHUD showMessag:@"请填写验证码"];
+        return;
+    }
     
+    KGGWithdrawalPasswordViewController *pwd = [[KGGWithdrawalPasswordViewController alloc] init];
+    pwd.cellphone = _cellphone;
+    pwd.codeNum = self.codeTextField.text;
+    [self.navigationController pushViewController:pwd animated:YES];
     
 //    [SNHWalletRequestManager checkVerificationCodeWithCellphone:_cellphone code:self.codeTextField.text completion:^(SNHResponseObj *responseObj) {
 //        
@@ -123,10 +134,7 @@
 //        
 //    } aboveView:self.view inCaller:self];
     
-    //测试
-    KGGWithdrawalPasswordViewController *pwd = [[KGGWithdrawalPasswordViewController alloc] init];
-    
-    [self.navigationController pushViewController:pwd animated:YES];
+   
 
 }
 

@@ -8,6 +8,8 @@
 
 #import "KGGWithdrawalPasswordViewController.h"
 #import "KGGPasswordView.h"
+#import "KGGWallectRequestManager.h"
+#import "KGGWithdrawViewController.h"
 
 @interface KGGWithdrawalPasswordViewController ()<UITextFieldDelegate>
 /** 响应者 */
@@ -113,6 +115,7 @@
                 KGGWithdrawalPasswordViewController *alipayPwd = [[KGGWithdrawalPasswordViewController alloc]init];
                 alipayPwd.firstPassword = self.pwd;
                 alipayPwd.cellphone =self.cellphone;
+                alipayPwd.codeNum = self.codeNum;
                 [self.navigationController pushViewController:alipayPwd animated:YES];
             }else{
                 
@@ -135,19 +138,55 @@
     [self.view endEditing:YES];
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"password"] = [self.pwd base64_encode];
-//    param[@"userId"] = [SNHUserManager sharedUserManager].currentUser.userId;
-    param[@"mobile"] = self.cellphone;
-    param[@"bankId"] = [NSUserDefaults objectForKey:KGGBankNumKey];
-    
-    NSString *depositBankName = [NSUserDefaults objectForKey:KGGBankOfDepositKey];
-    if (depositBankName.length) {
-        param[@"depositBankName"] = depositBankName;
+//    param[@"password"] = [self.pwd base64_encode];
+    param[@"password"] = self.pwd;
+    param[@"bankPhone"] = self.cellphone;
+    param[@"bankCardNo"] = [NSUserDefaults objectForKey:KGGBankNumKey];
+    param[@"drawBalance"] = [NSUserDefaults objectForKey:KGGDrawBalanceMoneyKey];
+    param[@"realName"] = [NSUserDefaults objectForKey:KGGCardholderKey];
+    param[@"code"] = self.codeNum;
+    NSString *blanceMoney = [NSUserDefaults objectForKey:KGGBalanceMoneyKey];
+    if ([blanceMoney isEqualToString:@"您没有干活"]) {
+        blanceMoney = @"0";
     }
-    
-    param[@"cardUserName"] = [NSUserDefaults objectForKey:KGGCardholderKey];
+    param[@"balance"] = blanceMoney;
+    NSString *bankName = [NSUserDefaults objectForKey:KGGBankOfDepositKey];
+    param[@"branchBankName"] = bankName;
     
     KGGLog(@"%@ - %@",[NSUserDefaults objectForKey:KGGCardholderKey],[NSUserDefaults objectForKey:KGGBankOfDepositKey]);
+    
+    KGGLog(@"参数:%@",param);
+    
+    [KGGWallectRequestManager myWalletAddBankCardWithParam:param completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            [self.view showHint:@"设置成功"];
+//            NSInteger count = self.navigationController.childViewControllers.count;
+//
+//            KGGLog(@"导航器多少个%ld",(long)count);
+            
+            if ([self.navigationController.childViewControllers.firstObject isKindOfClass:NSClassFromString(@"KGGWithdrawViewController")]) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }else{
+                
+                NSInteger count = self.navigationController.childViewControllers.count;
+                
+                for (int i = 0; i < count-1; i++) {
+                    UIViewController *  obj1 = self.navigationController.childViewControllers[i];
+                    KGGLog(@"导航控制器:%@",obj1);
+                }
+                for (NSInteger i = count - 1; i >= 0; i--) {
+                     UIViewController *  obj = self.navigationController.childViewControllers[i];
+                    
+                }
+
+                
+            }
+            
+            
+            
+        }
+        
+    } aboveView:self.view idCaller:self];
     
     
 //    [SNHWalletRequestManager setPayPasswordWithParam:param completion:^(SNHResponseObj *responseObj) {

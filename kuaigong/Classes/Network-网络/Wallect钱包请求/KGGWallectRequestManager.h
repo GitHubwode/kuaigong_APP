@@ -27,10 +27,12 @@
  @ param idCard 身份证号
  @ param bankPhone 预留手机号
  @ param bankCardNo 银行卡号
+ @ param balance 总金额
+ @ param drawBalance 可提现金额
  @ param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @ caller 方法调用者
  */
-+ (void)myWalletAddBankCardRealName:(NSString *)realName IdCard:(NSString *)idCard BankPhone:(NSString *)bankPhone BankCardNo:(NSString *)bankCardNo completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
++ (void)myWalletAddBankCardWithParam:(NSMutableDictionary *)param completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
 
 /**
  提现
@@ -38,13 +40,24 @@
  @ param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @ caller 方法调用者
  */
-+ (void)myWalletWithdrawDepositWithDrawAmount:(double)withDrawAmount completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
++ (void)myWalletWithdrawDepositWithDrawAmount:(double)withDrawAmount PassWord:(NSString *)password completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
 
 /**
  查询是否绑定银行卡
  
  */
 + (void)myWalletLookUpBandingCardCompletion:(void(^)(KGGMyWalletCardModel * cardModel))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
+
+/**
+ 查询银行卡所属银行
+ */
++ (void)myWalletInquireBankCarNameCarNum:(NSString *)carNum completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
+
+/**
+ 删除银行卡
+ */
++ (void)myWalletDeleteBankCardCompletion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
+
 
 @end
 

@@ -31,6 +31,13 @@
 /** 开户行名称 */
 @property (nonatomic,copy) NSString *branchBankName;
 
+
+//增加参数
+/** 银行行名称 */
+@property (nonatomic, copy) NSString *bankName;
+/** 银行卡显示 */
+@property (nonatomic,copy) NSString *hideBankNum;
+
 @end
 
 @interface KGGMyWalletCardModel : NSObject

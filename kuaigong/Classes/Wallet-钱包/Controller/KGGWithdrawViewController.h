@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class KGGMyWalletCardModel;
+
+typedef void(^RemoveBankCard)();
+
 @interface KGGWithdrawViewController : UIViewController
+
+@property (nonatomic, copy) RemoveBankCard removeBlock;
+
+@property (nonatomic, strong) KGGMyWalletCardModel *cardModel;
 
 @end

@@ -33,7 +33,7 @@
     self.tableView.separatorColor = KGGSeparatorColor;
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([KGGCustomInfoCell class]) bundle:nil] forCellReuseIdentifier:[KGGCustomInfoCell cellIdentifier]];
-    
+    self.tableView.rowHeight = 48.f;
     UIView *footer = [UIView new];
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];

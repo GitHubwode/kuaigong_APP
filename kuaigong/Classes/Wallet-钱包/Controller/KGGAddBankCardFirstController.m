@@ -10,6 +10,7 @@
 #import "KGGCustomInfoItem.h"
 #import "KGGCustomInfoCell.h"
 #import "KGGFillBankInfoViewController.h"
+#import "KGGWallectRequestManager.h"
 
 static NSString *KGGAddBankCardHeaderIdfy = @"KGGAddBankCardHeaderIdfy";
 
@@ -157,7 +158,7 @@ static NSString *KGGAddBankCardHeaderIdfy = @"KGGAddBankCardHeaderIdfy";
 - (void)nextButtonAction:(UIButton *)sender{
     
 //    [self.view endEditing:YES];
-//    
+    
     KGGCustomInfoItem *cardholderItem= self.dataArray.firstObject;
     if (!cardholderItem.subtitle.length) {
         [MBProgressHUD showMessag:cardholderItem.placeholder];
@@ -178,29 +179,26 @@ static NSString *KGGAddBankCardHeaderIdfy = @"KGGAddBankCardHeaderIdfy";
         return;
     }
     
-    
-//    [SNHWalletRequestManager getBankInfoWithBankNum:bankNum completion:^(NSString *bankName) {
-    
-    NSString *bankName = @"中国银行";
-    NSString *bankNums = @"15026418284";
+    [KGGWallectRequestManager myWalletInquireBankCarNameCarNum:bankNum completion:^(KGGResponseObj *responseObj) {
+        
+        NSString *bankName = responseObj.data;
+//        NSString *bankNums = @"15026418284";
+        
         if (bankName.length) {
             
             KGGFillBankInfoViewController *bankInfo = [[KGGFillBankInfoViewController alloc]init];
-            bankInfo.bankInfo = bankNums;
+            bankInfo.bankInfo = bankName;
             [self.navigationController pushViewController:bankInfo animated:YES];
             [NSUserDefaults setObject:bankNum forKey:KGGBankNumKey];
             [NSUserDefaults setObject:cardholderItem.subtitle forKey:KGGCardholderKey];
+            [NSUserDefaults setObject:bankName forKey:KGGBankOfDepositKey];
+            
             KGGCustomInfoItem *bankOfDepositItem = self.dataArray.lastObject;
-            
-            if (bankOfDepositItem.subtitle.length) {
-                [NSUserDefaults setObject:bankOfDepositItem.subtitle forKey:KGGBankOfDepositKey];
-            }
-            
-            
+//            if (bankOfDepositItem.subtitle.length) {
+//                [NSUserDefaults setObject:bankOfDepositItem.subtitle forKey:KGGBankOfDepositKey];
+//            }
         }
-        
-//    } aboveView:self.view inCaller:self];
-    
+    } aboveView:self.view idCaller:self];
 }
 
 

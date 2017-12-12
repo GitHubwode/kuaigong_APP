@@ -76,6 +76,15 @@ extern NSString *const KGGBankNumKey;
 extern NSString * const KGGCardholderKey;
 /** 开户行 */
 extern NSString * const KGGBankOfDepositKey;
+
+/** 绑定银行卡时 总金额 */
+extern NSString * const KGGBalanceMoneyKey;
+/** 绑定银行卡 可提现金额 */
+extern NSString * const KGGDrawBalanceMoneyKey;
+/** 绑定银行卡成功通知 */
+extern NSString *const KGGAddBankCardSuccessNotifacation;
+/** 用户申请提现成功的通知 */
+extern NSString * const KGGApplyWithdrawSuccessNotifacation;
 //微信
 extern NSString *const KGGWeiXinPayURLScheme;
 //微信secret
