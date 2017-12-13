@@ -40,10 +40,14 @@
     [self addChildViewController:undoneVC];
     
     KGGDoneOrderController *doneOrderVC = [[KGGDoneOrderController alloc]init];
-    doneOrderVC.requestType = KGGOrderRequestCompleteType;
+    doneOrderVC.requestType = KGGOrderRequestDoPayType;
     [self addChildViewController:doneOrderVC];
     
-    _titles = @[@"已接单",@"派单中",@"已完成"];
+    KGGDoneOrderController *donePayVC = [[KGGDoneOrderController alloc]init];
+    donePayVC.requestType = KGGOrderRequestCompleteType;
+    [self addChildViewController:donePayVC];
+    
+    _titles = @[@"已接单",@"派单中",@"已完成",@"已支付"];
 }
 
 - (void)setUpSlideSwitchView

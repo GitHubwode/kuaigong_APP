@@ -94,6 +94,7 @@
     
     SNHSecurityCodeViewController *code = [[SNHSecurityCodeViewController alloc]init];
     code.cellphone = self.cardModel.bankAccountDO.bankPhone;
+    code.updataPwd = @"1";
     [self.navigationController pushViewController:code animated:YES];
 
 }

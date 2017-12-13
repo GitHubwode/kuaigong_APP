@@ -10,6 +10,8 @@
 #import "KGGPasswordView.h"
 #import "KGGWallectRequestManager.h"
 #import "KGGWithdrawViewController.h"
+#import "KGGMyWalletViewController.h"
+
 
 @interface KGGWithdrawalPasswordViewController ()<UITextFieldDelegate>
 /** 响应者 */
@@ -116,6 +118,7 @@
                 alipayPwd.firstPassword = self.pwd;
                 alipayPwd.cellphone =self.cellphone;
                 alipayPwd.codeNum = self.codeNum;
+                alipayPwd.updataPwd = self.updataPwd;
                 [self.navigationController pushViewController:alipayPwd animated:YES];
             }else{
                 
@@ -136,9 +139,18 @@
 - (void)setPayPwd
 {
     [self.view endEditing:YES];
-    
+    KGGLog(@"是否更改密码:%@",self.updataPwd);
+    if ([self.updataPwd isEqualToString:@"1"]) {
+        [self updataDrawPwd];
+    }else{
+        [self setupDrawPwd];
+    }
+}
+
+#pragma mark - 第一次设置密码
+- (void)setupDrawPwd
+{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-//    param[@"password"] = [self.pwd base64_encode];
     param[@"password"] = self.pwd;
     param[@"bankPhone"] = self.cellphone;
     param[@"bankCardNo"] = [NSUserDefaults objectForKey:KGGBankNumKey];
@@ -160,68 +172,33 @@
     [KGGWallectRequestManager myWalletAddBankCardWithParam:param completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             [self.view showHint:@"设置成功"];
-//            NSInteger count = self.navigationController.childViewControllers.count;
-//
-//            KGGLog(@"导航器多少个%ld",(long)count);
             
-            if ([self.navigationController.childViewControllers.firstObject isKindOfClass:NSClassFromString(@"KGGWithdrawViewController")]) {
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }else{
-                
-                NSInteger count = self.navigationController.childViewControllers.count;
-                
-                for (int i = 0; i < count-1; i++) {
-                    UIViewController *  obj1 = self.navigationController.childViewControllers[i];
-                    KGGLog(@"导航控制器:%@",obj1);
+            for (UIViewController *temp in self.navigationController.childViewControllers) {
+                if ([temp isKindOfClass:[KGGMyWalletViewController class]]) {
+                    [self.navigationController popToViewController:temp animated:YES];
                 }
-                for (NSInteger i = count - 1; i >= 0; i--) {
-                     UIViewController *  obj = self.navigationController.childViewControllers[i];
-                    
-                }
-
-                
             }
-            
-            
-            
+        }
+        
+    } aboveView:self.view idCaller:self];
+}
+
+#pragma mark - 修改密码
+- (void)updataDrawPwd
+{
+    [KGGWallectRequestManager myWalletWithUpdataPwdCode:self.codeNum Phone:self.cellphone PassWord:self.pwd completion:^(KGGResponseObj *responseObj) {
+        
+        if (responseObj.code == KGGSuccessCode) {
+            [self.view showHint:@"更新密码成功成功"];
+            for (UIViewController *temp in self.navigationController.childViewControllers) {
+                if ([temp isKindOfClass:[KGGWithdrawViewController class]]) {
+                    [self.navigationController popToViewController:temp animated:YES];
+                }
+            }
         }
         
     } aboveView:self.view idCaller:self];
     
-    
-//    [SNHWalletRequestManager setPayPasswordWithParam:param completion:^(SNHResponseObj *responseObj) {
-    
-//        if (responseObj) {
-//            [MBProgressHUD showSuYaSuccess:@"设置成功" toView:nil];
-//            
-//            if([self.navigationController.childViewControllers.firstObject isKindOfClass:NSClassFromString(@"SNHWithdrawViewController")]){
-//                [self.navigationController popToRootViewControllerAnimated:YES];
-//            }else{
-//                
-//                NSInteger count = self.navigationController.childViewControllers.count;
-//                for (NSInteger i = count - 1; i >= 0; i--) {
-//                    
-//                    UIViewController *  obj = self.navigationController.childViewControllers[i];
-//                    
-//                    if ([obj isKindOfClass:NSClassFromString(@"SNHDetailOrderViewController")]) {
-//                        [self.navigationController popToViewController:obj animated:YES];
-//                        return;
-//                        
-//                    }else if ([obj
-//                               isKindOfClass:NSClassFromString(@"SNHMyOrderViewController")]){
-//                        [self.navigationController popToViewController:obj animated:YES];
-//                        return;
-//                    }
-//                }
-//                
-//            }
-//            
-//            [self.navigationController popToViewController:self.navigationController.childViewControllers[2] animated:YES];
-//            
-//        }
-        
-//    } aboveView:self.view inCaller:self];
-
 }
 
 

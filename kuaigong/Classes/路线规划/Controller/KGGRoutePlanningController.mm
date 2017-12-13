@@ -322,7 +322,6 @@
                 temppoints[i].y = transitStep.points[k].y;
                 i++;
             }
-            
         }
         // 通过points构建BMKPolyline
         BMKPolyline* polyLine = [BMKPolyline polylineWithPoints:temppoints count:planPointCounts];
@@ -378,7 +377,6 @@
             if (view == nil) {
                 view = [[BMKAnnotationView alloc]initWithAnnotation:routeAnnotation reuseIdentifier:@"rail_node"];
                 view.image = [UIImage imageWithContentsOfFile:[self getMyBundlePath1:@"images/icon_nav_rail.png"]];
-                
                 view.canShowCallout = TRUE;
             }
             view.annotation = routeAnnotation;
@@ -474,12 +472,10 @@
     }
 }
 
-
 #pragma mark - 私有
 
 - (NSString*)getMyBundlePath1:(NSString *)filename
 {
-    
     NSBundle * libBundle = MYBUNDLE ;
     if ( libBundle && filename ){
         NSString * s=[[libBundle resourcePath ] stringByAppendingPathComponent : filename];
@@ -513,7 +509,6 @@
         [self.navigationController pushViewController:centerVC animated:YES];
     }else if (buttonTag.tag == 10001){
         KGGLog(@"取消订单");
-    
         if (self.planType == KGGRoutePlanningBOSSType) {
             KGGOrderCorrectViewController *orderVC = [[KGGOrderCorrectViewController alloc]init];
             orderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
@@ -522,7 +517,6 @@
                 KGGLog(@"%lu刷新页面",(unsigned long)code);
                 [self changeOrderMessageRequest];
             };
-            
             [self presentViewController:orderVC animated:YES completion:nil];
         }else{
             [self PublishAlterOrderOrSearchCancelOrder];
@@ -646,13 +640,32 @@
         [self presentViewController:sheetVC animated:YES completion:nil];
     }else{
         KGGLog(@"接单者确认出工");
-        [KGGSearchOrderRequestManager workerSureGoOrderId:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
-            if (responseObj.code == KGGSuccessCode) {
-                button.enabled = NO;
-                [button setTitle:@"已确认出工" forState:UIControlStateNormal];
-            }
-        } aboveView:self.view inCaller:self];
+        if ([button.titleLabel.text isEqualToString:@"确认完工"]) {
+            [self updataOrderTypeOrderId];
+        }else{
+          
+            [KGGSearchOrderRequestManager workerSureGoOrderId:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
+                if (responseObj.code == KGGSuccessCode) {
+                    //                button.enabled = NO;
+                    [button setTitle:@"确认完工" forState:UIControlStateNormal];
+                }
+            } aboveView:self.view inCaller:self];
+        }
     }
+}
+
+#pragma mark - 接单方确认工程完成更新发单这为已完成
+- (void)updataOrderTypeOrderId
+{
+    [KGGSearchOrderRequestManager workerDoWorkOrder:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            [self.view showHint:@"工作已经完工,等待工地确认打款"];
+            if (self.doWorkBlock) {
+                self.doWorkBlock();
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } aboveView:self.view inCaller:self];
 }
 
 #pragma mark - 发布者修改订单 接单者取消订单
@@ -672,10 +685,8 @@
         }else if (responseObj.code == KGGNotCancelOrder){
             [self.view showHint:@"距离开工时间太短不能取消"];
         }
-
     } aboveView:self.view inCaller:self];
 }
-
 
 #pragma mark - 弹出支付告知窗口
 - (void)sheetCancelOrderPayView

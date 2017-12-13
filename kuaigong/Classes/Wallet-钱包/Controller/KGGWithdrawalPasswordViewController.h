@@ -16,4 +16,7 @@
 
 @property (nonatomic, strong) NSString *codeNum;
 
+/** 修改密码 */
+@property (nonatomic, strong) NSString *updataPwd;
+
 @end

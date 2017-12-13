@@ -11,8 +11,6 @@
 #import "KGGBillingDetailsViewController.h"
 #import "KGGWallectRequestManager.h"
 #import "KGGMyWalletCardModel.h"
-
-//测试
 #import "KGGWithdrawViewController.h"
 
 @interface KGGMyWalletViewController ()
@@ -20,6 +18,7 @@
 @property (nonatomic, strong) KGGMyWalletCardModel *cardModel;
 @property (weak, nonatomic) IBOutlet UIButton *walletButton;
 @property (nonatomic, strong) NSMutableArray *datasource;
+@property (nonatomic, strong) NSString *isBankCard;
 
 @end
 
@@ -49,13 +48,12 @@
 #pragma mark - 获取本用户银行卡信息
 - (void)setupCardMessage
 {
-    [KGGWallectRequestManager myWalletLookUpBandingCardCompletion:^(KGGMyWalletCardModel *cardModel) {
+    [KGGWallectRequestManager myWalletLookUpBandingCardCompletion:^(KGGMyWalletCardModel *cardModel,NSString *isHas) {
         KGGLog(@"%@",cardModel);
         self.cardModel = cardModel;
         KGGLog(@"%@",self.cardModel);
     } aboveView:nil idCaller:self];
 }
-
 
 #pragma mark - 获取数据信息
 - (void)requestMessageUserType:(NSString *)userType
@@ -65,12 +63,11 @@
             
         }else{
             totalMoeny = [totalMoeny isEqualToString:@"(null)"] ? @"您没有干活":totalMoeny;
-            [self.datasource addObjectsFromArray:response];
             self.moneyLabel.text = [NSString stringWithFormat:@"%@",totalMoeny];
             [NSUserDefaults setObject:totalMoeny forKey:KGGBalanceMoneyKey];
             [NSUserDefaults setObject:drawAcount forKey:KGGDrawBalanceMoneyKey];
             KGGLog(@"%@-%@",[NSUserDefaults objectForKey:KGGBalanceMoneyKey],[NSUserDefaults objectForKey:KGGDrawBalanceMoneyKey])
-            
+            [self.datasource addObjectsFromArray:response];
         }
     } aboveView:self.view inCaller:self];
 }
@@ -84,7 +81,6 @@
 
 - (IBAction)tiXianToBankCardClick:(UIButton *)sender {
     KGGLog(@"提现到银行卡");
-    
     if (self.cardModel.isBink) {
         KGGWithdrawViewController *drawVC = [[KGGWithdrawViewController alloc]initWithNibName:NSStringFromClass([KGGWithdrawViewController class]) bundle:[NSBundle mainBundle]];
         drawVC.cardModel = self.cardModel;

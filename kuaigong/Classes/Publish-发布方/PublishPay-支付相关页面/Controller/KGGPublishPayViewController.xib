@@ -23,6 +23,7 @@
                 <outlet property="orderDetailsLabel" destination="0Am-bU-UOU" id="JFZ-Wj-eVj"/>
                 <outlet property="orderNumLabel" destination="Ucn-iT-KcF" id="UeK-pA-T1k"/>
                 <outlet property="orderTimeLabel" destination="qes-yo-Ire" id="Pkc-c3-onS"/>
+                <outlet property="payImageView" destination="YEb-uK-JFp" id="ccI-Ob-mu3"/>
                 <outlet property="remarkLabel" destination="FvP-SW-BT7" id="hYa-Gb-his"/>
                 <outlet property="sureButton" destination="ZDC-rC-T5W" id="FNC-PH-Inh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

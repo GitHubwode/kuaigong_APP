@@ -12,6 +12,7 @@
 
 typedef void(^CallBackBlock)(NSString *code);
 typedef void(^presentBackBlock)();
+typedef void(^WorkDoBackBlock)();
 
 typedef NS_ENUM(NSUInteger, KGGRoutePlanningType) {
     KGGRoutePlanningBOSSType =1, // 发布方接单详情
@@ -21,6 +22,7 @@ typedef NS_ENUM(NSUInteger, KGGRoutePlanningType) {
 @interface KGGRoutePlanningController : UIViewController
 @property (nonatomic,copy) CallBackBlock callCancelOrderBlock;
 @property (nonatomic, copy) presentBackBlock backBlock;
+@property (nonatomic, copy) WorkDoBackBlock doWorkBlock;
 
 @property (nonatomic, strong)KGGOrderDetailsModel *orderDetails;
 /** 发布方接单详情Or接单方接单详情 */

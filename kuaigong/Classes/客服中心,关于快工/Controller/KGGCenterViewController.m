@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KGGViewBackgroundColor;
+    self.navigationItem.title = @"客服中心";
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self reatViewFootView];
@@ -38,7 +39,6 @@
     model.title = @"";
     model.subTitle = @"";
     [self.datasource addObject:model];
-
 }
 
 - (void)reatViewFootView

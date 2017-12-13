@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIView *factoryView;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *factoryView1;
+@property (weak, nonatomic) IBOutlet UIImageView *payImageView;
 
 @end
 
@@ -48,6 +49,10 @@
         KGGLog(@"未接单");
         self.title = @"未接订单";
         [self.sureButton setTitle:@"取消订单" forState:UIControlStateNormal];
+    }else if (self.requestType == KGGOrderRequestDoPayType){
+        self.title = @"未支付订单";
+        [self.payImageView removeFromSuperview];
+        [self.sureButton setTitle:@"确认支付" forState:UIControlStateNormal];
     }
     [self setupModel];
 }

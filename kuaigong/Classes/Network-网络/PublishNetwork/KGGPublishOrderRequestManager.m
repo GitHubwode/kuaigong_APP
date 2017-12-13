@@ -123,6 +123,10 @@
             url = KGGURL(@"/api/order/getAcceptOrder");
             dic[@"page"] = @(page);
             break;
+        case KGGOrderRequestDoPayType: //发单者已完成未支付
+            url = KGGURL(@"/api/order/getUnCompleteNoPay");
+            dic[@"page"] = @(page);
+            dic[@"userId"] = @(userId);
         default:
             break;
     }

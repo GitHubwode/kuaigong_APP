@@ -20,7 +20,8 @@
 #import "KGGConversionListViewController.h"
 #import "KGGLoginRequestManager.h"
 #import "AppDelegate+KGGRongCloud.h"
-
+#import "KGGWorkDetailsViewController.h"
+#import "KGGPublishOrderRequestManager.h"
 
 static CGFloat kCycleScrollViewH = 39.f;
 
@@ -127,7 +128,24 @@ static CGFloat kCycleScrollViewH = 39.f;
     NSUInteger type = [[notification.userInfo objectForKey:@"type"] integerValue];
     if (type == 502) {
         [self RefreshNewMessag];
+    }else if (type == 508){
+        NSString *orderId = [notification.userInfo objectForKey:@"orderId"];
+        [self setupOrderMessageRequestOrderId:[orderId integerValue]];
     }
+}
+
+#pragma mark - 推送获取订单详情
+- (void)setupOrderMessageRequestOrderId:(NSUInteger )orderId
+{
+    [KGGPublishOrderRequestManager publishOrderDetailsMessageOrder:orderId completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            KGGOrderDetailsModel *model = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
+            KGGWorkDetailsViewController *workVC = [[KGGWorkDetailsViewController alloc]initWithNibName:NSStringFromClass([KGGWorkDetailsViewController class]) bundle:[NSBundle mainBundle]];
+            workVC.isNotification = YES;
+            workVC.searchOrderModel = model;
+            [self.navigationController pushViewController:workVC animated:YES];
+        }
+    } aboveView:self.view inCaller:self];
 }
 
 - (void)addDataMesssage

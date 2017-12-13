@@ -12,5 +12,7 @@
 @interface KGGWorkDetailsViewController : UIViewController
 
 @property (nonatomic, strong)KGGOrderDetailsModel *searchOrderModel;
+/** 收到的通知 */
+@property (nonatomic, assign) BOOL isNotification;
 
 @end

@@ -105,7 +105,7 @@
  查询是否绑定银行卡
  
  */
-+ (void)myWalletLookUpBandingCardCompletion:(void(^)(KGGMyWalletCardModel * cardModel))completionHandler aboveView:(UIView *)view idCaller:(id)caller
++ (void)myWalletLookUpBandingCardCompletion:(void(^)(KGGMyWalletCardModel * cardModel,NSString *isHas))completionHandler aboveView:(UIView *)view idCaller:(id)caller
 {
     NSString *url = KGGURL(@"/api/bank/hasBankCard");
     [self requestWithURL:url httpMethod:GETHttpMethod params:nil progress:nil completion:^(KGGResponseObj *responseObj) {
@@ -116,10 +116,15 @@
             [view showHint:responseObj.message];
             return ;
         }
-        KGGLog(@"responseObj:%@",responseObj);
-        KGGMyWalletCardModel *model = [KGGMyWalletCardModel mj_objectWithKeyValues:responseObj.data];
+        NSString *isCard;
+        KGGMyWalletCardModel *model;
+        if ([responseObj.data isKindOfClass:[NSDictionary class]]) {
+            isCard = [responseObj.data objectForKey:@"isHas"];
+            KGGLog(@"responseObj:%@",responseObj);
+            model = [KGGMyWalletCardModel mj_objectWithKeyValues:responseObj.data];
+        }
         if (completionHandler) {
-            completionHandler(model);
+            completionHandler(model,isCard);
         }
         
     } aboveView:view inCaller:caller];
@@ -166,6 +171,32 @@
         }
         
     } aboveView:view inCaller:self];
+}
+
+/**
+ 修改提现密码
+ @ param code 短信验证码
+ @ param phone 电话号码
+ @ param password 新的提现密码
+ */
++ (void)myWalletWithUpdataPwdCode:(NSString *)code Phone:(NSString *)phone PassWord:(NSString *)password completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/bank/updatePwd");
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"code"] = code;
+    dic[@"phone"] = phone;
+    dic[@"password"] = password;
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        if (!responseObj) {
+            [view showHint:KGGHttpNerworkErrorTip];
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
+    } aboveView:view inCaller:caller];
+    
 }
 
 @end

@@ -46,7 +46,7 @@
  查询是否绑定银行卡
  
  */
-+ (void)myWalletLookUpBandingCardCompletion:(void(^)(KGGMyWalletCardModel * cardModel))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
++ (void)myWalletLookUpBandingCardCompletion:(void(^)(KGGMyWalletCardModel * cardModel,NSString *isHas))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
 
 /**
  查询银行卡所属银行
@@ -57,6 +57,14 @@
  删除银行卡
  */
 + (void)myWalletDeleteBankCardCompletion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
+
+/**
+ 修改提现密码
+ @ param code 短信验证码
+ @ param phone 电话号码
+ @ param password 新的提现密码
+ */
++ (void)myWalletWithUpdataPwdCode:(NSString *)code Phone:(NSString *)phone PassWord:(NSString *)password completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view idCaller:(id)caller;
 
 
 @end

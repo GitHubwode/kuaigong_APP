@@ -122,20 +122,8 @@
     KGGWithdrawalPasswordViewController *pwd = [[KGGWithdrawalPasswordViewController alloc] init];
     pwd.cellphone = _cellphone;
     pwd.codeNum = self.codeTextField.text;
+    pwd.updataPwd = _updataPwd;
     [self.navigationController pushViewController:pwd animated:YES];
-    
-//    [SNHWalletRequestManager checkVerificationCodeWithCellphone:_cellphone code:self.codeTextField.text completion:^(SNHResponseObj *responseObj) {
-//        
-//        if (responseObj) {
-//            SNHWithdrawalPasswordViewController *pwd = [[SNHWithdrawalPasswordViewController alloc] init];
-//            pwd.cellphone = _cellphone;
-//            [self.navigationController pushViewController:pwd animated:YES];
-//        }
-//        
-//    } aboveView:self.view inCaller:self];
-    
-   
-
 }
 
 

@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, KGGOrderRequestType) {
     KGGOrderRequestCompleteType, // 我已完成的订单
     KGGOrderRequestNotCompleteType, // 我未完成的订单
     KGGOrderRequestMyDoingType,//获取我的已接订单
+    KGGOrderRequestDoPayType,//发单者已支付订单
 };
 
 

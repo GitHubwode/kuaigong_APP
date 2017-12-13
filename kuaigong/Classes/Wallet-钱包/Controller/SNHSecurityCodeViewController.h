@@ -10,4 +10,5 @@
 
 @interface SNHSecurityCodeViewController : UIViewController
 @property (nonatomic, strong) NSString *cellphone;
+@property (nonatomic, strong) NSString *updataPwd;
 @end

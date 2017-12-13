@@ -43,6 +43,7 @@
 {
     NSString *url;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    NSString * userId = [KGGUserManager shareUserManager].currentUser.userId;
     switch (type) {
         case KGGSearchOrderRequestMyDoingType: // 我未完成的订单
             url = KGGURL(@"/api/order/getMyAcceptUnComplete");
@@ -57,6 +58,7 @@
         case KGGSearchOrderRequestNotPay: //未支付
             url = KGGURL(@"/api/order/getUnCompleteNoPay");
             dic[@"page"] = @(page);
+            dic[@"acceptUser"] = userId;
         default:
             break;
     }
@@ -125,5 +127,59 @@
         }
         
     } aboveView:view inCaller:caller];
+}
+
+/**
+ 工地完成
+ @param orderId 订单ID
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)workerDoWorkOrder:(NSUInteger)orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/order/complete");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"id"] = @(orderId);
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) {
+            [view showHint:KGGHttpNerworkErrorTip];
+            return ;
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
+        
+    } aboveView:view inCaller:caller];
+}
+
+/**
+ 是否同意修改
+ @param orderId 订单ID
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)workerChangeOrderMessageOrder:(NSString *)orderId IsSbumit:(NSString *)isSbumit completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/order/submitModifyOrder");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    dic[@"id"] = orderId;
+    dic[@"isSbumit"] = isSbumit;
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        
+        if (!responseObj) {
+            [view showHint:KGGHttpNerworkErrorTip];
+            return ;
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }
+        if (completionHandler) {
+            completionHandler(responseObj);
+        }
+        
+    } aboveView:view inCaller:caller];
+    
 }
 @end

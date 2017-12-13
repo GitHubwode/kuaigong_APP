@@ -108,9 +108,6 @@
             [self.datasource addObjectsFromArray:response];
         }
         [self.orderTableView reloadData];
-//        if (self.datasource.count < 10) {
-//            [self.orderTableView.mj_footer endRefreshingWithNoMoreData];
-//        }
         
         if (self.datasource.count == 0) {
             [self.orderTableView showBusinessErrorViewWithError:@"这里还没有内容" yOffset:100.f];
@@ -150,6 +147,9 @@
         routeVC.orderDetails = model;
         routeVC.planType = KGGRoutePlanningWORKERType;
         routeVC.callCancelOrderBlock = ^(NSString *code) {
+            [self doneRefreshMessage];
+        };
+        routeVC.doWorkBlock = ^{
             [self doneRefreshMessage];
         };
         [self.navigationController pushViewController:routeVC animated:YES];

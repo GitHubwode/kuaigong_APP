@@ -107,8 +107,9 @@
         
         [self.messageLabel removeFromSuperview];
         if ([isStart isEqualToString:@"N"]) {
-            self.sureButton.enabled = NO;
-            [self.sureButton setTitle:@"已确认出工" forState:UIControlStateNormal];
+            [self.sureButton setTitle:@"确认完工" forState:UIControlStateNormal];
+        }else{
+            [self.sureButton setTitle:@"开始上工" forState:UIControlStateNormal];
         }
     }
 }

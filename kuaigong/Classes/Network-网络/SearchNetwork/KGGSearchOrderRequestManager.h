@@ -58,6 +58,24 @@ typedef NS_ENUM(NSUInteger, KGGUserStatusType) {
  */
 + (void)workerSureGoOrderId:(NSUInteger )orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
+/**
+ 工地完成
+ @param orderId 订单ID
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)workerDoWorkOrder:(NSUInteger)orderId completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
+
+/**
+ 是否同意修改
+ @param orderId 订单ID
+ @param isSbumit Y同意N不同意
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)workerChangeOrderMessageOrder:(NSString *)orderId IsSbumit:(NSString *)isSbumit     completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
 
 
 @end
