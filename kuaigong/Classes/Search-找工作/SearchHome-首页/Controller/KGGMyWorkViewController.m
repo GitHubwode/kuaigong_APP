@@ -53,7 +53,6 @@
     }else{
         [self setupUserLocation:self.acceptLongitude Latitude:self.acceptLatitude Refresh:YES];
     }
-
 }
 
 - (void)doneLoadAddMoreMessage
@@ -109,12 +108,11 @@
         }
         [self.orderTableView reloadData];
         
-        if (self.datasource.count == 0) {
-            [self.orderTableView showBusinessErrorViewWithError:@"这里还没有内容" yOffset:100.f];
-        }
+//        if (self.datasource.count == 0) {
+//            [self.orderTableView showBusinessErrorViewWithError:@"这里还没有内容" yOffset:100.f];
+//        }
         
     } aboveView:self.view inCaller:self];
-    
 }
 
 #pragma mark - UITableViewDelegate  UITableViewDatasource
@@ -132,8 +130,10 @@
     cell.orderDetailsLabel.text = model.searchOrderDetails;
     if (self.requestType == KGGSearchOrderRequestMyDoingType) {
         cell.statusImageView.image = [UIImage imageNamed:@"icon_nof"];
-    }else{
+    }else if(self.requestType == KGGSearchOrderRequestCompleteType) {
         cell.statusImageView.image = [UIImage imageNamed:@"icon_finash"];
+    }else{
+        cell.statusImageView.image = [UIImage imageNamed:@"pic_noPay"];
     }
     return cell;
 }
@@ -156,6 +156,7 @@
     }else{
         KGGWorkDetailsViewController *workVC = [[KGGWorkDetailsViewController alloc]initWithNibName:NSStringFromClass([KGGWorkDetailsViewController class]) bundle:[NSBundle mainBundle]];
         workVC.searchOrderModel = model;
+        workVC.requestType = self.requestType;
         [self.navigationController pushViewController:workVC animated:YES];
     }
 }

@@ -100,6 +100,7 @@ static CGFloat const middleHeight = 70.f;
     [KGGNotificationCenter addObserver:self selector:@selector(accountOfflineNotification:) name:KGGConnectionStatusOffLine object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(showBadge:) name:KGGShowAlertNotifacation object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(hidenBadge:) name:KGGHidenAlertNotifacation object:nil];
+//    [KGGNotificationCenter addObserver:self selector:@selector(kggJumpController:) name:KGGRongYunReceiedNotifacation object:nil];
     
     [self kgg_addButton];
     
@@ -107,6 +108,15 @@ static CGFloat const middleHeight = 70.f;
     self.leftView = leftView;
     leftView.customDelegate = self;
     self.menu = [[MenuView alloc]initWithDependencyView:self.view MenuView:leftView isShowCoverView:YES];
+}
+
+#pragma mark - 获取到通知的信息
+- (void)kggJumpController:(NSNotification *)notification
+{
+    KGGLog(@"通知的内容%@",notification);
+    KGGLog(@"%@",notification.userInfo);
+    NSUInteger type = [[notification.userInfo objectForKey:@"type"] integerValue];
+    KGGLog(@"通知的状态:%lu",(unsigned long)type);
 }
 
 - (void)accountOfflineNotification:(NSNotification *)noti
@@ -366,7 +376,6 @@ static CGFloat const middleHeight = 70.f;
     }else if (index == 8){
         
     }
-
 }
 
 #pragma mark - UITableViewFooterViewDelegate

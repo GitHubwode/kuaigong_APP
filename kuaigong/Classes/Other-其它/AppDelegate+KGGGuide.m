@@ -22,6 +22,7 @@ static NSString *const KGGLastVersionKey = @"KGGLastVersion";
 - (void)setUpRootViewControllver
 {
     UIViewController *rootVc;
+//    rootVc.view.backgroundColor = [UIColor yellowColor];
     
     BOOL isLogin = [KGGUserManager shareUserManager].logined;
     // 获取当前的最新版本号 2.0

@@ -111,7 +111,7 @@
             dic[@"acceptLongitude"] = @(longitude);
             dic[@"acceptLatitude"] = @(latitude);
             break;
-        case KGGOrderRequestCompleteType: // 我已完成的订单
+        case KGGOrderRequestCompleteType: // 我已完成未支付的订单
             url = KGGURL(@"/api/order/getComplete");
             dic[@"page"] = @(page);
             break;

@@ -47,7 +47,7 @@
     donePayVC.requestType = KGGOrderRequestCompleteType;
     [self addChildViewController:donePayVC];
     
-    _titles = @[@"已接单",@"派单中",@"已完成",@"已支付"];
+    _titles = @[@"已接单",@"派单中",@"未支付",@"已支付"];
 }
 
 - (void)setUpSlideSwitchView

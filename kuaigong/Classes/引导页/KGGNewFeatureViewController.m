@@ -27,6 +27,13 @@ static NSString * const reuseIdentifier = @"NewFeatureCell";
     self.tabBarController.tabBar.hidden = YES;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+}
+
 - (instancetype)init
 {
     // 创建流水布局
@@ -49,6 +56,7 @@ static NSString * const reuseIdentifier = @"NewFeatureCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.view.backgroundColor = [UIColor blueColor];
     [self setUpCollectionView];
     self.bossButton = [self creatButtonImage:@"btn_yong" HightString:@"bnt_pre_r" TagButton:10000];
     self.workerButton = [self creatButtonImage:@"btn_zhao" HightString:@"bnt_pre_b" TagButton:10001];

@@ -164,9 +164,7 @@
     param[@"balance"] = blanceMoney;
     NSString *bankName = [NSUserDefaults objectForKey:KGGBankOfDepositKey];
     param[@"branchBankName"] = bankName;
-    
     KGGLog(@"%@ - %@",[NSUserDefaults objectForKey:KGGCardholderKey],[NSUserDefaults objectForKey:KGGBankOfDepositKey]);
-    
     KGGLog(@"参数:%@",param);
     
     [KGGWallectRequestManager myWalletAddBankCardWithParam:param completion:^(KGGResponseObj *responseObj) {

@@ -34,9 +34,7 @@
         requestType = @"acceptContent";
     }
     [self requestMessageUserType:requestType];
-    
     [self setupCardMessage];
-    
     [KGGNotificationCenter addObserver:self selector:@selector(addBankCard) name:KGGAddBankCardSuccessNotifacation object:nil];
 }
 

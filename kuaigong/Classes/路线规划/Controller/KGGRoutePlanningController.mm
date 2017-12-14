@@ -99,6 +99,21 @@
     [self loadMapView];
     [self getUserLocation];
     [self searchRoute];
+    
+     [KGGNotificationCenter addObserver:self selector:@selector(kggJumpController:) name:KGGRongYunReceiedNotifacation object:nil];
+}
+
+#pragma mark - 获取到通知的信息
+- (void)kggJumpController:(NSNotification *)notification
+{
+    KGGLog(@"通知的内容%@",notification);
+    KGGLog(@"%@",notification.userInfo);
+    
+    NSUInteger type = [[notification.userInfo objectForKey:@"type"] integerValue];
+    if (type == 509) {
+        NSUInteger orderId = [[notification.userInfo objectForKey:@"orderId"] integerValue];
+        [self changeOrderMessageRequestOrder:orderId];
+    }
 }
 
 #pragma mark - oresent进来的创建导航栏
@@ -513,10 +528,10 @@
             KGGOrderCorrectViewController *orderVC = [[KGGOrderCorrectViewController alloc]init];
             orderVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
             orderVC.detailsModel = self.orderDetails;
-            orderVC.backBlock = ^(NSUInteger code) {
-                KGGLog(@"%lu刷新页面",(unsigned long)code);
-                [self changeOrderMessageRequest];
-            };
+//            orderVC.backBlock = ^(NSUInteger code) {
+//                KGGLog(@"%lu刷新页面",(unsigned long)code);
+//                [self changeOrderMessageRequest];
+//            };
             [self presentViewController:orderVC animated:YES completion:nil];
         }else{
             [self PublishAlterOrderOrSearchCancelOrder];
@@ -595,9 +610,9 @@
 }
 
 #pragma mark - 修改订单网络请求
-- (void)changeOrderMessageRequest
+- (void)changeOrderMessageRequestOrder:(NSUInteger )orderId
 {
-    [KGGPublishOrderRequestManager publishOrderDetailsMessageOrder:self.orderDetails.orderId completion:^(KGGResponseObj *responseObj) {
+    [KGGPublishOrderRequestManager publishOrderDetailsMessageOrder:orderId completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
             self.orderDetails = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
             [self.routeTableView setupRequestOrderModel:self.orderDetails];
@@ -634,6 +649,8 @@
                 if (self.callCancelOrderBlock) {
                     self.callCancelOrderBlock(@"200");
                 }
+                
+                [self.navigationController popViewControllerAnimated:YES];
             }
         };
         sheetVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
@@ -766,6 +783,7 @@
 
 - (void)dealloc
 {
+    [KGGNotificationCenter removeObserver:self];
     KGGLogFunc
 }
 @end

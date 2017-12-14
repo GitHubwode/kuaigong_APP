@@ -70,11 +70,13 @@ typedef NS_ENUM(NSUInteger, KGGUserStatusType) {
 /**
  是否同意修改
  @param orderId 订单ID
+ @param days 天数
+ @param number 人数
  @param isSbumit Y同意N不同意
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)workerChangeOrderMessageOrder:(NSString *)orderId IsSbumit:(NSString *)isSbumit     completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
++ (void)workerChangeOrderMessageOrder:(NSString *)orderId IsSbumit:(NSString *)isSbumit Day:(NSString *)day PeopleNum:(NSString *)peopleNum completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
 
 
 

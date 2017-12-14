@@ -55,11 +55,12 @@ static CGFloat kCycleScrollViewH = 39.f;
     self.navigationItem.title = @"快工邦";
     //创建tarBarItem
     [self setupNavi];
+    [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.mj_header = [KGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(RefreshNewMessag)];
     self.tableView.mj_footer = [KGGRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(LoadAddMoreMessage)];
     [self.tableView.mj_header beginRefreshing];
-    [self.view addSubview:self.tableView];
+    
     [self addDataMesssage];
     
     [self addNotificationMessage];
@@ -130,12 +131,14 @@ static CGFloat kCycleScrollViewH = 39.f;
         [self RefreshNewMessag];
     }else if (type == 508){
         NSString *orderId = [notification.userInfo objectForKey:@"orderId"];
-        [self setupOrderMessageRequestOrderId:[orderId integerValue]];
+        NSString *dayNum = [notification.userInfo objectForKey:@"days"];
+        NSString *peopleNum = [notification.userInfo objectForKey:@"number"];
+        [self setupOrderMessageRequestOrderId:[orderId integerValue] Day:dayNum PeopleNum:peopleNum];
     }
 }
 
 #pragma mark - 推送获取订单详情
-- (void)setupOrderMessageRequestOrderId:(NSUInteger )orderId
+- (void)setupOrderMessageRequestOrderId:(NSUInteger )orderId Day:(NSString *)day PeopleNum:(NSString *)peopleNum
 {
     [KGGPublishOrderRequestManager publishOrderDetailsMessageOrder:orderId completion:^(KGGResponseObj *responseObj) {
         if (responseObj.code == KGGSuccessCode) {
@@ -143,6 +146,8 @@ static CGFloat kCycleScrollViewH = 39.f;
             KGGWorkDetailsViewController *workVC = [[KGGWorkDetailsViewController alloc]initWithNibName:NSStringFromClass([KGGWorkDetailsViewController class]) bundle:[NSBundle mainBundle]];
             workVC.isNotification = YES;
             workVC.searchOrderModel = model;
+            workVC.dayNum = day;
+            workVC.peopleNum = peopleNum;
             [self.navigationController pushViewController:workVC animated:YES];
         }
     } aboveView:self.view inCaller:self];

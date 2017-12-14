@@ -78,6 +78,9 @@
             routeVC.orderDetails = Model;
             routeVC.planType = KGGRoutePlanningBOSSType;
             routeVC.presentId = 1;
+            routeVC.callCancelOrderBlock = ^(NSString *code) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            };
             routeVC.backBlock = ^{
                 [self.navigationController popToRootViewControllerAnimated:YES];
             };

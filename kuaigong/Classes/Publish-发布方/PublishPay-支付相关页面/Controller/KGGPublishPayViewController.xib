@@ -16,8 +16,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KGGPublishPayViewController">
             <connections>
-                <outlet property="factoryView" destination="If0-3I-aFc" id="Qeh-Xj-fg2"/>
-                <outlet property="factoryView1" destination="ioP-0T-Rjq" id="9SO-xh-rqh"/>
                 <outlet property="messageLabel" destination="iRf-au-S2T" id="Mao-fM-hVB"/>
                 <outlet property="moneyLabel" destination="jXy-3I-D80" id="9wp-GC-tq0"/>
                 <outlet property="orderDetailsLabel" destination="0Am-bU-UOU" id="JFZ-Wj-eVj"/>
@@ -44,7 +42,7 @@
                     </state>
                     <state key="highlighted" backgroundImage="bg_button_pre"/>
                     <connections>
-                        <action selector="publishSurePayButtonClick:" destination="-1" eventType="touchUpInside" id="eLX-Hz-TVH"/>
+                        <action selector="surePayButtonClick:" destination="-1" eventType="touchUpInside" id="nee-ta-Chr"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AlI-HS-bsp" userLabel="订单详情">
@@ -120,7 +118,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIf-bo-Rmv" userLabel="订单信息">
-                    <rect key="frame" x="0.0" y="332" width="375" height="34"/>
+                    <rect key="frame" x="0.0" y="198" width="375" height="34"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单信息:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="902-2G-LNp">
                             <rect key="frame" x="14" y="7" width="60" height="20"/>
@@ -137,7 +135,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fwp-29-gDB" userLabel="订单信息内容">
-                    <rect key="frame" x="0.0" y="366" width="375" height="90"/>
+                    <rect key="frame" x="0.0" y="232" width="375" height="90"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 1232 123 1231" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ucn-iT-KcF">
                             <rect key="frame" x="252.5" y="17" width="108.5" height="17"/>
@@ -160,13 +158,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下单时间:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RY3-Id-9r7">
-                    <rect key="frame" x="14" y="421" width="60" height="20"/>
+                    <rect key="frame" x="14" y="287" width="60" height="20"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号码:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tG-3N-ELW">
-                    <rect key="frame" x="14" y="381" width="60" height="20"/>
+                    <rect key="frame" x="14" y="247" width="60" height="20"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -177,32 +175,8 @@
                     <color key="textColor" red="0.0" green="0.80392156862745101" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ioP-0T-Rjq" userLabel="工厂照片">
-                    <rect key="frame" x="0.0" y="198" width="375" height="34"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工厂照片:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWy-qp-3bD">
-                            <rect key="frame" x="14" y="7" width="60" height="20"/>
-                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="EWy-qp-3bD" firstAttribute="leading" secondItem="ioP-0T-Rjq" secondAttribute="leading" constant="14" id="0ff-dU-gSm"/>
-                        <constraint firstItem="EWy-qp-3bD" firstAttribute="centerY" secondItem="ioP-0T-Rjq" secondAttribute="centerY" id="f5g-9s-273"/>
-                        <constraint firstAttribute="height" constant="34" id="gkp-PG-fZE"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="If0-3I-aFc" userLabel="工厂照片的View">
-                    <rect key="frame" x="0.0" y="232" width="375" height="100"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="100" id="OFQ-bl-xtB"/>
-                    </constraints>
-                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_yizhifu" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-uK-JFp">
-                    <rect key="frame" x="0.0" y="456" width="375" height="59"/>
+                    <rect key="frame" x="0.0" y="322" width="375" height="59"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -214,29 +188,22 @@
                 <constraint firstItem="ZQW-Qd-pBq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="54p-L1-PNi"/>
                 <constraint firstItem="3tG-3N-ELW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="5gY-Ow-YVK"/>
                 <constraint firstItem="YEb-uK-JFp" firstAttribute="top" secondItem="Fwp-29-gDB" secondAttribute="bottom" id="6vR-do-GVC"/>
-                <constraint firstItem="PIf-bo-Rmv" firstAttribute="top" secondItem="If0-3I-aFc" secondAttribute="bottom" id="91z-68-Og5"/>
                 <constraint firstItem="AlI-HS-bsp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9M8-c0-ZdQ"/>
-                <constraint firstItem="ioP-0T-Rjq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AKH-Dp-hlR"/>
                 <constraint firstItem="RY3-Id-9r7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="AOA-gl-D11"/>
                 <constraint firstAttribute="trailing" secondItem="T7B-lE-O09" secondAttribute="trailing" id="Dwz-zU-zdr"/>
-                <constraint firstItem="If0-3I-aFc" firstAttribute="top" secondItem="ioP-0T-Rjq" secondAttribute="bottom" id="FFl-bY-QYr"/>
                 <constraint firstAttribute="trailing" secondItem="ZQW-Qd-pBq" secondAttribute="trailing" id="N6k-iI-thq"/>
                 <constraint firstItem="ATd-7l-cYA" firstAttribute="top" secondItem="AlI-HS-bsp" secondAttribute="bottom" id="NiB-el-gRM"/>
                 <constraint firstItem="JiP-DS-K0d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="OLT-vW-Shi"/>
                 <constraint firstItem="T7B-lE-O09" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PWD-vh-3z0"/>
-                <constraint firstAttribute="trailing" secondItem="If0-3I-aFc" secondAttribute="trailing" id="Q0C-eb-xSd"/>
                 <constraint firstAttribute="trailing" secondItem="ZDC-rC-T5W" secondAttribute="trailing" id="SQc-DW-YYP"/>
                 <constraint firstItem="ATd-7l-cYA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Td3-Tk-dvI"/>
-                <constraint firstItem="If0-3I-aFc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Urv-qN-8QR"/>
                 <constraint firstItem="Fwp-29-gDB" firstAttribute="top" secondItem="PIf-bo-Rmv" secondAttribute="bottom" id="Zku-BA-jVH"/>
                 <constraint firstAttribute="trailing" secondItem="ATd-7l-cYA" secondAttribute="trailing" id="a9b-4E-Mzi"/>
                 <constraint firstAttribute="trailing" secondItem="0Am-bU-UOU" secondAttribute="trailing" constant="65" id="aF4-7t-dyv"/>
                 <constraint firstItem="AlI-HS-bsp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="afE-Bh-acR"/>
                 <constraint firstAttribute="trailing" secondItem="Fwp-29-gDB" secondAttribute="trailing" id="bEY-5h-yvY"/>
-                <constraint firstItem="ioP-0T-Rjq" firstAttribute="top" secondItem="T7B-lE-O09" secondAttribute="bottom" id="bq3-4G-VH8"/>
                 <constraint firstItem="ZDC-rC-T5W" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cCF-gF-DXC"/>
                 <constraint firstAttribute="trailing" secondItem="YEb-uK-JFp" secondAttribute="trailing" id="dWR-6H-1k3"/>
-                <constraint firstAttribute="trailing" secondItem="ioP-0T-Rjq" secondAttribute="trailing" id="fgQ-qD-CPC"/>
                 <constraint firstAttribute="trailing" secondItem="AlI-HS-bsp" secondAttribute="trailing" id="gLR-TW-AYR"/>
                 <constraint firstItem="ZDC-rC-T5W" firstAttribute="top" secondItem="iRf-au-S2T" secondAttribute="bottom" constant="6" id="id7-hR-Ws9"/>
                 <constraint firstAttribute="trailing" secondItem="PIf-bo-Rmv" secondAttribute="trailing" id="kcj-kj-B9i"/>

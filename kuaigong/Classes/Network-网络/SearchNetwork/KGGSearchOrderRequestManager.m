@@ -51,7 +51,7 @@
 //            dic[@""] = @(longitude);
 //            dic[@""] = @(latitude);
             break;
-        case KGGSearchOrderRequestCompleteType: // 我已完成的订单
+        case KGGSearchOrderRequestCompleteType: // 我已支付的订单
             url = KGGURL(@"/api/order/getMyAcceptComplete");
             dic[@"page"] = @(page);
             break;
@@ -158,15 +158,19 @@
 /**
  是否同意修改
  @param orderId 订单ID
+ @param days 天数
+ @param number 人数
  @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
  @param caller 方法调用者
  */
-+ (void)workerChangeOrderMessageOrder:(NSString *)orderId IsSbumit:(NSString *)isSbumit completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
++ (void)workerChangeOrderMessageOrder:(NSString *)orderId IsSbumit:(NSString *)isSbumit Day:(NSString *)day PeopleNum:(NSString *)peopleNum completion:(void(^)(KGGResponseObj *responseObj))completionHandler aboveView:(UIView *)view inCaller:(id)caller
 {
     NSString *url = KGGURL(@"/api/order/submitModifyOrder");
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     dic[@"id"] = orderId;
     dic[@"isSbumit"] = isSbumit;
+    dic[@"days"] = day;
+    dic[@"number"] = peopleNum;
     [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
         
         if (!responseObj) {

@@ -66,15 +66,14 @@
     self.clickString = @"";
     self.headerView = [[KGGUseWorkerHeaderView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 360-95-33)];
     self.headerView.headerDelegate = self;
-    
-//    self.footerView = [[KGGUseWorkerFooterView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 95)];
-//    self.footerView.footerDelegate = self;
-//    self.tableView.tableFooterView = self.footerView;
     self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self kgg_addButton];
     KGGLog(@"%@",self.publishDatasource);
     [self useWorkerMessage];
+    
+    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 #pragma mark - header的代理  备注 和选择图片
@@ -126,21 +125,18 @@
 }
 
 #pragma mark - 键盘显示隐藏
-//- (void)keyboardWillShow:(NSNotification *)notification{
-//
-//    CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+- (void)keyboardWillShow:(NSNotification *)notification{
+    CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
 //    if (self.Isfirst == NO) {
-//
 //    }else{
-//        CGFloat offset = self.headerView.xc_height+33 + 63.f * (self.datasource.count) - keyboardBounds.size.height;
-//
-//        [self.tableView setContentOffset:CGPointMake(0, offset) animated:NO];
+        CGFloat offset = self.headerView.xc_height+33 + 63.f * (self.datasource.count) - keyboardBounds.size.height;
+        [self.tableView setContentOffset:CGPointMake(0, offset) animated:NO];
 //    }
-//}
+}
 
-//- (void)keyboardWillHide:(NSNotification *)notification{
-//    [self.tableView setContentOffset:CGPointZero animated:NO];
-//}
+- (void)keyboardWillHide:(NSNotification *)notification{
+    [self.tableView setContentOffset:CGPointZero animated:NO];
+}
 
 #pragma mark - UITableViewDelegate UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -152,12 +148,12 @@
 {
     KGGCustomInfoItem *item = self.datasource[indexPath.row];
     
-    if (indexPath.row == 3) {
+    if (indexPath.row == 1) {
         
         KGGPayTimeChooseViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGPayTimeChooseViewCell payTimeIdentifier]];
         cell.infoItem = item;
         return cell;
-    }else if (indexPath.row == 2){
+    }else if (indexPath.row == 0){
         KGGStartWorkTimeViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGStartWorkTimeViewCell workStartIdentifier]];
         cell.infoItem = item;
         return cell;
@@ -215,13 +211,13 @@
     self.Isfirst = YES;
     KGGCustomInfoItem *item = self.datasource[indexPath.row];
     KGGLog(@"%@",item);
-    
+
     if (!item.enabled) return;
     
     id cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (indexPath.row == 3) {
+    if (indexPath.row == 1) {
         [[cell timeTextField] becomeFirstResponder];
-    }else if (indexPath.row == 2){
+    }else if (indexPath.row == 0){
         [[cell workTextField] becomeFirstResponder];
     }else{
         [[cell textField] becomeFirstResponder];

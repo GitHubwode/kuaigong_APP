@@ -4,50 +4,6 @@
 <array>
 	<dict>
 		<key>title</key>
-		<string>姓名:</string>
-		<key>subtitle</key>
-		<string></string>
-		<key>keyboardType</key>
-		<integer>0</integer>
-		<key>maxTextLength</key>
-		<integer>0</integer>
-		<key>placeholder</key>
-		<string>请填写姓名</string>
-		<key>propertyKey</key>
-		<string>name</string>
-		<key>enabled</key>
-		<true/>
-		<key>hidenIndicator</key>
-		<true/>
-		<key>editabled</key>
-		<true/>
-		<key>required</key>
-		<true/>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>电话:</string>
-		<key>subtitle</key>
-		<string></string>
-		<key>keyboardType</key>
-		<integer>4</integer>
-		<key>maxTextLength</key>
-		<integer>11</integer>
-		<key>placeholder</key>
-		<string>请填写电话</string>
-		<key>propertyKey</key>
-		<string>mobile</string>
-		<key>enabled</key>
-		<true/>
-		<key>hidenIndicator</key>
-		<true/>
-		<key>editabled</key>
-		<true/>
-		<key>required</key>
-		<true/>
-	</dict>
-	<dict>
-		<key>title</key>
 		<string>工作时间:</string>
 		<key>subtitle</key>
 		<string></string>
@@ -85,6 +41,50 @@
 		<true/>
 		<key>hidenIndicator</key>
 		<false/>
+		<key>editabled</key>
+		<true/>
+		<key>required</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>姓名:</string>
+		<key>subtitle</key>
+		<string></string>
+		<key>keyboardType</key>
+		<integer>0</integer>
+		<key>maxTextLength</key>
+		<integer>0</integer>
+		<key>placeholder</key>
+		<string>请填写姓名</string>
+		<key>propertyKey</key>
+		<string>name</string>
+		<key>enabled</key>
+		<true/>
+		<key>hidenIndicator</key>
+		<true/>
+		<key>editabled</key>
+		<true/>
+		<key>required</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>电话:</string>
+		<key>subtitle</key>
+		<string></string>
+		<key>keyboardType</key>
+		<integer>4</integer>
+		<key>maxTextLength</key>
+		<integer>11</integer>
+		<key>placeholder</key>
+		<string>请填写电话</string>
+		<key>propertyKey</key>
+		<string>mobile</string>
+		<key>enabled</key>
+		<true/>
+		<key>hidenIndicator</key>
+		<true/>
 		<key>editabled</key>
 		<true/>
 		<key>required</key>
