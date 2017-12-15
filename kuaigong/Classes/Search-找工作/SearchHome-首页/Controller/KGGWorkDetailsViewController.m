@@ -52,21 +52,19 @@
         [self notificationSetUp];
         [self.payImageView removeFromSuperview];
     }
-    
     if (self.requestType == KGGSearchOrderRequestCompleteType) {
         
     }else{
         [self.payImageView removeFromSuperview];
     }
-
 }
 
 #pragma mark - 接到通知
 - (void)notificationSetUp
 {
     NSString *orderId = [NSString stringWithFormat:@"%lu",(unsigned long)self.searchOrderModel.orderId];
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"老板正在修改订单,是否同意修改" preferredStyle:UIAlertControllerStyleAlert];
+    NSString *message = [NSString stringWithFormat:@"老板正在修改订单天数为%@,人数为%@,是否同意修改",self.dayNum,self.peopleNum];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"拒绝" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [self sureChangeOrderMessageOrderId:orderId Type:@"N"];

@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *walletButton;
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic, strong) NSString *isBankCard;
+@property (nonatomic, strong) NSString *totalMoney;
+@property (nonatomic, strong) NSString *drawMoney;
 
 @end
 
@@ -50,7 +52,20 @@
         KGGLog(@"%@",cardModel);
         self.cardModel = cardModel;
         KGGLog(@"%@",self.cardModel);
+        [self withdrawalState:cardModel.bankAccountDO.status];
     } aboveView:nil idCaller:self];
+}
+
+#pragma mark - 正在提现中请稍等
+- (void)withdrawalState:(NSUInteger )status
+{
+    /** 提现状态 0可提现 1 为提现中 2为提现成功 */
+    if (status == 1) {
+        self.walletButton.enabled = NO;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提现中" message:@"提现申请已提交,等待公司打款审核" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 #pragma mark - 获取数据信息
@@ -60,8 +75,11 @@
         if (!response) {
             
         }else{
-            totalMoeny = [totalMoeny isEqualToString:@"(null)"] ? @"您没有干活":totalMoeny;
-            self.moneyLabel.text = [NSString stringWithFormat:@"%@",totalMoeny];
+            totalMoeny = [totalMoeny isEqualToString:@"(null)"] ? @"没有工钱":totalMoeny;
+            self.moneyLabel.text = [NSString stringWithFormat:@"¥ %@",totalMoeny];
+            
+            self.totalMoney = totalMoeny;
+            self.drawMoney = drawAcount;
             [NSUserDefaults setObject:totalMoeny forKey:KGGBalanceMoneyKey];
             [NSUserDefaults setObject:drawAcount forKey:KGGDrawBalanceMoneyKey];
             KGGLog(@"%@-%@",[NSUserDefaults objectForKey:KGGBalanceMoneyKey],[NSUserDefaults objectForKey:KGGDrawBalanceMoneyKey])
@@ -79,6 +97,7 @@
 
 - (IBAction)tiXianToBankCardClick:(UIButton *)sender {
     KGGLog(@"提现到银行卡");
+    KGGLog(@"%.2f",self.cardModel.bankAccountDO.drawBalance);
     if (self.cardModel.isBink) {
         KGGWithdrawViewController *drawVC = [[KGGWithdrawViewController alloc]initWithNibName:NSStringFromClass([KGGWithdrawViewController class]) bundle:[NSBundle mainBundle]];
         drawVC.cardModel = self.cardModel;

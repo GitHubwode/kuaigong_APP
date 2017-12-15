@@ -10,6 +10,8 @@
 #import "JPUSHService.h"
 #import <RongIMKit/RongIMKit.h>
 #import "JANALYTICSService.h"
+#import "KGGTabBarController.h"
+#import "KGGTabBarWorkController.h"
 
 // iOS10注册APNs所需头文件
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
@@ -109,9 +111,22 @@
 - (void)cdm_handleRemoteNotification:(NSDictionary *)remoteInfo
 {
     [JPUSHService handleRemoteNotification:remoteInfo];
+     [self cdm_setBadge:0];
+    UIWindow * window = [[UIApplication sharedApplication].delegate window];
+    if ([[KGGUserManager shareUserManager].currentUser.type isEqualToString:@"BOSS"]) {
+        KGGTabBarController *tabbar = [[KGGTabBarController alloc] init];
+        window.rootViewController = tabbar;
+        tabbar.selectedIndex = 0;
+    }else{
+        KGGTabBarWorkController *tabbar = [[KGGTabBarWorkController alloc] init];
+        window.rootViewController = tabbar;
+        tabbar.selectedIndex = 0;
+    }
+    
     KGGLog(@"remoteInfo:%@",remoteInfo);
-    [KGGNotificationCenter postNotificationName:KGGRongYunReceiedNotifacation object:nil userInfo:remoteInfo];
-    [self cdm_setBadge:0];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [KGGNotificationCenter postNotificationName:KGGRongYunReceiedNotifacation object:nil userInfo:remoteInfo];
+    });
 }
 
 #pragma mark JPUSHRegisterDelegate

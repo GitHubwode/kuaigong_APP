@@ -43,8 +43,9 @@
 #pragma mark - 设置显示
 - (void)setupMessage
 {
-    self.messageLabel.text = [NSString stringWithFormat:@"30天之内收取6％手续费,当前总金额为%@",self.cardModel.bankAccountDO.balance];
-    self.moneyTextField.text = self.cardModel.bankAccountDO.drawBalance;
+//    self.messageLabel.text = [NSString stringWithFormat:@"7天之内收取6％手续费,当前总金额为%.2f",self.cardModel.bankAccountDO.balance];
+    self.messageLabel.text = [NSString stringWithFormat:@"7天之内收取6％手续费"];
+    self.moneyTextField.text = [NSString stringWithFormat:@"%.2f",self.cardModel.bankAccountDO.drawBalance];
     self.bankNameLabel.text = self.cardModel.bankAccountDO.bankName;
     self.bankNumLabel.text = self.cardModel.bankAccountDO.hideBankNum;
 //

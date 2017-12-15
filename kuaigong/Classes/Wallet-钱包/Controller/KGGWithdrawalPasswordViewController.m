@@ -158,7 +158,7 @@
     param[@"realName"] = [NSUserDefaults objectForKey:KGGCardholderKey];
     param[@"code"] = self.codeNum;
     NSString *blanceMoney = [NSUserDefaults objectForKey:KGGBalanceMoneyKey];
-    if ([blanceMoney isEqualToString:@"您没有干活"]) {
+    if ([blanceMoney isEqualToString:@"没有工钱"]) {
         blanceMoney = @"0";
     }
     param[@"balance"] = blanceMoney;

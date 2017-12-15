@@ -26,7 +26,8 @@
     [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
         NSMutableArray *responseDatasource;
         NSString *totalCount;
-        NSString *drawAcount;
+        double drawAcount;
+        NSString *drawAcount1;
         if (!responseObj) {
             
         }else if (responseObj.code != KGGSuccessCode){
@@ -34,13 +35,16 @@
         }else{
             NSDictionary *walletModel = [responseObj.data objectForKey:userType];
             totalCount = [NSString stringWithFormat:@"%@",[walletModel objectForKey:@"acount"]];
-            drawAcount = [NSString stringWithFormat:@"%@",[walletModel objectForKey:@"drawAcount"]];
+            drawAcount = [[walletModel objectForKey:@"drawAcount"] integerValue];
+            
+            drawAcount1 = [NSString stringWithFormat:@"%.2f",drawAcount];
+            
             NSDictionary *pageBean = [walletModel objectForKey:@"pageBean"];
             NSArray *recordList = [pageBean objectForKey:@"recordList"];
             responseDatasource = [KGGMyWalletOrderDetailsModel mj_objectArrayWithKeyValuesArray:recordList];
         }
         if (completionHandler) {
-            completionHandler(responseDatasource,totalCount,drawAcount);
+            completionHandler(responseDatasource,totalCount,drawAcount1);
         }
         
     } aboveView:view inCaller:caller];

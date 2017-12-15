@@ -128,7 +128,7 @@ static CGFloat kCycleScrollViewH = 39.f;
     
     NSUInteger type = [[notification.userInfo objectForKey:@"type"] integerValue];
     if (type == 502) {
-        [self RefreshNewMessag];
+//        [self RefreshNewMessag];
     }else if (type == 508){
         NSString *orderId = [notification.userInfo objectForKey:@"orderId"];
         NSString *dayNum = [notification.userInfo objectForKey:@"days"];
@@ -214,11 +214,16 @@ static CGFloat kCycleScrollViewH = 39.f;
     self.cycleScrollView.messageDatasource = self.messageDatasource;
     [self.headerView addSubview:self.JPButton];
     self.isJPush = [NSUserDefaults objectForKey:KGGJPushType];
-    if ([self.isJPush isEqualToString:@"YES"]) {
-        self.JPButton.selected = NO;
-    }else{
-        self.JPButton.selected = YES;
+    if (self.isJPush == nil) {
+        self.isJPush = @"YES";
     }
+    KGGLog(@"存储状态:%@",self.isJPush);
+//    if ([self.isJPush isEqualToString:@"YES"]) {
+//        self.JPButton.selected = NO;
+//    }else{
+//        self.JPButton.selected = YES;
+//    }
+    self.JPButton.selected = [self.isJPush isEqualToString:@"YES"] ? NO : YES;
     KGGLog(@"角色:%@",[NSUserDefaults objectForKey:KGGJPushType]);
     weakSelf(self);
     [self.JPButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -292,7 +297,6 @@ static CGFloat kCycleScrollViewH = 39.f;
         }
         
     } aboveView:self.view inCaller:self];
-    
 }
 
 

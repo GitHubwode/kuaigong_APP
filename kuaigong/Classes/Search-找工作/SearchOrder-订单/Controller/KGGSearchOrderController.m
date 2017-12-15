@@ -127,9 +127,9 @@
     KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
     routeVC.orderDetails = self.orderDetails;
     routeVC.planType = KGGRoutePlanningWORKERType;
-//    routeVC.callCancelOrderBlock = ^(NSString *code) {
-//        [self ]
-//    }
+    routeVC.doWorkBlock = ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    };
     [self.navigationController pushViewController:routeVC animated:YES];
     
 }

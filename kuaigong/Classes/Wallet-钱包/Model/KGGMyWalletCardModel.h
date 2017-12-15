@@ -21,9 +21,9 @@
 /** 提现密码 */
 @property (nonatomic,copy) NSString *password;
 /** 总金额 */
-@property (nonatomic,copy) NSString *balance;
+@property (nonatomic,assign) double balance;
 /** 可提现金额 */
-@property (nonatomic,copy) NSString *drawBalance;
+@property (nonatomic,assign) double drawBalance;
 /** 提现状态 0可提现 1 为提现中 2为提现成功 */
 @property (nonatomic,assign) NSUInteger  status;
 /** 是否对公 */

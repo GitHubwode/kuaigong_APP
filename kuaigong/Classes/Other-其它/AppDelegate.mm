@@ -17,7 +17,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import <RongIMKit/RongIMKit.h>
 #import "KGGJPushManager.h"
-
+#import "KGGTabBarWorkController.h"
 #import <AdSupport/AdSupport.h>
 
 

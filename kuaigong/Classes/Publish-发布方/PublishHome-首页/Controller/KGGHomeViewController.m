@@ -31,9 +31,11 @@
 #import "KGGLoginRequestManager.h"
 #import "AppDelegate+KGGRongCloud.h"
 #import "KGGWorkPackagesController.h"
+#import "KGGRoutePlanningController.h"
 //聊天列表和单聊
 #import "KGGConversionListViewController.h"
 #import "KGGPrivateMessageViewController.h"
+#import "KGGPublishOrderRequestManager.h"
 
 static CGFloat const itemHeight = 120.f;
 static CGFloat const topHeight = 37.f;
@@ -100,7 +102,7 @@ static CGFloat const middleHeight = 70.f;
     [KGGNotificationCenter addObserver:self selector:@selector(accountOfflineNotification:) name:KGGConnectionStatusOffLine object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(showBadge:) name:KGGShowAlertNotifacation object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(hidenBadge:) name:KGGHidenAlertNotifacation object:nil];
-//    [KGGNotificationCenter addObserver:self selector:@selector(kggJumpController:) name:KGGRongYunReceiedNotifacation object:nil];
+    [KGGNotificationCenter addObserver:self selector:@selector(kggJumpController:) name:KGGRongYunReceiedNotifacation object:nil];
     
     [self kgg_addButton];
     
@@ -115,8 +117,28 @@ static CGFloat const middleHeight = 70.f;
 {
     KGGLog(@"通知的内容%@",notification);
     KGGLog(@"%@",notification.userInfo);
+    //type "503","接单""511","完成工作
     NSUInteger type = [[notification.userInfo objectForKey:@"type"] integerValue];
-    KGGLog(@"通知的状态:%lu",(unsigned long)type);
+    if (type == 503) {
+        NSUInteger orderId = [[notification.userInfo objectForKey:@"orderId"] integerValue];
+        [self setupOrderDetailsOrderId:orderId];
+    }
+}
+
+#pragma mark - 获取当前订单的详情
+- (void)setupOrderDetailsOrderId:(NSUInteger )orderId
+{
+    [KGGPublishOrderRequestManager publishOrderDetailsMessageOrder:orderId completion:^(KGGResponseObj *responseObj) {
+        if (responseObj.code == KGGSuccessCode) {
+            KGGOrderDetailsModel*Model = [KGGOrderDetailsModel mj_objectWithKeyValues:responseObj.data];
+            KGGRoutePlanningController *routeVC = [[KGGRoutePlanningController alloc]init];
+            routeVC.orderDetails = Model;
+            routeVC.planType = KGGRoutePlanningBOSSType;
+            routeVC.presentId = 1;
+//            [self.navigationController pushViewController:routeVC animated:YES];
+            [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:routeVC] animated:YES completion:nil];
+        }
+    } aboveView:self.view inCaller:self];
 }
 
 - (void)accountOfflineNotification:(NSNotification *)noti
