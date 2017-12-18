@@ -1,44 +1,35 @@
 //
-//  KGGBillingDetailsViewController.m
+//  KGGBillingSpendingViewController.m
 //  kuaigong
 //
-//  Created by Ding on 2017/9/14.
+//  Created by Ding on 2017/12/15.
 //  Copyright © 2017年 Ding. All rights reserved.
 //
 
-#import "KGGBillingDetailsViewController.h"
+#import "KGGBillingSpendingViewController.h"
 #import "KGGBillingDetailsViewCell.h"
-#import "KGGMyWalletOrderDetailsModel.h"
 #import "KGGWallectRequestManager.h"
+#import "KGGMyWalletSpendModel.h"
 
-@interface KGGBillingDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface KGGBillingSpendingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *billTableView;
 @property (nonatomic, assign) NSInteger pageNum;
-@property (nonatomic, strong) KGGMyWalletOrderDetailsModel *walletModel;
-/** 用户类型 */
-@property (nonatomic,copy)NSString *requestType;
 @property (nonatomic, strong) NSMutableArray *datasource;
 
 @end
 
-@implementation KGGBillingDetailsViewController
+@implementation KGGBillingSpendingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"账单明细";
+//    self.navigationItem.title = @"账单明细";
     self.view.backgroundColor = KGGViewBackgroundColor;
     self.automaticallyAdjustsScrollViewInsets = YES;
     [self.view addSubview:self.billTableView];
-    if ([[KGGUserManager shareUserManager].currentUser.type isEqualToString:@"BOSS"]) {
-        self.requestType = @"postContent";
-    }else{
-        self.requestType = @"acceptContent";
-    }
-    
     self.billTableView.mj_header = [KGGRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(RefreshNewMessag)];
     self.billTableView.mj_footer = [KGGRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(LoadAddMoreMessage)];
-    [self.billTableView.mj_header beginRefreshing];
+        [self.billTableView.mj_header beginRefreshing];
 }
 
 -(void)RefreshNewMessag
@@ -54,7 +45,7 @@
 
 - (void)kgg_billingDetailsList:(BOOL)refresh
 {
-    [KGGWallectRequestManager myWalletOrderDetailsUserType:self.requestType Page:self.pageNum completion:^(NSArray < KGGMyWalletOrderDetailsModel *> *response,NSString *totalMoeny, NSString *drawAcount) {
+    [KGGWallectRequestManager myWalletOrderSpendingPage:self.pageNum completion:^(NSArray<KGGMyWalletSpendModel *> *response) {
         if (!response) {
             if (refresh) {
                 [self.billTableView.mj_header endRefreshing];
@@ -76,6 +67,7 @@
         if (self.datasource.count == 0) {
             [self.billTableView showBusinessErrorViewWithError:@"这里还没有内容" yOffset:100.f];
         }
+        
     } aboveView:self.view inCaller:self];
 }
 
@@ -87,9 +79,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    KGGMyWalletOrderDetailsModel *detailsModel = self.datasource[indexPath.row];
+    KGGMyWalletSpendModel *spendModel = self.datasource[indexPath.row];
     KGGBillingDetailsViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[KGGBillingDetailsViewCell billIdentifier]];
-    cell.detailsModel = detailsModel;
+    cell.spendModel = spendModel;
     return cell;
 }
 
@@ -115,10 +107,20 @@
     return _datasource;
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

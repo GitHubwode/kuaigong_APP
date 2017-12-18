@@ -197,6 +197,9 @@
 		357691351FB0704F00803D9A /* KGGRouteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357691331FB0704F00803D9A /* KGGRouteViewCell.xib */; };
 		357691381FB0722C00803D9A /* KGGRouteHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357691371FB0722C00803D9A /* KGGRouteHeaderView.m */; };
 		3576913B1FB0723C00803D9A /* KGGRouteFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3576913A1FB0723C00803D9A /* KGGRouteFooterView.m */; };
+		35778ABC1FE3B7F2009DFF02 /* KGGBillingBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35778ABB1FE3B7F2009DFF02 /* KGGBillingBaseViewController.m */; };
+		35778ABF1FE3BA2F009DFF02 /* KGGBillingSpendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35778ABE1FE3BA2F009DFF02 /* KGGBillingSpendingViewController.m */; };
+		35778AC21FE3BC23009DFF02 /* KGGMyWalletSpendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35778AC11FE3BC23009DFF02 /* KGGMyWalletSpendModel.m */; };
 		357F5E0C1FB56C8500252C4D /* KGGShareMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0A1FB56C8500252C4D /* KGGShareMessageViewController.m */; };
 		357F5E0D1FB56C8500252C4D /* KGGShareMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */; };
 		357F5E101FB5C14500252C4D /* KGGSearchUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 357F5E0F1FB5C14500252C4D /* KGGSearchUserModel.m */; };
@@ -701,6 +704,12 @@
 		357691371FB0722C00803D9A /* KGGRouteHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRouteHeaderView.m; sourceTree = "<group>"; };
 		357691391FB0723C00803D9A /* KGGRouteFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGRouteFooterView.h; sourceTree = "<group>"; };
 		3576913A1FB0723C00803D9A /* KGGRouteFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGRouteFooterView.m; sourceTree = "<group>"; };
+		35778ABA1FE3B7F2009DFF02 /* KGGBillingBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGBillingBaseViewController.h; sourceTree = "<group>"; };
+		35778ABB1FE3B7F2009DFF02 /* KGGBillingBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGBillingBaseViewController.m; sourceTree = "<group>"; };
+		35778ABD1FE3BA2E009DFF02 /* KGGBillingSpendingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGBillingSpendingViewController.h; sourceTree = "<group>"; };
+		35778ABE1FE3BA2F009DFF02 /* KGGBillingSpendingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGBillingSpendingViewController.m; sourceTree = "<group>"; };
+		35778AC01FE3BC23009DFF02 /* KGGMyWalletSpendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGMyWalletSpendModel.h; sourceTree = "<group>"; };
+		35778AC11FE3BC23009DFF02 /* KGGMyWalletSpendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGMyWalletSpendModel.m; sourceTree = "<group>"; };
 		357F5E091FB56C8500252C4D /* KGGShareMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGShareMessageViewController.h; sourceTree = "<group>"; };
 		357F5E0A1FB56C8500252C4D /* KGGShareMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGShareMessageViewController.m; sourceTree = "<group>"; };
 		357F5E0B1FB56C8500252C4D /* KGGShareMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KGGShareMessageViewController.xib; sourceTree = "<group>"; };
@@ -2465,8 +2474,12 @@
 				35F830851F62AA5B00204989 /* KGGWithdrawViewController.h */,
 				35F830861F62AA5B00204989 /* KGGWithdrawViewController.m */,
 				35F830871F62AA5B00204989 /* KGGWithdrawViewController.xib */,
+				35778ABA1FE3B7F2009DFF02 /* KGGBillingBaseViewController.h */,
+				35778ABB1FE3B7F2009DFF02 /* KGGBillingBaseViewController.m */,
 				35FF5C9C1F6A230B00E1A50B /* KGGBillingDetailsViewController.h */,
 				35FF5C9D1F6A230B00E1A50B /* KGGBillingDetailsViewController.m */,
+				35778ABD1FE3BA2E009DFF02 /* KGGBillingSpendingViewController.h */,
+				35778ABE1FE3BA2F009DFF02 /* KGGBillingSpendingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2478,6 +2491,8 @@
 				35CBD8291FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.m */,
 				358D29C31FDE2E5900000A78 /* KGGMyWalletCardModel.h */,
 				358D29C41FDE2E5900000A78 /* KGGMyWalletCardModel.m */,
+				35778AC01FE3BC23009DFF02 /* KGGMyWalletSpendModel.h */,
+				35778AC11FE3BC23009DFF02 /* KGGMyWalletSpendModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2873,6 +2888,7 @@
 				35CBD82A1FCBE89600FE1DFC /* KGGMyWalletOrderDetailsModel.m in Sources */,
 				188F2D5C1F540B8C0023F4BE /* KGGRefreshFooter.m in Sources */,
 				3505C86D1F976A5E0085D688 /* PKVideoDecoder.m in Sources */,
+				35778AC21FE3BC23009DFF02 /* KGGMyWalletSpendModel.m in Sources */,
 				359232301FA9C615005C67EA /* KGGPayRequestManager.m in Sources */,
 				3505C86B1F976A5E0085D688 /* PKPlayerManager.m in Sources */,
 				18F5BA781F4ED24F00E6ADC4 /* KGGLeftDrawerHeaderView.m in Sources */,
@@ -2907,6 +2923,7 @@
 				356AE9C31FAB35E5004E417B /* KGGCollectTotalController.m in Sources */,
 				3505C8681F976A5E0085D688 /* PKColorConversion.m in Sources */,
 				185C86BC1F4A9A5800356ECD /* SUNSlideSwitchView.m in Sources */,
+				35778ABF1FE3BA2F009DFF02 /* KGGBillingSpendingViewController.m in Sources */,
 				357691341FB0704F00803D9A /* KGGRouteViewCell.m in Sources */,
 				188F2D591F540A470023F4BE /* KGGRefreshHeader.m in Sources */,
 				35193F471FBBEFDC005D9E1A /* KGGPublishPostedViewCell.m in Sources */,
@@ -2993,6 +3010,7 @@
 				3505C7F21F962DC90085D688 /* KGGOrderCorrectViewController.m in Sources */,
 				35081F6B1FA0860A001AF418 /* KGGCarFeeModel.m in Sources */,
 				35F73AAE1F78AEB0000CD1D6 /* KGGSearchOrderHeaderView.m in Sources */,
+				35778ABC1FE3B7F2009DFF02 /* KGGBillingBaseViewController.m in Sources */,
 				35961AE71FA6CB5D00A52B9E /* TZAssetModel.m in Sources */,
 				3505C86E1F976A5E0085D688 /* PKRecordShortVideoViewController.m in Sources */,
 				189D211F1F42FE170004F1EB /* SDCollectionViewCell.m in Sources */,

@@ -9,6 +9,7 @@
 #import "KGGWallectRequestManager.h"
 #import "KGGMyWalletOrderDetailsModel.h"
 #import "KGGMyWalletCardModel.h"
+#import "KGGMyWalletSpendModel.h"
 
 @implementation KGGWallectRequestManager
 
@@ -47,6 +48,33 @@
             completionHandler(responseDatasource,totalCount,drawAcount1);
         }
         
+    } aboveView:view inCaller:caller];
+}
+
+/**
+ 获取支出明细
+ @param page 页数
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)myWalletOrderSpendingPage:(NSUInteger )page completion:(void(^)(NSArray<KGGMyWalletSpendModel *> *response))completionHandler aboveView:(UIView *)view inCaller:(id)caller
+{
+    NSString *url = KGGURL(@"/api/bank/getDrawed");
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"page"] = @(page);
+    [self postFormDataWithUrl:url form:dic completion:^(KGGResponseObj *responseObj) {
+        NSMutableArray *responseDatasource;
+        if (!responseObj) {
+            
+        }else if (responseObj.code != KGGSuccessCode){
+            [view showHint:responseObj.message];
+        }else{
+            NSArray *array = [responseObj.data objectForKey:@"recordList"];
+            responseDatasource = [KGGMyWalletSpendModel mj_objectArrayWithKeyValuesArray:array];
+        }
+        if (completionHandler) {
+            completionHandler(responseDatasource);
+        }
     } aboveView:view inCaller:caller];
 }
 

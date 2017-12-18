@@ -12,6 +12,7 @@
 #import "KGGWallectRequestManager.h"
 #import "KGGMyWalletCardModel.h"
 #import "KGGWithdrawViewController.h"
+#import "KGGBillingBaseViewController.h"
 
 @interface KGGMyWalletViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
@@ -110,10 +111,10 @@
         [self.navigationController pushViewController:addVC animated:YES];
     }
 }
+
 - (IBAction)billListDetailsClick:(UIButton *)sender {
     KGGLog(@"账单明细");
-    KGGBillingDetailsViewController *billVC = [[KGGBillingDetailsViewController alloc]init];
-    billVC.datasource = self.datasource;
+    KGGBillingBaseViewController *billVC = [[KGGBillingBaseViewController alloc]init];
     [self.navigationController pushViewController:billVC animated:YES];
 }
 

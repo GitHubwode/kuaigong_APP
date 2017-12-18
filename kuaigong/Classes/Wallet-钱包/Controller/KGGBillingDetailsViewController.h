@@ -10,6 +10,4 @@
 
 @interface KGGBillingDetailsViewController : UIViewController
 
-@property (nonatomic, strong) NSMutableArray *datasource;
-
 @end

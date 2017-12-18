@@ -33,7 +33,6 @@
     self.navigationItem.title = @"班组信息";
     self.fd_interactivePopDisabled = YES;//禁止右滑
     self.view.backgroundColor = KGGViewBackgroundColor;
-//    [self.view addSubview:self.mainView];
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.mainView];
     //创建tarBarItem
@@ -46,7 +45,6 @@
     if (scrollView == self.mainView) {
         KGGLog(@"uicollectionView");
     } else if (scrollView == self.scrollView) {
-//            self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y);
     }
 }
 

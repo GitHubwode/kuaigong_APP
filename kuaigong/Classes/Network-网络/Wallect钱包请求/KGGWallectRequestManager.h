@@ -10,6 +10,13 @@
 
 @class KGGMyWalletOrderDetailsModel;
 @class KGGMyWalletCardModel;
+@class KGGMyWalletSpendModel;
+
+
+//typedef NS_ENUM(NSUInteger, KGGMyWalletOrderRequestType) {
+//    KGGMyWalletOrderIncomeRequestType, // 收入
+//    KGGMyWalletOrderSpendingRequestType,//支出
+//};
 
 @interface KGGWallectRequestManager : KGGHTTPSessionManager
 
@@ -20,6 +27,15 @@
  @param caller 方法调用者
  */
 + (void)myWalletOrderDetailsUserType:(NSString *)userType Page:(NSUInteger )page completion:(void(^)(NSArray<KGGMyWalletOrderDetailsModel *> *response, NSString *totalMoeny, NSString *drawAcount ))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
+/**
+ 获取支出明细
+ @param page 页数
+ @param completionHandler 请求完成的回调 responseObj 为KGGResponseObj
+ @param caller 方法调用者
+ */
++ (void)myWalletOrderSpendingPage:(NSUInteger )page completion:(void(^)(NSArray<KGGMyWalletSpendModel *> *response))completionHandler aboveView:(UIView *)view inCaller:(id)caller;
+
 
 /**
  添加银行卡

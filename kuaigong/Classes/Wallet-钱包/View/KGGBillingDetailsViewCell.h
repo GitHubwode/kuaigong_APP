@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class KGGMyWalletOrderDetailsModel;
+@class KGGMyWalletSpendModel;
 
 @interface KGGBillingDetailsViewCell : UITableViewCell
 @property (nonatomic, strong) KGGMyWalletOrderDetailsModel *detailsModel;
+@property (nonatomic, strong) KGGMyWalletSpendModel *spendModel;
+
 + (NSString *)billIdentifier;
 
 @end
