@@ -150,6 +150,7 @@
             </constraints>
             <size key="customSize" width="173" height="188"/>
             <connections>
+                <outlet property="bottomView" destination="SS3-yk-8AR" id="xxO-To-70C"/>
                 <outlet property="cativeLabel" destination="ozg-po-vRb" id="56A-t8-SG0"/>
                 <outlet property="messageLabel" destination="m2L-dw-9cN" id="IB1-05-Q7G"/>
                 <outlet property="middleView" destination="34u-ft-m8h" id="0P4-er-R4X"/>

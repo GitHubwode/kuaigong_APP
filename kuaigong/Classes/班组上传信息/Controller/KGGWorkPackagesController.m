@@ -11,7 +11,6 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"
 
 @interface KGGWorkPackagesController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
-
 @property (nonatomic, strong) UICollectionView *mainView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic, strong) NSMutableArray *workDatasource;
@@ -56,7 +55,6 @@
 
 - (void)rightBarButtonClick
 {
-    
 }
 
 #pragma mark - UICollectionViewDelegate  UICollectionDatasource
@@ -83,7 +81,6 @@
 //点击item方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
 }
 
 //#pragma mark - 懒加载UIControllerView

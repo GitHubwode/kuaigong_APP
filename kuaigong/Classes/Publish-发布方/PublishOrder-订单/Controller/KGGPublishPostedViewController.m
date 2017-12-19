@@ -43,7 +43,9 @@
     self.view.backgroundColor = KGGViewBackgroundColor;
     self.tableView.tableHeaderView = self.headerView;
     if (self.type == 1) {
-        self.headerView.cancelButton.hidden = YES;
+//        self.headerView.cancelButton.hidden = YES;
+        self.headerView.imageView.hidden = YES;
+        [self.headerView.imageView removeFromSuperview];
     }else{
         self.headerView.imageView.hidden = YES;
         [self.headerView.imageView removeFromSuperview];
@@ -61,7 +63,6 @@
 {
     KGGLog(@"通知的内容%@",notification);
     KGGLog(@"%@",notification.userInfo);
-    
     NSUInteger type = [[notification.userInfo objectForKey:@"type"] integerValue];
     if (type == 503) {
         [self setupOrderDetails];
@@ -88,8 +89,6 @@
         }
     } aboveView:self.view inCaller:self];
 }
-
-
 
 #pragma mark - 提示信息
 - (void)PromptMessage{
@@ -209,7 +208,7 @@
     self.result = [NSMutableArray array];
     int i;
     int count = (int)self.datasource.count;
-    for (i = 0; i<count; i++) {
+    for (i = 0; i < count; i++) {
         int index = arc4random() % (count - i);
         [self.result addObject:[tempArray objectAtIndex:index]];
         [tempArray removeObjectAtIndex:index];
@@ -223,9 +222,7 @@
     KGGLog(@"取消订单");
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"确认删除订单吗?" preferredStyle:UIAlertControllerStyleAlert];
-    
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         KGGLog(@"删除订单");
         

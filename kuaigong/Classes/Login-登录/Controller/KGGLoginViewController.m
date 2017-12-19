@@ -298,12 +298,6 @@
 
 - (void)kgg_userRegistrationButton
 {
-    
-    JANALYTICSRegisterEvent * event = [[JANALYTICSRegisterEvent alloc] init];
-    event.success = YES;
-    event.method = @"registerType";
-    [JANALYTICSService eventRecord:event];
-    
     KGGLog(@"注册按钮");
     [self presentViewController:[[KGGNavigationController alloc] initWithRootViewController:[[KGGRegisterViewController alloc]init] ] animated:YES completion:nil];
 }

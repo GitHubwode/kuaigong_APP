@@ -232,7 +232,6 @@
         [MBProgressHUD showMessag:[NSString stringWithFormat:@"密码不能小于%zd位",KGGPasswordMinLength]];
         return;
     }
-    
     // 1.对用户密码是否相等
     BOOL isMatch = [cellphone isEqualToString:pwd];
     if (!isMatch){ // 不相等
@@ -240,8 +239,11 @@
         return;
     }
     
+    JANALYTICSRegisterEvent * event = [[JANALYTICSRegisterEvent alloc] init];
+    event.success = YES;
+    event.method = @"registerType";
+    [JANALYTICSService eventRecord:event];
     weakSelf(self);
-    
     KGGRegisterParam *param = [[KGGRegisterParam alloc]initWithPhone:self.cellPhone password:self.loginView1.loginTextField.text Type:[NSUserDefaults objectForKey:KGGUserType] Code:self.smsCode InvitationCode:self.companyCode PersonCode:phone];
     [KGGLoginRequestManager registerWithParam:param completion:^(KGGResponseObj *responseObj) {
         if (!responseObj) {
