@@ -103,7 +103,6 @@ NSString * const KGGBankOfDepositKey = @"KGGBankOfDepositKey";
 NSString * const KGGBalanceMoneyKey = @"KGGBalanceMoneyKey";
 /** 绑定银行卡 可提现金额 */
 NSString * const KGGDrawBalanceMoneyKey = @"KGGDrawBalanceMoneyKey";
-
 /** 用户添加银行卡成功的通知 */
 NSString * const KGGAddBankCardSuccessNotifacation = @"KGGAddBankCardSuccessNotifacation";
 /** 用户申请提现成功的通知 */
@@ -124,7 +123,6 @@ NSString *const KGGWeiXinAppSecret = @"da1f19a8e4a507845dbb7dd441ccdef2";
 NSString *const KGGAliPayURLScheme = @"sn2088821472320245";
 //友盟
 NSString *const KGGUMSocialAppKey = @"582199e0b27b0a5d6c001e64";
-
 //支付宝
 NSString *const KGGPayBlackNotification = @"payBackInformation";
 //微信

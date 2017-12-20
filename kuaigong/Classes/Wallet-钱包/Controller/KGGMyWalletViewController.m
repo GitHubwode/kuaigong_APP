@@ -13,6 +13,7 @@
 #import "KGGMyWalletCardModel.h"
 #import "KGGWithdrawViewController.h"
 #import "KGGBillingBaseViewController.h"
+#import "KGGLoginViewController.h"
 
 @interface KGGMyWalletViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
@@ -98,6 +99,13 @@
 
 - (IBAction)tiXianToBankCardClick:(UIButton *)sender {
     KGGLog(@"提现到银行卡");
+    
+    BOOL login = [KGGUserManager shareUserManager].logined;
+    if (!login) {
+        KGGLog(@"未登录");
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+        return;
+    }
     KGGLog(@"%.2f",self.cardModel.bankAccountDO.drawBalance);
     if (self.cardModel.isBink) {
         KGGWithdrawViewController *drawVC = [[KGGWithdrawViewController alloc]initWithNibName:NSStringFromClass([KGGWithdrawViewController class]) bundle:[NSBundle mainBundle]];
@@ -114,6 +122,13 @@
 
 - (IBAction)billListDetailsClick:(UIButton *)sender {
     KGGLog(@"账单明细");
+    BOOL login = [KGGUserManager shareUserManager].logined;
+    if (!login) {
+        KGGLog(@"未登录");
+        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+        return;
+    }
+    
     KGGBillingBaseViewController *billVC = [[KGGBillingBaseViewController alloc]init];
     [self.navigationController pushViewController:billVC animated:YES];
 }

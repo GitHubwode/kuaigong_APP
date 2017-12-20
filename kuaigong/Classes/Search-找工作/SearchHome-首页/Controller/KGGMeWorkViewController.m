@@ -49,13 +49,18 @@
 
 - (void)addMessage
 {
-    KGGMeWorkModel *model1 = [[KGGMeWorkModel alloc]init];
-    model1.meName = @"钱包";
-    model1.iconString = @"icon_qianbao";
-    [self.datasource addObject:model1];
+//    KGGMeWorkModel *model1 = [[KGGMeWorkModel alloc]init];
+//    model1.meName = @"钱包";
+//    model1.iconString = @"icon_qianbao";
+//    [self.datasource addObject:model1];
+//
+//    KGGMeWorkModel *model2 = [[KGGMeWorkModel alloc]init];
+//    model2.meName = @"我的工作";
+//    model2.iconString = @"icon_work";
+//    [self.datasource addObject:model2];
     
     KGGMeWorkModel *model2 = [[KGGMeWorkModel alloc]init];
-    model2.meName = @"我的工作";
+    model2.meName = @"我的班组";
     model2.iconString = @"icon_work";
     [self.datasource addObject:model2];
     
@@ -87,7 +92,6 @@
 {
     KGGLog(@"找工作中间:%ld",index);
     if (index == 0) {
-        
     }
 }
 
@@ -109,14 +113,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        KGGMyWalletViewController *walletVC = [[KGGMyWalletViewController alloc]initWithNibName:NSStringFromClass([KGGMyWalletViewController class]) bundle:[NSBundle mainBundle]];
-        [self.navigationController pushViewController:walletVC animated:YES];
+//        KGGMyWalletViewController *walletVC = [[KGGMyWalletViewController alloc]initWithNibName:NSStringFromClass([KGGMyWalletViewController class]) bundle:[NSBundle mainBundle]];
+//        [self.navigationController pushViewController:walletVC animated:YES];
+        KGGLog(@"我的班组");
+        [self.view showHint:@"我的班组"];
     }
     if (indexPath.row ==1) {
         KGGMyWorkBaseViewController *myVC = [[KGGMyWorkBaseViewController alloc]init];
         [self.navigationController pushViewController:myVC animated:YES];
     }
-    
     if (indexPath.row == 2) {
         KGGCenterViewController *centerVC = [[KGGCenterViewController alloc]init];
         [self.navigationController pushViewController:centerVC animated:YES];
@@ -143,38 +148,6 @@
         [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
     }
 }
-
-//#pragma mark - 确认收款按钮
-//- (void)snh_sureCollectButtonClick:(UIButton *)sender
-//{
-//    KGGLog(@"确认收款按钮");
-//}
-//
-////- (void)addCollectButton
-////{
-////    weakSelf(self);
-////    UIButton *useButton = [self snh_creatButtonImage:@"bg_button" Title:@"确认收款"];
-////    [self.view addSubview:useButton];
-////    [useButton mas_makeConstraints:^(MASConstraintMaker *make) {
-////        make.centerX.equalTo(weakself.view.mas_centerX);
-////        make.bottom.equalTo(weakself.view.mas_bottom);
-////        make.height.equalTo(@(KGGLoginButtonHeight));
-////        make.width.equalTo(@(kMainScreenWidth));
-////    }];
-////}
-//
-//#pragma mark - lazyButton
-//- (UIButton *)snh_creatButtonImage:(NSString *)image Title:(NSString *)title
-//{
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [button setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-//    [button setTitle:title forState:UIControlStateNormal];
-//    [button setTitleColor:UIColorHex(0xffffff) forState:UIControlStateNormal];
-//    [button addTarget:self action:@selector(snh_sureCollectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-//    return button;
-//}
-
-
 
 #pragma mark - lazy
 - (UITableView *)tableView
