@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *tiXianButton;
 @property (nonatomic, strong) CYPasswordView *passwordView;
 
-
 @end
 
 @implementation KGGWithdrawViewController
@@ -34,7 +33,6 @@
     self.navigationItem.title = @"提现";
     [self setupMessage];
     [self addNativationItemRightButton];
-    
 //    [KGGNotificationCenter addObserver:self selector:@selector(textFieldTextDidChange) name:UITextFieldTextDidChangeNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(forgetPWD) name:CYPasswordViewForgetPWDButtonClickNotification object:nil];
     [KGGNotificationCenter addObserver:self selector:@selector(cancelInputPWD) name:CYPasswordViewCancleButtonClickNotification object:nil];
@@ -88,16 +86,13 @@
 #pragma mark - Notification
 - (void)forgetPWD {
     CYLog(@"忘记密码");
-    
     [self.passwordView hide];
     [self cancelInputPWD];
-    
     
     SNHSecurityCodeViewController *code = [[SNHSecurityCodeViewController alloc]init];
     code.cellphone = self.cardModel.bankAccountDO.bankPhone;
     code.updataPwd = @"1";
     [self.navigationController pushViewController:code animated:YES];
-
 }
 
 //- (void)textFieldTextDidChange
@@ -132,12 +127,10 @@
 //    }
 //}
 
-
 - (void)cancelInputPWD{
     [self.passwordView removeFromSuperview];
     self.passwordView = nil;
 }
-
 
 #pragma mark - 按钮的点击事件
 - (IBAction)withdrawButtonClick:(UIButton *)sender {
@@ -197,25 +190,24 @@
 - (void)adminiorButtonClick
 {
     KGGLog(@"管理按钮");
-    
-        LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+        
+        if (buttonIndex) {
             
-            if (buttonIndex) {
-                
-                [KGGWallectRequestManager myWalletDeleteBankCardCompletion:^(KGGResponseObj *responseObj) {
-                    if (responseObj.code == KGGSuccessCode) {
-                        
-                        if (self.removeBlock) {
-                            self.removeBlock();
-                        }
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }
+            [KGGWallectRequestManager myWalletDeleteBankCardCompletion:^(KGGResponseObj *responseObj) {
+                if (responseObj.code == KGGSuccessCode) {
                     
-                } aboveView:self.view idCaller:self];
-            }
-            
-        } otherButtonTitles:@"删除银行卡", nil];
-        [sheet show];
+                    if (self.removeBlock) {
+                        self.removeBlock();
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                
+            } aboveView:self.view idCaller:self];
+        }
+        
+    } otherButtonTitles:@"删除银行卡", nil];
+    [sheet show];
 }
 
 - (void)addNativationItemRightButton

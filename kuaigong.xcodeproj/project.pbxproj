@@ -268,6 +268,7 @@
 		35AE11731F8FB66600BCD2BD /* KGGAMapSearchViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE11721F8FB66600BCD2BD /* KGGAMapSearchViewCell.m */; };
 		35AE11741F8FBBDD00BCD2BD /* KGGAMapSearchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35AE11711F8FB66600BCD2BD /* KGGAMapSearchViewCell.xib */; };
 		35AE11771F90A59900BCD2BD /* KGGLoginVIPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE11761F90A59800BCD2BD /* KGGLoginVIPRequestManager.m */; };
+		35BC28EF1FEB76100022E67F /* KGGSearchVIPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BC28EE1FEB76100022E67F /* KGGSearchVIPView.m */; };
 		35BDA9F61FC6C96200E9F891 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35309F871FC6C879003B15A2 /* CoreMotion.framework */; };
 		35BEB1611F725BBA0060298A /* KGGMyWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BEB1601F725BBA0060298A /* KGGMyWorkViewController.m */; };
 		35BEB1651F725D7C0060298A /* KGGMyWorkViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BEB1631F725D7C0060298A /* KGGMyWorkViewCell.m */; };
@@ -832,6 +833,8 @@
 		35AE11721F8FB66600BCD2BD /* KGGAMapSearchViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGAMapSearchViewCell.m; sourceTree = "<group>"; };
 		35AE11751F90A59800BCD2BD /* KGGLoginVIPRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGLoginVIPRequestManager.h; sourceTree = "<group>"; };
 		35AE11761F90A59800BCD2BD /* KGGLoginVIPRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGLoginVIPRequestManager.m; sourceTree = "<group>"; };
+		35BC28ED1FEB76100022E67F /* KGGSearchVIPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KGGSearchVIPView.h; sourceTree = "<group>"; };
+		35BC28EE1FEB76100022E67F /* KGGSearchVIPView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGGSearchVIPView.m; sourceTree = "<group>"; };
 		35BEB15F1F725BBA0060298A /* KGGMyWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGMyWorkViewController.h; sourceTree = "<group>"; };
 		35BEB1601F725BBA0060298A /* KGGMyWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGGMyWorkViewController.m; sourceTree = "<group>"; };
 		35BEB1621F725D7C0060298A /* KGGMyWorkViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGGMyWorkViewCell.h; sourceTree = "<group>"; };
@@ -1161,6 +1164,7 @@
 		188F2D2A1F4ED50E0023F4BE /* Search-找工作 */ = {
 			isa = PBXGroup;
 			children = (
+				35BC28E91FEB4A840022E67F /* 接单方VIP */,
 				188F2D2B1F4ED50E0023F4BE /* SearchHome-首页 */,
 				35F73A971F78AA3C000CD1D6 /* SearchOrder-订单 */,
 			);
@@ -2157,6 +2161,39 @@
 			path = CountDown;
 			sourceTree = "<group>";
 		};
+		35BC28E91FEB4A840022E67F /* 接单方VIP */ = {
+			isa = PBXGroup;
+			children = (
+				35BC28EB1FEB541D0022E67F /* Controller */,
+				35BC28EC1FEB541D0022E67F /* Model */,
+				35BC28EA1FEB541D0022E67F /* View */,
+			);
+			path = "接单方VIP";
+			sourceTree = "<group>";
+		};
+		35BC28EA1FEB541D0022E67F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35BC28ED1FEB76100022E67F /* KGGSearchVIPView.h */,
+				35BC28EE1FEB76100022E67F /* KGGSearchVIPView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		35BC28EB1FEB541D0022E67F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		35BC28EC1FEB541D0022E67F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		35C76FFD1FDE7C8B0061747E /* 小视频 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2970,6 +3007,7 @@
 				189D21241F42FE170004F1EB /* SDWebImageCompat.m in Sources */,
 				18F5BA641F4ED24F00E6ADC4 /* KGGCustomInfoItem.m in Sources */,
 				185C867E1F4569D800356ECD /* UIBarButtonItem+KGGExtension.m in Sources */,
+				35BC28EF1FEB76100022E67F /* KGGSearchVIPView.m in Sources */,
 				18F5BA7B1F4ED24F00E6ADC4 /* KGGUndoneOrderController.m in Sources */,
 				185C86691F452D4300356ECD /* MBProgressHUD+KGGExtension.m in Sources */,
 				35961AC31FA5FF6C00A52B9E /* TZTestCell.m in Sources */,

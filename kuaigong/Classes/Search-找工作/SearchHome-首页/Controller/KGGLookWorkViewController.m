@@ -22,6 +22,7 @@
 #import "AppDelegate+KGGRongCloud.h"
 #import "KGGWorkDetailsViewController.h"
 #import "KGGPublishOrderRequestManager.h"
+#import "KGGSearchVIPView.h"
 
 static CGFloat kCycleScrollViewH = 39.f;
 
@@ -37,6 +38,7 @@ static CGFloat kCycleScrollViewH = 39.f;
 @property (nonatomic, strong) NSMutableArray *messageDatasource;
 @property (nonatomic, strong) UIButton *JPButton;
 @property (nonatomic, strong) NSString *isJPush;
+@property (nonatomic, strong) KGGSearchVIPView *VIPView;
 
 
 @end
@@ -321,23 +323,44 @@ static CGFloat kCycleScrollViewH = 39.f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (![KGGUserManager shareUserManager].logined) {
-        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
-        return;
-    }
-    KGGOrderDetailsModel *model = self.datasource[indexPath.row];
-    if (![KGGUserManager shareUserManager].currentUser.isRegister) {
-        [self.view showHint:@"非签约用户,请联系快工公司"];
-        return;
-    }else if (model.status == 0){
-        KGGLog(@"订单详情");
-        KGGSearchOrderController *orderVC = [[KGGSearchOrderController alloc]init];
-        orderVC.orderDetails = model;
-        [self.navigationController pushViewController:orderVC animated:YES];
-    }else{
-        [self.view showHint:@"来晚了,此订单已接"];
-    }
+    
+    [self jumpVIPView];
+    
+    
+//    if (![KGGUserManager shareUserManager].logined) {
+//        [self presentViewController:[[KGGNavigationController alloc]initWithRootViewController:[[KGGLoginViewController alloc]init]] animated:YES completion:nil];
+//        return;
+//    }
+//    KGGOrderDetailsModel *model = self.datasource[indexPath.row];
+//    if (![KGGUserManager shareUserManager].currentUser.isRegister) {
+//        [self.view showHint:@"非签约用户,请联系快工公司"];
+////        [self jumpVIPView];
+//    }else if (model.status == 0){
+//        KGGLog(@"订单详情");
+//        KGGSearchOrderController *orderVC = [[KGGSearchOrderController alloc]init];
+//        orderVC.orderDetails = model;
+//        [self.navigationController pushViewController:orderVC animated:YES];
+//    }else{
+//        [self.view showHint:@"来晚了,此订单已接"];
+//    }
 }
+
+#pragma mark - 跳出VIP页面
+- (void)jumpVIPView
+{
+    self.VIPView = [KGGSearchVIPView kgg_alertPromptSearchForViewKGGApplyButtonClick:^(NSString *money) {
+        KGGLog(@"支付会员费:%@",money);
+    } KGGUnderstandButtonClick:^{
+        
+    }];
+}
+
+
+
+
+
+
+
 
 #pragma mark - 取消推送的点击按钮
 - (void)beginJPushButtonClick:(UIButton *)sender
